@@ -30,7 +30,7 @@ export const SideBar = () => {
         <Link
           key={link.name}
           href={link.href}
-          className="font-sans flex px-2 py-2 mt-3 rounded-sm transition hover:bg-gold hover:text-darkGray"
+          className="font-sans flex px-2 py-2 mt-3 rounded-sm transition duration-300 hover:bg-gold hover:text-darkGray"
         >
           <p>{link.name}</p>
         </Link>
