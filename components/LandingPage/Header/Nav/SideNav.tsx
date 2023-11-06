@@ -7,9 +7,10 @@ const SideNav = ({ clicked, setClicked }: NavTypings) => {
   return (
     <div
       className={clsx(
-        `absolute top-0 left-0 h-screen w-full md:hidden p-5 bg-blue text-lightGray`,
+        `absolute top-0 left-0 h-screen w-full md:hidden p-5 bg-blue text-lightGray transition-all duration-300 ease-in-out`,
         {
-          " hidden": clicked === false,
+          "translate-x-0": clicked,
+          "-translate-x-full": !clicked,
         }
       )}
     >
