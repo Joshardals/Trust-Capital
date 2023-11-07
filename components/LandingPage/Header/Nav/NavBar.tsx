@@ -17,12 +17,12 @@ const NavBar = () => {
         <NavLinks />
       </div>
 
-      {/* The Hamburger Icon */}
+      {/* The Hamburger Icon only shows on Mobile Devices */}
       <div onClick={() => setNavClick(!navClick)}>
         <Bars3Icon className="h-6 w-6 md:hidden cursor-pointer" />
       </div>
 
-      {/* The Popup SideNav when the hamburger Icon gets clicked on. */}
+      {/* The Popup the SideNav when the hamburger Icon gets clicked on. */}
       <SideNav clicked={navClick} setClicked={setNavClick} />
     </div>
   );
