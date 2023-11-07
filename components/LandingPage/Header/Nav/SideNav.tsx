@@ -42,7 +42,7 @@ const SideNav = ({ clicked, setClicked }: NavTypings) => {
         className={clsx(
           `bg-darkGray absolute top-0 right-0 h-screen w-[100%] -z-10 md:hidden p-5 transition-all ease-in-out duration-200`,
           {
-            "bg-opacity-0 -z-10": !clicked,
+            "bg-opacity-0": !clicked,
             "bg-opacity-50": clicked,
           }
         )}
