@@ -17,7 +17,7 @@ const SideNav = ({ clicked, setClicked }: NavTypings) => {
     <div className="h-full overflow-hidden">
       <div
         className={clsx(
-          `absolute top-0 left-0 bottom-0 h-screen w-[60%] md:hidden z-20 p-5 bg-blue text-lightGray transition-all duration-300 ease-in-out`,
+          `absolute top-0 left-0 bottom-0 h-screen w-full md:hidden z-20 p-5 bg-blue text-lightGray transition-all duration-300 ease-in-out`,
           {
             "translate-x-0": clicked,
             "-translate-x-full": !clicked,
@@ -25,11 +25,11 @@ const SideNav = ({ clicked, setClicked }: NavTypings) => {
         )}
       >
         <div>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-end items-center">
             {/* Company's Logo */}
-            <div className="flex-1 font-medium px-2 cursor-pointer">
+            {/* <div className="flex-1 font-medium px-2 cursor-pointer">
               <Link href="/">Trust Capital</Link>
-            </div>
+            </div> */}
 
             {/* The Mark Icon */}
             <div>
@@ -47,7 +47,7 @@ const SideNav = ({ clicked, setClicked }: NavTypings) => {
         </div>
       </div>
 
-      <div
+      {/* <div
         onClick={() => handleClick()}
         className={clsx(
           `bg-darkGray absolute top-0 right-0 h-screen w-[100%] z-10 md:hidden p-5 transition-all ease-in-out duration-200`,
@@ -56,7 +56,7 @@ const SideNav = ({ clicked, setClicked }: NavTypings) => {
             "bg-opacity-50": clicked,
           }
         )}
-      ></div>
+      ></div> */}
     </div>
   );
 };
