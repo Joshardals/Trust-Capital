@@ -4,11 +4,19 @@ import clsx from "clsx";
 import { NavTypings } from "@/lib/typings";
 
 const SideNav = ({ clicked, setClicked }: NavTypings) => {
+  // This function closes the sidebar when the gray background gets clicked
+  function handleClick() {
+    if (clicked) {
+      setClicked(!clicked);
+    }
+    return false;
+  }
+
   return (
     <div>
       <div
         className={clsx(
-          `absolute top-0 left-0 h-screen w-[60%] md:hidden z-10 p-5 bg-blue text-lightGray transition-all duration-300 ease-in-out`,
+          `absolute top-0 left-0 h-screen w-[60%] md:hidden z-20 p-5 bg-blue text-lightGray transition-all duration-300 ease-in-out`,
           {
             "translate-x-0": clicked,
             "-translate-x-full": !clicked,
@@ -39,10 +47,11 @@ const SideNav = ({ clicked, setClicked }: NavTypings) => {
       </div>
 
       <div
+        onClick={() => handleClick()}
         className={clsx(
-          `bg-darkGray absolute top-0 right-0 h-screen w-[100%] -z-10 md:hidden p-5 transition-all ease-in-out duration-200`,
+          `bg-darkGray absolute top-0 right-0 h-screen w-[100%] z-10 md:hidden p-5 transition-all ease-in-out duration-200`,
           {
-            "bg-opacity-0": !clicked,
+            hidden: !clicked,
             "bg-opacity-50": clicked,
           }
         )}
