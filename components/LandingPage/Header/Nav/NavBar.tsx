@@ -8,7 +8,7 @@ import Link from "next/link";
 const NavBar = () => {
   const [navClick, setNavClick] = useState(false);
   return (
-    <div className="flex items-center justify-between fixed bg-blue text-lightGray left-0 top-0 w-full p-5 md:px-20 md:py-10">
+    <div className="flex items-center justify-between fixed bg-blue text-lightGray left-0 right-0 top-0 w-full h-16 px-5 md:px-20 md:h-16">
       {/* Company's Logo */}
       <div className="flex-1 font-medium cursor-pointer">
         <Link href="/">Trust Capital</Link>
