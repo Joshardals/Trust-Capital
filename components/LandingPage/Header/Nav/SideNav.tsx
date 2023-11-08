@@ -14,10 +14,10 @@ const SideNav = ({ clicked, setClicked }: NavTypings) => {
   }
 
   return (
-    <div className="h-full overflow-hidden">
+    <div className="h-screen overflow-auto">
       <div
         className={clsx(
-          `absolute top-0 left-0 bottom-0 h-screen w-full md:hidden z-20 p-5 bg-blue text-lightGray transition-all duration-300 ease-in-out`,
+          `absolute top-0 left-0 bottom-0 h-screen w-full md:hidden p-5 bg-blue text-lightGray transition-all duration-300 ease-in-out`,
           {
             "translate-x-0": clicked,
             "-translate-x-full": !clicked,
