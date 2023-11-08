@@ -19,8 +19,8 @@ const SideNav = ({ clicked, setClicked }: NavTypings) => {
         className={clsx(
           `fixed top-0 left-0 h-screen w-full md:hidden p-5 bg-blue text-lightGray transition-all duration-300 ease-in-out`,
           {
-            "translate-x-0": clicked,
-            "-translate-x-full": !clicked,
+            "translate-x-0 overflow-y-auto": clicked,
+            "-translate-x-full overflow-y-hidden": !clicked,
           }
         )}
       >
