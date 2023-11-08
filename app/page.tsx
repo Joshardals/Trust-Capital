@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main className="relative">
       <Header />
-      <div className="min-h-screen w-full"></div>
+      <div className="h-[2000px] w-full">Hey</div>
     </main>
   );
 }
