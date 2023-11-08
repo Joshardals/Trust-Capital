@@ -2,6 +2,7 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 import { SideBar } from "./NavLinks";
 import clsx from "clsx";
 import { NavTypings } from "@/lib/typings";
+import Link from "next/link";
 
 const SideNav = ({ clicked, setClicked }: NavTypings) => {
   // This function closes the sidebar when the gray background gets clicked
@@ -16,7 +17,7 @@ const SideNav = ({ clicked, setClicked }: NavTypings) => {
     <div className="h-full overflow-hidden">
       <div
         className={clsx(
-          `absolute top-0 left-0 h-screen w-[60%] md:hidden z-20 p-5 bg-blue text-lightGray transition-all duration-300 ease-in-out`,
+          `absolute top-0 left-0 bottom-0 h-screen w-[60%] md:hidden z-20 p-5 bg-blue text-lightGray transition-all duration-300 ease-in-out`,
           {
             "translate-x-0": clicked,
             "-translate-x-full": !clicked,
@@ -27,7 +28,7 @@ const SideNav = ({ clicked, setClicked }: NavTypings) => {
           <div className="flex justify-between items-center">
             {/* Company's Logo */}
             <div className="flex-1 font-medium px-2 cursor-pointer">
-              Trust Capital
+              <Link href="/">Trust Capital</Link>
             </div>
 
             {/* The Mark Icon */}
