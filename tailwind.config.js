@@ -30,6 +30,8 @@ module.exports = {
     },
     fontSize: {
       // Button Text, Sidebar Text, Small Text(Metadata, Captions)
+      xs: "0.75rem", 
+      
       sm: "1rem",
 
       // Navigation Links and Body Text (Paragraphs)

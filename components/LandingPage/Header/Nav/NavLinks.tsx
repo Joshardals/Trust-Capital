@@ -14,7 +14,7 @@ export const NavLinks = () => {
         <Link
           key={link.name}
           href={link.href}
-          className="font-sans relative text-sm w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-gold after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
+          className="font-sans relative text-sm transition-all hover:mb-1 hover:text-gold"
         >
           <p>{link.name}</p>
         </Link>
