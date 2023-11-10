@@ -41,11 +41,11 @@ const NavBar = () => {
         {/* The Hamburger and X Icon only shows on Mobile Devices */}
         {navClick ? (
           <div onClick={() => setNavClick(!navClick)}>
-            <XMarkIcon className="h-6 w-6 " />
+            <XMarkIcon className="h-10 w-10 " />
           </div>
         ) : (
           <div onClick={() => setNavClick(!navClick)}>
-            <Bars3Icon className="h-6 w-6" />
+            <Bars3Icon className="h-10 w-10" />
           </div>
         )}
       </div>
