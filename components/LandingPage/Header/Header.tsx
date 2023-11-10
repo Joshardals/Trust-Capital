@@ -4,7 +4,7 @@ import NavBar from "./Nav/NavBar";
 
 const Header = () => {
   return (
-    <main className="w-full p-5">
+    <main className="w-full p-5 z-20">
       <NavBar />
     </main>
   );

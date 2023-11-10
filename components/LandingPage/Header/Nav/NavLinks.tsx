@@ -35,6 +35,14 @@ export const SideBar = () => {
           <p>{link.name}</p>
         </Link>
       ))}
+      <div>
+        <Link
+          href="/login"
+          className="font-sans text-xl flex px-2 py-2 mt-3 rounded-sm transition duration-300 hover:bg-gold hover:text-darkGray"
+        >
+          Log in
+        </Link>
+      </div>
     </>
   );
 };

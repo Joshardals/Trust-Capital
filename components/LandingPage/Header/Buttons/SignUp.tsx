@@ -1,12 +1,14 @@
+import Link from "next/link";
 import React from "react";
 
 const SignUp = () => {
   return (
-    <div>
-      <button className="h-12 w-auto bg-gold text-green max-md:mr-5 px-8 text-center rounded-full">
-        Sign up
-      </button>
-    </div>
+    <Link
+      href="/sign-up"
+      className="h-12 flex items-center w-auto bg-gold text-green px-8 text-center rounded-full"
+    >
+      Sign up
+    </Link>
   );
 };
 
