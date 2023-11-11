@@ -17,7 +17,7 @@ const NavBar = () => {
     >
       <div className="flex max-md:flex-1 w-full md:w-auto space-x-8">
         {/* Company's Logo */}
-        <div className=" flex items-center text-lg max-md:flex-1 pr-10 w-auto relative">
+        <div className=" flex items-center text-md max-md:flex-1 pr-10 w-auto relative">
           <Link href="/" className="">
             TrustCapital
           </Link>
@@ -31,8 +31,8 @@ const NavBar = () => {
         </div>
       </div>
 
-      <div className="flex md:flex-1 md:w-full items-center space-x-5">
-        <div className="flex flex-1 items-center justify-end space-x-4 font-sans font-semibold text-xs">
+      <div className="flex w-full md:flex-1 md:w-full items-center space-x-5">
+        <div className="flex flex-1 items-center justify-end md:space-x-4 font-sans font-semibold text-xs">
           {/* Login Button */}
           <Login />
 
@@ -44,11 +44,11 @@ const NavBar = () => {
           {/* The Hamburger and X Icon only shows on Mobile Devices */}
           {navClick ? (
             <div onClick={() => setNavClick(!navClick)}>
-              <XMarkIcon className="h-10 w-10 max-xs:w-8 max-xs:h-8" />
+              <XMarkIcon className="h-8 w-8 max-xs:h-8" />
             </div>
           ) : (
             <div onClick={() => setNavClick(!navClick)}>
-              <Bars3Icon className="h-10 w-10 max-xs:w-8 max-xs:h-8" />
+              <Bars3Icon className="h-8 w-8 max-xs:h-8" />
             </div>
           )}
         </div>

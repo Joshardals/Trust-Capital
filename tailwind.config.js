@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+
+
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -15,12 +17,6 @@ module.exports = {
         "2xl": "1400px",
       },
     },
-    screens: {
-      "xs": "370px", 
-      "sm": "576px", 
-      "md": "960px", 
-      "lg": "1440px", 
-    }, 
     colors: {
       // Primary Colors
       blue: "#001F3F",
@@ -39,6 +35,8 @@ module.exports = {
       xs: "0.75rem", 
       
       sm: "1rem",
+
+      md: "1.125rem", 
 
       // Navigation Links and Body Text (Paragraphs)
       base: "1.125rem",
