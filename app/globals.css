@@ -8,7 +8,7 @@
   }
   /* Styles for the mobile Navigation Link */
   .sidebar-links {
-    @apply font-sans text-xl flex mt-3 rounded-sm transition duration-300 
+    @apply font-sans text-lg flex mt-3 rounded-sm transition duration-300 
     text-purewhite hover:text-babyblue hover:pt-1;
   }
 }

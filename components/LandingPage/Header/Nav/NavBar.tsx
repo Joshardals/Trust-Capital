@@ -1,7 +1,5 @@
 "use client";
-import { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
-import SideNav from "./SideNav";
 import { NavLinks } from "./NavLinks";
 import Link from "next/link";
 import Login from "../Buttons/Login";
@@ -9,7 +7,6 @@ import SignUp from "../Buttons/SignUp";
 import { useNavStore } from "@/lib/store/store";
 
 const NavBar = () => {
-  const [navClick, setNavClick] = useState(false);
   const { navBar, setNavBar } = useNavStore();
   return (
     <div
@@ -44,7 +41,7 @@ const NavBar = () => {
 
         <div className="md:hidden cursor-pointer text-purewhite">
           {/* The Hamburger and X Icon only shows on Mobile Devices */}
-          {navClick ? (
+          {navBar ? (
             <div onClick={setNavBar}>
               <XMarkIcon className="h-8 w-8 max-xs:h-8" />
             </div>
@@ -55,7 +52,6 @@ const NavBar = () => {
           )}
         </div>
       </div>
-
     </div>
   );
 };
