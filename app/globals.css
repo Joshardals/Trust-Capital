@@ -4,6 +4,6 @@
 
 @layer components {
   .button {
-    @apply flex items-center h-10 w-auto max-xs:px-4 px-6 text-center rounded-full transition-all;
+    @apply flex items-center h-10 w-auto px-6 text-center rounded-full transition-all;
   }
 }
