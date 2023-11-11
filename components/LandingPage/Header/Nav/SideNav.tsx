@@ -16,7 +16,7 @@ const SideNav = ({ clicked, setClicked }: NavTypings) => {
     <div className="h-full overflow-hidden">
       <div
         className={clsx(
-          `fixed bottom-0 left-0 h-[92%]  bg-green w-full md:hidden text-lightGray transition-all duration-300 ease-in-out`,
+          `fixed bottom-0 left-0 h-[92%] bg-gold w-full md:hidden text-lightGray transition-all duration-300 ease-in-out`,
           {
             block: clicked,
             hidden: !clicked,
