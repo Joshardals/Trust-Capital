@@ -52,7 +52,6 @@ const NavBar = () => {
             </div>
           )}
         </div>
-
         {/* The Popup the SideNav when the hamburger Icon gets clicked on. */}
         <SideNav />
       </div>

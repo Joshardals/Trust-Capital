@@ -7,10 +7,10 @@ const SideNav = () => {
   const { navBar, setNavBar } = useNavStore();
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden h-full">
       <div
         className={clsx(
-          `fixed -bottom-16 bg-goldenrod left-0 h-screen w-full md:hidden text-lightGray transition-all duration-300 ease-in-out`,
+          `fixed bg-goldenrod h-[92%] left-0 bottom-0 w-full md:hidden text-lightGray transition-all duration-300 ease-in-out`,
           {
             block: navBar,
             hidden: !navBar,
