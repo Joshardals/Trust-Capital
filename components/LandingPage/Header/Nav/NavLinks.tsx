@@ -30,7 +30,7 @@ export const SideBar = () => {
         <Link
           key={link.name}
           href={link.href}
-          className="font-sans text-xl flex px-2 mt-3 rounded-sm transition duration-300 hover:mb-1 hover:text-gold"
+          className="font-sans text-xl flex mt-3 rounded-sm transition duration-300 hover:mb-1 hover:text-gold"
         >
           <p>{link.name}</p>
         </Link>
@@ -38,7 +38,7 @@ export const SideBar = () => {
       <div>
         <Link
           href="/login"
-          className="font-sans text-xl flex px-2 mt-3 rounded-sm transition duration-300 hover:mb-1 hover:text-gold"
+          className="font-sans text-xl flex mt-3 rounded-sm transition duration-300 hover:mb-1 hover:text-gold"
         >
           Log in
         </Link>

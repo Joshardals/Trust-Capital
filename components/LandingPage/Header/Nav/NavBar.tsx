@@ -19,9 +19,9 @@ const NavBar = () => {
         {/* Company's Logo */}
         <div className=" flex items-center text-lg max-md:flex-1 pr-10 w-auto relative">
           <Link href="/" className="">
-            Trust Capital
+            TrustCapital
           </Link>
-          <div className=" max-md:hidden absolute top-0 right-0 w-[1px] bg-gold h-full" />
+          <div className=" max-md:hidden absolute top-0 right-0 border-r border-r-gold h-full" />
         </div>
 
         {/* The Navigation Links */}
