@@ -11,8 +11,8 @@ const NavBar = () => {
   const { navBar, setNavBar } = useNavStore();
   return (
     <div
-      className="flex max-md:items-center justify-between fixed text-lightGray left-0 right-0 top-0 w-full h-16 px-5 md:h-16
-      bg-navyblue
+      className="flex max-md:items-center justify-between fixed text-lightGray left-0 right-0 top-0 w-full h-16 md:h-16
+      px-5 lg:px-10
     "
     >
       <div className="flex text-purewhite max-md:flex-1 w-full md:w-auto space-x-8">
@@ -31,7 +31,7 @@ const NavBar = () => {
         </div>
       </div>
 
-      <div className="flex w-full md:flex-1 md:w-full items-center space-x-5">
+      <div className="flex w-full md:flex-1 md:w-full items-center">
         <div className="flex flex-1 items-center justify-end md:space-x-4 font-sans font-semibold text-xs">
           {/* Login Button */}
           <Login />
