@@ -1,25 +1,19 @@
 import { SideBar } from "./NavLinks";
 import clsx from "clsx";
-import { NavTypings } from "@/lib/typings";
 import Link from "next/link";
+import { useNavStore } from "@/lib/store/store";
 
-const SideNav = ({ clicked, setClicked }: NavTypings) => {
-  // This function closes the sidebar when the gray background gets clicked
-  function handleClick() {
-    if (clicked) {
-      setClicked(!clicked);
-    }
-    return false;
-  }
+const SideNav = () => {
+  const { navBar, setNavBar } = useNavStore();
 
   return (
     <div className="h-full overflow-hidden">
       <div
         className={clsx(
-          `fixed -bottom-16 left-0 h-full bg-green w-full md:hidden text-lightGray transition-all duration-300 ease-in-out`,
+          `fixed -bottom-16 left-0 h-screen bg-navyblue w-full md:hidden text-lightGray transition-all duration-300 ease-in-out`,
           {
-            block: clicked,
-            hidden: !clicked,
+            block: navBar,
+            hidden: !navBar,
           }
         )}
       >

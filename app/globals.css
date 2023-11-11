@@ -6,4 +6,9 @@
   .button {
     @apply flex items-center h-10 px-6 text-center rounded-full transition-all duration-300;
   }
+  /* Styles for the mobile Navigation Link */
+  .sidebar-links {
+    @apply font-sans text-xl flex mt-3 rounded-sm transition duration-300 
+    text-purewhite hover:text-babyblue hover:pt-1;
+  }
 }

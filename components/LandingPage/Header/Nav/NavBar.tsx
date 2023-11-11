@@ -6,9 +6,11 @@ import { NavLinks } from "./NavLinks";
 import Link from "next/link";
 import Login from "../Buttons/Login";
 import SignUp from "../Buttons/SignUp";
+import { useNavStore } from "@/lib/store/store";
 
 const NavBar = () => {
   const [navClick, setNavClick] = useState(false);
+  const { navBar, setNavBar } = useNavStore();
   return (
     <div
       className="flex max-md:items-center justify-between fixed text-lightGray left-0 right-0 top-0 w-full h-16 px-5 md:h-16
@@ -43,19 +45,17 @@ const NavBar = () => {
         <div className="md:hidden cursor-pointer text-purewhite">
           {/* The Hamburger and X Icon only shows on Mobile Devices */}
           {navClick ? (
-            <div onClick={() => setNavClick(!navClick)}>
+            <div onClick={setNavBar}>
               <XMarkIcon className="h-8 w-8 max-xs:h-8" />
             </div>
           ) : (
-            <div onClick={() => setNavClick(!navClick)}>
+            <div onClick={setNavBar}>
               <Bars3Icon className="h-8 w-8 max-xs:h-8" />
             </div>
           )}
         </div>
       </div>
 
-      {/* The Popup the SideNav when the hamburger Icon gets clicked on. */}
-      <SideNav clicked={navClick} setClicked={setNavClick} />
     </div>
   );
 };

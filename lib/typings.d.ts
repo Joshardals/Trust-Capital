@@ -1,4 +1,4 @@
-export interface NavTypings {
-  clicked: boolean;
-  setClicked: Function;
+export interface navStoreState {
+  navBar: boolean;
+  setNavBar: () => void;
 }
