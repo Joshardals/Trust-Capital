@@ -10,7 +10,7 @@ const SideNav = () => {
     <div className="h-full overflow-hidden">
       <div
         className={clsx(
-          `fixed -bottom-16 left-0 h-screen bg-navyblue w-full md:hidden text-lightGray transition-all duration-300 ease-in-out`,
+          `fixed -bottom-16 bg-goldenrod left-0 h-screen w-full md:hidden text-lightGray transition-all duration-300 ease-in-out`,
           {
             block: navBar,
             hidden: !navBar,
