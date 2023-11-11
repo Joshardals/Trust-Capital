@@ -15,6 +15,12 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    screens: {
+      "xs": "366px", 
+      "sm": "576px", 
+      "md": "960px", 
+      "lg": "1440px", 
+    }, 
     colors: {
       // Primary Colors
       blue: "#001F3F",
