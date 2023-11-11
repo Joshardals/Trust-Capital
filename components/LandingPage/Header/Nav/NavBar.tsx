@@ -5,13 +5,14 @@ import Link from "next/link";
 import Login from "../Buttons/Login";
 import SignUp from "../Buttons/SignUp";
 import { useNavStore } from "@/lib/store/store";
+import SideNav from "./SideNav";
 
 const NavBar = () => {
   const { navBar, setNavBar } = useNavStore();
   return (
     <div
       className="flex max-md:items-center justify-between fixed text-lightGray left-0 right-0 top-0 w-full h-16 px-5 md:h-16
-      border-b border-b-babyblue bg-navyblue
+      bg-navyblue
     "
     >
       <div className="flex text-purewhite max-md:flex-1 w-full md:w-auto space-x-8">
@@ -20,7 +21,7 @@ const NavBar = () => {
           <Link href="/" className="">
             TrustCapital
           </Link>
-          <div className="max-md:hidden absolute top-0 right-0 border-r border-r-gold h-full" />
+          {/* <div className="max-md:hidden absolute top-0 right-0 border-r border-r-gold h-full" /> */}
         </div>
 
         {/* The Navigation Links */}
@@ -51,6 +52,9 @@ const NavBar = () => {
             </div>
           )}
         </div>
+
+        {/* The Popup the SideNav when the hamburger Icon gets clicked on. */}
+        <SideNav />
       </div>
     </div>
   );

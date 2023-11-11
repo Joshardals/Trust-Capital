@@ -9,8 +9,6 @@ export default function Home() {
       <div className="h-[75%] bg-navyblue">
         <Header />
       </div>
-      {/* The Popup the SideNav when the hamburger Icon gets clicked on. */}
-      <SideNav />
       <div className="">Hey there</div>
     </main>
   );
