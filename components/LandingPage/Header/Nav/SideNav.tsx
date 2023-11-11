@@ -16,14 +16,14 @@ const SideNav = ({ clicked, setClicked }: NavTypings) => {
     <div className="h-full overflow-hidden">
       <div
         className={clsx(
-          `fixed bottom-0 left-0 h-[93%] bg-green w-full md:hidden text-lightGray transition-all duration-300 ease-in-out`,
+          `fixed bottom-0 left-0 h-[92%] bg-green w-full md:hidden text-lightGray transition-all duration-300 ease-in-out`,
           {
             block: clicked,
             hidden: !clicked,
           }
         )}
       >
-        <div className="mt-10 w-full px-4 space-y-8 h-full">
+        <div className="mt-10 w-full px-4 space-y-4 h-full">
           {/* Contains the Navigation Links */}
           <SideBar />
         </div>
