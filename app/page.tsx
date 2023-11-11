@@ -10,7 +10,7 @@ export default function Home() {
         <Header />
       </div>
       {/* The Popup the SideNav when the hamburger Icon gets clicked on. */}
-      {navBar ? <SideNav /> : null}
+      <SideNav />
       <div className="">Hey there</div>
     </main>
   );
