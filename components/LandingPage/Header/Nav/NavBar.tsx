@@ -17,11 +17,11 @@ const NavBar = () => {
     >
       <div className="flex max-md:flex-1 w-full md:w-auto space-x-8">
         {/* Company's Logo */}
-        <div className=" flex items-center text-md max-md:flex-1 pr-10 w-auto relative">
+        <div className=" flex items-center text-md md:text-lg max-md:flex-1 pr-10 w-auto relative">
           <Link href="/" className="">
             TrustCapital
           </Link>
-          <div className=" max-md:hidden absolute top-0 right-0 border-r border-r-gold h-full" />
+          <div className="max-md:hidden absolute top-0 right-0 border-r border-r-gold h-full" />
         </div>
 
         {/* The Navigation Links */}
