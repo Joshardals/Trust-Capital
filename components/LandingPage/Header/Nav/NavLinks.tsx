@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const links = [
   { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
+  { name: "Learn More", href: "#learn-more" },
   { name: "FAQ", href: "#faq" },
   { name: "Support", href: "#support" },
 ];
@@ -14,7 +14,7 @@ export const NavLinks = () => {
         <Link
           key={link.name}
           href={link.href}
-          className="font-sans relative text-sm transition-all hover:mb-1 hover:text-gold"
+          className="font-sans relative text-sm transition-all hover:mb-1 hover:text-babyblue"
         >
           <p>{link.name}</p>
         </Link>

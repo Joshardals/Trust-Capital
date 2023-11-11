@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${open_sans.variable} ${playfair.variable}`}>
-        <main className=" m-0 p-0 w-full bg-green h-screen">
+        <main className=" m-0 p-0 w-full h-screen">
           {/* <CryptoPrice /> */}
 
           {children}

@@ -19,16 +19,15 @@ module.exports = {
     },
     colors: {
       // Primary Colors
-      blue: "#001F3F",
-      green: "#0A3D2D",
+      navyblue: "#001F3F",
+      darkblue: "#364A6F",
 
       // Accent Colors
-      gold: "#FFD700",
-      lightGray: "#CCCCCC",
+      goldenrod: "#D8A31A",
+      babyblue: "#E2F0FF",
 
-      // Additional Colors
-      white: "FFFFFF",
-      darkGray: "#333333",
+      // Additional Colors 
+      purewhite: "#FFFFFF", 
     },
     fontSize: {
       // Button Text, Sidebar Text, Small Text(Metadata, Captions)

@@ -1,12 +1,10 @@
 import Header from "@/components/LandingPage/Header/Header";
-import HeaderBody from "@/components/LandingPage/HeaderBody/HeaderBody";
-
+import HeroSection from "@/components/LandingPage/HeroSection/HeroSection";
 export default function Home() {
   return (
-    <main className="h-full">
-      <div className="bg-gold h-full">
+    <main className="h-full bg-purewhite">
+      <div className="h-[75%] bg-navyblue">
         <Header />
-        <HeaderBody />
       </div>
       <div>Hey there</div>
     </main>

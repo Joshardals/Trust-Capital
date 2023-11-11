@@ -12,10 +12,10 @@ const NavBar = () => {
   return (
     <div
       className="flex max-md:items-center justify-between fixed text-lightGray left-0 right-0 top-0 w-full h-16 px-5 md:h-16
-      border-b border-b-gold bg-green
+      border-b border-b-babyblue bg-navyblue
     "
     >
-      <div className="flex max-md:flex-1 w-full md:w-auto space-x-8">
+      <div className="flex text-purewhite max-md:flex-1 w-full md:w-auto space-x-8">
         {/* Company's Logo */}
         <div className=" flex items-center text-md md:text-lg max-md:flex-1 pr-10 w-auto relative">
           <Link href="/" className="">
@@ -40,7 +40,7 @@ const NavBar = () => {
           <SignUp />
         </div>
 
-        <div className="md:hidden cursor-pointer text-lightGray">
+        <div className="md:hidden cursor-pointer text-purewhite">
           {/* The Hamburger and X Icon only shows on Mobile Devices */}
           {navClick ? (
             <div onClick={() => setNavClick(!navClick)}>
