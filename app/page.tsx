@@ -6,7 +6,7 @@ export default function Home() {
       <div>
         <Header />
       </div>
-      <div className="h-20">hey</div>
+      <div className="mt-10 text-lightGray">hey</div>
     </main>
   );
 }
