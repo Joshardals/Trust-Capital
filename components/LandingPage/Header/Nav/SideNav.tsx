@@ -23,7 +23,7 @@ const SideNav = ({ clicked, setClicked }: NavTypings) => {
           }
         )}
       >
-        <div className="mt-10 w-full px-4 h-full">
+        <div className="mt-10 w-full px-4 space-y-8 h-full">
           {/* Contains the Navigation Links */}
           <SideBar />
         </div>
