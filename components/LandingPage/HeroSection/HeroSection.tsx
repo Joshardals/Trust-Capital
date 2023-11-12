@@ -3,7 +3,11 @@ import Image from "next/image";
 
 const HeroSection = () => {
   return (
-    <div className="text-navyBlue mt-20 max-sm:space-y-4 md:space-x-4 flex md:flex-row flex-col">
+    <div
+      className="text-navyBlue mt-20 max-sm:space-y-4 md:space-x-4 flex md:flex-row flex-col
+      items-center
+    "
+    >
       <div className=" h-full flex-1 bg-goldenrod">
         <h1 className="text-2xl">
           Grow Your <br /> Wealth With Us
@@ -13,8 +17,14 @@ const HeroSection = () => {
           financial success.
         </p>
       </div>
-      <div className="bg-babyblue flex-1 h-full w-full p-5 rounded-lg">
-        <img src="/hero-img.png" className="max-w-full h-auto" alt="" />
+      <div className="h-full w-full bg-babyblue flex-1">
+        <Image
+          src="/heroimg2.png"
+          width={500}
+          height={500}
+          className="w-full"
+          alt="Hero-Image"
+        />
       </div>
     </div>
   );
