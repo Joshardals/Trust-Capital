@@ -3,7 +3,7 @@ import NavBar from "./Nav/NavBar";
 
 const Header = () => {
   return (
-    <main className="w-full p-5 h-[75%]">
+    <main className="w-full h-[75%] mx-auto">
       <NavBar />
       <HeroSection />
     </main>

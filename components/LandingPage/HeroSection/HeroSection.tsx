@@ -4,25 +4,15 @@ import Image from "next/image";
 const HeroSection = () => {
   return (
     <div
-      className="bg-navyblue mt-20 max-md:space-y-4 lg:space-x-4 flex md:flex-row flex-col
-      items-center
+      className=" mt-16 bg-goldenrod h-1/2 w-full
     "
     >
-      <div className=" h-full w-full flex-1 bg-goldenrod">
-        <h1 className="text-2xl">
-          Grow Your <br /> Wealth With Us
-        </h1>
-        <p className="font-sans block max-w-sm ">
-          Invest with confidence. Trust Capital Investment is your gateway to
-          financial success.
-        </p>
-      </div>
-      <div className="h-full w-full bg-babyblue flex-1">
+      <div className="h-full w-full">
         <Image
-          src="/heroimg2.png"
-          width={500}
+          src="/hero-img.png"
+          width={1600}
           height={500}
-          className="w-full max-sm:h-60 max-md:h-72"
+          className=" md:w-[1600px] md:h-[500px]"
           alt="Hero-Image"
         />
       </div>
