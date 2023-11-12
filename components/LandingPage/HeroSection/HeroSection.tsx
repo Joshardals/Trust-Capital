@@ -18,7 +18,7 @@ const HeroSection = () => {
 
       <div className="h-full w-full">
         <Image
-          src="/hero-img.png"
+          src="/hero-img.jpg"
           width={1600}
           height={800}
           className="w-full max-sm:h-[500x] max-md:h-72"
