@@ -6,7 +6,7 @@ const HeroSection = () => {
       className=" mt-40 max-md:px-5 md:px-20 lg:px-40 max-md:space-y-4 md:space-x-8 flex items-center md:flex-row flex-col
     "
     >
-      <div className=" text-pureblack md:max-w-md p-5">
+      <div className=" text-pureblack md:max-w-md ">
         <h1 className=" text-xl md:text-2xl leading-tight">
           Empower Your Wealth Journey
         </h1>
