@@ -28,6 +28,7 @@ module.exports = {
 
       // Additional Colors 
       purewhite: "#FFFFFF", 
+      pureblack: "#000000",
     },
     fontSize: {
       // Button Text, Sidebar Text, Small Text(Metadata, Captions)

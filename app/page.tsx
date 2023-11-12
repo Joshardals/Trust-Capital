@@ -6,10 +6,9 @@ export default function Home() {
   const { navBar } = useNavStore();
   return (
     <main className="h-full bg-purewhite">
-      <div className="h-[75%] bg-navyblue">
+      <div className="h-auto">
         <Header />
       </div>
-      <div className="">Hey there</div>
     </main>
   );
 }

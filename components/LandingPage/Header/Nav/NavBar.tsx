@@ -11,11 +11,11 @@ const NavBar = () => {
   const { navBar, setNavBar } = useNavStore();
   return (
     <div
-      className="flex max-md:items-center justify-between fixed text-lightGray left-0 right-0 top-0 w-full h-16 md:h-16
-      px-5 lg:px-10
+      className="flex max-md:items-center justify-between fixed left-0 right-0 top-0 w-full h-16 md:h-16
+      px-5 lg:px-10 max-sm:border-b max-sm:border-b-purewhite
     "
     >
-      <div className="flex text-purewhite max-md:flex-1 w-full md:w-auto space-x-8">
+      <div className="flex text-pureblack max-md:flex-1 w-full md:w-auto space-x-8">
         {/* Company's Logo */}
         <div className=" flex items-center text-md md:text-lg max-md:flex-1 pr-10 w-auto relative">
           <Link href="/" className="">
@@ -40,7 +40,7 @@ const NavBar = () => {
           <SignUp />
         </div>
 
-        <div className="md:hidden cursor-pointer text-purewhite">
+        <div className="md:hidden cursor-pointer text-pureblack">
           {/* The Hamburger and X Icon only shows on Mobile Devices */}
           {navBar ? (
             <div onClick={setNavBar}>

@@ -14,7 +14,7 @@ export const NavLinks = () => {
         <Link
           key={link.name}
           href={link.href}
-          className="font-sans relative text-sm transition-all hover:mb-1 hover:text-babyblue"
+          className="font-sans relative text-sm transition-all hover:mb-1 hover:text-pureblack hover:text-opacity-50"
         >
           <p>{link.name}</p>
         </Link>
@@ -27,19 +27,12 @@ export const SideBar = () => {
   return (
     <>
       {links.map((link) => (
-        <Link
-          key={link.name}
-          href={link.href}
-          className="sidebar-links"
-        >
+        <Link key={link.name} href={link.href} className="sidebar-links">
           <p>{link.name}</p>
         </Link>
       ))}
       <div>
-        <Link
-          href="/login"
-          className="sidebar-links"
-        >
+        <Link href="/login" className="sidebar-links">
           Log in
         </Link>
       </div>

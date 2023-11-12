@@ -10,14 +10,14 @@ const SideNav = () => {
     <div className="overflow-hidden h-full">
       <div
         className={clsx(
-          `fixed bg-navyblue left-0 h-full -bottom-16 w-full md:hidden text-lightGray transition-all duration-300 ease-in-out`,
+          `fixed bg-purewhite left-0 h-full -bottom-16 w-full md:hidden text-pureblack transition-all duration-300 ease-in-out`,
           {
-            block: navBar,
-            hidden: !navBar,
+            " block": navBar,
+            " hidden": !navBar,
           }
         )}
       >
-        <div className="mt-8 w-full space-y-4 px-5 h-full">
+        <div className="mt-4 w-full space-y-4 px-5 h-full">
           {/* Contains the Navigation Links */}
           <SideBar />
         </div>
