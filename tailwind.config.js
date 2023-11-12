@@ -10,6 +10,11 @@ module.exports = {
     './src/**/*.{ts,tsx}',
 	],
   theme: {
+    extend: {
+      backgroundImage: {
+        'hero-section': "url('/hero-img.png')"
+      }
+    }, 
     container: {
       center: true,
       padding: "2rem",
