@@ -12,7 +12,7 @@ const NavBar = () => {
   return (
     <div
       className="flex max-md:items-center justify-between fixed left-0 right-0 top-0 w-full h-16 md:h-16
-      px-5 lg:px-10 max-sm:border-b max-sm:border-b-purewhite
+      px-5 lg:px-10 max-sm:border-b max-sm:border-b-purewhite bg-purewhite
     "
     >
       <div className="flex text-pureblack max-md:flex-1 w-full md:w-auto space-x-8">

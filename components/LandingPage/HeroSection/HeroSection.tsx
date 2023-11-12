@@ -14,11 +14,7 @@ const HeroSection = () => {
         </p>
       </div>
       <div className="bg-babyblue flex-1 h-full w-full p-5 rounded-lg">
-        <img
-          src="/hero-img.png"
-          className="w-fit max-sm:h-[4%] h-full"
-          alt=""
-        />
+        <img src="/hero-img.png" className="max-w-full h-auto" alt="" />
       </div>
     </div>
   );
