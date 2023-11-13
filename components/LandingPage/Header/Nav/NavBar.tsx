@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import { NavLinks } from "./NavLinks";
 import Link from "next/link";
@@ -6,14 +7,38 @@ import Login from "../Buttons/Login";
 import SignUp from "../Buttons/SignUp";
 import { useNavStore } from "@/lib/store/store";
 import SideNav from "./SideNav";
+import clsx from "clsx";
 
 const NavBar = () => {
   const { navBar, setNavBar } = useNavStore();
+  const [y, setY] = useState(0);
+
+  const handleNavigation = (e: any) => {
+    const window = e.currentTarget;
+    if (y > window.scrollY) {
+      console.log("scrolling up");
+    } else if (y < window.scrollY) {
+      console.log("scrolling down");
+    }
+    setY(window.scrollY);
+  };
+
+  useEffect(() => {
+    setY(window.scrollY);
+
+    window.addEventListener("scroll", (e) => handleNavigation(e));
+  }, []);
+
   return (
     <div
-      className="flex max-md:items-center justify-between fixed left-0 right-0 top-0 w-full h-16 md:h-16
-      px-5 lg:px-10 max-sm:border-b max-sm:border-b-purewhite bg-purewhite
-    "
+      className={clsx(
+        `flex max-md:items-center justify-between fixed left-0 right-0 top-0 w-full h-16 md:h-16
+      px-5 lg:px-10 transition-all duration-300 bg-purewhite`,
+        {
+          "border-b border-b-pureblack": y,
+          "bg-purewhite": !y,
+        }
+      )}
     >
       <div className="flex text-pureblack max-md:flex-1 w-full md:w-auto space-x-8">
         {/* Company's Logo */}
