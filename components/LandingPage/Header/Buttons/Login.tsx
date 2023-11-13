@@ -6,7 +6,7 @@ const Login = () => {
     <Link
       href="/login"
       className="max-md:hidden button border border-pureblack text-pureblack 
-      hover:bg-pureblack  hover:text-purewhite"
+      hover:bg-pureblack hover:bg-opacity-50  hover:text-purewhite"
     >
       Log in
     </Link>

@@ -4,11 +4,17 @@
 
 @layer components {
   .button {
-    @apply flex items-center h-10 px-6 text-center rounded-full transition-all duration-300;
+    @apply flex items-center justify-center h-10 px-6 text-center rounded-full transition-all duration-300
+    shadow-md shadow-darkblue;
   }
   /* Styles for the mobile Navigation Link */
   .sidebar-links {
     @apply font-sans text-xl flex mt-3 rounded-sm transition-all duration-300 
     text-pureblack hover:text-pureblack hover:text-opacity-50 hover:pt-1;
+  }
+
+  /* Styles to add shadows to buttons */
+  .hero-section-button {
+    @apply shadow-md h-10 px-6 text-xs shadow-darkblue hover:shadow-goldenrod bg-pureblack  rounded-full;
   }
 }
