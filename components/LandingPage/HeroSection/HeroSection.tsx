@@ -25,13 +25,14 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="h-full w-full">
+      <div className="relative aspect-video bg-darkblue w-full">
         <Image
           src="/hero-img.jpg"
-          width={1600}
-          height={800}
-          className="w-full max-sm:h-[500x] max-md:h-72"
+          fill
+          className=""
           alt="Hero-Image"
+          priority
+          sizes="(max-width: 768px) 100vw, 700px"
         />
       </div>
     </div>
