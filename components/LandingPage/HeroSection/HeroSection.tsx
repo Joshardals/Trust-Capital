@@ -21,10 +21,9 @@ const HeroSection = () => {
         <Image
           src="/hero-img.jpg"
           fill
-          className=""
           alt="Hero-Image"
           priority
-          sizes="(max-width: 768px) 100vw, 700px"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
     </div>
