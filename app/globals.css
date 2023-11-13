@@ -15,6 +15,6 @@
 
   /* Styles to add shadows to buttons */
   .hero-section-button {
-    @apply shadow-md h-10 px-6 text-xs shadow-darkblue hover:shadow-goldenrod bg-pureblack  rounded-full font-sans;
+    @apply shadow-md h-12 px-6 text-xs shadow-darkblue hover:shadow-goldenrod bg-pureblack  rounded-full font-sans;
   }
 }
