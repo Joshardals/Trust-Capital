@@ -13,8 +13,4 @@
     text-pureblack hover:text-pureblack hover:text-opacity-50 hover:pt-1;
   }
 
-  /* Styles to add shadows to buttons */
-  .hero-section-button {
-    @apply shadow-md py-4 px-6 text-xs shadow-darkblue hover:shadow-goldenrod bg-pureblack  rounded-full font-sans;
-  }
-}
+

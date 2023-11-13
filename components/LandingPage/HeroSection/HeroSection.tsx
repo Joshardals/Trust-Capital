@@ -15,14 +15,6 @@ const HeroSection = () => {
           backed by a legacy of trustworthiness. Start your investment journey
           today.
         </p>
-        <div className="md:max-w-[7rem]">
-          <Link
-            href="/sign-up"
-            className="button justify-center bg-pureblack text-purewhite hero-section-button"
-          >
-            Get started
-          </Link>
-        </div>
       </div>
 
       <div className="relative aspect-video bg-darkblue w-full">
