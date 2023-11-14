@@ -17,13 +17,14 @@ const HeroSection = () => {
         </p>
       </div>
 
-      <div className="relative aspect-video bg-darkblue w-full">
+      <div className="relative aspect-video bg-darkblue w-full rounded-lg">
         <Image
           src="/hero-img.jpg"
           fill
           alt="Hero-Image"
           priority
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className=" rounded-md"
         />
       </div>
     </div>
