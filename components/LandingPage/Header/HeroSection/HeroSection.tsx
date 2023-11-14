@@ -4,12 +4,14 @@ import Link from "next/link";
 const HeroSection = () => {
   return (
     <div
-      className="max-md:mt-20 md:mt-40 max-md:px-5 md:px-20 lg:px-40 max-md:space-y-8 md:space-x-8 flex items-center md:flex-row flex-col
-    "
+      className=" max-md:px-5 md:px-20 lg:px-40 max-md:space-y-8 md:space-x-8 flex items-center md:flex-row flex-col
+  "
     >
-      <div className=" text-pureblack md:max-w-md space-y-4">
-        <h1 className="text-2xl leading-tight">Empower Your Wealth Journey</h1>
-        <p className="font-sans">
+      <div className=" text-pureblack space-y-4 flex-1 w-full">
+        <h1 className="text-2xl leading-tight lg:max-w-md max-md:max-w-md ">
+          <span className="text-goldenrod">Empower</span> Your Wealth Journey
+        </h1>
+        <p className="font-sans lg:max-w-lg">
           Where trust meets opportunity. Trust Capital Investment is your
           partner in financial growth. Secure your future with confidence,
           backed by a legacy of trustworthiness. Start your investment journey
@@ -17,7 +19,7 @@ const HeroSection = () => {
         </p>
       </div>
 
-      <div className="relative aspect-video bg-darkblue w-full rounded-lg">
+      <div className="relative aspect-video bg-darkblue w-full rounded-lg flex-1">
         <Image
           src="/hero-img.jpg"
           fill
