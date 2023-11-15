@@ -1,10 +1,10 @@
-import CryptoPrice from "../CryptoPrice";
+import CryptoPrice from "../Crypto/CryptoPrice";
 import HeroSection from "./HeroSection/HeroSection";
 import NavBar from "./Nav/NavBar";
 
 const Header = () => {
   return (
-    <main className="w-full h-[75%] mx-auto  max-md:space-y-32 md:space-y-40">
+    <main className="w-full h-[75%] mx-auto">
       <NavBar />
       <HeroSection />
       <CryptoPrice />

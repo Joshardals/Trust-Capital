@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { open_sans, playfair } from "@/lib/ui/font";
-import CryptoPrice from "@/components/LandingPage/CryptoPrice";
+import CryptoPrice from "@/components/LandingPage/Crypto/CryptoPrice";
 
 export const metadata: Metadata = {
   title: "Create Next App",
