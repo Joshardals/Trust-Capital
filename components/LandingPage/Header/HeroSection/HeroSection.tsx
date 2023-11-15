@@ -5,11 +5,11 @@ const HeroSection = () => {
   return (
     <div
       className=" max-md:px-5 md:px-20 lg:px-40 max-md:space-y-8 md:space-x-8 flex items-center md:flex-row flex-col
-       bg-gradient-to-b from-navyblue to-babyblue md:mt-0 max-md:py-20 md:py-60
+       bg-gradient-to-b from-navyblue to-babyblue max-md:mt-10 mt-12 max-md:py-20 md:py-40
       "
     >
-      <div className=" text-pureblack space-y-4 flex-1 w-full max-md:mt-10">
-        <h1 className="text-2xl leading-tight lg:max-w-md max-md:max-w-md text-navyblue">
+      <div className=" text-pureblack space-y-4 flex-1 w-full">
+        <h1 className="text-2xl leading-tight lg:max-w-md max-md:max-w-md text-navyblue ">
           <span className="text-goldenrod">Empower</span> Your Wealth Journey
         </h1>
         <p className="font-sans lg:max-w-lg text-navyblue">
@@ -27,9 +27,9 @@ const HeroSection = () => {
           alt="Hero-Image"
           priority
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className=" rounded-md shadow-2xl shadow-darkblue opacity-70"
+          className=" rounded-md shadow-2xl shadow-darkblue"
         />
-        <div className="absolute top-0 left-0 h-full w-full bg-navyblue bg-opacity-20" />
+        <div className="absolute top-0 left-0 h-full w-full bg-navyblue bg-opacity-30" />
       </div>
     </div>
   );

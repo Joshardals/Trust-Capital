@@ -5,8 +5,8 @@ const SignUp = () => {
   return (
     <Link
       href="/sign-up"
-      className="bg-goldenrod text-navyblue hover:text-babyblue hover:bg-opacity-50 
-      button max-md:mr-4 border hover:border-goldenrod"
+      className="bg-goldenrod text-navyblue  hover:border-babyblue
+      button max-md:mr-4 border"
     >
       Sign up
     </Link>
