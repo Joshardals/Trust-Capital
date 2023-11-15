@@ -7,7 +7,6 @@ const Header = () => {
     <main className="w-full mx-auto">
       <NavBar />
       <HeroSection />
-      <CryptoPrice />
     </main>
   );
 };

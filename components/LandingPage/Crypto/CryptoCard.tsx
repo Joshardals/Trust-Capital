@@ -2,7 +2,7 @@ import React from "react";
 
 const CryptoCard = () => {
   return (
-    <div className="h-auto text-pureblack bg-purewhite w-40 p-5">
+    <div className="h-auto text-pureblack bg-purewhite w-40 p-5 border border-navyblue">
       <div className="flex items-center space-x-4">
         <img
           src=" https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400"
