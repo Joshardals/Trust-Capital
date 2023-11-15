@@ -28,16 +28,15 @@ const NavBar = () => {
     <div
       className={clsx(
         `flex max-md:items-center justify-between fixed left-0 right-0 top-0 w-full h-16 md:h-16
-      px-5 lg:px-10 transition-all duration-300 bg-purewhite z-20`,
+      px-5 lg:px-10 transition-all duration-300 bg-navyblue z-20`,
         {
           "border-b border-b-pureblack": y,
-          "bg-purewhite": !y,
         }
       )}
     >
       <div className="flex text-pureblack max-md:flex-1 w-full md:w-auto space-x-8">
         {/* Company's Logo */}
-        <div className=" flex items-center text-md md:text-lg max-md:flex-1 pr-10 w-auto relative">
+        <div className=" flex items-center text-md md:text-lg max-md:flex-1 pr-10 w-auto relative text-babyblue">
           <Link href="/" className="">
             TrustCapital
           </Link>
