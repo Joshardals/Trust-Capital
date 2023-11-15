@@ -5,6 +5,7 @@ export default function Home() {
     <main className="h-full bg-purewhite">
       <div className="h-auto">
         <Header />
+        <div className="h-screen"></div>
       </div>
     </main>
   );

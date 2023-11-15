@@ -29,9 +29,7 @@ const NavBar = () => {
       className={clsx(
         `flex max-md:items-center justify-between fixed left-0 right-0 top-0 w-full h-16 md:h-16
       px-5 lg:px-10 transition-all duration-300 bg-navyblue z-20`,
-        {
-          "border-b border-b-pureblack": y,
-        }
+        {}
       )}
     >
       <div className="flex text-pureblack max-md:flex-1 w-full md:w-auto space-x-8">
@@ -59,7 +57,7 @@ const NavBar = () => {
           <SignUp />
         </div>
 
-        <div className="md:hidden cursor-pointer text-pureblack">
+        <div className="md:hidden cursor-pointer text-babyblue">
           {/* The Hamburger and X Icon only shows on Mobile Devices */}
           {navBar ? (
             <div onClick={setNavBar}>
