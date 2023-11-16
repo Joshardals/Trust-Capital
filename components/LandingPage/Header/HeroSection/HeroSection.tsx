@@ -8,9 +8,10 @@ const HeroSection = () => {
         bg-gradient-to-br max-md:bg-gradient-to-tr from-navyblue to-babyblue max-md:mt-10 mt-12 max-md:py-20 md:py-40 h-full
       "
     >
-      <div className=" text-pureblack space-y-4 flex-1 w-full">
-        <h1 className="text-2xl max-md:text-xl leading-tight lg:max-w-md max-md:max-w-md text-navyblue">
-          <span className="text-goldenrod">Empower</span> Your Wealth Journey
+      <div className=" space-y-4 flex-1 w-full">
+        <h1 className="text-2xl  leading-tight lg:max-w-md max-md:max-w-md text-navyblue">
+          <span className="text-goldenrod max-md:text-navyblue">Empower</span>{" "}
+          Your Wealth Journey
         </h1>
         <p className="font-sans lg:max-w-lg text-navyblue leading-7 text-sm">
           Where trust meets opportunity. Trust Capital Investment is your
