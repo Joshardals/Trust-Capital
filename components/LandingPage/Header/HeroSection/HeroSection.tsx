@@ -5,14 +5,14 @@ const HeroSection = () => {
   return (
     <div
       className=" max-md:px-5 md:px-20 lg:px-40 max-md:space-y-8 md:space-x-8 flex items-center md:flex-row flex-col
-        bg-gradient-to-br from-navyblue to-babyblue max-md:mt-10 mt-12 max-md:py-20 md:py-40 h-full
+        bg-gradient-to-br max-md:bg-gradient-to-tr from-navyblue to-babyblue max-md:mt-10 mt-12 max-md:py-20 md:py-40 h-full
       "
     >
       <div className=" text-pureblack space-y-4 flex-1 w-full">
-        <h1 className="text-2xl leading-tight lg:max-w-md max-md:max-w-md text-navyblue">
+        <h1 className="text-2xl max-md:text-xl leading-tight lg:max-w-md max-md:max-w-md text-navyblue">
           <span className="text-goldenrod">Empower</span> Your Wealth Journey
         </h1>
-        <p className="font-sans lg:max-w-lg text-navyblue leading-7 text-md">
+        <p className="font-sans lg:max-w-lg text-navyblue leading-7 text-sm">
           Where trust meets opportunity. Trust Capital Investment is your
           partner in financial growth. Secure your future with confidence,
           backed by a legacy of trustworthiness. Start your investment journey
