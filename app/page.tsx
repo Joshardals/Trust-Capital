@@ -1,4 +1,3 @@
-import CryptoCard from "@/components/LandingPage/Crypto/CryptoCard";
 import CryptoPrice from "@/components/LandingPage/Crypto/CryptoPrice";
 import Header from "@/components/LandingPage/Header/Header";
 import { Link } from "lucide-react";
