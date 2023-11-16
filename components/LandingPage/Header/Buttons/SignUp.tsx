@@ -5,7 +5,7 @@ const SignUp = () => {
   return (
     <Link
       href="/sign-up"
-      className="bg-goldenrod text-navyblue  hover:border-babyblue
+      className="bg-babyblue text-navyblue  hover:border-babyblue
       button max-md:mr-4 border"
     >
       Sign up
