@@ -1,7 +1,10 @@
+import CryptoCard from "@/components/LandingPage/Crypto/CryptoCard";
 import CryptoPrice from "@/components/LandingPage/Crypto/CryptoPrice";
 import Header from "@/components/LandingPage/Header/Header";
+import { Link } from "lucide-react";
 
-export default function Home() {
+export default async function Home() {
+
   return (
     <main className="h-full w-full">
       <div className="h-auto">
