@@ -8,7 +8,7 @@ const CryptoPrice = async () => {
 
   return (
     <div className="flex overflow-x-hidden space-x-4 items-center lg:px-10 py-5 w-full">
-      {coins.map((coin) => (
+      {coins?.map((coin) => (
         <CryptoCard
           key={coin.id}
           name={coin.symbol}
