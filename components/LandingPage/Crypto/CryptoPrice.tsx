@@ -10,7 +10,7 @@ const CryptoPrice = async () => {
           height="36px"
           className="p-0 m-0"
         ></iframe>
-        <div className="absolute top-0 left-0 w-full h-full bg-babyblue  bg-opacity-10"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-navyblue  bg-opacity-20"></div>
       </div>
     </div>
   );
