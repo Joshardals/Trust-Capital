@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 const links = [
-  { name: "Home", href: "/" },
-  { name: "Learn More", href: "/learn-more" },
-  { name: "FAQ", href: "/faq" },
-  { name: "Support", href: "#support" },
+  { name: "Home", href: "/#" },
+  { name: "Learn More", href: "/#" },
+  { name: "FAQ", href: "/#" },
+  { name: "Support", href: "#" },
 ];
 
 export const NavLinks = () => {

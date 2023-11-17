@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { open_sans, playfair } from "@/lib/ui/font";
+import { open_sans, playfair } from "@/components/ui/font";
 
 export const metadata: Metadata = {
   title: "Create Next App",
