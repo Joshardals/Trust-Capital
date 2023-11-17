@@ -4,24 +4,22 @@ import Link from "next/link";
 import { useNavStore } from "@/lib/store/store";
 
 const SideNav = () => {
-  const { navBar, setNavBar } = useNavStore();
+  const { navBar } = useNavStore();
 
   return (
-    <div className="overflow-hidden h-full">
-      <div
-        className={clsx(
-          `fixed bg-navyblue left-0 h-full -bottom-16 w-full md:hidden text-babyblue transition-all duration-300 ease-in-out`,
-          {
-            " block": navBar,
-            " hidden": !navBar,
-          }
-        )}
-      >
-        <div className="mt-4 w-full space-y-4 px-5 h-full">
-          {/* Contains the Navigation Links */}
-          <SideBar />
+    <div
+      className={clsx(`overflow-hidden w-full h-screen absolute z-20 `, {
+        "bg-pureblack bg-opacity-20": navBar,
+      })}
+    >
+      {navBar && (
+        <div className=" h-auto bg-navyblue w-full md:hidden text-babyblue transition-all duration-300 ease-in-out">
+          <div className="mt-4 w-full space-y-4 px-5 h-full">
+            {/* Contains the Navigation Links */}
+            <SideBar />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

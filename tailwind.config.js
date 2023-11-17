@@ -30,7 +30,7 @@ module.exports = {
       purewhite: "#FFFFFF", 
       pureblack: "#000000", 
       purered: "#FF0000", 
-      puregreen: "#008000"
+      puregreen: "#008000",
     },
     fontSize: {
       // Button Text, Sidebar Text, Small Text(Metadata, Captions)

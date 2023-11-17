@@ -7,6 +7,7 @@ export default async function Home() {
     <main className=" w-full p-0">
       <Header />
       <CryptoPrice />
+      <div className="h-screen"></div>
     </main>
   );
 }
