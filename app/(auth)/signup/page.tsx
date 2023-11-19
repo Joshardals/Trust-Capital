@@ -25,7 +25,7 @@ export default function Page() {
             </Link>
           </div>
 
-          <div className="font-sans flex flex-col space-y-10 text-babyblue">
+          <div className="font-sans flex flex-col  justify-center space-y-10 text-babyblue">
             <h1 className="text-3xl text-babyblue">
               Start your <br /> journey
             </h1>
@@ -39,7 +39,7 @@ export default function Page() {
 
         <div className="absolute top-0 left-0 h-full w-full bg-navyblue bg-opacity-70" />
       </div>
-      <div className="h-screen w-full p-10 bg-babyblue">
+      <div className="h-screen w-full flex items-center justify-center p-10 bg-babyblue">
         <UserAuthForm />
       </div>
     </div>

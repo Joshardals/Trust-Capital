@@ -17,44 +17,44 @@ module.exports = {
         "2xl": "1400px",
       },
     },
-    colors: {
-      // Primary Colors
-      navyblue: "#001F3F",
-      darkblue: "#364A6F",
-
-      // Accent Colors
-      goldenrod: "#D8A31A",
-      babyblue: "#E2F0FF",
-
-      // Additional Colors 
-      purewhite: "#FFFFFF", 
-      pureblack: "#000000", 
-      purered: "#FF0000", 
-      puregreen: "#008000",
-    },
-    fontSize: {
-      // Button Text, Sidebar Text, Small Text(Metadata, Captions)
-      xs: "0.75rem", 
-      
-      sm: "1rem",
-
-      md: "1.125rem", 
-
-      // Navigation Links and Body Text (Paragraphs)
-      base: "1.125rem",
-
-      // Sub-Headings
-      lg: "1.5rem",
-
-      // Section Headings
-      xl: "2rem",
-
-      // Page Title - Might not be useful
-      "2xl": "3rem",
-
-      "3xl": "4rem"
-    },
     extend: {
+      fontSize: {
+        // Button Text, Sidebar Text, Small Text(Metadata, Captions)
+        xs: "0.75rem", 
+        
+        sm: "1rem",
+  
+        md: "1.125rem", 
+  
+        // Navigation Links and Body Text (Paragraphs)
+        base: "1.125rem",
+  
+        // Sub-Headings
+        lg: "1.5rem",
+  
+        // Section Headings
+        xl: "2rem",
+  
+        // Page Title - Might not be useful
+        "2xl": "3rem",
+  
+        "3xl": "4rem"
+      },
+      colors: {
+          // Primary Colors
+          navyblue: "#001F3F",
+          darkblue: "#364A6F",
+    
+          // Accent Colors
+          goldenrod: "#D8A31A",
+          babyblue: "#E2F0FF",
+    
+          // Additional Colors 
+          purewhite: "#FFFFFF", 
+          pureblack: "#000000", 
+          purered: "#FF0000", 
+          puregreen: "#008000",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: 0 },
