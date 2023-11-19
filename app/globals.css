@@ -12,4 +12,9 @@
     @apply font-sans text-sm flex mt-3 rounded-sm transition-all duration-300 
     text-babyblue hover:text-opacity-50;
   }
+
+  /* Form message Styling for */
+  .form-message {
+    @apply text-purered;
+  }
 }

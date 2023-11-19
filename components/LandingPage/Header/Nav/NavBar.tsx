@@ -11,18 +11,6 @@ import clsx from "clsx";
 
 const NavBar = () => {
   const { navBar, setNavBar } = useNavStore();
-  const [y, setY] = useState(0);
-
-  const handleNavigation = (e: any) => {
-    const window = e.currentTarget;
-    setY(window.scrollY);
-  };
-
-  useEffect(() => {
-    setY(window.scrollY);
-
-    window.addEventListener("scroll", (e) => handleNavigation(e));
-  }, []);
 
   return (
     <div className="relative">

@@ -10,8 +10,7 @@ const HeroSection = () => {
     >
       <div className=" space-y-4 flex-1 w-full">
         <h1 className="text-2xl  leading-tight lg:max-w-md max-md:max-w-md text-navyblue">
-          <span className="text-purewhite ">Empower</span>{" "}
-          Your Wealth Journey
+          <span className="text-purewhite ">Empower</span> Your Wealth Journey
         </h1>
         <p className="font-sans lg:max-w-lg text-navyblue leading-7 text-sm">
           Where trust meets opportunity. Trust Capital Investment is your

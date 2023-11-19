@@ -51,6 +51,8 @@ module.exports = {
 
       // Page Title - Might not be useful
       "2xl": "3rem",
+
+      "3xl": "4rem"
     },
     extend: {
       keyframes: {
