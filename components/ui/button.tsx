@@ -20,7 +20,7 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-50",
         link: "text-slate-900 underline-offset-4 hover:underline dark:text-slate-50",
-        form: "bg-goldenrod text-white hover:bg-goldenrod/90",
+        form: "bg-goldenrod text-navyblue hover:bg-goldenrod/90 border border-navyblue",
       },
       size: {
         default: "h-10 px-4 py-2",

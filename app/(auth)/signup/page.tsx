@@ -49,7 +49,34 @@ export default function Page() {
       {/* End Of Code */}
 
       {/* Start Of Code for Mobile Users */}
-      <div className="md:hidden">Hey there</div>
+      <div className="md:hidden relative h-screen">
+        <div className="fixed top-0 left-0 w-full bg-navyblue text-white h-16 px-5 z-20">
+          <div className="flex items-center justify-center text-xl font-serif h-full w-full">
+            <Link href="/">TC</Link>
+          </div>
+        </div>
+        <div className="py-6 h-screen">
+          <div className="mt-10 p-5 relative bg-[url('/mobile-signup-bg.jpg')] w-full h-[30rem] bg-cover">
+            <div className=" relative z-10 space-y-4 flex flex-col h-full justify-center">
+              <h1 className="text-2xl text-babyblue font-serif">
+                Grow Your Savings
+              </h1>
+
+              <p className="text-babyblue font-sans">
+                Trust Capital Investment unlocks financial potential, converting
+                your deposits into seeds for future prosperity. Entrust your
+                wealth to a legacy of reliability and embark on a journey
+                towards security and growth.
+              </p>
+            </div>
+            <div className="absolute top-0 left-0 h-full w-full bg-navyblue/70" />
+          </div>
+
+          <div className="p-5 bg-babyblue">
+            <UserAuthForm />
+          </div>
+        </div>
+      </div>
     </div>
     // <>
     //   <div className="md:hidden">

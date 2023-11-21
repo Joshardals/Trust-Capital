@@ -16,6 +16,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Icons } from "@/components/icons";
 import { Label } from "../ui/label";
+import Link from "next/link";
 
 export function UserAuthForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -49,8 +50,8 @@ export function UserAuthForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-5 font-sans mt-8 w-full"
       >
-        <div className="flex space-x-4">
-          <div className="flex-1">
+        <div className="flex md:space-x-4 max-md:space-y-4 max-md:flex-col">
+          <div className="md:flex-1">
             <FormField
               control={form.control}
               name="firstName"
@@ -120,7 +121,7 @@ export function UserAuthForm() {
             </FormItem>
           )}
         />
-        <div className="flex space-x-4">
+        <div className="flex max-md:flex-col max-md:space-y-4 md:space-x-4">
           <div className="flex-1">
             <FormField
               control={form.control}
@@ -130,7 +131,7 @@ export function UserAuthForm() {
                   <FormControl className="no-focus text-xs">
                     <Input
                       type="password"
-                      placeholder="Password"
+                      placeholder="Password (min. 8 Characters)"
                       disabled={isLoading}
                       className="border border-navyblue"
                       {...field}
@@ -162,7 +163,31 @@ export function UserAuthForm() {
             />
           </div>
         </div>
-        <Button disabled={isLoading} className="w-full">
+
+        <div>
+          <p className="text-xs text-navyblue">
+            By continuing, you agree to the{" "}
+            <Link
+              href="#"
+              className=" text-xs font-bold underline underline-offset-4"
+            >
+              TrustCapital Investment User Account Agreement
+            </Link>{" "}
+            and{" "}
+            <Link
+              href="#"
+              className="underline text-xs font-bold underline-offset-4"
+            >
+              {" "}
+              Privacy Policy
+            </Link>{" "}
+            .
+          </p>
+        </div>
+        <Button
+          disabled={isLoading}
+          className="w-full text-xs flex items-center rounded-full"
+        >
           {isLoading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
           Sign In with Email
         </Button>
@@ -179,7 +204,7 @@ export function UserAuthForm() {
         <Button
           variant="form"
           type="button"
-          className="w-full"
+          className="w-full text-xs flex items-center rounded-full"
           disabled={isLoading}
         >
           {isLoading ? (
