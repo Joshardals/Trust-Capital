@@ -56,8 +56,8 @@ export default function Page() {
           </div>
         </div>
         <div className="py-6 bg-navyblue h-screen">
-          <div className=" p-5 relative bg-[url('/mobile-signup-bg.jpg')] w-full h-[35rem] bg-cover">
-            <div className=" relative z-10 space-y-4 flex flex-col h-full justify-center">
+          <div className=" px-5 py-10 relative bg-[url('/mobile-signup-bg.jpg')] w-full h-[35rem] bg-cover">
+            <div className=" relative z-10 space-y-4 flex flex-col h-full justify-end">
               <h1 className="text-2xl text-babyblue font-serif">
                 Grow Your Savings
               </h1>
