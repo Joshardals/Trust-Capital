@@ -8,4 +8,5 @@ export interface SignUpValidationType {
   lastName: string;
   email: string;
   password: string;
+  confirmPassword: string; 
 }

@@ -12,36 +12,44 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="flex overflow-hidden">
-      <div
-        className="h-screen relative w-full bg-[url('/signup.jpg')] bg-cover
+    <div>
+      {/* Start of code for Desktop Users */}
+      <div className="flex overflow-hidden max-md:hidden">
+        <div
+          className="h-screen relative w-full bg-[url('/signup.jpg')] bg-cover
         border-r border-r-pureblack
       "
-      >
-        <div className="relative z-10 space-y-32 p-10 h-full">
-          <div className="text-md md:text-lg w-auto text-babyblue">
-            <Link href="/" className="">
-              TrustCapital
-            </Link>
+        >
+          <div className="relative z-10 space-y-32 p-10 h-full">
+            <div className="text-md md:text-lg w-auto text-babyblue">
+              <Link href="/" className="">
+                TrustCapital
+              </Link>
+            </div>
+
+            <div className="font-sans flex flex-col  justify-center space-y-10 text-babyblue">
+              <h1 className="text-3xl text-babyblue">
+                Start your <br /> journey
+              </h1>
+
+              <p>
+                We&apos;ll need your name, email address, and a unique password.
+                You&apos;ll use this login to access TrustCapital next time.
+              </p>
+            </div>
           </div>
 
-          <div className="font-sans flex flex-col  justify-center space-y-10 text-babyblue">
-            <h1 className="text-3xl text-babyblue">
-              Start your <br /> journey
-            </h1>
-
-            <p>
-              We&apos;ll need your name, email address, and a unique password.
-              You&apos;ll use this login to access TrustCapital next time.
-            </p>
-          </div>
+          <div className="absolute top-0 left-0 h-full w-full bg-navyblue bg-opacity-70" />
         </div>
+        <div className="h-screen w-full flex items-center justify-center p-10 bg-babyblue">
+          <UserAuthForm />
+        </div>
+      </div>
 
-        <div className="absolute top-0 left-0 h-full w-full bg-navyblue bg-opacity-70" />
-      </div>
-      <div className="h-screen w-full flex items-center justify-center p-10 bg-babyblue">
-        <UserAuthForm />
-      </div>
+      {/* End Of Code */}
+
+      {/* Start Of Code for Mobile Users */}
+      <div className="md:hidden">Hey there</div>
     </div>
     // <>
     //   <div className="md:hidden">

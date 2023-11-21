@@ -19,17 +19,31 @@ const isStrongPassword = (password: string) => {
   );
 };
 
+export const Password = z
+  .string()
+  .min(8)
+  .max(20)
+  .refine((password) => isStrongPassword(password), {
+    message:
+      "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character",
+  });
 
-export const SignUpValidation: z.ZodType<SignUpValidationType> = z.object({
-  firstName: z.string().min(3).max(100),
-  lastName: z.string().min(3).max(100),
-  email: z.string().email().min(10).max(100),
-  password: z
-    .string()
-    .min(8)
-    .max(20)
-    .refine((password) => isStrongPassword(password), {
-      message:
-        "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character",
-    }),
-});
+export const SignUpValidation: z.ZodType<SignUpValidationType> = z
+  .object({
+    firstName: z.string().min(3).max(100),
+    lastName: z.string().min(3).max(100),
+    email: z.string().email().min(10).max(100),
+    password: z
+      .string()
+      .min(8)
+      .max(20)
+      .refine((password) => isStrongPassword(password), {
+        message:
+          "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character",
+      }),
+    confirmPassword: z.string().min(8).max(20),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
