@@ -55,8 +55,8 @@ export default function Page() {
             <Link href="/">TC</Link>
           </div>
         </div>
-        <div className="py-6 h-screen">
-          <div className="mt-10 p-5 relative bg-[url('/mobile-signup-bg.jpg')] w-full h-[30rem] bg-cover">
+        <div className="py-6 bg-navyblue h-screen">
+          <div className=" p-5 relative bg-[url('/mobile-signup-bg.jpg')] w-full h-[35rem] bg-cover">
             <div className=" relative z-10 space-y-4 flex flex-col h-full justify-center">
               <h1 className="text-2xl text-babyblue font-serif">
                 Grow Your Savings
