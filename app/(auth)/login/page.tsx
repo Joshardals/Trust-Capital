@@ -9,7 +9,7 @@ const page = () => {
   return (
     <div>
       {/* Start of code for Desktop Users */}
-      <div className="flex overflow-hidden max-md:hidden">
+      <div className="flex overflow-hidden max-md:hidden bg-navyblue/70">
         <div className="h-screen relative w-full bg-[url('/login.jpg')] bg-cover border-r border-r-pureblack"></div>
         <div className=" w-full p-5 bg-babyblue">
           <UserSignInForm />
