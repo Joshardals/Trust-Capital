@@ -9,6 +9,14 @@ export interface SignUpValidationType {
   email: string;
   password: string;
   confirmPassword: string; 
+  bitcoinAddress: string; 
+  ethereumAddress: string; 
+  litecoinAddress: string; 
+  usdtAddress: string; 
+  dogeAddress: string; 
+  tronAddress: string; 
+  bnbAddress: string; 
+  shibaAddress: string; 
 }
 
 export interface SignInValidationType {

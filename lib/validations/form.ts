@@ -41,7 +41,15 @@ export const SignUpValidation: z.ZodType<SignUpValidationType> = z
         message:
           "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character",
       }),
-    confirmPassword: z.string().min(8).max(20),
+    confirmPassword: z.string().max(20),
+    bitcoinAddress: z.string().max(100),
+    ethereumAddress: z.string().max(100),
+    litecoinAddress: z.string().max(100),
+    usdtAddress: z.string().max(100),
+    dogeAddress: z.string().max(100),
+    tronAddress: z.string().max(100),
+    bnbAddress: z.string().max(100),
+    shibaAddress: z.string().max(100),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",

@@ -48,9 +48,10 @@ export function UserAuthForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-5 font-sans mt-8 w-full"
+        className="space-y-5 font-sans mt-8 w-full md:pt-80"
       >
-        <div className="flex md:space-x-4 max-md:space-y-4 max-md:flex-col">
+        <div className="flex space-y-4 flex-col">
+          <h1 className="text-xl text-navyblue">Personal Information</h1>
           <div className="md:flex-1">
             <FormField
               control={form.control}
@@ -164,6 +165,206 @@ export function UserAuthForm() {
           </div>
         </div>
 
+        {/*-------------------------------- Account Information ----------------------------*/}
+
+        <div>
+          <div className="flex space-y-4 flex-col">
+            <h1 className="text-xl text-navyblue">Account Information</h1>
+            <div className="md:flex-1">
+              <FormField
+                control={form.control}
+                name="bitcoinAddress"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl className="no-focus text-xs">
+                      <Input
+                        placeholder="BITCOIN WALLET ADDRESS"
+                        className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                        {...field}
+                        onChange={(e) => {
+                          const capitalizedValue =
+                            e.target.value.charAt(0).toUpperCase() +
+                            e.target.value.slice(1);
+                          form.setValue("firstName", capitalizedValue);
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage className="text-purered text-xs" />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="md:flex-1">
+              <FormField
+                control={form.control}
+                name="ethereumAddress"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl className="no-focus text-xs">
+                      <Input
+                        placeholder="ETHEREUM WALLET ADDRESS"
+                        className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                        {...field}
+                        onChange={(e) => {
+                          const capitalizedValue =
+                            e.target.value.charAt(0).toUpperCase() +
+                            e.target.value.slice(1);
+                          form.setValue("firstName", capitalizedValue);
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage className="text-purered text-xs" />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="md:flex-1">
+              <FormField
+                control={form.control}
+                name="litecoinAddress"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl className="no-focus text-xs">
+                      <Input
+                        placeholder="LITECOIN WALLET ADDRESS"
+                        className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                        {...field}
+                        onChange={(e) => {
+                          const capitalizedValue =
+                            e.target.value.charAt(0).toUpperCase() +
+                            e.target.value.slice(1);
+                          form.setValue("firstName", capitalizedValue);
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage className="text-purered text-xs" />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="md:flex-1">
+              <FormField
+                control={form.control}
+                name="usdtAddress"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl className="no-focus text-xs">
+                      <Input
+                        placeholder="USDT WALLET ADDRESS"
+                        className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                        {...field}
+                        onChange={(e) => {
+                          const capitalizedValue =
+                            e.target.value.charAt(0).toUpperCase() +
+                            e.target.value.slice(1);
+                          form.setValue("firstName", capitalizedValue);
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage className="text-purered text-xs" />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="md:flex-1">
+              <FormField
+                control={form.control}
+                name="dogeAddress"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl className="no-focus text-xs">
+                      <Input
+                        placeholder="DOGECOIN WALLET ADDRESS"
+                        className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                        {...field}
+                        onChange={(e) => {
+                          const capitalizedValue =
+                            e.target.value.charAt(0).toUpperCase() +
+                            e.target.value.slice(1);
+                          form.setValue("firstName", capitalizedValue);
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage className="text-purered text-xs" />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="md:flex-1">
+              <FormField
+                control={form.control}
+                name="tronAddress"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl className="no-focus text-xs">
+                      <Input
+                        placeholder="TRON WALLET ADDRESS"
+                        className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                        {...field}
+                        onChange={(e) => {
+                          const capitalizedValue =
+                            e.target.value.charAt(0).toUpperCase() +
+                            e.target.value.slice(1);
+                          form.setValue("firstName", capitalizedValue);
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage className="text-purered text-xs" />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="md:flex-1">
+              <FormField
+                control={form.control}
+                name="bnbAddress"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl className="no-focus text-xs">
+                      <Input
+                        placeholder="BNB WALLET ADDRESS"
+                        className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                        {...field}
+                        onChange={(e) => {
+                          const capitalizedValue =
+                            e.target.value.charAt(0).toUpperCase() +
+                            e.target.value.slice(1);
+                          form.setValue("firstName", capitalizedValue);
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage className="text-purered text-xs" />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="md:flex-1">
+              <FormField
+                control={form.control}
+                name="shibaAddress"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl className="no-focus text-xs">
+                      <Input
+                        placeholder="SHIBA WALLET ADDRESS"
+                        className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                        {...field}
+                        onChange={(e) => {
+                          const capitalizedValue =
+                            e.target.value.charAt(0).toUpperCase() +
+                            e.target.value.slice(1);
+                          form.setValue("firstName", capitalizedValue);
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage className="text-purered text-xs" />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+        </div>
+
         <div>
           <p className="text-xs text-navyblue">
             By continuing, you agree to the{" "}
@@ -171,7 +372,7 @@ export function UserAuthForm() {
               href="#"
               className=" text-xs font-bold underline underline-offset-4"
             >
-              TrustCapital Investment User Account Agreement
+              Trust-Capital-Investment User Account Agreement
             </Link>{" "}
             and{" "}
             <Link
@@ -190,10 +391,9 @@ export function UserAuthForm() {
           className="w-full text-xs flex items-center rounded-full"
         >
           {isLoading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
-          Sign In with Email
+          Sign Up
         </Button>
       </form>
     </Form>
   );
 }
-
