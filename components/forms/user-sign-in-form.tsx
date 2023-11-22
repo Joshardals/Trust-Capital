@@ -80,11 +80,11 @@ export function UserSignInForm() {
                     className="border focus:border-navyblue max-md:focus:text-sm transition-all duration-500 md:w-80"
                     {...field}
                   />
-                  <span className="absolute bottom-0 top-0 cursor-pointer w-10 right-[18rem]">
+                  {/* <span className="absolute bottom-0 top-0 cursor-pointer w-10 right-[18rem]">
                     <div className=" h-full flex items-center justify-center">
                       <Icons.eye className=" h-4 w-4 text-navyblue" />
                     </div>
-                  </span>
+                  </span> */}
                 </div>
               </FormControl>
             </FormItem>
