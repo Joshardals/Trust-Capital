@@ -185,13 +185,14 @@ export function UserAuthForm() {
           </p>
         </div>
         <Button
+          variant="form"
           disabled={isLoading}
           className="w-full text-xs flex items-center rounded-full"
         >
           {isLoading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
           Sign In with Email
         </Button>
-        <div className="relative">
+        {/* <div className="relative">
           <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t border-t-navyblue" />
           </div>
@@ -213,7 +214,7 @@ export function UserAuthForm() {
             <Icons.google className="mr-2 h-4 w-4" />
           )}{" "}
           Google
-        </Button>
+        </Button> */}
       </form>
     </Form>
   );
