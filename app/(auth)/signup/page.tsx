@@ -72,7 +72,7 @@ export default function Page() {
             <div className="absolute top-0 left-0 h-full w-full bg-navyblue/70" />
           </div>
 
-          <div className="p-5 bg-babyblue overflow-auto h-full">
+          <div className="p-5 bg-babyblue h-full">
             <UserAuthForm />
           </div>
         </div>
