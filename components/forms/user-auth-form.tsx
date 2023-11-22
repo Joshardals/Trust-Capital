@@ -113,7 +113,7 @@ export function UserAuthForm() {
                   autoCapitalize="none"
                   autoComplete="email"
                   autoCorrect="off"
-                  className="border border-navyblue"
+                  className="border border-navyblue focus:text-sm"
                   {...field}
                 />
               </FormControl>
