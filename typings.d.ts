@@ -10,3 +10,8 @@ export interface SignUpValidationType {
   password: string;
   confirmPassword: string; 
 }
+
+export interface SignInValidationType {
+  email: string; 
+  password: string; 
+}
