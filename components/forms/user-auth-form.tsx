@@ -60,7 +60,7 @@ export function UserAuthForm() {
                   <FormControl className="no-focus text-xs">
                     <Input
                       placeholder="First Name"
-                      className="border border-navyblue"
+                      className="border border-navyblue focus:text-sm transition-all duration-500"
                       {...field}
                       onChange={(e) => {
                         const capitalizedValue =
@@ -85,7 +85,7 @@ export function UserAuthForm() {
                     <Input
                       placeholder="Last Name"
                       disabled={isLoading}
-                      className="border border-navyblue"
+                      className="border border-navyblue focus:text-sm transition-all duration-500"
                       {...field}
                       onChange={(e) => {
                         const capitalizedValue =
@@ -113,7 +113,7 @@ export function UserAuthForm() {
                   autoCapitalize="none"
                   autoComplete="email"
                   autoCorrect="off"
-                  className="border border-navyblue focus:text-sm"
+                  className="border border-navyblue focus:text-sm transition-all duration-500"
                   {...field}
                 />
               </FormControl>
@@ -133,7 +133,7 @@ export function UserAuthForm() {
                       type="password"
                       placeholder="Password (min. 8 Characters)"
                       disabled={isLoading}
-                      className="border border-navyblue"
+                      className="border border-navyblue focus:text-sm transition-all duration-500"
                       {...field}
                     />
                   </FormControl>
@@ -153,7 +153,7 @@ export function UserAuthForm() {
                       type="password"
                       placeholder="Confirm Password"
                       disabled={isLoading}
-                      className="border border-navyblue"
+                      className="border border-navyblue focus:text-sm transition-all duration-500"
                       {...field}
                     />
                   </FormControl>
