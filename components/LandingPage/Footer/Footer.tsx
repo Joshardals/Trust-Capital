@@ -20,7 +20,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-5 gap-4">
           <div className="col-span-2">
             <div className="flex flex-col space-y-4 font-sans text-xs max-md:border-b max-md:border-b-darkblue max-md:py-2">
-              <Link href="/" className=" font-serif text-md md:text-lg">
+              <Link href="/" className=" font-serif text-md md:text-lg font-bold">
                 Trust-Capital
               </Link>
 

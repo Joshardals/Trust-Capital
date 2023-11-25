@@ -24,7 +24,7 @@ const NavBar = () => {
         <div className="flex text-pureblack max-md:flex-1 w-full md:w-auto space-x-8">
           {/* Company's Logo */}
           <div className=" flex items-center text-md md:text-lg max-md:flex-1 pr-10 w-auto relative text-babyblue">
-            <Link href="/" className="w-full flex">
+            <Link href="/" className="w-full flex font-bold">
               Trust <span>-</span>Capital
             </Link>
             {/* <div className="max-md:hidden absolute top-0 right-0 border-r border-r-gold h-full" /> */}
