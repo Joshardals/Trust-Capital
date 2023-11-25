@@ -23,6 +23,21 @@ export const NavLinks = () => {
   );
 };
 
+export const FooterLinks = () => {
+  return (
+    <div className="space-y-2 flex flex-col justify-center">
+      {links.map((link) => (
+        <Link
+          key={link.name}
+          href={link.href}
+          className=" font-sans text-sm transition-all text-babyblue hover:text-babyblue/50"
+        >
+          {link.name}
+        </Link>
+      ))}
+    </div>
+  );
+};
 export const SideBar = () => {
   return (
     <>

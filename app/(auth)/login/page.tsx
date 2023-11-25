@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 const page = () => {
   return (
-    <div>
+    <div className="bg-navyblue">
       {/* Start of code for Desktop Users */}
       <div className="flex overflow-hidden max-md:hidden">
         <div className="h-screen relative w-full bg-[url('/login.jpg')] bg-cover border-r border-r-pureblack"></div>
