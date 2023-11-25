@@ -14,10 +14,10 @@ export default function Page() {
   return (
     <div>
       {/* Start of code for Desktop Users */}
-      <div className="flex overflow-hidden max-md:hidden">
+      <div className="flex max-md:hidden">
         <div
           className="h-screen relative w-full bg-[url('/signup.jpg')] bg-cover
-        border-r border-r-pureblack
+        border-r border-r-pureblack overflow-hidden
       "
         >
           <div className="relative z-10 space-y-32 p-10 h-full">
@@ -41,13 +41,11 @@ export default function Page() {
 
           <div className="absolute top-0 left-0 h-full w-full bg-navyblue/70" />
         </div>
-        <div className="h-screen w-full flex items-center justify-center p-10 bg-babyblue md:overflow-y-scroll">
+        <div className="h-screen w-full flex items-center justify-center p-10 bg-babyblue md:overflow-auto">
           <UserAuthForm />
         </div>
       </div>
-
       {/* End Of Code */}
-
       {/* Start Of Code for Mobile Users */}
       <div className="md:hidden relative h-screen">
         <div className="fixed top-0 left-0 w-full bg-navyblue text-white h-16 px-5 z-20">
@@ -58,12 +56,12 @@ export default function Page() {
         <div className="py-6 bg-navyblue h-screen">
           <div className=" px-5 py-10 relative bg-[url('/mobile-signup-bg.jpg')] w-full h-[35rem] bg-cover">
             <div className=" relative z-10 space-y-4 flex flex-col h-full justify-end">
-              <h1 className="text-2xl text-babyblue font-serif">
+              <h1 className="text-2xl text-babyblue font-serif font-bold">
                 Grow Your Savings
               </h1>
 
               <p className="text-babyblue font-sans">
-                Trust Capital Investment unlocks financial potential, converting
+                Trust-Capital Investment unlocks financial potential, converting
                 your deposits into seeds for future prosperity. Entrust your
                 wealth to a legacy of reliability and embark on a journey
                 towards security and growth.

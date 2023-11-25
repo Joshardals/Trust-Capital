@@ -51,7 +51,9 @@ export function UserAuthForm() {
         className="space-y-5 font-sans mt-8 w-full md:pt-80"
       >
         <div className="flex space-y-4 flex-col">
-          <h1 className="text-xl text-navyblue">Personal Information</h1>
+          <h1 className="text-xl text-navyblue font-bold">
+            Personal Information
+          </h1>
           <div className="md:flex-1">
             <FormField
               control={form.control}
@@ -61,7 +63,7 @@ export function UserAuthForm() {
                   <FormControl className="no-focus text-xs">
                     <Input
                       placeholder="First Name"
-                      className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                      className="border border-navyblue text-sm transition-all duration-500"
                       {...field}
                       onChange={(e) => {
                         const capitalizedValue =
@@ -86,7 +88,7 @@ export function UserAuthForm() {
                     <Input
                       placeholder="Last Name"
                       disabled={isLoading}
-                      className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                      className="border border-navyblue text-sm transition-all duration-500"
                       {...field}
                       onChange={(e) => {
                         const capitalizedValue =
@@ -114,7 +116,7 @@ export function UserAuthForm() {
                   autoCapitalize="none"
                   autoComplete="email"
                   autoCorrect="off"
-                  className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                  className="border border-navyblue text-sm transition-all duration-500"
                   {...field}
                 />
               </FormControl>
@@ -134,7 +136,7 @@ export function UserAuthForm() {
                       type="password"
                       placeholder="Password (min. 8 Characters)"
                       disabled={isLoading}
-                      className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                      className="border border-navyblue text-sm transition-all duration-500"
                       {...field}
                     />
                   </FormControl>
@@ -154,7 +156,7 @@ export function UserAuthForm() {
                       type="password"
                       placeholder="Confirm Password"
                       disabled={isLoading}
-                      className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                      className="border border-navyblue text-sm transition-all duration-500"
                       {...field}
                     />
                   </FormControl>
@@ -169,7 +171,33 @@ export function UserAuthForm() {
 
         <div>
           <div className="flex space-y-4 flex-col">
-            <h1 className="text-xl text-navyblue">Account Information</h1>
+            <h1 className="text-xl text-navyblue font-bold">
+              Account Information
+            </h1>
+            <div className="md:flex-1">
+              <FormField
+                control={form.control}
+                name="usdtAddress"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl className="no-focus text-xs">
+                      <Input
+                        placeholder="USDT WALLET ADDRESS"
+                        className="border border-navyblue text-sm transition-all duration-500"
+                        {...field}
+                        onChange={(e) => {
+                          const capitalizedValue =
+                            e.target.value.charAt(0).toUpperCase() +
+                            e.target.value.slice(1);
+                          form.setValue("firstName", capitalizedValue);
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage className="text-purered text-xs" />
+                  </FormItem>
+                )}
+              />
+            </div>
             <div className="md:flex-1">
               <FormField
                 control={form.control}
@@ -179,7 +207,7 @@ export function UserAuthForm() {
                     <FormControl className="no-focus text-xs">
                       <Input
                         placeholder="BITCOIN WALLET ADDRESS"
-                        className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                        className="border border-navyblue text-sm transition-all duration-500"
                         {...field}
                         onChange={(e) => {
                           const capitalizedValue =
@@ -203,7 +231,7 @@ export function UserAuthForm() {
                     <FormControl className="no-focus text-xs">
                       <Input
                         placeholder="ETHEREUM WALLET ADDRESS"
-                        className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                        className="border border-navyblue text-sm transition-all duration-500"
                         {...field}
                         onChange={(e) => {
                           const capitalizedValue =
@@ -227,7 +255,7 @@ export function UserAuthForm() {
                     <FormControl className="no-focus text-xs">
                       <Input
                         placeholder="LITECOIN WALLET ADDRESS"
-                        className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                        className="border border-navyblue text-sm transition-all duration-500"
                         {...field}
                         onChange={(e) => {
                           const capitalizedValue =
@@ -242,30 +270,7 @@ export function UserAuthForm() {
                 )}
               />
             </div>
-            <div className="md:flex-1">
-              <FormField
-                control={form.control}
-                name="usdtAddress"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl className="no-focus text-xs">
-                      <Input
-                        placeholder="USDT WALLET ADDRESS"
-                        className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
-                        {...field}
-                        onChange={(e) => {
-                          const capitalizedValue =
-                            e.target.value.charAt(0).toUpperCase() +
-                            e.target.value.slice(1);
-                          form.setValue("firstName", capitalizedValue);
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage className="text-purered text-xs" />
-                  </FormItem>
-                )}
-              />
-            </div>
+
             <div className="md:flex-1">
               <FormField
                 control={form.control}
@@ -275,7 +280,7 @@ export function UserAuthForm() {
                     <FormControl className="no-focus text-xs">
                       <Input
                         placeholder="DOGECOIN WALLET ADDRESS"
-                        className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                        className="border border-navyblue text-sm transition-all duration-500"
                         {...field}
                         onChange={(e) => {
                           const capitalizedValue =
@@ -299,7 +304,7 @@ export function UserAuthForm() {
                     <FormControl className="no-focus text-xs">
                       <Input
                         placeholder="TRON WALLET ADDRESS"
-                        className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                        className="border border-navyblue text-sm transition-all duration-500"
                         {...field}
                         onChange={(e) => {
                           const capitalizedValue =
@@ -323,7 +328,7 @@ export function UserAuthForm() {
                     <FormControl className="no-focus text-xs">
                       <Input
                         placeholder="BNB WALLET ADDRESS"
-                        className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                        className="border border-navyblue text-sm transition-all duration-500"
                         {...field}
                         onChange={(e) => {
                           const capitalizedValue =
@@ -346,8 +351,8 @@ export function UserAuthForm() {
                   <FormItem>
                     <FormControl className="no-focus text-xs">
                       <Input
-                        placeholder="SHIBA WALLET ADDRESS"
-                        className="border border-navyblue max-md:focus:text-sm transition-all duration-500"
+                        placeholder="SHIBA INU WALLET ADDRESS"
+                        className="border border-navyblue text-sm transition-all duration-500"
                         {...field}
                         onChange={(e) => {
                           const capitalizedValue =
