@@ -11,7 +11,7 @@ const Footer = () => {
     <div className="h-full bg-navyblue text-babyblue">
       <div className="bg-darkblue p-10 max-md:p-5 font-sans space-y-4">
         <h1 className="text-center text-md font-sans uppercase font-bold">
-          We accept various payment processors
+          We accept various payment method
         </h1>
 
         <FooterIcons />
@@ -20,7 +20,10 @@ const Footer = () => {
         <div className="grid md:grid-cols-5 gap-4">
           <div className="col-span-2">
             <div className="flex flex-col space-y-4 font-sans text-xs max-md:border-b max-md:border-b-darkblue max-md:py-2">
-              <Link href="/" className=" font-serif text-md md:text-lg font-bold">
+              <Link
+                href="/"
+                className=" font-serif text-md md:text-lg font-bold max-w-[9rem]"
+              >
                 Trust-Capital
               </Link>
 
@@ -32,7 +35,9 @@ const Footer = () => {
                 1EF
               </p>
 
-              <p>Copyright © 2023 | Trust-Capital Investment.</p>
+              <p className="max-md:hidden">
+                Copyright © 2023 | Trust-Capital Investment.
+              </p>
             </div>
           </div>
           <div className="w-full max-md:col-span-2 max-md:border-b max-md:border-b-darkblue max-md:py-2">
@@ -41,6 +46,9 @@ const Footer = () => {
           <div className="col-span-2">
             <FlagIcons />
           </div>
+          <p className="md:hidden col-span-2 text-xs font-sans">
+            Copyright © 2023 | Trust-Capital Investment.
+          </p>
         </div>
       </div>
     </div>

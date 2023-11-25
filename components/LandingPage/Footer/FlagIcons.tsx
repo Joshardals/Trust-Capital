@@ -3,6 +3,7 @@ import { countries } from "country-flag-icons";
 
 const FlagIcons = () => {
   const selectedCountries = [
+    "IR",
     "US",
     "CA",
     "GB",
@@ -24,7 +25,6 @@ const FlagIcons = () => {
     "NL",
     "SE",
     "NO",
-    "CH",
     "AT",
     "DK",
     "FI",
@@ -46,7 +46,7 @@ const FlagIcons = () => {
   ];
 
   return (
-    <div className="grid grid-cols-10 gap-4 select-none">
+    <div className="grid grid-cols-10 gap-4 select-none max-md:border-b max-md:border-b-darkblue max-md:pb-4">
       {selectedCountries.map((countryCode) => (
         <div key={countryCode}>
           <Image

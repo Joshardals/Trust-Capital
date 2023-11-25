@@ -30,7 +30,7 @@ export const FooterLinks = () => {
         <Link
           key={link.name}
           href={link.href}
-          className=" font-sans text-sm transition-all text-babyblue hover:text-babyblue/50"
+          className=" font-sans text-sm transition-all text-babyblue hover:text-babyblue/50 max-w-[6rem]"
         >
           {link.name}
         </Link>

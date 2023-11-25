@@ -6,7 +6,7 @@ const SignUp = () => {
     <Link
       href="/signup"
       className="bg-babyblue text-navyblue  hover:border-babyblue
-      button max-md:mr-4 border"
+      button max-md:mr-2 border"
     >
       Sign up
     </Link>
