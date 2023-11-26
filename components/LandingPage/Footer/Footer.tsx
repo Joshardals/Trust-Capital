@@ -43,7 +43,8 @@ const Footer = () => {
           <div className="w-full max-md:col-span-2 max-md:border-b max-md:border-b-darkblue max-md:py-2">
             <FooterLinks />
           </div>
-          <div className="col-span-2">
+          <div className="col-span-2 space-y-4">
+            <p className="font-sans">Our Users All Over The World</p>
             <Flags />
           </div>
           <p className="md:hidden col-span-2 text-xs font-sans">

@@ -15,11 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${open_sans.variable} ${playfair.variable}`}>
-        <main className=" m-0 p-0 w-full">
-          {/* <CryptoPrice /> */}
-
-          {children}
-        </main>
+        {children}
       </body>
     </html>
   );
