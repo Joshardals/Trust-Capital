@@ -52,8 +52,8 @@ module.exports = {
           // Additional Colors 
           purewhite: "#FFFFFF", 
           pureblack: "#000000", 
-          purered: "#FF0000", 
-          puregreen: "#008000",
+          puregreen: "#10B387", 
+          purered: "#ff4136",
       },
       keyframes: {
         "accordion-down": {

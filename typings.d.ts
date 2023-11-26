@@ -23,3 +23,11 @@ export interface SignInValidationType {
   email: string; 
   password: string; 
 }
+
+export interface FlagIconsProp {
+  code: string; 
+  name: string; 
+  percentage: string; 
+  up: boolean; 
+  percentageChange: string; 
+}

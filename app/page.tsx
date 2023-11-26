@@ -7,9 +7,10 @@ export default async function Home() {
   return (
     <main className=" w-full p-0">
       <Header />
-      <CryptoPrice />
       <Body />
+
       <Footer />
+      <CryptoPrice />
     </main>
   );
 }

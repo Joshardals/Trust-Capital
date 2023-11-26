@@ -7,6 +7,12 @@ const links = [
   { name: "Support", href: "#" },
 ];
 
+const footerLinks = [
+  { name: "Home", href: "/#" },
+  { name: "Learn More", href: "/#" },
+  { name: "FAQ", href: "/#" },
+];
+
 export const NavLinks = () => {
   return (
     <>
@@ -26,7 +32,7 @@ export const NavLinks = () => {
 export const FooterLinks = () => {
   return (
     <div className="space-y-2 flex flex-col justify-center">
-      {links.map((link) => (
+      {footerLinks.map((link) => (
         <Link
           key={link.name}
           href={link.href}

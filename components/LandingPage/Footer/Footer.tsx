@@ -4,7 +4,7 @@ import React from "react";
 import FooterIcons from "./FooterIcons";
 import Link from "next/link";
 import { FooterLinks, NavLinks } from "../Header/Nav/NavLinks";
-import FlagIcons from "./FlagIcons";
+import { Flags } from "./FlagIcons";
 
 const Footer = () => {
   return (
@@ -16,7 +16,7 @@ const Footer = () => {
 
         <FooterIcons />
       </div>
-      <div className="bg-navyblue w-full px-5 md:px-20 py-10">
+      <div className="bg-navyblue h-full w-full px-5 md:px-20 py-10">
         <div className="grid md:grid-cols-5 gap-4">
           <div className="col-span-2">
             <div className="flex flex-col space-y-4 font-sans text-xs max-md:border-b max-md:border-b-darkblue max-md:py-2">
@@ -44,7 +44,7 @@ const Footer = () => {
             <FooterLinks />
           </div>
           <div className="col-span-2">
-            <FlagIcons />
+            <Flags />
           </div>
           <p className="md:hidden col-span-2 text-xs font-sans">
             Copyright © 2023 | Trust-Capital Investment.
