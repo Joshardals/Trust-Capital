@@ -50,9 +50,6 @@ const Footer = () => {
           <p className="md:hidden col-span-2 text-xs font-sans">
             Copyright © 2023 | Trust-Capital Investment.
           </p>
-          <div className="w-full md:hidden max-md:col-span-2 max-md:py-2">
-            <FooterLinks />
-          </div>
         </div>
       </div>
     </div>

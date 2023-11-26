@@ -14,7 +14,7 @@ const NavBar = () => {
 
   return (
     <div className="relative max-md:mt-10 mt-12">
-      <div className="flex max-md:items-center justify-between fixed left-0 right-0 top-0 bottom-0 w-full h-16 md:h-16 px-5 lg:px-10 bg-navyblue border-b border-b-babyblue z-30 select-none">
+      <div className="flex max-md:items-center justify-between fixed left-0 right-0 top-0 bottom-0 w-full h-16 md:h-16 px-5 lg:px-10 bg-navyblue z-30 select-none">
         <div className="flex  max-md:flex-1 w-full md:w-auto space-x-8">
           {/* Company's Logo */}
           <div className=" flex items-center text-md md:text-lg max-md:flex-1 pr-10 w-auto relative text-babyblue">
