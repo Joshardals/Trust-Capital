@@ -16,10 +16,10 @@ const Footer = () => {
 
         <FooterIcons />
       </div>
-      <div className="bg-navyblue h-full w-full px-5 md:px-20 py-10">
+      <div className="bg-navyblue h-full w-full px-5 md:px-20 py-10 max-md:py-5">
         <div className="grid md:grid-cols-5 gap-4">
           <div className="col-span-2">
-            <div className="flex flex-col space-y-4 font-sans text-xs max-md:border-b max-md:border-b-darkblue max-md:py-2">
+            <div className="flex flex-col space-y-4 font-sans text-xs max-md:border-b max-md:border-b-babyblue max-md:py-6">
               <Link
                 href="/"
                 className=" font-serif text-md md:text-lg font-bold max-w-[9rem]"
@@ -40,7 +40,7 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          <div className="w-full max-md:col-span-2 max-md:border-b max-md:border-b-darkblue max-md:py-2">
+          <div className="w-full max-md:hidden max-md:col-span-2 max-md:py-2">
             <FooterLinks />
           </div>
           <div className="col-span-2 space-y-4">
@@ -50,6 +50,9 @@ const Footer = () => {
           <p className="md:hidden col-span-2 text-xs font-sans">
             Copyright © 2023 | Trust-Capital Investment.
           </p>
+          <div className="w-full md:hidden max-md:col-span-2 max-md:py-2">
+            <FooterLinks />
+          </div>
         </div>
       </div>
     </div>

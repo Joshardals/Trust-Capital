@@ -5,7 +5,10 @@ import NavBar from "./Nav/NavBar";
 const Header = () => {
   return (
     <main className="w-full">
-      <NavBar />
+      <div className=" mb-16">
+        <NavBar />
+      </div>
+      <CryptoPrice />
       <HeroSection />
     </main>
   );

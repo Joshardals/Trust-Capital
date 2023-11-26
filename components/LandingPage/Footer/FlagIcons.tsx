@@ -48,7 +48,7 @@ export const FlagIcons = ({
 
 export const Flags = () => {
   return (
-    <div className="md:grid md:gap-4 md:grid-cols-2 max-md:py-2 max-md:border-b max-md:border-b-darkblue">
+    <div className="md:grid md:gap-4 md:grid-cols-2 max-md:py-6 max-md:border-b max-md:border-b-babyblue select-none">
       <FlagIcons
         code="GB"
         name="United Kingdom"
