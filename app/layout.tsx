@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { open_sans, playfair } from "@/components/ui/font";
+import NavBar from "@/components/LandingPage/Header/Nav/NavBar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${open_sans.variable} ${playfair.variable}`}>
+      <body className={`${open_sans.variable} ${playfair.variable} scroll-smooth`}>
         {children}
       </body>
     </html>

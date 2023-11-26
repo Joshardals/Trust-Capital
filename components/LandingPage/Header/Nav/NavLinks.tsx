@@ -1,15 +1,16 @@
+"use client";
 import Link from "next/link";
 
 const links = [
   { name: "Home", href: "/#" },
-  { name: "Learn More", href: "/#" },
+  { name: "Learn More", href: "/#learn-more" },
   { name: "FAQ", href: "/#" },
   { name: "Support", href: "#" },
 ];
 
 const footerLinks = [
   { name: "Home", href: "/#" },
-  { name: "Learn More", href: "/#" },
+  { name: "Learn More", href: "/#investment" },
   { name: "FAQ", href: "/#" },
 ];
 
@@ -30,6 +31,13 @@ export const NavLinks = () => {
 };
 
 export const FooterLinks = () => {
+  const handleLearnMoreClick = () => {
+    const investmentSection = document.getElementById("learn-more");
+
+    if (investmentSection) {
+      investmentSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <div className="space-y-2 flex flex-col justify-center">
       {footerLinks.map((link) => (
@@ -38,7 +46,13 @@ export const FooterLinks = () => {
           href={link.href}
           className=" font-sans text-sm transition-all text-babyblue hover:text-babyblue/50 max-w-[6rem]"
         >
-          {link.name}
+          <p
+            onClick={
+              link.name === "Learn More" ? handleLearnMoreClick : undefined
+            }
+          >
+            {link.name}
+          </p>
         </Link>
       ))}
     </div>

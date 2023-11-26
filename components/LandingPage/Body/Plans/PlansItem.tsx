@@ -3,7 +3,7 @@ import { PlanProps } from "@/typings";
 
 const PlansItem = ({ plan, percentage, term, minMax, referral }: PlanProps) => {
   return (
-    <div className="p-5 md:py-10 md:px-5 shadow-lg bg-puregreen/40 flex flex-col space-y-6 rounded-2xl select-none">
+    <div className="p-5 md:py-10 md:px-5 shadow-lg shadow-black/50 flex flex-col space-y-6 rounded-2xl select-none">
       <div className="flex flex-col items-center space-y-2">
         <Icons.shield className="w-10 h-10" />
         <p className=" uppercase">{plan}</p>
