@@ -15,7 +15,7 @@ const QuestionBank = ({ item, question, answer }: QuestionProps) => {
           <AccordionTrigger className="font-bold">
             {question}
           </AccordionTrigger>
-          <AccordionContent className="max-md:text-xs ">
+          <AccordionContent className=" ">
             {answer}
           </AccordionContent>
         </AccordionItem>
