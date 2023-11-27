@@ -10,7 +10,7 @@ const links = [
 
 const footerLinks = [
   { name: "Home", href: "/#" },
-  { name: "Learn More", href: "/#investment" },
+  { name: "Learn More", href: "/#learn-more" },
   { name: "FAQ", href: "/#" },
 ];
 

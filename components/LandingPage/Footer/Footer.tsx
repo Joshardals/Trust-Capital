@@ -27,13 +27,22 @@ const Footer = () => {
                 Trust-Capital
               </Link>
 
-              <p className=" text-xs flex items-center">
-                <span>
-                  <Icons.map className="w-4 h-4 mr-1" />
-                </span>{" "}
-                18a/20 King Street, Maidenhead, Berkshire, United Kingdom, SL6
-                1EF
-              </p>
+              <div className="space-y-2">
+                <p className=" text-xs flex items-center">
+                  <span>
+                    <Icons.map className="w-4 h-4 mr-1" />
+                  </span>{" "}
+                  18a/20 King Street, Maidenhead, Berkshire, United Kingdom, SL6
+                  1EF
+                </p>
+
+                <p className=" text-xs flex items-center">
+                  <span>
+                    <Icons.map className="w-4 h-4 mr-1" />
+                  </span>{" "}
+                  Asia Square Tower 1, Tanjong Pagar, Singapore
+                </p>
+              </div>
 
               <p className="max-md:hidden">
                 Copyright © 2023 | Trust-Capital Investment.

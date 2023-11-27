@@ -92,6 +92,17 @@ export const Flags = () => {
         percentageChange="6%"
       />
       <div className="flex space-x-4 items-center font-sans text-xs">
+        <div className="relative">
+          <Image
+            width={6}
+            height={6}
+            alt="hey"
+            className="w-6 h-6"
+            src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg`}
+          />
+
+          <div className="absolute top-0 left-0 h-full w-full bg-babyblue" />
+        </div>
         <div className="flex flex-col">
           <p>Others</p>
           <div className="flex items-center text-babyblue space-x-2">
