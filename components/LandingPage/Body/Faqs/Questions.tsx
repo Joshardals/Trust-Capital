@@ -4,7 +4,7 @@ const Questions = () => {
   return (
     <div className="space-y-6 font-sans text-navyblue">
       <div>
-        <h1 className="text-md font-bold md:text-xl md:font-semibold text-center">
+        <h1 className="text-md font-bold md:text-xl md:font-semibold text-center text-darkblue">
           FAQS
         </h1>
       </div>
