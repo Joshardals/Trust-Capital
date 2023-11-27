@@ -10,7 +10,7 @@ const Support = () => {
         </h1>
 
         <div className="grid md:grid-cols-4 space-y-8 md:gap-4">
-          <div className="space-y-4 col-span-2 max-md:border-b max-md:border-b-navyblue max-md:pb-8">
+          <div className="space-y-4 col-span-2 max-md:border-b max-md:border-b-navyblue/30 max-md:pb-8">
             <div className="flex items-center space-x-4">
               <Icons.map className="h-6 w-6 text-puregreen" />
               <p className="font-bold text-md">Location</p>
