@@ -2,6 +2,7 @@ import React from "react";
 import { Icons } from "@/components/icons";
 import Features from "./Features/Features";
 import Plans from "./Plans/Plans";
+import Questions from "./Faqs/Questions";
 
 const Body = () => {
   return (
@@ -11,6 +12,10 @@ const Body = () => {
       </div>
       <div id="learn-more" className="py-20">
         <Plans />
+      </div>
+
+      <div className="py-20" id="faq">
+        <Questions />
       </div>
     </div>
   );

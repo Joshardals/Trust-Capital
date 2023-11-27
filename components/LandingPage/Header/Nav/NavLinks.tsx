@@ -4,14 +4,14 @@ import Link from "next/link";
 const links = [
   { name: "Home", href: "/#" },
   { name: "Learn More", href: "/#learn-more" },
-  { name: "FAQ", href: "/#" },
+  { name: "FAQ", href: "/#faq" },
   { name: "Support", href: "#" },
 ];
 
 const footerLinks = [
   { name: "Home", href: "/#" },
   { name: "Learn More", href: "/#learn-more" },
-  { name: "FAQ", href: "/#" },
+  { name: "FAQ", href: "/#faq" },
 ];
 
 export const NavLinks = () => {

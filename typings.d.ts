@@ -24,6 +24,8 @@ export interface SignInValidationType {
   password: string;
 }
 
+// landing page definitions
+
 export interface FlagIconsProp {
   code: string;
   name: string;
@@ -39,3 +41,11 @@ export interface PlanProps {
   minMax: string;
   referral: string;
 }
+
+export interface QuestionProps {
+  item: string; 
+  question: string; 
+  answer: string; 
+}
+
+// landing page definitions end
