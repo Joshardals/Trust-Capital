@@ -2,6 +2,7 @@ export interface navStoreState {
   navBar: boolean;
   setNavBar: () => void;
 }
+// Form Definitions Start
 
 export interface SignUpValidationType {
   firstName: string;
@@ -24,6 +25,14 @@ export interface SignInValidationType {
   password: string;
 }
 
+export interface FeedBackFormType {
+  name: string;
+  email: string;
+  message: string;
+}
+
+// Form Definitions End
+
 // landing page definitions
 
 export interface FlagIconsProp {
@@ -43,9 +52,9 @@ export interface PlanProps {
 }
 
 export interface QuestionProps {
-  item: string; 
-  question: string; 
-  answer: string; 
+  item: string;
+  question: string;
+  answer: string;
 }
 
 // landing page definitions end

@@ -1,5 +1,9 @@
 import * as z from "zod";
-import { SignInValidationType, SignUpValidationType } from "@/typings";
+import {
+  FeedBackFormType,
+  SignInValidationType,
+  SignUpValidationType,
+} from "@/typings";
 
 const isStrongPassword = (password: string) => {
   // Add your password strength criteria here
@@ -59,4 +63,10 @@ export const SignUpValidation: z.ZodType<SignUpValidationType> = z
 export const SignInValidation: z.ZodType<SignInValidationType> = z.object({
   email: z.string().email().min(10).max(100),
   password: z.string().min(8).max(20),
+});
+
+export const FeedbackValidation: z.ZodType<FeedBackFormType> = z.object({
+  name: z.string().min(3).max(100),
+  email: z.string().email().min(10).max(100),
+  message: z.string().min(5).max(200),
 });

@@ -3,6 +3,7 @@ import { Icons } from "@/components/icons";
 import Features from "./Features/Features";
 import Plans from "./Plans/Plans";
 import Questions from "./Faqs/Questions";
+import Support from "./Support/Support";
 
 const Body = () => {
   return (
@@ -16,6 +17,10 @@ const Body = () => {
 
       <div className="py-20" id="faq">
         <Questions />
+      </div>
+
+      <div className="py-20" id="support">
+        <Support />
       </div>
     </div>
   );

@@ -33,17 +33,23 @@ const Footer = () => {
               <div className="space-y-2">
                 <p className=" text-xs flex items-center">
                   <span>
-                    <Icons.map className="w-4 h-4 mr-1" />
+                    <Icons.map className="w-4 h-4 mr-1 text-puregreen" />
                   </span>{" "}
-                  18a/20 King Street, Maidenhead, Berkshire, United Kingdom, SL6
-                  1EF
+                  18a/20 King Street, Maidenhead, Berkshire, United Kingdom.
                 </p>
 
                 <p className=" text-xs flex items-center">
                   <span>
-                    <Icons.map className="w-4 h-4 mr-1" />
+                    <Icons.map className="w-4 h-4 mr-1 text-puregreen" />
                   </span>{" "}
-                  Asia Square Tower 1, Tanjong Pagar, Singapore
+                  Asia Square Tower 1, Tanjong Pagar, Singapore.
+                </p>
+
+                <p className=" text-xs flex items-center">
+                  <span>
+                    <Icons.map className="w-4 h-4 mr-1 text-puregreen" />
+                  </span>{" "}
+                  156 2nd St, San Francisco, California, USA.
                 </p>
               </div>
 
