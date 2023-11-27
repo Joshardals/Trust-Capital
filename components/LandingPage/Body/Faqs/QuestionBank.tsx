@@ -9,13 +9,13 @@ import { QuestionProps } from "@/typings";
 
 const QuestionBank = ({ item, question, answer }: QuestionProps) => {
   return (
-    <div className="max-md:text-xs">
+    <div>
       <Accordion type="single" collapsible>
         <AccordionItem value={`item-${item}`}>
           <AccordionTrigger className="font-bold">
             {question}
           </AccordionTrigger>
-          <AccordionContent className=" ">
+          <AccordionContent>
             {answer}
           </AccordionContent>
         </AccordionItem>
