@@ -7,7 +7,7 @@ const Plans = () => {
     <div className="space-y-6 font-sans text-navyblue">
       <div className="flex flex-col items-center space-y-2 w-full text-darkblue">
         <p>INVESTMENT PLANS</p>
-        <h1 className="text-md font-bold md:text-xl md:font-semibold max-w-xl text-center capitalize">
+        <h1 className="text-lg font-bold md:text-xl md:font-semibold max-w-xl text-center capitalize">
           We provide you with the greatest investment plans available.
         </h1>
       </div>
