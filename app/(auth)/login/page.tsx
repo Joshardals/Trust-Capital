@@ -17,7 +17,7 @@ const page = () => {
       {/* End of code for Desktop Users */}
 
       {/* Start of code for Mobile Users  */}
-      <div className="md:hidden bg-babyblue h-screen w-full py-2 px-10">
+      <div className="md:hidden bg-babyblue w-full py-2 px-10">
         <UserSignInForm />
       </div>
       {/* End of code for Mobile Users */}
