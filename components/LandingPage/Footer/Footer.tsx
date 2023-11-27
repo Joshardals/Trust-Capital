@@ -20,12 +20,15 @@ const Footer = () => {
         <div className="grid md:grid-cols-5 gap-4">
           <div className="col-span-2">
             <div className="flex flex-col space-y-4 font-sans text-xs max-md:border-b max-md:border-b-babyblue max-md:py-6">
-              <Link
-                href="/"
-                className=" font-serif text-md md:text-lg font-bold max-w-[9rem]"
-              >
-                Trust-Capital
-              </Link>
+              <div className="flex items-center space-x-1 md:space-x-2">
+                <Image alt="Logo" src="/logo.png" width={30} height={30} />
+                <Link
+                  href="/"
+                  className=" font-serif text-md md:text-lg font-bold max-w-[9rem]"
+                >
+                  Trust-Capital
+                </Link>
+              </div>
 
               <div className="space-y-2">
                 <p className=" text-xs flex items-center">

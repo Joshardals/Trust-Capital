@@ -1,5 +1,5 @@
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
-import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -20,15 +20,15 @@ const HeroSection = () => {
         </p>
       </div>
 
-      <div className="relative aspect-video w-full select-none rounded-lg flex-1 shadow-lg">
-        <Image
-          src="/hero-img.jpg"
-          fill
-          alt="Hero-Image"
-          priority
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="rounded-lg shadow-2xl shadow-darkblue"
-        />
+      <div className="relative w-full select-none rounded-lg flex-1 shadow-lg">
+        <AspectRatio ratio={16 / 9} className="bg-muted">
+          <Image
+            src="/hero-img2.jpg"
+            alt="Photo by Drew Beamer"
+            fill
+            className="rounded-md object-cover"
+          />
+        </AspectRatio>
         <div className="absolute top-0 left-0 h-full w-full bg-navyblue bg-opacity-30 rounded-md" />
       </div>
     </div>

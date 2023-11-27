@@ -2,16 +2,15 @@ import { UserSignInForm } from "@/components/forms/user-sign-in-form";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Log In | TrustCapital",
-  description: "Create your login for TrustCapital",
+  title: "Log In | Trust-Capital Investment",
+  description: "Create your login for Trust-Capital",
 };
 const page = () => {
   return (
     <div className="bg-navyblue">
       {/* Start of code for Desktop Users */}
-      <div className="flex overflow-hidden max-md:hidden">
-        <div className="h-screen relative w-full bg-[url('/login.jpg')] bg-cover border-r border-r-pureblack"></div>
-        <div className=" w-full p-5 bg-babyblue">
+      <div className="flex overflow-hidden max-md:hidden h-screen">
+        <div className=" w-full p-5 bg-babyblue md:flex md:items-center md:justify-center">
           <UserSignInForm />
         </div>
       </div>

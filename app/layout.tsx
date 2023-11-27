@@ -15,7 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${open_sans.variable} ${playfair.variable} scroll-smooth`}>
+      <body
+        className={`${open_sans.variable} ${playfair.variable} scroll-smooth`}
+      >
         {children}
       </body>
     </html>

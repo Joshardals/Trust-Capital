@@ -6,8 +6,8 @@ import { buttonVariants } from "@/components/ui/button";
 import { UserAuthForm } from "@/components/forms/user-auth-form";
 
 export const metadata: Metadata = {
-  title: "Create your login | TrustCapital",
-  description: "Create your login for TrustCapital",
+  title: "Create your login | Trust-Capital Investment",
+  description: "Create your login for Trust-Capital",
 };
 
 export default function Page() {
@@ -22,7 +22,11 @@ export default function Page() {
         >
           <div className="relative z-10 space-y-32 p-10 h-full">
             <div className="text-md md:text-lg w-auto text-babyblue">
-              <Link href="/" className="">
+              <Link
+                href="/"
+                className="flex items-center space-x-2 max-md:space-x-1"
+              >
+                <Image alt="Logo" src="/logo.png" width={30} height={30} />
                 TrustCapital
               </Link>
             </div>
@@ -50,7 +54,9 @@ export default function Page() {
       <div className="md:hidden relative h-screen">
         <div className="fixed top-0 left-0 w-full bg-navyblue text-white h-16 px-5 z-20">
           <div className="flex items-center justify-center text-xl font-serif h-full w-full">
-            <Link href="/">TC</Link>
+            <Link href="/">
+              <Image alt="Logo" src="/logo.png" width={30} height={30} />
+            </Link>
           </div>
         </div>
         <div className="py-6 bg-navyblue h-screen">

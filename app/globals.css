@@ -51,7 +51,7 @@
 
 @layer components {
   .button {
-    @apply flex items-center justify-center h-10 px-6 text-center rounded-full transition-all duration-300
+    @apply flex items-center justify-center h-10 max-md:h-9 max-md:px-4 px-6 text-center rounded-full transition-all duration-300
     shadow-sm focus:scale-90;
   }
   /* Styles for the mobile Navigation Link */
