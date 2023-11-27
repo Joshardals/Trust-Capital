@@ -40,79 +40,80 @@ const FeedbackForm = () => {
   return (
     <Form {...form}>
       <div className="">
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem className="space-y-2">
-                <div className="space-y-4">
-                  <Label htmlFor="name" className="">
-                    Name:
-                  </Label>
-                  <FormControl className="no-focus">
-                    <Input
-                      id="name"
-                      type="text"
-                      className="border min-w-full border-navyblue/30 transition-all duration-500 md:w-80"
-                      {...field}
-                    />
-                  </FormControl>
-                </div>
-                <FormMessage className="text-purered text-xs" />
-              </FormItem>
-            )}
-          />
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <div className="space-y-4">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem className="space-y-2">
+                  <div className="space-y-4">
+                    <Label htmlFor="name" className="">
+                      Name:
+                    </Label>
+                    <FormControl className="no-focus">
+                      <Input
+                        id="name"
+                        type="text"
+                        className="border min-w-full border-navyblue/30 transition-all duration-500 md:w-80"
+                        {...field}
+                      />
+                    </FormControl>
+                  </div>
+                  <FormMessage className="text-purered text-xs" />
+                </FormItem>
+              )}
+            />
 
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem className="space-y-2">
-                <div className="space-y-4">
-                  <Label htmlFor="email" className="">
-                    Email:
-                  </Label>
-                  <FormControl className="no-focus">
-                    <Input
-                      id="email"
-                      type="email"
-                      autoCapitalize="none"
-                      autoComplete="email"
-                      autoCorrect="off"
-                      className="border min-w-full border-navyblue/30 transition-all duration-500 md:w-80 focus:outline-none focus:focus-visible:ring-0"
-                      {...field}
-                    />
-                  </FormControl>
-                </div>
-                <FormMessage className="text-purered text-xs" />
-              </FormItem>
-            )}
-          />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem className="space-y-2">
+                  <div className="space-y-4">
+                    <Label htmlFor="email" className="">
+                      Email:
+                    </Label>
+                    <FormControl className="no-focus">
+                      <Input
+                        id="email"
+                        type="email"
+                        autoCapitalize="none"
+                        autoComplete="email"
+                        autoCorrect="off"
+                        className="border min-w-full border-navyblue/30 transition-all duration-500 md:w-80 focus:outline-none focus:focus-visible:ring-0"
+                        {...field}
+                      />
+                    </FormControl>
+                  </div>
+                  <FormMessage className="text-purered text-xs" />
+                </FormItem>
+              )}
+            />
 
-          <FormField
-            control={form.control}
-            name="message"
-            render={({ field }) => (
-              <FormItem className="space-y-2">
-                <div className="space-y-4">
-                  <Label htmlFor="message" className="">
-                    Message:
-                  </Label>
-                  <FormControl className="no-focus">
-                    <Textarea
-                      id="message"
-                      className="border border-navyblue/30"
-                      placeholder="Your Message Here"
-                      {...field}
-                    />
-                  </FormControl>
-                </div>
-                <FormMessage className="text-purered text-xs" />
-              </FormItem>
-            )}
-          />
-
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem className="space-y-2">
+                  <div className="space-y-4">
+                    <Label htmlFor="message" className="">
+                      Message:
+                    </Label>
+                    <FormControl className="no-focus">
+                      <Textarea
+                        id="message"
+                        className="border border-navyblue/30"
+                        placeholder="Your Message Here"
+                        {...field}
+                      />
+                    </FormControl>
+                  </div>
+                  <FormMessage className="text-purered text-xs" />
+                </FormItem>
+              )}
+            />
+          </div>
           <Button
             variant="form"
             disabled={isLoading}
