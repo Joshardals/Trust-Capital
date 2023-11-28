@@ -9,17 +9,20 @@ import { Flags } from "./FlagIcons";
 const Footer = () => {
   return (
     <div className="h-full bg-navyblue text-babyblue">
-      <div className="bg-darkblue p-10 max-md:p-5 font-sans space-y-4">
+      <div className="max-md:hidden bg-darkblue p-10 max-md:p-5 font-sans space-y-6">
         <h1 className="text-center text-md font-sans uppercase font-bold">
           We accept various payment method
         </h1>
 
         <FooterIcons />
+        <p className="md:hidden col-span-2 text-xs font-sans">
+          Copyright © 2023 | Trust-Capital Investment.
+        </p>
       </div>
       <div className="bg-navyblue h-full w-full px-5 md:px-20 py-10 max-md:py-5">
         <div className="grid md:grid-cols-5 gap-4">
           <div className="col-span-2">
-            <div className="flex flex-col space-y-4 font-sans text-xs max-md:border-b max-md:border-b-babyblue max-md:py-6">
+            <div className="flex flex-col space-y-6 font-sans text-xs max-md:border-b max-md:border-b-babyblue max-md:py-6">
               <div className="flex items-center space-x-1 md:space-x-2">
                 <Image alt="Logo" src="/logo.png" width={30} height={30} />
                 <Link
@@ -65,10 +68,18 @@ const Footer = () => {
             <p className="font-sans">Our Users All Over The World</p>
             <Flags />
           </div>
-          <p className="md:hidden col-span-2 text-xs font-sans">
-            Copyright © 2023 | Trust-Capital Investment.
-          </p>
         </div>
+      </div>
+
+      <div className="md:hidden bg-darkblue p-10 max-md:p-5 font-sans space-y-6">
+        <h1 className="text-center text-md font-sans uppercase font-bold">
+          We accept various payment method
+        </h1>
+
+        <FooterIcons />
+        <p className="md:hidden col-span-2 text-xs font-sans">
+          Copyright © 2023 | Trust-Capital Investment.
+        </p>
       </div>
     </div>
   );
