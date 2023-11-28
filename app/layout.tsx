@@ -14,9 +14,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-navyblue p-0 m-0 h-full w-full scroll-smooth">
       <body
-        className={`${open_sans.variable} ${playfair.variable} scroll-smooth`}
+        className={`${open_sans.variable} ${playfair.variable} scroll-smooth bg-purewhite`}
       >
         {children}
       </body>
