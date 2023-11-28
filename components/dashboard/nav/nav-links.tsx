@@ -62,7 +62,7 @@ export const SidebarLinks = () => {
         </div>
       ))}
 
-      <div className="bottom-0 left-0 h-full w-full flex items-center cursor-pointer space-x-4 uppercase p-2 rounded-lg transition-all duration-200 hover:bg-darkblue ">
+      <div className="w-full flex items-center cursor-pointer space-x-4 uppercase p-2 rounded-lg transition-all duration-200 hover:bg-darkblue ">
         <Image
           src="/dashboard/logout.svg"
           width={30}
