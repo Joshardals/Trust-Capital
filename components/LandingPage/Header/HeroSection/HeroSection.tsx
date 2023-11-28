@@ -22,7 +22,7 @@ const HeroSection = () => {
       <div className="relative w-full select-none rounded-lg flex-1 shadow-lg">
         <AspectRatio ratio={16 / 9} className="bg-muted">
           <Image
-            src="/hero-img2.jpg"
+            src="/hero-img-3.jpg"
             alt="Photo by Drew Beamer"
             fill
             className="rounded-md object-cover"

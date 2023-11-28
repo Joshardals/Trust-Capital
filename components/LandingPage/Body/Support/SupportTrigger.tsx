@@ -23,7 +23,7 @@ const SupportTrigger = () => {
 
   return (
     <div
-      className={`fixed bottom-5 right-5 rounded-full p-3 cursor-pointer transition-all duration-300
+      className={`fixed bottom-5 left-5 rounded-full p-3 cursor-pointer transition-all duration-300
      ${active ? "bg-goldenrod" : "bg-puregreen"}
    `}
       onClick={handleClick}

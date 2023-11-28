@@ -18,7 +18,10 @@ const NavBar = () => {
       <div className="flex max-md:items-center justify-between fixed left-0 right-0 top-0 bottom-0 w-full h-16 md:h-16 px-5 lg:px-10 bg-navyblue z-30 select-none">
         <div className="flex  max-md:flex-1 w-full md:w-auto space-x-8">
           {/* Company's Logo */}
-          <Link href="/" className=" flex items-center space-x-1 md:space-x-2 text-md md:text-lg max-md:flex-1 pr-10 w-auto relative text-babyblue">
+          <Link
+            href="/"
+            className=" flex items-center space-x-1 md:space-x-2 text-md md:text-lg max-md:flex-1 pr-10 w-auto relative text-babyblue"
+          >
             <Image alt="Logo" src="/logo.png" width={30} height={30} />
             <p className="w-full flex font-bold">
               Trust <span>-</span>Capital

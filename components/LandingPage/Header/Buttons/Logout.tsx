@@ -1,16 +1,15 @@
 import Link from "next/link";
-import React from "react";
 
-const SignUp = () => {
+const Logout = () => {
   return (
     <Link
       href="/signup"
       className="bg-babyblue text-navyblue  hover:border-babyblue hover:bg-babyblue/70
       button max-md:mr-2 border"
     >
-      Sign up
+      Logout
     </Link>
   );
 };
 
-export default SignUp;
+export default Logout;

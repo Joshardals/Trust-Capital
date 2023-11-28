@@ -13,28 +13,6 @@ const Support = () => {
 
         <div className="grid md:grid-cols-4 space-y-8 md:gap-4">
           <div className="space-y-4 col-span-2 max-md:border-b max-md:border-b-navyblue/30 max-md:pb-8">
-            <div className="flex items-center space-x-4">
-              <Icons.map className="h-6 w-6 text-puregreen" />
-              <p className="font-bold text-md">Location</p>
-            </div>
-
-            <div className="space-y-1 text-xs">
-              <div className="ml-10 flex items-center space-x-2">
-                <span className="font-bold">-</span>
-                <p>
-                  18a/20 King Street, Maidenhead, Berkshire, United Kingdom.
-                </p>
-              </div>
-              <div className="ml-10 flex items-center space-x-2">
-                <span className="font-bold">-</span>
-                <p>Asia Square Tower 1, Tanjong Pagar, Singapore.</p>
-              </div>
-              <div className="ml-10 flex items-center space-x-2">
-                <span className="font-bold">-</span>
-                <p>156 2nd St, San Francisco, California, USA.</p>
-              </div>
-            </div>
-
             <div>
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
