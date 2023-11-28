@@ -5,8 +5,7 @@ const HeroSection = () => {
   return (
     <div
       className=" max-md:px-5 md:px-20 lg:px-20 max-md:space-y-8 md:space-x-8 flex items-center md:flex-row flex-col
-        bg-gradient-to-br max-md:bg-gradient-to-tr from-navyblue to-babyblue max-md:py-20 md:py-40 h-full
-      "
+        bg-gradient-to-br max-md:bg-gradient-to-tr from-navyblue to-babyblue max-md:py-20 md:py-40 h-full "
     >
       <div className=" space-y-4 flex-1 w-full">
         <h1 className="text-2xl  leading-tight lg:max-w-md max-md:max-w-md text-navyblue">

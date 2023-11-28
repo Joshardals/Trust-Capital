@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const links = [
   { name: "Home", href: "/#" },
@@ -31,13 +32,6 @@ export const NavLinks = () => {
 };
 
 export const FooterLinks = () => {
-  const handleLearnMoreClick = () => {
-    const investmentSection = document.getElementById("learn-more");
-
-    if (investmentSection) {
-      investmentSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
   return (
     <div className="space-y-2 flex flex-col justify-center">
       {footerLinks.map((link) => (
@@ -46,11 +40,7 @@ export const FooterLinks = () => {
           href={link.href}
           className=" font-sans text-sm transition-all text-babyblue hover:text-babyblue/50 max-w-[6rem]"
         >
-          <p
-            onClick={
-              link.name === "Learn More" ? handleLearnMoreClick : undefined
-            }
-          >
+          <p>
             {link.name}
           </p>
         </Link>
