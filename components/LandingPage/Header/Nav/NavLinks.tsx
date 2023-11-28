@@ -6,7 +6,7 @@ const links = [
   { name: "Home", href: "/#" },
   { name: "Learn More", href: "/#learn-more" },
   { name: "FAQ", href: "/#faq" },
-  { name: "Support", href: "#support" },
+  { name: "Support", href: "#" },
 ];
 
 const footerLinks = [
@@ -40,9 +40,7 @@ export const FooterLinks = () => {
           href={link.href}
           className=" font-sans text-sm transition-all text-babyblue hover:text-babyblue/50 max-w-[6rem]"
         >
-          <p>
-            {link.name}
-          </p>
+          <p>{link.name}</p>
         </Link>
       ))}
     </div>
