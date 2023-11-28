@@ -1,7 +1,9 @@
 import FeedbackForm from "@/components/forms/feedback-form";
 import { Icons } from "@/components/icons";
+import { useSupportStore } from "@/lib/store/store";
 
 const Support = () => {
+  const { support } = useSupportStore();
   return (
     <div className="font-sans text-navyblue" id="support">
       <div className="space-y-6">
@@ -17,20 +19,20 @@ const Support = () => {
             </div>
 
             <div className="space-y-1 text-xs">
-              <p className="ml-10 flex items-center space-x-2">
+              <div className="ml-10 flex items-center space-x-2">
                 <span className="font-bold">-</span>
                 <p>
                   18a/20 King Street, Maidenhead, Berkshire, United Kingdom.
                 </p>
-              </p>
-              <p className="ml-10 flex items-center space-x-2">
+              </div>
+              <div className="ml-10 flex items-center space-x-2">
                 <span className="font-bold">-</span>
                 <p>Asia Square Tower 1, Tanjong Pagar, Singapore.</p>
-              </p>
-              <p className="ml-10 flex items-center space-x-2">
+              </div>
+              <div className="ml-10 flex items-center space-x-2">
                 <span className="font-bold">-</span>
                 <p>156 2nd St, San Francisco, California, USA.</p>
-              </p>
+              </div>
             </div>
 
             <div>

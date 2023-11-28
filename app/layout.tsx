@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { open_sans, playfair } from "@/components/ui/font";
-import NavBar from "@/components/LandingPage/Header/Nav/NavBar";
 
 export const metadata: Metadata = {
   title: "Create Next App",

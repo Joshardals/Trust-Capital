@@ -2,6 +2,11 @@ export interface navStoreState {
   navBar: boolean;
   setNavBar: () => void;
 }
+
+export interface supportStoreState {
+  support: boolean; 
+  setSupport: () => void; 
+}
 // Form Definitions Start
 
 export interface SignUpValidationType {

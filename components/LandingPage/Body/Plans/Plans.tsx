@@ -13,24 +13,24 @@ const Plans = () => {
       </div>
       <div className="grid md:grid-cols-3 gap-4">
         <PlansItem
-          plan="beginner plan"
+          plan="beginners plan"
           percentage="5"
-          term="20"
-          minMax="$100/$699"
+          term="5"
+          minMax="$100 - $699"
           referral="2"
         />
         <PlansItem
-          plan="advance trade plan"
+          plan="advanced trade plan"
           percentage="7"
-          term="24"
-          minMax="$700/$1499"
+          term="5"
+          minMax="$700 - $1499"
           referral="3"
         />
         <PlansItem
           plan="professional plan"
           percentage="12"
-          term="36"
-          minMax="$1500/$15000"
+          term="5"
+          minMax="$1500 - $3999"
           referral="4"
         />
 
@@ -38,23 +38,23 @@ const Plans = () => {
 
         <PlansItem
           plan="promo plan"
-          percentage="9"
-          term="7"
-          minMax="$3000/$12000"
+          percentage="15"
+          term="5"
+          minMax="$4000 - $8999"
           referral="5"
         />
         <PlansItem
           plan="master trade plan"
           percentage="30"
-          term="86"
-          minMax="$15000/$Unlimited"
+          term="5"
+          minMax="$9000 - $15000"
           referral="6"
         />
         <PlansItem
-          plan="special plan"
-          percentage="90"
-          term="72"
-          minMax="$7000/$Unlimited"
+          plan="retirement plan"
+          percentage="40"
+          term="5"
+          minMax="$15000 - $Unlimited"
           referral="6"
         />
       </div>
