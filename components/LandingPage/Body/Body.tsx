@@ -10,7 +10,7 @@ import { useSupportStore } from "@/lib/store/store";
 const Body = () => {
   const { support } = useSupportStore();
   return (
-    <div className="px-5 md:px-20 py-10 relative bg-babyblue">
+    <div className="px-5 md:px-20 py-10 relative">
       <div className="py-20">
         <Features />
       </div>
