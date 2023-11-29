@@ -1,3 +1,5 @@
+import Referral from "@/components/dashboard/content/Referral";
+import StartTrade from "@/components/dashboard/content/StartTrade";
 import { Button } from "@/components/ui/button";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -9,18 +11,24 @@ export const metadata: Metadata = {
 };
 const page = () => {
   return (
-    <div className=" h-screen md:ml-80 font-sans space-y-8 text-navyblue md:p-5 max-md:p-5 bg-babyblue">
-      <div>
-        <h1 className="text-lg md:text-xl font-semibold capitalize text-puregreen">
-          Hi, Tommy Shelby
-        </h1>
-        <p className="capitalize max-md:text-xs">
-          welcome to trust-capital investment
-        </p>
+    <div className=" h-full font-sans space-y-8 text-navyblue md:p-5 max-md:p-5 bg-babyblue overflow-y-auto">
+      <div className="flex max-md:flex-col justify-center md:justify-between md:items-center max-md:space-y-4">
+        <div>
+          <h1 className="text-lg md:text-xl font-semibold capitalize text-puregreen">
+            Hi, Tommy Shelby
+          </h1>
+          <p className="capitalize max-md:text-xs">
+            welcome to trust-capital investment
+          </p>
+        </div>
+
+        <div>
+          <StartTrade />
+        </div>
       </div>
 
       <div className="grid md:grid-cols-3 gap-4 text-xs md:text-md">
-        {/* Row 1 */}
+        {/* -----  Row 1   -------*/}
         <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
           <div className="space-y-1">
             <h1 className="font-semibold uppercase">active deposit</h1>
@@ -68,7 +76,20 @@ const page = () => {
             </Button>
           </Link>
         </div>
+
+        {/* ------ Row 2 ------- */}
+        <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
+          <div className="space-y-1">
+            <h1 className="font-semibold uppercase">current plan</h1>
+            <p className=" font-bold">NONE</p>
+          </div>
+          <p></p>
+        </div>
       </div>
+
+      {/* Referral Tab */}
+
+      <Referral />
     </div>
   );
 };

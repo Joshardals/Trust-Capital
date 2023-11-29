@@ -15,7 +15,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
           <SideNav />
           <MobileSideNav />
-          <div className=" w-full h-full md:h-screen bg-babyblue max-md:pt-14">
+          <div className=" w-full h-full md:h-screen bg-babyblue max-md:pt-14 md:ml-80">
             {children}
           </div>
         </div>

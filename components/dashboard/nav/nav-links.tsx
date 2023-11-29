@@ -13,32 +13,32 @@ const links = [
   },
   {
     name: "Make A Deposit",
-    href: "/deposit",
+    href: "/dashboard/deposit",
     icon: "deposit",
   },
   {
     name: "Your Deposits",
-    href: "/your-deposit",
+    href: "/dashboard/your-deposit",
     icon: "your-deposit",
   },
   {
     name: "Withdraw Funds",
-    href: "/withdraw",
+    href: "/dashboard/withdraw",
     icon: "withdraw",
   },
   {
     name: "Withdrawal History",
-    href: "/your-withdrawal",
+    href: "/dashboard/your-withdrawal",
     icon: "your-withdrawal",
   },
   {
     name: "Referrals",
-    href: "/referrals",
+    href: "/dashboard/referrals",
     icon: "referrals",
   },
   {
     name: "Edit Account",
-    href: "/edit-account",
+    href: "/dashboard/edit-account",
     icon: "settings",
   },
 ];
