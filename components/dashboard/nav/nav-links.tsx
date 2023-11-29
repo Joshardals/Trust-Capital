@@ -59,10 +59,10 @@ export const SidebarLinks = () => {
               src={`/dashboard/${link.icon}.svg`}
               width={30}
               height={30}
-              className="h-4 w-4"
+              className="h-5 w-5"
               alt={link.name}
             />
-            <p className="text-xs">{link.name}</p>
+            <p className="text-sm">{link.name}</p>
           </Link>
         </div>
       ))}
@@ -73,9 +73,9 @@ export const SidebarLinks = () => {
           width={30}
           height={30}
           alt="Logout"
-          className="h-4 w-4"
+          className="h-5 w-5"
         />
-        <p className="text-xs">logout</p>
+        <p className="text-sm">logout</p>
       </div>
     </div>
   );
