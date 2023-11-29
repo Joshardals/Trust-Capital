@@ -2,6 +2,10 @@ export interface navStoreState {
   navBar: boolean;
   setNavBar: () => void;
 }
+export interface sideStoreState {
+  sideBar: boolean;
+  setSideBar: () => void;
+}
 
 export interface supportStoreState {
   support: boolean; 

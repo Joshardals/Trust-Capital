@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 const page = () => {
   return (
-    <div className=" h-screen max-md:ml-[3.75rem] ml-80 font-sans space-y-8 text-navyblue md:p-5 max-md:p-4 bg-babyblue">
+    <div className=" h-screen md:ml-80 font-sans space-y-8 text-navyblue md:p-5 max-md:p-5 bg-babyblue">
       <div>
         <h1 className="text-lg md:text-xl font-semibold capitalize text-puregreen">
           Hi, Tommy Shelby

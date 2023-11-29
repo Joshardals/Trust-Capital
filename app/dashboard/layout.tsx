@@ -1,4 +1,5 @@
-import NavBar from "@/components/LandingPage/Header/Nav/NavBar";
+import MobileSideNav from "@/components/dashboard/nav/MobileSideNav";
+import NavBar from "@/components/dashboard/nav/NavBar";
 import SideNav from "@/components/dashboard/nav/SideNav";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -8,10 +9,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       className="bg-navyblue p-0 m-0 h-screen w-full scroll-smooth"
     >
       <body className="bg-navyblue h-screen p-0 m-0 w-full scroll-smooth">
-        <div className="flex">
-          {/* <NavBar /> */}
+        <div className="flex max-md:flex-col">
+          <div className="md:hidden">
+            <NavBar />
+          </div>
           <SideNav />
-          <div className=" w-full h-full md:h-screen bg-babyblue">
+          <MobileSideNav />
+          <div className=" w-full h-full md:h-screen bg-babyblue max-md:pt-14">
             {children}
           </div>
         </div>

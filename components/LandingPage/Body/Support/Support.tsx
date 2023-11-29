@@ -20,7 +20,9 @@ const Support = () => {
                   <p className="font-bold text-md">Email</p>
                 </div>
 
-                <p className="ml-10 text-xs">support@trust-capital.ltd</p>
+                <p className="ml-10 text-xs">
+                  trustcapitalsInvestments@gmail.com
+                </p>
               </div>
             </div>
           </div>

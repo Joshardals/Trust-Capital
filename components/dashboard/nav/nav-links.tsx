@@ -27,6 +27,11 @@ const links = [
     icon: "withdraw",
   },
   {
+    name: "Withdrawal History",
+    href: "/your-withdrawal",
+    icon: "your-withdrawal",
+  },
+  {
     name: "Referrals",
     href: "/referrals",
     icon: "referrals",
@@ -54,10 +59,10 @@ export const SidebarLinks = () => {
               src={`/dashboard/${link.icon}.svg`}
               width={30}
               height={30}
-              className=""
+              className="h-4 w-4"
               alt={link.name}
             />
-            <p className="max-md:hidden">{link.name}</p>
+            <p className="text-xs">{link.name}</p>
           </Link>
         </div>
       ))}
@@ -68,8 +73,9 @@ export const SidebarLinks = () => {
           width={30}
           height={30}
           alt="Logout"
+          className="h-4 w-4"
         />
-        <p className="max-md:hidden">logout</p>
+        <p className="text-xs">logout</p>
       </div>
     </div>
   );
