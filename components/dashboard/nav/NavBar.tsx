@@ -18,11 +18,9 @@ const NavBar = () => {
         <div className="flex flex-1 w-full items-center">
           <div className="md:hidden cursor-pointer text-babyblue">
             {/* The Hamburger and X Icon only shows on Mobile Devices */}
-            {sideBar ? (
-              null
-            ) : (
+            {sideBar ? null : (
               <div onClick={setSideBar}>
-                <Bars3Icon className="h-7 w-7" />
+                <Bars3Icon className="h-8 w-8" />
               </div>
             )}
           </div>
@@ -33,7 +31,7 @@ const NavBar = () => {
             href="/"
             className=" flex items-center space-x-1 md:space-x-2 text-md w-auto relative text-babyblue"
           >
-            <Image alt="Logo" src="/logo.png" width={30} height={30} />
+            <Image alt="Logo" src="/logo.png" width={35} height={35} />
             <p className="w-full flex font-bold text-center">
               Trust <span>-</span>Capital
             </p>
