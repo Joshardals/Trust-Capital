@@ -4,7 +4,7 @@ import SideNav from "@/components/dashboard/nav/SideNav";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="bg-navyblue p-0 m-0 h-full w-full scroll-smooth">
-      <body className="scroll-smooth bg-purewhite">
+      <body className="bg-navyblue h-full p-0 m-0 w-full scroll-smooth">
         <div className="flex">
           {/* <NavBar /> */}
           <SideNav />

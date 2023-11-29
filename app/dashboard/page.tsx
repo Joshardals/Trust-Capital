@@ -23,7 +23,7 @@ const page = () => {
         {/* Row 1 */}
         <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
           <div className="space-y-1">
-            <h1 className="font-semibold uppercase">account balance</h1>
+            <h1 className="font-semibold uppercase">active deposit</h1>
             <p className="font-bold">$0.00</p>
           </div>
           <p></p>
@@ -55,7 +55,7 @@ const page = () => {
 
         <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
           <div className="space-y-1">
-            <h1 className="font-semibold uppercase">total withdrawal</h1>
+            <h1 className="font-semibold uppercase">account balance</h1>
             <p className=" font-bold">$0.00</p>
           </div>
           <p></p>
@@ -67,51 +67,6 @@ const page = () => {
               Withdrawal History
             </Button>
           </Link>
-        </div>
-
-        {/* Row 2 */}
-
-        <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
-          <div className="space-y-1">
-            <h1 className="font-semibold uppercase">active deposit</h1>
-            <p className=" font-bold">$0.00</p>
-          </div>
-          <p className="max-md:hidden"></p>
-        </div>
-        <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
-          <div className="space-y-1">
-            <h1 className="font-semibold uppercase">last deposit</h1>
-            <p className=" font-bold">$0.00</p>
-          </div>
-          <p className="max-md:hidden"></p>
-        </div>
-        <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
-          <div className="space-y-1">
-            <h1 className="font-semibold uppercase">total deposit</h1>
-            <p className=" font-bold">$0.00</p>
-          </div>
-          <p className="max-md:hidden"></p>
-        </div>
-
-        {/* Row3 */}
-        <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
-          <div className="space-y-1">
-            <h1 className="font-semibold uppercase">current plan</h1>
-            <p className=" font-bold uppercase">none</p>
-          </div>
-          <p className="max-md:hidden"></p>
-        </div>
-        <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
-          <div className="space-y-1">
-            <h1 className="font-semibold uppercase">mining starts</h1>
-          </div>
-          <p className="max-md:hidden"></p>
-        </div>
-        <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
-          <div className="space-y-1">
-            <h1 className="font-semibold uppercase">mining starts</h1>
-          </div>
-          <p className="max-md:hidden"></p>
         </div>
       </div>
     </div>
