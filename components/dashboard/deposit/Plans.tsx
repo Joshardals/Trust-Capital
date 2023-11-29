@@ -100,7 +100,7 @@ const Plans = () => {
                             <FormControl>
                               <RadioGroupItem value={item.plan} />
                             </FormControl>
-                            <FormLabel className="font-normal">
+                            <FormLabel className="font-normal text-xs">
                               {item.percentage}% in {item.term} Hours
                             </FormLabel>
                           </div>
