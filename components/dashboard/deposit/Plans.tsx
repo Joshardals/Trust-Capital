@@ -76,7 +76,7 @@ const Plans = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className=" max-md:text-xs w-full space-y-6 h-full"
+        className=" max-md:text-xs w-full space-y-6 h-full select-none "
       >
         <FormField
           control={form.control}
@@ -91,7 +91,10 @@ const Plans = () => {
                 >
                   <div className="space-y-6">
                     {plan.map((item, index) => (
-                      <FormItem className=" w-full space-y-0" key={index}>
+                      <FormItem
+                        className=" w-full space-y-0 border border-goldenrod"
+                        key={index}
+                      >
                         <div
                           className="flex items-center space-x-4
                        bg-black/10 px-5 py-2"
@@ -100,7 +103,7 @@ const Plans = () => {
                             <FormControl>
                               <RadioGroupItem value={item.plan} />
                             </FormControl>
-                            <FormLabel className="font-normal text-xs">
+                            <FormLabel className="text-navyblue max-md:text-xs">
                               {item.percentage}% in {item.term} Hours
                             </FormLabel>
                           </div>
