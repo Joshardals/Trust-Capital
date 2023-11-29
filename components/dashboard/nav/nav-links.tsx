@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { usesideBarStore } from "@/lib/store/store";
+import { Sidebar } from "lucide-react";
 
 const links = [
   {
@@ -45,12 +47,21 @@ const links = [
 
 export const SidebarLinks = () => {
   const pathname = usePathname();
+  const { sideBar, setSideBar } = usesideBarStore();
+
+  const handleClick = () => {
+    if (sideBar) {
+      setSideBar();
+    }
+  };
+
   return (
     <div className=" max-md:space-y-4 relative space-y-6 text-xs h-screen">
       {links.map((link) => (
         <div key={link.name}>
           <Link
             href={link.href}
+            onClick={handleClick}
             className={`flex items-center space-x-4 uppercase p-2 transition-all duration-200 hover:bg-darkblue ${
               pathname === link.href ? "bg-darkblue" : "bg-transparent"
             } rounded-lg`}

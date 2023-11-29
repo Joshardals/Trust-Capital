@@ -16,7 +16,7 @@ const MobileSideNav = () => {
     `}
       >
         <div className="space-y-6">
-          <div onClick={setSideBar}>
+          <div onClick={setSideBar} className=" w-8">
             <XMarkIcon className="h-8 w-8" />
           </div>
           <div className="space-y-4 relative mt-5">

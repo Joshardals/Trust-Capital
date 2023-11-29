@@ -8,8 +8,8 @@ export interface sideStoreState {
 }
 
 export interface supportStoreState {
-  support: boolean; 
-  setSupport: () => void; 
+  support: boolean;
+  setSupport: () => void;
 }
 // Form Definitions Start
 
@@ -40,6 +40,10 @@ export interface FeedBackFormType {
   message: string;
 }
 
+export interface PlansType {
+  plan: any;
+}
+
 // Form Definitions End
 
 // landing page definitions
@@ -67,3 +71,9 @@ export interface QuestionProps {
 }
 
 // landing page definitions end
+
+// Dashboard Deposit Definitions //
+
+export interface PlanItemProps {
+  plan: string, 
+}

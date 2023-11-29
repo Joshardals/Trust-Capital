@@ -1,6 +1,8 @@
 import * as z from "zod";
 import {
   FeedBackFormType,
+  PlanItemProps,
+  PlansType,
   SignInValidationType,
   SignUpValidationType,
 } from "@/typings";
@@ -69,4 +71,19 @@ export const FeedbackValidation: z.ZodType<FeedBackFormType> = z.object({
   name: z.string().min(3).max(100),
   email: z.string().email().min(10).max(100),
   message: z.string().min(5).max(200),
+});
+
+// Dashboard/Deposit
+
+const planOptions = [
+  "beginners",
+  "advanced trade",
+  "professional",
+  "promo",
+  "master trade",
+  "retirement",
+] as const;
+
+export const PlansValidation: z.ZodType<PlanItemProps> = z.object({
+  plan: z.enum(planOptions),
 });

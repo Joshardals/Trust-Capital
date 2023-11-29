@@ -9,12 +9,10 @@ export const metadata: Metadata = {
 
 const page = () => {
   return (
-    <div className="h-full font-sans space-y-8 text-navyblue md:p-5 max-md:p-5 bg-babyblue overflow-y-auto">
+    <div className=" font-sans space-y-8 text-navyblue md:p-5 max-md:p-5 bg-babyblue">
       <div className="space-y-8">
-        <h1 className="capitalize text-lg font-semibold">pick a plan</h1>
-        <div className="space-y-4">
-          <Plans />
-          <Plans />
+        <h1 className="capitalize text-lg font-semibold">select a plan</h1>
+        <div className="space-y-8">
           <Plans />
         </div>
       </div>
