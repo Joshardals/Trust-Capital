@@ -193,12 +193,6 @@ export function UserAuthForm() {
                         placeholder="USDT WALLET ADDRESS"
                         className="border border-navyblue text-sm transition-all duration-500"
                         {...field}
-                        onChange={(e) => {
-                          const capitalizedValue =
-                            e.target.value.charAt(0).toUpperCase() +
-                            e.target.value.slice(1);
-                          form.setValue("firstName", capitalizedValue);
-                        }}
                       />
                     </FormControl>
                     <FormMessage className="text-purered text-xs" />
@@ -217,12 +211,6 @@ export function UserAuthForm() {
                         placeholder="BITCOIN WALLET ADDRESS"
                         className="border border-navyblue text-sm transition-all duration-500"
                         {...field}
-                        onChange={(e) => {
-                          const capitalizedValue =
-                            e.target.value.charAt(0).toUpperCase() +
-                            e.target.value.slice(1);
-                          form.setValue("firstName", capitalizedValue);
-                        }}
                       />
                     </FormControl>
                     <FormMessage className="text-purered text-xs" />
@@ -241,12 +229,6 @@ export function UserAuthForm() {
                         placeholder="ETHEREUM WALLET ADDRESS"
                         className="border border-navyblue text-sm transition-all duration-500"
                         {...field}
-                        onChange={(e) => {
-                          const capitalizedValue =
-                            e.target.value.charAt(0).toUpperCase() +
-                            e.target.value.slice(1);
-                          form.setValue("firstName", capitalizedValue);
-                        }}
                       />
                     </FormControl>
                     <FormMessage className="text-purered text-xs" />
@@ -265,12 +247,6 @@ export function UserAuthForm() {
                         placeholder="LITECOIN WALLET ADDRESS"
                         className="border border-navyblue text-sm transition-all duration-500"
                         {...field}
-                        onChange={(e) => {
-                          const capitalizedValue =
-                            e.target.value.charAt(0).toUpperCase() +
-                            e.target.value.slice(1);
-                          form.setValue("firstName", capitalizedValue);
-                        }}
                       />
                     </FormControl>
                     <FormMessage className="text-purered text-xs" />
@@ -290,12 +266,6 @@ export function UserAuthForm() {
                         placeholder="DOGECOIN WALLET ADDRESS"
                         className="border border-navyblue text-sm transition-all duration-500"
                         {...field}
-                        onChange={(e) => {
-                          const capitalizedValue =
-                            e.target.value.charAt(0).toUpperCase() +
-                            e.target.value.slice(1);
-                          form.setValue("firstName", capitalizedValue);
-                        }}
                       />
                     </FormControl>
                     <FormMessage className="text-purered text-xs" />
@@ -314,12 +284,6 @@ export function UserAuthForm() {
                         placeholder="TRON WALLET ADDRESS"
                         className="border border-navyblue text-sm transition-all duration-500"
                         {...field}
-                        onChange={(e) => {
-                          const capitalizedValue =
-                            e.target.value.charAt(0).toUpperCase() +
-                            e.target.value.slice(1);
-                          form.setValue("firstName", capitalizedValue);
-                        }}
                       />
                     </FormControl>
                     <FormMessage className="text-purered text-xs" />
@@ -338,12 +302,6 @@ export function UserAuthForm() {
                         placeholder="BNB WALLET ADDRESS"
                         className="border border-navyblue text-sm transition-all duration-500"
                         {...field}
-                        onChange={(e) => {
-                          const capitalizedValue =
-                            e.target.value.charAt(0).toUpperCase() +
-                            e.target.value.slice(1);
-                          form.setValue("firstName", capitalizedValue);
-                        }}
                       />
                     </FormControl>
                     <FormMessage className="text-purered text-xs" />
@@ -362,12 +320,6 @@ export function UserAuthForm() {
                         placeholder="SHIBA INU WALLET ADDRESS"
                         className="border border-navyblue text-sm transition-all duration-500"
                         {...field}
-                        onChange={(e) => {
-                          const capitalizedValue =
-                            e.target.value.charAt(0).toUpperCase() +
-                            e.target.value.slice(1);
-                          form.setValue("firstName", capitalizedValue);
-                        }}
                       />
                     </FormControl>
                     <FormMessage className="text-purered text-xs" />
