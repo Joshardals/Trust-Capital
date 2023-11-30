@@ -59,7 +59,7 @@ export function UserAuthForm() {
         className="space-y-5 font-sans mt-8 w-full md:pt-80"
       >
         <div className="flex space-y-4 flex-col">
-          <h1 className="text-xl text-navyblue font-bold">
+          <h1 className=" max-md:text-lg text-xl text-navyblue font-bold">
             Personal Information
           </h1>
           <div className="md:flex-1">
@@ -179,7 +179,7 @@ export function UserAuthForm() {
 
         <div>
           <div className="flex space-y-4 flex-col">
-            <h1 className="text-xl text-navyblue font-bold">
+            <h1 className="max-md:text-lg text-xl text-navyblue font-bold">
               Account Information
             </h1>
             <div className="md:flex-1">

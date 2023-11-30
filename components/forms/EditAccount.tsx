@@ -41,8 +41,8 @@ const EditAccount = () => {
   };
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div className=" space-y-6 cursor-default ">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <div className=" space-y-4 cursor-default ">
           <div className="grid md:grid-cols-2 max-md:gap-2 items-center">
             <Label htmlFor="firstName" className=" font-semibold">
               FirstName:
