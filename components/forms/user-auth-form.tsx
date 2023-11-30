@@ -71,7 +71,7 @@ export function UserAuthForm() {
                   <FormControl className="no-focus text-xs">
                     <Input
                       placeholder="First Name"
-                      className="border border-navyblue text-sm transition-all duration-500"
+                      className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
                       {...field}
                       onChange={(e) => {
                         const capitalizedValue =
@@ -96,7 +96,7 @@ export function UserAuthForm() {
                     <Input
                       placeholder="Last Name"
                       disabled={isLoading}
-                      className="border border-navyblue text-sm transition-all duration-500"
+                      className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
                       {...field}
                       onChange={(e) => {
                         const capitalizedValue =
@@ -124,7 +124,7 @@ export function UserAuthForm() {
                   autoCapitalize="none"
                   autoComplete="email"
                   autoCorrect="off"
-                  className="border border-navyblue text-sm transition-all duration-500"
+                  className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
                   {...field}
                 />
               </FormControl>
@@ -144,7 +144,7 @@ export function UserAuthForm() {
                       type="password"
                       placeholder="Password (min. 8 Characters)"
                       disabled={isLoading}
-                      className="border border-navyblue text-sm transition-all duration-500"
+                      className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
                       {...field}
                     />
                   </FormControl>
@@ -164,7 +164,7 @@ export function UserAuthForm() {
                       type="password"
                       placeholder="Confirm Password"
                       disabled={isLoading}
-                      className="border border-navyblue text-sm transition-all duration-500"
+                      className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
                       {...field}
                     />
                   </FormControl>
@@ -191,7 +191,7 @@ export function UserAuthForm() {
                     <FormControl className="no-focus text-xs">
                       <Input
                         placeholder="USDT WALLET ADDRESS"
-                        className="border border-navyblue text-sm transition-all duration-500"
+                        className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
                         {...field}
                       />
                     </FormControl>
@@ -209,7 +209,7 @@ export function UserAuthForm() {
                     <FormControl className="no-focus text-xs">
                       <Input
                         placeholder="BITCOIN WALLET ADDRESS"
-                        className="border border-navyblue text-sm transition-all duration-500"
+                        className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
                         {...field}
                       />
                     </FormControl>
@@ -227,7 +227,7 @@ export function UserAuthForm() {
                     <FormControl className="no-focus text-xs">
                       <Input
                         placeholder="ETHEREUM WALLET ADDRESS"
-                        className="border border-navyblue text-sm transition-all duration-500"
+                        className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
                         {...field}
                       />
                     </FormControl>
@@ -245,7 +245,7 @@ export function UserAuthForm() {
                     <FormControl className="no-focus text-xs">
                       <Input
                         placeholder="LITECOIN WALLET ADDRESS"
-                        className="border border-navyblue text-sm transition-all duration-500"
+                        className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
                         {...field}
                       />
                     </FormControl>
@@ -264,7 +264,7 @@ export function UserAuthForm() {
                     <FormControl className="no-focus text-xs">
                       <Input
                         placeholder="DOGECOIN WALLET ADDRESS"
-                        className="border border-navyblue text-sm transition-all duration-500"
+                        className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
                         {...field}
                       />
                     </FormControl>
@@ -282,7 +282,7 @@ export function UserAuthForm() {
                     <FormControl className="no-focus text-xs">
                       <Input
                         placeholder="TRON WALLET ADDRESS"
-                        className="border border-navyblue text-sm transition-all duration-500"
+                        className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
                         {...field}
                       />
                     </FormControl>
@@ -300,7 +300,7 @@ export function UserAuthForm() {
                     <FormControl className="no-focus text-xs">
                       <Input
                         placeholder="BNB WALLET ADDRESS"
-                        className="border border-navyblue text-sm transition-all duration-500"
+                        className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
                         {...field}
                       />
                     </FormControl>
@@ -318,7 +318,7 @@ export function UserAuthForm() {
                     <FormControl className="no-focus text-xs">
                       <Input
                         placeholder="SHIBA INU WALLET ADDRESS"
-                        className="border border-navyblue text-sm transition-all duration-500"
+                        className="border border-navyblue py-2 px-5 text-sm transition-all duration-500"
                         {...field}
                       />
                     </FormControl>
@@ -337,7 +337,7 @@ export function UserAuthForm() {
               href="#"
               className=" text-xs font-bold underline underline-offset-4"
             >
-              Trust-Capital-Investment User Account Agreement
+              Trust-Capital Investment User Account Agreement
             </Link>{" "}
             and{" "}
             <Link

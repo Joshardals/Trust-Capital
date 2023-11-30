@@ -27,7 +27,7 @@ export default function Page() {
                 className="flex items-center space-x-2 max-md:space-x-1"
               >
                 <Image alt="Logo" src="/logo.png" width={30} height={30} />
-                TrustCapital
+                Trust-Capital
               </Link>
             </div>
 
@@ -38,7 +38,7 @@ export default function Page() {
 
               <p>
                 We&apos;ll need your name, email address, and a unique password.
-                You&apos;ll use this login to access TrustCapital next time.
+                You&apos;ll use this login to access Trust-Capital next time.
               </p>
             </div>
           </div>

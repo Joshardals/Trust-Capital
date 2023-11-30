@@ -40,68 +40,72 @@ export function UserSignInForm() {
       <div className="">
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className=" space-y-5 font-sans mt-8 w-full text-navyblue md:flex md:flex-col md:items-center md:justify-center min-h-screen "
+          className=" space-y-10 font-sans mt-8 w-full text-navyblue md:flex md:flex-col md:items-center md:justify-center min-h-screen "
         >
-          <h2 className=" font-bold text-navyblue">Login to Trust-Capital</h2>{" "}
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <Label htmlFor="email" className="">
-                  Email
-                </Label>
-                <FormControl className="no-focus">
-                  <Input
-                    id="email"
-                    type="email"
-                    autoCapitalize="none"
-                    autoComplete="email"
-                    autoCorrect="off"
-                    className="border border-navyblue transition-all duration-500 md:w-80"
-                    {...field}
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <Label htmlFor="password" className="">
-                  Password
-                </Label>
-                <FormControl className="no-focus">
-                  <Input
-                    id="password"
-                    type="password"
-                    className="border border-navyblue transition-all duration-500 md:w-80"
-                    {...field}
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-          <div>
-            <Link
-              href="#"
-              className=" text-xs text-navyblue font-bold underline underline-offset-4"
+          <h2 className=" font-semibold text-darkblue max-md:text-md text-lg">
+            Login to Trust-Capital
+          </h2>{" "}
+          <div className="space-y-4">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <Label htmlFor="email" className="">
+                    Email
+                  </Label>
+                  <FormControl className="no-focus">
+                    <Input
+                      id="email"
+                      type="email"
+                      autoCapitalize="none"
+                      autoComplete="email"
+                      autoCorrect="off"
+                      className="py-2 px-5 border border-navyblue transition-all duration-500 md:w-80"
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <Label htmlFor="password" className="">
+                    Password
+                  </Label>
+                  <FormControl className="no-focus">
+                    <Input
+                      id="password"
+                      type="password"
+                      className="py-2 px-5 border border-navyblue transition-all duration-500 md:w-80"
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <div>
+              <Link
+                href="#"
+                className=" text-xs text-navyblue font-bold underline underline-offset-4"
+              >
+                Forgot your password?
+              </Link>
+            </div>
+            <Button
+              variant="form"
+              disabled={isLoading}
+              className=" w-full text-xs flex items-center rounded-lg font-bold"
             >
-              Forgot your password?
-            </Link>
+              {isLoading && (
+                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              )}
+              Login
+            </Button>
           </div>
-          <Button
-            variant="form"
-            disabled={isLoading}
-            className=" w-full text-xs flex items-center rounded-lg font-bold"
-          >
-            {isLoading && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            )}
-            Login
-          </Button>
         </form>
       </div>
       <div className="absolute bottom-5 font-sans">
