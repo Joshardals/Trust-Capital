@@ -3,9 +3,10 @@ import { useEffect, useRef } from "react";
 import Script from "next/script";
 
 let tvScriptLoadingPromise: any;
+declare var window: Window & typeof globalThis & Record<"TradingView", any>;
 
 export default function TradingViewWidget() {
-  const onLoadScriptRef = useRef();
+  const onLoadScriptRef = useRef<any>(null);
 
   useEffect(() => {
     onLoadScriptRef.current = createWidget;
@@ -48,10 +49,12 @@ export default function TradingViewWidget() {
         });
       }
     }
+
+    return createWidget;
   }, []);
 
   return (
-    <div className="tradingview-widget-container  w-full bg-goldenrod">
+    <div className="tradingview-widget-container w-full bg-goldenrod">
       <Script
         src="https://s3.tradingview.com/tv.js"
         onLoad={onLoadScriptRef.current}
@@ -59,7 +62,7 @@ export default function TradingViewWidget() {
 
       <div
         id="tradingview_aa4d7"
-        className="bg-darkblue w-full max-md:h-[25rem] md:h-[30rem]"
+        className="bg-darkblue w-full h-[20rem] md:h-[30rem]"
       />
     </div>
   );
