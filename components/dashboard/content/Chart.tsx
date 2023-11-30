@@ -1,40 +1,66 @@
-// components/TradingViewChart.js
 "use client";
-import React, { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import Script from "next/script";
 
-const TradingViewChart = () => {
+let tvScriptLoadingPromise: any;
+
+export default function TradingViewWidget() {
+  const onLoadScriptRef = useRef();
+
   useEffect(() => {
-    const container = document.getElementById("tradingview-container");
+    onLoadScriptRef.current = createWidget;
 
-    if (container) {
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src =
-        "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js";
-      script.async = true;
-      script.innerHTML = `
-        {
-          "symbol": "BINANCE:USDT",
-          "width": 770,
-          "height": 400,
-          "locale": "en",
-          "dateRange": "12m",
-          "colorTheme": "dark",
-          "isTransparent": false,
-          "showSymbolLogo": true,
-          "largeChartUrl": "",
-          "locale": "en"
-        }
-      `;
-      container.appendChild(script);
+    if (!tvScriptLoadingPromise) {
+      tvScriptLoadingPromise = new Promise((resolve) => {
+        const script = document.createElement("script");
+        script.id = "tradingview-widget-loading-script";
+        script.src = "https://s3.tradingview.com/tv.js";
+        script.type = "text/javascript";
+        script.onload = resolve;
 
-      return () => {
-        container.innerHTML = "";
-      };
+        document.head.appendChild(script);
+      });
+    }
+
+    tvScriptLoadingPromise.then(
+      () => onLoadScriptRef.current && onLoadScriptRef.current()
+    );
+
+    return () => (onLoadScriptRef.current = null);
+
+    function createWidget() {
+      if (
+        document.getElementById("tradingview_aa4d7") &&
+        "TradingView" in window
+      ) {
+        new window.TradingView.widget({
+          autosize: true,
+          symbol: "CRYPTOCAP:USDT",
+          interval: "4H",
+          timezone: "Etc/UTC",
+          theme: "dark",
+          style: "1",
+          locale: "en",
+          enable_publishing: false,
+          allow_symbol_change: true,
+          hide_volume: true,
+          container_id: "tradingview_aa4d7",
+        });
+      }
     }
   }, []);
 
-  return <div id="tradingview-container" className="h-40 w-40 bg-goldenrod"/>;
-};
+  return (
+    <div className="tradingview-widget-container  w-full bg-goldenrod">
+      <Script
+        src="https://s3.tradingview.com/tv.js"
+        onLoad={onLoadScriptRef.current}
+      />
 
-export default TradingViewChart;
+      <div
+        id="tradingview_aa4d7"
+        className="bg-darkblue w-full max-md:h-[25rem] md:h-[30rem]"
+      />
+    </div>
+  );
+}

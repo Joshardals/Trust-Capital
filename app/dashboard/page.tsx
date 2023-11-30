@@ -23,9 +23,9 @@ const page = () => {
           </p>
         </div>
 
-        <div className="flex justify-end">
+        {/* <div className="flex justify-end">
           <StartTrade />
-        </div>
+        </div> */}
       </div>
 
       <div className="grid md:grid-cols-3 gap-4 text-xs md:text-md">
@@ -92,7 +92,7 @@ const page = () => {
 
       <Referral />
 
-      {/* <TradingViewChart /> */}
+      <TradingViewChart />
     </div>
   );
 };
