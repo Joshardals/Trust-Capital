@@ -41,9 +41,9 @@ const EditAccount = () => {
   };
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <div className=" space-y-6 cursor-default ">
-          <div className="grid md:grid-cols-2 max-md:gap-4 items-center">
+          <div className="grid md:grid-cols-2 max-md:gap-2 items-center">
             <Label htmlFor="firstName" className=" font-semibold">
               FirstName:
             </Label>
@@ -55,7 +55,7 @@ const EditAccount = () => {
               <p>Tommy</p>
             </div>
           </div>
-          <div className="grid md:grid-cols-2 max-md:gap-4 items-center">
+          <div className="grid md:grid-cols-2 max-md:gap-2 items-center">
             <Label htmlFor="lastName" className="flex-1 font-semibold">
               LastName:
             </Label>
@@ -67,7 +67,7 @@ const EditAccount = () => {
               <p>Shelby</p>
             </div>
           </div>
-          <div className="grid md:grid-cols-2 max-md:gap-4 items-center">
+          <div className="grid md:grid-cols-2 max-md:gap-2 items-center">
             <Label htmlFor="email" className=" font-semibold">
               Email:
             </Label>
@@ -80,15 +80,15 @@ const EditAccount = () => {
             </div>
           </div>
 
-          {/* Crypto Wallet Addresses Form */}
+          {/* Crypto Wallet Address Form */}
 
-          {/* <FormField
+          <FormField
             control={form.control}
             name="usdtAddress"
             render={({ field }) => (
-              <FormItem className="grid grid-cols-2 items-center">
+              <FormItem className="grid md:grid-cols-2 max-md:gap-2 items-center">
                 <Label htmlFor="usdt" className="flex-1">
-                  USDT WALLET ADDRESS:
+                  USDT Wallet Address:
                 </Label>
                 <FormControl className="no-focus flex-1">
                   <Input
@@ -102,11 +102,47 @@ const EditAccount = () => {
           />
           <FormField
             control={form.control}
-            name="usdtAddress"
+            name="bitcoinAddress"
             render={({ field }) => (
-              <FormItem className="grid grid-cols-2 items-center">
-                <Label htmlFor="usdt" className="flex-1">
-                  BITCOIN WALLET ADDRESS:
+              <FormItem className="grid md:grid-cols-2 max-md:gap-2 items-center">
+                <Label htmlFor="btc" className="flex-1">
+                  BITCOIN Wallet Address:
+                </Label>
+                <FormControl className="no-focus flex-1">
+                  <Input
+                    id="btc"
+                    className="py-2 px-5 text-navyblue border border-navyblue"
+                    {...field}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="ethereumAddress"
+            render={({ field }) => (
+              <FormItem className="grid md:grid-cols-2 max-md:gap-2 items-center">
+                <Label htmlFor="eth" className="flex-1">
+                  ETHEREUM Wallet Address:
+                </Label>
+                <FormControl className="no-focus flex-1">
+                  <Input
+                    id="eth"
+                    className="py-2 px-5 text-navyblue border border-navyblue"
+                    {...field}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="litecoinAddress"
+            render={({ field }) => (
+              <FormItem className="grid md:grid-cols-2 max-md:gap-2 items-center">
+                <Label htmlFor="litecoin" className="flex-1">
+                  LITECOIN Wallet Address:
                 </Label>
                 <FormControl className="no-focus flex-1">
                   <Input
@@ -120,15 +156,15 @@ const EditAccount = () => {
           />
           <FormField
             control={form.control}
-            name="usdtAddress"
+            name="dogeAddress"
             render={({ field }) => (
-              <FormItem className="grid grid-cols-2 items-center">
-                <Label htmlFor="usdt" className="flex-1">
-                  ETHEREUM WALLET ADDRESS:
+              <FormItem className="grid md:grid-cols-2 max-md:gap-2 items-center">
+                <Label htmlFor="doge" className="flex-1">
+                  DOGECOIN Wallet Address:
                 </Label>
                 <FormControl className="no-focus flex-1">
                   <Input
-                    id="usdt"
+                    id="doge"
                     className="py-2 px-5 text-navyblue border border-navyblue"
                     {...field}
                   />
@@ -138,15 +174,15 @@ const EditAccount = () => {
           />
           <FormField
             control={form.control}
-            name="usdtAddress"
+            name="tronAddress"
             render={({ field }) => (
-              <FormItem className="grid grid-cols-2 items-center">
-                <Label htmlFor="usdt" className="flex-1">
-                  LITECOIN WALLET ADDRESS:
+              <FormItem className="grid md:grid-cols-2 max-md:gap-2 items-center">
+                <Label htmlFor="tron" className="flex-1">
+                  TRON Wallet Address:
                 </Label>
                 <FormControl className="no-focus flex-1">
                   <Input
-                    id="usdt"
+                    id="tron"
                     className="py-2 px-5 text-navyblue border border-navyblue"
                     {...field}
                   />
@@ -156,15 +192,15 @@ const EditAccount = () => {
           />
           <FormField
             control={form.control}
-            name="usdtAddress"
+            name="bnbAddress"
             render={({ field }) => (
-              <FormItem className="grid grid-cols-2 items-center">
-                <Label htmlFor="usdt" className="flex-1">
-                  DOGECOIN WALLET ADDRESS:
+              <FormItem className="grid md:grid-cols-2 max-md:gap-2 items-center">
+                <Label htmlFor="bnb" className="flex-1">
+                  BNB Wallet Address:
                 </Label>
                 <FormControl className="no-focus flex-1">
                   <Input
-                    id="usdt"
+                    id="bnb"
                     className="py-2 px-5 text-navyblue border border-navyblue"
                     {...field}
                   />
@@ -174,15 +210,15 @@ const EditAccount = () => {
           />
           <FormField
             control={form.control}
-            name="usdtAddress"
+            name="shibaAddress"
             render={({ field }) => (
-              <FormItem className="grid grid-cols-2 items-center">
-                <Label htmlFor="usdt" className="flex-1">
-                  TRON WALLET ADDRESS:
+              <FormItem className="grid md:grid-cols-2 max-md:gap-2 items-center">
+                <Label htmlFor="shiba" className="flex-1">
+                  SHIBA INU Wallet Address:
                 </Label>
                 <FormControl className="no-focus flex-1">
                   <Input
-                    id="usdt"
+                    id="shiba"
                     className="py-2 px-5 text-navyblue border border-navyblue"
                     {...field}
                   />
@@ -190,42 +226,6 @@ const EditAccount = () => {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="usdtAddress"
-            render={({ field }) => (
-              <FormItem className="grid grid-cols-2 items-center">
-                <Label htmlFor="usdt" className="flex-1">
-                  BNB WALLET ADDRESS:
-                </Label>
-                <FormControl className="no-focus flex-1">
-                  <Input
-                    id="usdt"
-                    className="py-2 px-5 text-navyblue border border-navyblue"
-                    {...field}
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="usdtAddress"
-            render={({ field }) => (
-              <FormItem className="grid grid-cols-2 items-center">
-                <Label htmlFor="usdt" className="flex-1">
-                  SHIBA INU WALLET ADDRESS:
-                </Label>
-                <FormControl className="no-focus flex-1">
-                  <Input
-                    id="usdt"
-                    className="py-2 px-5 text-navyblue border border-navyblue"
-                    {...field}
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          /> */}
         </div>
         <Button
           variant="form"

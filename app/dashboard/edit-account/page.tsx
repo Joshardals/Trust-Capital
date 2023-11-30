@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <div className=" font-sans space-y-8 text-navyblue md:p-5 max-md:p-5 bg-babyblue">
-      <div className="space-y-8">
+      <div className="space-y-8 h-full">
         <h1 className="capitalize text-lg font-semibold text-darkblue">
           edit account
         </h1>
