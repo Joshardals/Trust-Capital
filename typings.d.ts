@@ -1,3 +1,5 @@
+// Zustand Definitions Start
+
 export interface navStoreState {
   navBar: boolean;
   setNavBar: () => void;
@@ -11,6 +13,9 @@ export interface supportStoreState {
   support: boolean;
   setSupport: () => void;
 }
+
+// Zustand Definitions End
+
 // Form Definitions Start
 
 export interface SignUpValidationType {
@@ -72,8 +77,25 @@ export interface QuestionProps {
 
 // landing page definitions end
 
-// Dashboard Deposit Definitions //
+// Dashboard Start Definitions //
+
+// Deposit Definitions
 
 export interface PlanItemProps {
-  plan: string, 
+  plan: string;
 }
+
+// Edit Account Definitions
+
+export interface EditValidationType {
+  bitcoinAddress: string;
+  ethereumAddress: string;
+  litecoinAddress: string;
+  usdtAddress: string;
+  dogeAddress: string;
+  tronAddress: string;
+  bnbAddress: string;
+  shibaAddress: string;
+}
+
+// Dashboard Definitions End

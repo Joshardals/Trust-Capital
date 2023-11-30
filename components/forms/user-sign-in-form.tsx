@@ -95,7 +95,7 @@ export function UserSignInForm() {
           <Button
             variant="form"
             disabled={isLoading}
-            className=" w-full text-xs flex items-center rounded-full font-bold"
+            className=" w-full text-xs flex items-center rounded-lg font-bold"
           >
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />

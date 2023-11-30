@@ -11,7 +11,7 @@ const page = () => {
   return (
     <div className=" font-sans space-y-8 text-navyblue md:p-5 max-md:p-5 bg-babyblue">
       <div className="space-y-8">
-        <h1 className="capitalize text-lg font-semibold">select a plan</h1>
+        <h1 className="capitalize text-lg font-semibold text-darkblue">select a plan</h1>
         <div className="space-y-8">
           <Plans />
         </div>

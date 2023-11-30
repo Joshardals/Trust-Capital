@@ -8,8 +8,8 @@ const StartTrade = () => {
     <Button
       variant={"form"}
       onClick={() => setStarted(true)}
-      className="max-md:text-xs max-md:h-8 bg-puregreen text-babyblue
-       transition-all duration-300 hover:bg-puregreen/80 border-none"
+      className="max-md:text-xs h-20 w-20 bg-puregreen text-babyblue border border-goldenrod
+       transition-all duration-300 hover:bg-puregreen/80 border-none rounded-full"
     >
       {started ? "Trade Begin" : "Start Trade"}
     </Button>

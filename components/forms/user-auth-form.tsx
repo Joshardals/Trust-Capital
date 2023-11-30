@@ -1,6 +1,6 @@
 "use client";
 
-import { SyntheticEvent, useState } from "react";
+import { useState } from "react";
 import {
   Form,
   FormControl,
@@ -27,6 +27,14 @@ export function UserAuthForm() {
       lastName: "",
       email: "",
       password: "",
+      bitcoinAddress: "",
+      ethereumAddress: "",
+      litecoinAddress: "",
+      usdtAddress: "",
+      dogeAddress: "",
+      tronAddress: "",
+      bnbAddress: "",
+      shibaAddress: "",
     },
   });
   const onSubmit = async (values: SignUpValidationType) => {
@@ -393,7 +401,7 @@ export function UserAuthForm() {
         <Button
           variant="form"
           disabled={isLoading}
-          className="w-full text-xs flex items-center rounded-full"
+          className="w-full text-xs flex items-center rounded-lg"
         >
           {isLoading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
           Sign Up

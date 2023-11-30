@@ -1,5 +1,6 @@
 import * as z from "zod";
 import {
+  EditValidationType,
   FeedBackFormType,
   PlanItemProps,
   PlansType,
@@ -86,4 +87,20 @@ const planOptions = [
 
 export const PlansValidation: z.ZodType<PlanItemProps> = z.object({
   plan: z.enum(planOptions),
+});
+
+//Dashboard/Edit Account
+
+export const EditValidation: z.ZodType<EditValidationType> = z.object({
+  firstName: z.string().min(3).max(100),
+  lastName: z.string().min(3).max(100),
+  email: z.string().email().min(10).max(100),
+  bitcoinAddress: z.string().max(100),
+  ethereumAddress: z.string().max(100),
+  litecoinAddress: z.string().max(100),
+  usdtAddress: z.string().max(100),
+  dogeAddress: z.string().max(100),
+  tronAddress: z.string().max(100),
+  bnbAddress: z.string().max(100),
+  shibaAddress: z.string().max(100),
 });

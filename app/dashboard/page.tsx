@@ -1,3 +1,4 @@
+import TradingViewChart from "@/components/dashboard/content/Chart";
 import Referral from "@/components/dashboard/content/Referral";
 import StartTrade from "@/components/dashboard/content/StartTrade";
 import { Button } from "@/components/ui/button";
@@ -22,7 +23,7 @@ const page = () => {
           </p>
         </div>
 
-        <div>
+        <div className="flex justify-end">
           <StartTrade />
         </div>
       </div>
@@ -35,7 +36,7 @@ const page = () => {
             <p className="font-bold">$0.00</p>
           </div>
           <p></p>
-          <Link href="/deposit">
+          <Link href="/dashboard/deposit">
             <Button
               variant={"form"}
               className="w-full max-md:text-xs max-md:h-8"
@@ -51,7 +52,7 @@ const page = () => {
             <p className=" font-bold">$0.00</p>
           </div>
           <p></p>
-          <Link href="/withdraw">
+          <Link href="/dashboard/withdraw">
             <Button
               variant={"form"}
               className="w-full bg-goldenrod max-md:text-xs max-md:h-8"
@@ -67,7 +68,7 @@ const page = () => {
             <p className=" font-bold">$0.00</p>
           </div>
           <p></p>
-          <Link href="/deposit">
+          <Link href="/dashboard/your-withdrawal">
             <Button
               variant={"form"}
               className="w-full max-md:text-xs max-md:h-8"
@@ -90,6 +91,8 @@ const page = () => {
       {/* Referral Tab */}
 
       <Referral />
+
+      {/* <TradingViewChart /> */}
     </div>
   );
 };
