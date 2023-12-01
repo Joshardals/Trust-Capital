@@ -76,7 +76,7 @@ const Plans = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className=" max-md:text-xs w-full space-y-6 h-full select-none "
+        className=" max-md:text-xs w-full space-y-6 h-full select-none"
       >
         <FormField
           control={form.control}
