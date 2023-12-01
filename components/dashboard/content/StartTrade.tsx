@@ -5,7 +5,7 @@ import { useState } from "react";
 const StartTrade = () => {
   const [started, setStarted] = useState(false);
   return (
-    <div className="flex flex-col space-y-2">
+    <div className="flex md:items-center md:space-x-4 max-md:flex-col space-y-2">
       <Button
         variant={"form"}
         onClick={() => setStarted(true)}
