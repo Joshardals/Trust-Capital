@@ -76,7 +76,7 @@ const Withdraw = () => {
 
         <div className="grid md:grid-cols-3 md:gap-4 max-md:py-2 max-md:px-5 max-md:space-y-2">
           <p className="md:border-r md:border-r-navyblue md:px-5 md:py-2">
-            BNB Wallet Address:
+            SHIBA INU Wallet Address:
           </p>
           <p className="font-semibold md:py-2 col-span-2">
             majesticwaterfall222299
