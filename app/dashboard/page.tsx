@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <div className=" h-full font-sans space-y-8 text-navyblue md:p-5 max-md:p-5 bg-babyblue overflow-y-auto">
-      <div className="flex max-md:flex-col justify-center md:justify-between md:items-center max-md:space-y-4">
+      <div className="flex max-md:flex-col justify-center items-center md:justify-between md:items-center max-md:space-y-4">
         <div>
           <h1 className="text-lg md:text-xl font-semibold capitalize text-puregreen">
             Hi, Tommy Shelby
@@ -22,10 +22,10 @@ const page = () => {
             welcome to trust-capital investment
           </p>
         </div>
+      </div>
 
-        {/* <div className="flex justify-end">
-          <StartTrade />
-        </div> */}
+      <div className="flex justify-center">
+        <StartTrade />
       </div>
 
       <div className="grid md:grid-cols-3 gap-4 text-xs md:text-md">

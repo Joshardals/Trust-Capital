@@ -5,14 +5,25 @@ import { useState } from "react";
 const StartTrade = () => {
   const [started, setStarted] = useState(false);
   return (
-    <Button
-      variant={"form"}
-      onClick={() => setStarted(true)}
-      className="max-md:text-xs h-20 w-20 bg-puregreen text-babyblue border border-goldenrod
-       transition-all duration-300 hover:bg-puregreen/80 border-none rounded-full"
-    >
-      {started ? "Trade Begin" : "Start Trade"}
-    </Button>
+    <div className="flex flex-col space-y-2">
+      <Button
+        variant={"form"}
+        onClick={() => setStarted(true)}
+        className="rounded-lg bg-darkblue hover:bg-darkblue/80 text-purewhite"
+      >
+        Start
+      </Button>
+      <div className=" bg-navyblue shadow-inner shadow-goldenrod p-4 h-32 w-32 rounded-full flex items-center justify-center">
+        <div className=" rounded-full h-24 w-24 shadow-2xl shadow-goldenrod"></div>
+      </div>
+      <Button
+        variant={"form"}
+        onClick={() => setStarted(true)}
+        className="rounded-lg bg-darkblue hover:bg-darkblue/80 text-purewhite"
+      >
+        Trade
+      </Button>
+    </div>
   );
 };
 
