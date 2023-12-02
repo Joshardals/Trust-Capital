@@ -36,14 +36,7 @@ const page = () => {
             <p className="font-bold">$0.00</p>
           </div>
           <p></p>
-          <Link href="/dashboard/deposit">
-            <Button
-              variant={"form"}
-              className="w-full max-md:text-xs max-md:h-8"
-            >
-              Deposit Funds
-            </Button>
-          </Link>
+       
         </div>
 
         <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
@@ -52,14 +45,7 @@ const page = () => {
             <p className=" font-bold">$0.00</p>
           </div>
           <p></p>
-          <Link href="/dashboard/withdraw">
-            <Button
-              variant={"form"}
-              className="w-full bg-goldenrod max-md:text-xs max-md:h-8"
-            >
-              Withdraw Funds
-            </Button>
-          </Link>
+         
         </div>
 
         <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
@@ -68,14 +54,7 @@ const page = () => {
             <p className=" font-bold">$0.00</p>
           </div>
           <p></p>
-          <Link href="/dashboard/your-withdrawal">
-            <Button
-              variant={"form"}
-              className="w-full max-md:text-xs max-md:h-8"
-            >
-              Withdrawal History
-            </Button>
-          </Link>
+        
         </div>
 
         {/* ------ Row 2 ------- */}
