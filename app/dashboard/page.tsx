@@ -2,6 +2,7 @@ import TradingViewChart from "@/components/dashboard/content/Chart";
 import Referral from "@/components/dashboard/content/Referral";
 import StartTrade from "@/components/dashboard/content/StartTrade";
 import { Button } from "@/components/ui/button";
+import { UserButton } from "@clerk/nextjs";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -25,6 +26,7 @@ const page = () => {
       </div>
 
       <div className="flex justify-center">
+        <UserButton afterSignOutUrl="/" />
         <StartTrade />
       </div>
 
@@ -36,7 +38,6 @@ const page = () => {
             <p className="font-bold">$0.00</p>
           </div>
           <p></p>
-       
         </div>
 
         <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
@@ -45,7 +46,6 @@ const page = () => {
             <p className=" font-bold">$0.00</p>
           </div>
           <p></p>
-         
         </div>
 
         <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
@@ -54,7 +54,6 @@ const page = () => {
             <p className=" font-bold">$0.00</p>
           </div>
           <p></p>
-        
         </div>
 
         {/* ------ Row 2 ------- */}

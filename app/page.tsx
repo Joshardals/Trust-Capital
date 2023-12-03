@@ -17,8 +17,6 @@ export default async function Home() {
     <main className=" w-full p-0">
       <Header />
       <Body />
-
-      <UserButton afterSignOutUrl="/" />
       <Footer />
     </main>
   );

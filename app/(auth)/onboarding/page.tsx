@@ -1,9 +1,8 @@
+import { UserAuthForm } from "@/components/forms/user-auth-form";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { buttonVariants } from "@/components/ui/button";
-import { UserAuthForm } from "@/components/forms/user-auth-form";
 
 export const metadata: Metadata = {
   title: "Create your login | Trust-Capital Investment",
