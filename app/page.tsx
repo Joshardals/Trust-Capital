@@ -2,6 +2,7 @@ import Body from "@/components/LandingPage/Body/Body";
 import CryptoPrice from "@/components/LandingPage/Crypto/CryptoPrice";
 import Footer from "@/components/LandingPage/Footer/Footer";
 import Header from "@/components/LandingPage/Header/Header";
+import { UserButton } from "@clerk/nextjs";
 
 import { Metadata } from "next";
 
@@ -17,6 +18,7 @@ export default async function Home() {
       <Header />
       <Body />
 
+      <UserButton afterSignOutUrl="/" />
       <Footer />
     </main>
   );

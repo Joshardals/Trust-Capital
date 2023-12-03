@@ -4,7 +4,7 @@ import React from "react";
 const Login = () => {
   return (
     <Link
-      href="/login"
+      href="/sign-in"
       className="max-md:hidden button border border-babyblue text-babyblue
        hover:bg-opacity-50 hover:bg-darkblue "
     >

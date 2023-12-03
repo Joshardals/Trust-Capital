@@ -55,7 +55,7 @@ export const SideBar = () => {
         </Link>
       ))}
       <div>
-        <Link href="/login" className="sidebar-links">
+        <Link href="/sign-in" className="sidebar-links">
           Log in
         </Link>
       </div>

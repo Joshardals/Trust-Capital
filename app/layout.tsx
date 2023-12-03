@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { open_sans, playfair } from "@/components/ui/font";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "Home | Trust-Capital Investment",
@@ -14,12 +15,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="bg-navyblue p-0 m-0 h-full w-full scroll-smooth">
-      <body
-        className={`${open_sans.variable} ${playfair.variable} scroll-smooth bg-purewhite`}
+    <ClerkProvider>
+      <html
+        lang="en"
+        className="bg-navyblue p-0 m-0 h-full w-full scroll-smooth"
       >
-        {children}
-      </body>
-    </html>
+        <body
+          className={`${open_sans.variable} ${playfair.variable} scroll-smooth bg-purewhite`}
+        >
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
