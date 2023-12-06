@@ -3,14 +3,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const links = [
-  { name: "Home", href: "/#" },
+  { name: "Home", href: "/#home" },
   { name: "Learn More", href: "/#learn-more" },
   { name: "FAQ", href: "/#faq" },
   { name: "Support", href: "#" },
 ];
 
 const footerLinks = [
-  { name: "Home", href: "/#" },
+  { name: "Home", href: "/#home" },
   { name: "Learn More", href: "/#learn-more" },
   { name: "FAQ", href: "/#faq" },
 ];
