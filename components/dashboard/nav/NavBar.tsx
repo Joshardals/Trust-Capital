@@ -30,7 +30,7 @@ const NavBar = () => {
         <div className="flex flex-row col-span-2 justify-end space-x-4">
           <Link
             href="/dashboard"
-            className=" flex items-center space-x-1 md:space-x-2 text-md w-auto relative text-babyblue"
+            className=" flex items-center font-serif font-bold space-x-1 md:space-x-2 text-md w-auto relative text-babyblue"
           >
             <Image alt="Logo" src="/logo.png" width={35} height={35} />
             <p className="w-full flex font-bold text-center">
