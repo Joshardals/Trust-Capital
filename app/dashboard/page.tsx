@@ -24,7 +24,9 @@ const page = () => {
           </p>
         </div>
 
-        <UserButton afterSignOutUrl="/" />
+        <div className="max-md:hidden">
+          <UserButton afterSignOutUrl="/" />
+        </div>
       </div>
 
       <div className="flex justify-center">
