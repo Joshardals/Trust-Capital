@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-
+const { fontFamily } = require('tailwindcss/defaultTheme')
 
 module.exports = {
   darkMode: ["class"],
@@ -71,7 +71,8 @@ module.exports = {
       },
       fontFamily: {
         // Header Fonts 
-        sans: ["var(--font-open-sans)"], 
+        sans: ["var(--font-open-sans)"],  
+        
         
         // Body Font
         serif: ["var(--font-playfair)"]

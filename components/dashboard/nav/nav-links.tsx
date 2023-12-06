@@ -1,4 +1,6 @@
 "use client";
+import { useClerk } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
@@ -47,6 +49,8 @@ const links = [
 
 export const SidebarLinks = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const { signOut } = useClerk();
   const { sideBar, setSideBar } = usesideBarStore();
 
   const handleClick = () => {
@@ -78,7 +82,10 @@ export const SidebarLinks = () => {
         </div>
       ))}
 
-      <div className="w-full flex items-center cursor-pointer space-x-4 uppercase p-2 rounded-lg transition-all duration-200 hover:bg-darkblue ">
+      <div
+        onClick={() => signOut(() => router.push("/"))}
+        className="w-full flex items-center cursor-pointer space-x-4 uppercase p-2 rounded-lg transition-all duration-200 hover:bg-darkblue "
+      >
         <Image
           src="/dashboard/logout.svg"
           width={30}

@@ -5,6 +5,7 @@ import { useNavStore, usesideBarStore } from "@/lib/store/store";
 import SideNav from "./SideNav";
 import Image from "next/image";
 import { useState } from "react";
+import { UserButton } from "@clerk/nextjs";
 
 const NavBar = () => {
   const { sideBar, setSideBar } = usesideBarStore();
@@ -26,7 +27,7 @@ const NavBar = () => {
           </div>
         </div>
 
-        <div className="flex flex-row col-span-2 justify-end">
+        <div className="flex flex-row col-span-2 justify-end space-x-4">
           <Link
             href="/dashboard"
             className=" flex items-center space-x-1 md:space-x-2 text-md w-auto relative text-babyblue"
@@ -37,6 +38,16 @@ const NavBar = () => {
             </p>
             {/* <div className="max-md:hidden absolute top-0 right-0 border-r border-r-gold h-full" /> */}
           </Link>
+          <UserButton
+            appearance={{
+              elements: {
+                manage:
+                  "bg-goldenrod",
+                userButtonPopoverCard: "font-sans text-navyblue",
+              },
+            }}
+            afterSignOutUrl="/"
+          />
         </div>
       </div>
       {/* The Popup the SideNav when the hamburger Icon gets clicked on. */}

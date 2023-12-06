@@ -20,7 +20,7 @@ const NavBar = () => {
           {/* Company's Logo */}
           <Link
             href="/"
-            className=" flex items-center space-x-1 md:space-x-2 text-md md:text-lg max-md:flex-1 pr-10 w-auto relative text-babyblue"
+            className=" flex items-center space-x-1 md:space-x-2 text-md md:text-lg max-md:flex-1 pr-10 w-auto relative text-babyblue font-serif"
           >
             <Image alt="Logo" src="/logo.png" width={30} height={30} />
             <p className="w-full flex font-bold">

@@ -3,7 +3,6 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-
 export const metadata: Metadata = {
   title: "Create your login | Trust-Capital Investment",
   description: "Create your login for Trust-Capital",
@@ -23,7 +22,7 @@ export default function Page() {
             <div className="text-md md:text-lg w-auto text-babyblue">
               <Link
                 href="/"
-                className="flex items-center space-x-2 max-md:space-x-1"
+                className="flex items-center space-x-2 max-md:space-x-1 font-serif font-bold"
               >
                 <Image alt="Logo" src="/logo.png" width={30} height={30} />
                 Trust-Capital

@@ -23,10 +23,11 @@ const page = () => {
             welcome to trust-capital investment
           </p>
         </div>
+
+        <UserButton afterSignOutUrl="/" />
       </div>
 
       <div className="flex justify-center">
-        <UserButton afterSignOutUrl="/" />
         <StartTrade />
       </div>
 

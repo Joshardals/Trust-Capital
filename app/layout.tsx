@@ -15,17 +15,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <html
-        lang="en"
-        className="bg-navyblue p-0 m-0 h-full w-full scroll-smooth"
+    <html
+      lang="en"
+      className={` ${open_sans.variable} ${playfair.variable} bg-navyblue p-0 m-0 h-full w-full scroll-smooth`}
+    >
+      <ClerkProvider
+        appearance={{
+          variables: {
+            colorPrimary: "#D8A31A",
+            colorText: "#001F3F",
+            colorInputText: "#001F3F",
+          },
+        }}
       >
-        <body
-          className={`${open_sans.variable} ${playfair.variable} scroll-smooth bg-purewhite`}
-        >
-          {children}
-        </body>
-      </html>
-    </ClerkProvider>
+        <body className="bg-purewhite">{children}</body>
+      </ClerkProvider>
+    </html>
   );
 }
