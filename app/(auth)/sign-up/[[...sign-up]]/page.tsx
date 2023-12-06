@@ -4,6 +4,7 @@ export default function Page() {
   return (
     <div className="font-sans flex items-center justify-center min-h-screen  bg-navyblue">
       <SignUp
+      afterSignUpUrl="/onboarding"
         appearance={{
           elements: {
             headerTitle: "text-navyblue",

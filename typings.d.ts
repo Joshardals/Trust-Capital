@@ -21,9 +21,6 @@ export interface supportStoreState {
 export interface SignUpValidationType {
   firstName: string;
   lastName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
   bitcoinAddress: string;
   ethereumAddress: string;
   litecoinAddress: string;

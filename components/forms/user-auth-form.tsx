@@ -25,8 +25,6 @@ export function UserAuthForm() {
     defaultValues: {
       firstName: "",
       lastName: "",
-      email: "",
-      password: "",
       bitcoinAddress: "",
       ethereumAddress: "",
       litecoinAddress: "",
@@ -44,14 +42,6 @@ export function UserAuthForm() {
       setIsLoading(false);
     }, 3000);
   };
-  // async function onSubmit(event: React.SyntheticEvent) {
-  //   event.preventDefault();
-  //   setIsLoading(true);
-
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 3000);
-  // }
   return (
     <Form {...form}>
       <form
@@ -104,68 +94,6 @@ export function UserAuthForm() {
                           e.target.value.slice(1);
                         form.setValue("lastName", capitalizedValue);
                       }}
-                    />
-                  </FormControl>
-                  <FormMessage className="text-purered text-xs" />
-                </FormItem>
-              )}
-            />
-          </div>
-        </div>
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl className="no-focus text-xs">
-                <Input
-                  type="email"
-                  placeholder="Email Address"
-                  autoCapitalize="none"
-                  autoComplete="email"
-                  autoCorrect="off"
-                  className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage className="text-purered text-xs" />
-            </FormItem>
-          )}
-        />
-        <div className="flex max-md:flex-col max-md:space-y-4 md:space-x-4">
-          <div className="flex-1">
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl className="no-focus text-xs">
-                    <Input
-                      type="password"
-                      placeholder="Password (min. 8 Characters)"
-                      disabled={isLoading}
-                      className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage className="text-purered text-xs" />
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className="flex-1">
-            <FormField
-              control={form.control}
-              name="confirmPassword"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl className="no-focus text-xs">
-                    <Input
-                      type="password"
-                      placeholder="Confirm Password"
-                      disabled={isLoading}
-                      className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
-                      {...field}
                     />
                   </FormControl>
                   <FormMessage className="text-purered text-xs" />
