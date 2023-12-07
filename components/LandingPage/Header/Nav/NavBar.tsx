@@ -42,7 +42,7 @@ const NavBar = () => {
             <Login />
 
             {/* Sign Up Button */}
-            <SignUp />
+            {/* <SignUp /> */}
           </div>
 
           <div className="md:hidden cursor-pointer text-babyblue">

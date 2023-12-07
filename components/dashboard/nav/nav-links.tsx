@@ -1,5 +1,4 @@
 "use client";
-import { useClerk } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
@@ -8,6 +7,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usesideBarStore } from "@/lib/store/store";
 import { Sidebar } from "lucide-react";
+import { signOut } from "firebase/auth";
+import { auth } from "@/firebase";
 
 const links = [
   {
@@ -50,12 +51,20 @@ const links = [
 export const SidebarLinks = () => {
   const pathname = usePathname();
   const router = useRouter();
-  const { signOut } = useClerk();
   const { sideBar, setSideBar } = usesideBarStore();
 
   const handleClick = () => {
     if (sideBar) {
       setSideBar();
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      router.push("/");
+    } catch (error: any) {
+      console.log(`Failed to Signout user.`);
     }
   };
 
@@ -83,7 +92,7 @@ export const SidebarLinks = () => {
       ))}
 
       <div
-        onClick={() => signOut(() => router.push("/"))}
+        onClick={handleSignOut}
         className="w-full flex items-center cursor-pointer space-x-4 uppercase p-2 rounded-lg transition-all duration-200 hover:bg-darkblue "
       >
         <Image

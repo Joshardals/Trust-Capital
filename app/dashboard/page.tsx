@@ -1,10 +1,7 @@
 import TradingViewChart from "@/components/dashboard/content/Chart";
 import Referral from "@/components/dashboard/content/Referral";
 import StartTrade from "@/components/dashboard/content/StartTrade";
-import { Button } from "@/components/ui/button";
-import { UserButton } from "@clerk/nextjs";
 import { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Dashboard | Trust-Capital Investment",
@@ -22,10 +19,6 @@ const page = () => {
           <p className="capitalize max-md:text-xs">
             welcome to trust-capital investment
           </p>
-        </div>
-
-        <div className="max-md:hidden">
-          <UserButton afterSignOutUrl="/" />
         </div>
       </div>
 
