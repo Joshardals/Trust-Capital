@@ -43,15 +43,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   //   console.log(authUser);
   // }, [authUser]);
   return (
-    <div className="flex max-md:flex-col">
-      <div className="md:hidden">
-        <NavBar />
-      </div>
-      <SideNav />
-      <MobileSideNav />
-      <div className=" w-full h-full md:h-screen bg-babyblue max-md:pt-14 md:ml-80">
-        {authUser ? <div>{children}</div> : null}
-      </div>
+    <div>
+      {authUser ? (
+        <div className="flex max-md:flex-col">
+          <div className="md:hidden">
+            <NavBar />
+          </div>
+          <SideNav />
+          <MobileSideNav />
+          <div className=" w-full h-full md:h-screen bg-babyblue max-md:pt-14 md:ml-80">
+            {children}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
