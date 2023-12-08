@@ -1,8 +1,13 @@
 import MobileSideNav from "@/components/dashboard/nav/MobileSideNav";
 import NavBar from "@/components/dashboard/nav/NavBar";
 import SideNav from "@/components/dashboard/nav/SideNav";
+import { auth } from "@/firebase";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div className="flex max-md:flex-col">
       <div className="md:hidden">

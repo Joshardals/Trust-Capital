@@ -1,5 +1,6 @@
 "use client";
 import { auth } from "@/firebase";
+import { useNavStore } from "@/lib/store/store";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -50,9 +51,13 @@ export const FooterLinks = () => {
 };
 export const SideBar = () => {
   const router = useRouter();
+  const { navBar, setNavBar } = useNavStore();
 
   const provider = new GoogleAuthProvider();
   const handleSignup = async () => {
+    if (navBar) {
+      setNavBar();
+    }
     try {
       const userCredential = await signInWithPopup(auth, provider);
 
@@ -95,9 +100,9 @@ export const SideBar = () => {
           <p>{link.name}</p>
         </Link>
       ))}
-      <div onClick={handleSignup}>
+      {/* <div onClick={handleSignup}>
         <p className="sidebar-links max-w-[6rem]">Get Started</p>
-      </div>
+      </div> */}
     </>
   );
 };

@@ -4,15 +4,13 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import { NavLinks } from "./NavLinks";
 import Link from "next/link";
 import Login from "../Buttons/Login";
-import SignUp from "../Buttons/SignUp";
 import { useNavStore } from "@/lib/store/store";
 import SideNav from "./SideNav";
-import clsx from "clsx";
 import Image from "next/image";
+import { auth } from "@/firebase";
 
 const NavBar = () => {
   const { navBar, setNavBar } = useNavStore();
-
   return (
     <div className="relative max-md:mt-10 mt-12">
       <div className="flex max-md:items-center justify-between fixed left-0 right-0 top-0 bottom-0 w-full h-16 md:h-16 px-5 lg:px-10 bg-navyblue z-30 select-none">
@@ -36,7 +34,7 @@ const NavBar = () => {
           </div>
         </div>
 
-        <div className="flex w-full md:flex-1 md:w-full items-center">
+        <div className="flex w-full md:flex-1 md:w-full items-center space-x-2">
           <div className="flex flex-1 items-center justify-end md:space-x-4 font-sans font-semibold text-xs">
             {/* Login Button */}
             <Login />

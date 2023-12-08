@@ -1,6 +1,8 @@
 import TradingViewChart from "@/components/dashboard/content/Chart";
 import Referral from "@/components/dashboard/content/Referral";
 import StartTrade from "@/components/dashboard/content/StartTrade";
+import { auth } from "@/firebase";
+import { checkAuth } from "@/lib/utils";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +10,9 @@ export const metadata: Metadata = {
   description:
     "Trust-Capital website offers a homepage that serves as a comprehensive guide to navigating the world of financial and emotional investments.",
 };
-const page = () => {
+const page = async () => {
+  const user = checkAuth();
+  console.log(user);
   return (
     <div className=" h-full font-sans space-y-8 text-navyblue md:p-5 max-md:p-5 bg-babyblue overflow-y-auto">
       <div className="flex max-md:flex-col justify-center items-center md:justify-between md:items-center max-md:space-y-4">

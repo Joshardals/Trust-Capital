@@ -60,6 +60,9 @@ export const SidebarLinks = () => {
   };
 
   const handleSignOut = async () => {
+    if (sideBar) {
+      setSideBar();
+    }
     try {
       await signOut(auth);
       router.push("/");

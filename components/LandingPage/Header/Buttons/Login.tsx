@@ -43,10 +43,10 @@ const Login = () => {
   return (
     <Button
       onClick={handleSignup}
-      className="max-md:hidden button border border-babyblue text-babyblue
-       hover:bg-opacity-50 hover:bg-darkblue rounded-full px-6 "
+      className="button border transition-all duration-300 border-babyblue text-navyblue
+        bg-babyblue hover:bg-babyblue/70 rounded-full px-6 max-md:text-xs max-md:h-10 "
     >
-      Get Started
+      Login
     </Button>
   );
 };
