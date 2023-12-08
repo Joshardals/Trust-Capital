@@ -5,9 +5,13 @@ import { useNavStore, usesideBarStore } from "@/lib/store/store";
 import SideNav from "./SideNav";
 import Image from "next/image";
 import { useState } from "react";
+import { auth } from "@/firebase";
 
 const NavBar = () => {
   const { sideBar, setSideBar } = usesideBarStore();
+  // auth.onAuthStateChanged((user) => {
+  //   console.log(user);
+  // })
 
   return (
     <div className="relative">
