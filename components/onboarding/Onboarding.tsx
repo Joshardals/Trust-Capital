@@ -53,7 +53,7 @@ export default function Onboarding() {
 
                   <p>
                     Your USDT wallet address is required; the remaining
-                    information can be changed in your dashboard's edit
+                    information can be changed in your dashboard&apos;s edit
                     settings.
                   </p>
                 </div>
@@ -82,7 +82,7 @@ export default function Onboarding() {
 
                   <p className="text-babyblue font-sans">
                     Your USDT wallet address is required; the remaining
-                    information can be changed in your dashboard&aspos;s edit
+                    information can be changed in your dashboard&apos;s edit
                     settings.
                   </p>
                 </div>
