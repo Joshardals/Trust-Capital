@@ -68,3 +68,12 @@
     @apply focus-visible:ring-0 focus-visible:ring-navyblue focus-visible:ring-offset-0 !important;
   }
 }
+
+@layer utilities {
+  .disableForm {
+    @apply opacity-60
+  }
+  .disableInput {
+    @apply bg-darkblue/10 absolute top-0 left-0 w-full h-full cursor-not-allowed select-none;
+  }
+}

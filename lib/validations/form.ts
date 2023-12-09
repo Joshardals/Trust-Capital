@@ -8,31 +8,34 @@ import {
   SignUpValidationType,
 } from "@/typings";
 
-const isStrongPassword = (password: string) => {
-  // Add your password strength criteria here
-  // For example: minimum length, uppercase, lowercase, numbers, and special characters
-  const minLength = 8;
-  const hasUppercase = /[A-Z]/.test(password);
-  const hasLowercase = /[a-z]/.test(password);
-  const hasNumber = /\d/.test(password);
-  const hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password);
+// const isStrongPassword = (password: string) => {
+//   // Add your password strength criteria here
+//   // For example: minimum length, uppercase, lowercase, numbers, and special characters
+//   const minLength = 8;
+//   const hasUppercase = /[A-Z]/.test(password);
+//   const hasLowercase = /[a-z]/.test(password);
+//   const hasNumber = /\d/.test(password);
+//   const hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password);
 
-  return (
-    password.length >= minLength &&
-    hasUppercase &&
-    hasLowercase &&
-    hasNumber &&
-    hasSpecialChar
-  );
-};
+//   return (
+//     password.length >= minLength &&
+//     hasUppercase &&
+//     hasLowercase &&
+//     hasNumber &&
+//     hasSpecialChar
+//   );
+// };
 
 export const SignUpValidation: z.ZodType<SignUpValidationType> = z.object({
-  firstName: z.string().min(3).max(100),
-  lastName: z.string().min(3).max(100),
+  // firstName: z.string().min(3).max(100),
+  // lastName: z.string().min(3).max(100),
   bitcoinAddress: z.string().max(100),
   ethereumAddress: z.string().max(100),
   litecoinAddress: z.string().max(100),
-  usdtAddress: z.string().max(100),
+  usdtAddress: z
+    .string()
+    .min(1, { message: "USDT Address is required" })
+    .max(100),
   dogeAddress: z.string().max(100),
   tronAddress: z.string().max(100),
   bnbAddress: z.string().max(100),

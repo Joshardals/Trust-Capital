@@ -16,18 +16,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         const user = auth.currentUser;
         if (user) {
           setAuthUser(true);
-          console.log("There is a user: ", user.providerData);
         } else {
           setAuthUser(false);
-          console.log("There is no user, sign up!");
           router.push("/");
         }
-        // auth.onAuthStateChanged((user) => {
-        //   if (user) {
-        //     console.log("There is a user", user.providerData);
-        //     setAuthUser(true);
-        //   }
-        // });
       } catch (error: any) {
         console.log(`no user: ${error.message}`);
       }
@@ -35,13 +27,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
     isUser();
   });
-
-  // useEffect(() => {
-  //   // if (!authUser) {
-  //   //   router.push("/");
-  //   // }
-  //   console.log(authUser);
-  // }, [authUser]);
   return (
     <div>
       {authUser ? (

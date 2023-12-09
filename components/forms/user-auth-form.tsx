@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Form,
   FormControl,
@@ -15,16 +15,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Icons } from "@/components/icons";
-import { Label } from "../ui/label";
 import Link from "next/link";
+import { auth } from "@/firebase";
+import { useRouter } from "next/navigation";
+import { updateUser } from "@/lib/action/user.action";
+import { updateWallet } from "@/lib/action/wallet.action";
 
 export function UserAuthForm() {
   const [isLoading, setIsLoading] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const router = useRouter();
+
   const form = useForm<SignUpValidationType>({
     resolver: zodResolver(SignUpValidation),
     defaultValues: {
-      firstName: "",
-      lastName: "",
       bitcoinAddress: "",
       ethereumAddress: "",
       litecoinAddress: "",
@@ -35,20 +39,56 @@ export function UserAuthForm() {
       shibaAddress: "",
     },
   });
+
+  const user = auth.currentUser?.providerData[0];
+
   const onSubmit = async (values: SignUpValidationType) => {
     setIsLoading(true);
+    setIsDisabled(true);
 
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+    await updateUser({
+      id: user?.uid || "",
+      name: user?.displayName || "",
+      email: user?.email || "",
+      onboarded: true || "",
+    });
+
+    await updateWallet({
+      id: user?.uid || "",
+      usdtAddress: values.usdtAddress,
+      btcAddress: values.bitcoinAddress,
+      ethereumAddress: values.ethereumAddress,
+      litecoinAddress: values.litecoinAddress,
+      dogeAddress: values.dogeAddress,
+      tronAddress: values.tronAddress,
+      bnbAddress: values.bnbAddress,
+      shibaAddress: values.shibaAddress,
+    });
+
+    console.log("USDT ADDRESS:", values.usdtAddress);
+
+    form.setValue("usdtAddress", "");
+    form.setValue("bitcoinAddress", "");
+    form.setValue("ethereumAddress", "");
+    form.setValue("litecoinAddress", "");
+    form.setValue("dogeAddress", "");
+    form.setValue("tronAddress", "");
+    form.setValue("bnbAddress", "");
+    form.setValue("shibaAddress", "");
+
+    setIsLoading(false);
+    setIsDisabled(false);
+
+    router.push("/dashboard");
   };
+
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-5 font-sans mt-8 w-full md:pt-80"
+        className="space-y-5 font-sans w-full flex flex-col md:h-screen"
       >
-        <div className="flex space-y-4 flex-col">
+        {/* <div className="flex space-y-4 flex-col">
           <h1 className=" max-md:text-lg text-xl text-navyblue font-bold">
             Personal Information
           </h1>
@@ -101,7 +141,7 @@ export function UserAuthForm() {
               )}
             />
           </div>
-        </div>
+        </div> */}
 
         {/*-------------------------------- Account Information ----------------------------*/}
 
@@ -117,11 +157,19 @@ export function UserAuthForm() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl className="no-focus text-xs">
-                      <Input
-                        placeholder="USDT WALLET ADDRESS"
-                        className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
-                        {...field}
-                      />
+                      <div className="relative">
+                        <Input
+                          placeholder="USDT WALLET ADDRESS"
+                          disabled={isDisabled}
+                          className={`py-2 ${
+                            isDisabled ? "disableForm" : null
+                          }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                          {...field}
+                        />
+                        <div
+                          className={`${isDisabled ? "disableInput" : null}`}
+                        />
+                      </div>
                     </FormControl>
                     <FormMessage className="text-purered text-xs" />
                   </FormItem>
@@ -135,11 +183,19 @@ export function UserAuthForm() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl className="no-focus text-xs">
-                      <Input
-                        placeholder="BITCOIN WALLET ADDRESS"
-                        className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
-                        {...field}
-                      />
+                      <div className="relative">
+                        <Input
+                          placeholder="BITCOIN WALLET ADDRESS"
+                          disabled={isDisabled}
+                          className={`py-2 ${
+                            isDisabled ? "disableForm" : null
+                          }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                          {...field}
+                        />
+                        <div
+                          className={`${isDisabled ? "disableInput" : null}`}
+                        />
+                      </div>
                     </FormControl>
                     <FormMessage className="text-purered text-xs" />
                   </FormItem>
@@ -153,11 +209,19 @@ export function UserAuthForm() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl className="no-focus text-xs">
-                      <Input
-                        placeholder="ETHEREUM WALLET ADDRESS"
-                        className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
-                        {...field}
-                      />
+                      <div className="relative">
+                        <Input
+                          placeholder="ETHEREUM WALLET ADDRESS"
+                          disabled={isDisabled}
+                          className={`py-2 ${
+                            isDisabled ? "disableForm" : null
+                          }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                          {...field}
+                        />
+                        <div
+                          className={`${isDisabled ? "disableInput" : null}`}
+                        />
+                      </div>
                     </FormControl>
                     <FormMessage className="text-purered text-xs" />
                   </FormItem>
@@ -171,11 +235,19 @@ export function UserAuthForm() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl className="no-focus text-xs">
-                      <Input
-                        placeholder="LITECOIN WALLET ADDRESS"
-                        className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
-                        {...field}
-                      />
+                      <div className="relative">
+                        <Input
+                          placeholder="LITECOIN WALLET ADDRESS"
+                          disabled={isDisabled}
+                          className={`py-2 ${
+                            isDisabled ? "disableForm" : null
+                          }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                          {...field}
+                        />
+                        <div
+                          className={`${isDisabled ? "disableInput" : null}`}
+                        />
+                      </div>
                     </FormControl>
                     <FormMessage className="text-purered text-xs" />
                   </FormItem>
@@ -190,11 +262,19 @@ export function UserAuthForm() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl className="no-focus text-xs">
-                      <Input
-                        placeholder="DOGECOIN WALLET ADDRESS"
-                        className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
-                        {...field}
-                      />
+                      <div className="relative">
+                        <Input
+                          placeholder="DOGECOIN WALLET ADDRESS"
+                          disabled={isDisabled}
+                          className={`py-2 ${
+                            isDisabled ? "disableForm" : null
+                          }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                          {...field}
+                        />
+                        <div
+                          className={`${isDisabled ? "disableInput" : null}`}
+                        />
+                      </div>
                     </FormControl>
                     <FormMessage className="text-purered text-xs" />
                   </FormItem>
@@ -208,11 +288,19 @@ export function UserAuthForm() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl className="no-focus text-xs">
-                      <Input
-                        placeholder="TRON WALLET ADDRESS"
-                        className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
-                        {...field}
-                      />
+                      <div className="relative">
+                        <Input
+                          placeholder="TRON WALLET ADDRESS"
+                          disabled={isDisabled}
+                          className={`py-2 ${
+                            isDisabled ? "disableForm" : null
+                          }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                          {...field}
+                        />
+                        <div
+                          className={`${isDisabled ? "disableInput" : null}`}
+                        />
+                      </div>
                     </FormControl>
                     <FormMessage className="text-purered text-xs" />
                   </FormItem>
@@ -226,11 +314,19 @@ export function UserAuthForm() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl className="no-focus text-xs">
-                      <Input
-                        placeholder="BNB WALLET ADDRESS"
-                        className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
-                        {...field}
-                      />
+                      <div className="relative">
+                        <Input
+                          placeholder="BNB WALLET ADDRESS"
+                          disabled={isDisabled}
+                          className={`py-2 ${
+                            isDisabled ? "disableForm" : null
+                          }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                          {...field}
+                        />
+                        <div
+                          className={`${isDisabled ? "disableInput" : null}`}
+                        />
+                      </div>
                     </FormControl>
                     <FormMessage className="text-purered text-xs" />
                   </FormItem>
@@ -244,11 +340,19 @@ export function UserAuthForm() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl className="no-focus text-xs">
-                      <Input
-                        placeholder="SHIBA INU WALLET ADDRESS"
-                        className="border border-navyblue py-2 px-5 text-sm transition-all duration-500"
-                        {...field}
-                      />
+                      <div className="relative">
+                        <Input
+                          placeholder="SHIBA INU WALLET ADDRESS"
+                          disabled={isDisabled}
+                          className={`py-2 ${
+                            isDisabled ? "disableForm" : null
+                          }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                          {...field}
+                        />
+                        <div
+                          className={`${isDisabled ? "disableInput" : null}`}
+                        />
+                      </div>
                     </FormControl>
                     <FormMessage className="text-purered text-xs" />
                   </FormItem>

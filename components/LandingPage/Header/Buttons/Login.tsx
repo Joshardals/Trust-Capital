@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { auth } from "@/firebase";
+import { fetchUser } from "@/lib/action/user.action";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
@@ -18,22 +19,17 @@ const Login = () => {
       const user = result.user;
 
       if (user) {
-        console.log(user);
-        const creationTime = user.metadata.creationTime;
-        if (creationTime) {
-          const currentTime: any = new Date();
-          const creationTimeStamp = new Date(creationTime).getTime();
-          const timeDifference = currentTime - creationTimeStamp;
+        const userId = user.providerData[0].uid;
+        const details = await fetchUser(userId);
 
-          const isNewAccount = timeDifference < 60000;
+        if (details) {
+          const onboardedStatus = details.onboarded;
 
-          if (isNewAccount) {
-            console.log("This is a new account!!");
-            router.push("/onboarding");
-          } else {
-            console.log("This is an existing account!");
+          if (onboardedStatus) {
             router.push("/dashboard");
           }
+        } else {
+          router.push("/onboarding");
         }
       }
     } catch (error: any) {

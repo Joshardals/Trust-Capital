@@ -19,8 +19,8 @@ export interface supportStoreState {
 // Form Definitions Start
 
 export interface SignUpValidationType {
-  firstName: string;
-  lastName: string;
+  // firstName: string;
+  // lastName: string;
   bitcoinAddress: string;
   ethereumAddress: string;
   litecoinAddress: string;
