@@ -3,6 +3,7 @@ import MobileSideNav from "@/components/dashboard/nav/MobileSideNav";
 import NavBar from "@/components/dashboard/nav/NavBar";
 import SideNav from "@/components/dashboard/nav/SideNav";
 import { auth } from "@/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -11,22 +12,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
 
   useEffect(() => {
-    const isUser = async () => {
-      try {
-        const user = auth.currentUser;
-        if (user) {
-          setAuthUser(true);
-        } else {
-          setAuthUser(false);
-          router.push("/");
-        }
-      } catch (error: any) {
-        console.log(`no user: ${error.message}`);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setAuthUser(true);
+      } else {
+        setAuthUser(false);
+        router.push("/");
       }
-    };
+    });
 
-    isUser();
-  });
+    // Cleanup the subscription to avoid memory leaks
+    return () => unsubscribe();
+  }, [router]);
   return (
     <div>
       {authUser ? (

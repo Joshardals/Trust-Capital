@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { auth } from "@/firebase";
 import { fetchUser } from "@/lib/action/user.action";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, browserLocalPersistence, setPersistence, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
 const Login = () => {
@@ -11,6 +11,7 @@ const Login = () => {
   const provider = new GoogleAuthProvider();
   const handleSignup = async () => {
     try {
+      await setPersistence(auth, browserLocalPersistence);
       const userCredential = await signInWithPopup(auth, provider);
 
       const result = userCredential;
