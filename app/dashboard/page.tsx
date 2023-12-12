@@ -11,12 +11,6 @@ export const metadata: Metadata = {
 };
 
 const page = async () => {
-
-  // if (userId) {
-  //   const userDetails = await fetchUser(userId);
-
-  //   console.log(userDetails);
-  // }
   return (
    <div>
     <Dashboard />

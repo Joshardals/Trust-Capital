@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Form,
   FormControl,
@@ -78,6 +78,8 @@ export function UserAuthForm() {
 
     setIsLoading(false);
     setIsDisabled(false);
+
+    localStorage.setItem("hasCompletedOnboarding", "true");
 
     router.push("/dashboard");
   };

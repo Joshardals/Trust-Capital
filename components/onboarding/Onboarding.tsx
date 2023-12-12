@@ -15,7 +15,15 @@ export default function Onboarding() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setAuthUser(true);
+        const hasCompletedOnboarding = localStorage.getItem(
+          "hasCompletedOnboarding"
+        );
+
+        if (hasCompletedOnboarding) {
+          router.push("/dashboard");
+        } else {
+          setAuthUser(true);
+        }
       } else {
         setAuthUser(false);
         router.push("/");

@@ -15,9 +15,17 @@ import { Icons } from "@/components/icons";
 import Link from "next/link";
 import { EditValidation } from "@/lib/validations/form";
 import { EditValidationType } from "@/typings";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { auth } from "@/firebase";
+import { fetchWallets } from "@/lib/action/wallet.action";
 
 const EditAccount = () => {
+  const user = auth.currentUser?.providerData[0];
+  const userId = user?.uid || "";
+  const displayName = user?.displayName || "";
+  const firstName = displayName.split(" ")[0];
+  const lastName = displayName.split(" ")[1];
+
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<EditValidationType>({
     resolver: zodResolver(EditValidation),
@@ -32,6 +40,25 @@ const EditAccount = () => {
       shibaAddress: "",
     },
   });
+
+  useEffect(() => {
+    const walletData = async () => {
+      const res = await fetchWallets(userId);
+
+      form.setValue("usdtAddress", res?.usdtAddress);
+      form.setValue("bitcoinAddress", res?.btcAddress);
+      form.setValue("ethereumAddress", res?.ethereumAddress);
+      form.setValue("litecoinAddress", res?.litecoinAddress);
+      form.setValue("dogeAddress", res?.dogeAddress);
+      form.setValue("tronAddress", res?.tronAddress);
+      form.setValue("bnbAddress", res?.bnbAddress);
+      form.setValue("shibaAddress", res?.shibaAddress);
+      console.log(res);
+    };
+
+    walletData();
+  });
+
   const onSubmit = async (values: EditValidationType) => {
     setIsLoading(true);
 
@@ -52,7 +79,7 @@ const EditAccount = () => {
               className=" py-2 px-5 bg-darkblue/10 border border-navyblue rounded-lg opacity-60"
               id="firstName"
             >
-              <p>Tommy</p>
+              <p>{firstName}</p>
             </div>
           </div>
           <div className="grid md:grid-cols-2 max-md:gap-2 items-center">
@@ -64,7 +91,7 @@ const EditAccount = () => {
               className=" py-2 px-5 bg-darkblue/10 opacity-60 border border-navyblue rounded-lg"
               id="lastName"
             >
-              <p>Shelby</p>
+              <p>{lastName}</p>
             </div>
           </div>
           <div className="grid md:grid-cols-2 max-md:gap-2 items-center">
@@ -76,7 +103,7 @@ const EditAccount = () => {
               className=" py-2 px-5 flex-1 bg-darkblue/10 opacity-60 border border-navyblue rounded-lg"
               id="email"
             >
-              <p>tommyshelby@gmail.com</p>
+              <p>{user?.email}</p>
             </div>
           </div>
 
