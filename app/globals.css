@@ -71,7 +71,7 @@
 
 @layer utilities {
   .disableForm {
-    @apply opacity-60
+    @apply opacity-50
   }
   .disableInput {
     @apply bg-darkblue/10 absolute top-0 left-0 w-full h-full cursor-not-allowed select-none;

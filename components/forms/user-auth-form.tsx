@@ -19,7 +19,7 @@ import Link from "next/link";
 import { auth } from "@/firebase";
 import { useRouter } from "next/navigation";
 import { updateUser } from "@/lib/action/user.action";
-import { updateWallet } from "@/lib/action/wallet.action";
+import { createWallet, updateWallet } from "@/lib/action/wallet.action";
 
 export function UserAuthForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -53,7 +53,7 @@ export function UserAuthForm() {
       onboarded: true || "",
     });
 
-    await updateWallet({
+    await createWallet({
       id: user?.uid || "",
       usdtAddress: values.usdtAddress,
       btcAddress: values.bitcoinAddress,
@@ -64,8 +64,6 @@ export function UserAuthForm() {
       bnbAddress: values.bnbAddress,
       shibaAddress: values.shibaAddress,
     });
-
-    console.log("USDT ADDRESS:", values.usdtAddress);
 
     form.setValue("usdtAddress", "");
     form.setValue("bitcoinAddress", "");
@@ -90,61 +88,6 @@ export function UserAuthForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-5 font-sans w-full flex flex-col md:h-screen"
       >
-        {/* <div className="flex space-y-4 flex-col">
-          <h1 className=" max-md:text-lg text-xl text-navyblue font-bold">
-            Personal Information
-          </h1>
-          <div className="md:flex-1">
-            <FormField
-              control={form.control}
-              name="firstName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl className="no-focus text-xs">
-                    <Input
-                      placeholder="First Name"
-                      className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
-                      {...field}
-                      onChange={(e) => {
-                        const capitalizedValue =
-                          e.target.value.charAt(0).toUpperCase() +
-                          e.target.value.slice(1);
-                        form.setValue("firstName", capitalizedValue);
-                      }}
-                    />
-                  </FormControl>
-                  <FormMessage className="text-purered text-xs" />
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className="flex-1">
-            <FormField
-              control={form.control}
-              name="lastName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl className="no-focus text-xs">
-                    <Input
-                      placeholder="Last Name"
-                      disabled={isLoading}
-                      className="py-2 px-5 border border-navyblue text-sm transition-all duration-500"
-                      {...field}
-                      onChange={(e) => {
-                        const capitalizedValue =
-                          e.target.value.charAt(0).toUpperCase() +
-                          e.target.value.slice(1);
-                        form.setValue("lastName", capitalizedValue);
-                      }}
-                    />
-                  </FormControl>
-                  <FormMessage className="text-purered text-xs" />
-                </FormItem>
-              )}
-            />
-          </div>
-        </div> */}
-
         {/*-------------------------------- Account Information ----------------------------*/}
 
         <div>

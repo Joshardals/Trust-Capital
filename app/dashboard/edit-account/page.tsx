@@ -1,11 +1,16 @@
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
 import { Metadata } from "next";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import EditAccount from "@/components/forms/EditAccount";
 
 export const metadata: Metadata = {
@@ -16,15 +21,8 @@ export const metadata: Metadata = {
 
 const page = async () => {
   return (
-    <div className=" font-sans space-y-8 text-navyblue md:p-5 max-md:p-5 bg-babyblue">
-      <div className="space-y-8 h-full">
-        <h1 className="capitalize text-lg font-semibold text-darkblue">
-          edit account
-        </h1>
-        <div>
-          <EditAccount />
-        </div>
-      </div>
+    <div>
+      <EditAccount />
     </div>
   );
 };
