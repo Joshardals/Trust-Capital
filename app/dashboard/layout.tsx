@@ -2,6 +2,7 @@
 import MobileSideNav from "@/components/dashboard/nav/MobileSideNav";
 import NavBar from "@/components/dashboard/nav/NavBar";
 import SideNav from "@/components/dashboard/nav/SideNav";
+import Loading from "@/components/ui/Loading";
 import { auth } from "@/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/navigation";
@@ -26,6 +27,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [router]);
   return (
     <div>
+      {authUser ? null : (
+        <Loading />
+      )}
       {authUser ? (
         <div className="flex max-md:flex-col">
           <div className="md:hidden">

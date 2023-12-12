@@ -1,34 +1,32 @@
 "use client";
 import { UserAuthForm } from "@/components/forms/user-auth-form";
 import { auth } from "@/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Loading from "../ui/Loading";
 
 export default function Onboarding() {
   const [authUser, setAuthUser] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    const isUser = async () => {
-      try {
-        const user = auth.currentUser;
-        if (user) {
-          setAuthUser(true);
-        } else {
-          setAuthUser(false);
-          router.push("/");
-        }
-      } catch (error: any) {
-        console.log(`no user: ${error.message}`);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setAuthUser(true);
+      } else {
+        setAuthUser(false);
+        router.push("/");
       }
-    };
+    });
 
-    isUser();
-  });
+    return () => unsubscribe();
+  }, [router]);
   return (
     <div className="block">
+      {authUser ? null : <Loading />}
       {authUser ? (
         <>
           {/* Start of code for Desktop Users */}
