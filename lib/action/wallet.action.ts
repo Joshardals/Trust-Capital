@@ -55,41 +55,6 @@ export async function createWallet({
   }
 }
 
-export async function updateWallet({
-  id,
-  usdtAddress,
-  btcAddress,
-  ethereumAddress,
-  litecoinAddress,
-  dogeAddress,
-  tronAddress,
-  bnbAddress,
-  shibaAddress,
-}: params) {
-  try {
-    const walletDocRef = doc(db, "wallets", id);
-    setDoc(
-      walletDocRef,
-      {
-        walletId: id,
-        usdtAddress,
-        btcAddress,
-        ethereumAddress,
-        litecoinAddress,
-        dogeAddress,
-        tronAddress,
-        bnbAddress,
-        shibaAddress,
-        updatedAt: serverTimestamp(),
-      },
-      { merge: true }
-    );
-    console.log("Wallet Succesfully Updated!");
-  } catch (error: any) {
-    console.log(`Error creating wallets! ${error.message}`);
-  }
-}
-
 export async function fetchWallets(id: string) {
   try {
     const walletDocRef = doc(db, "wallets", id);

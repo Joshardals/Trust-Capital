@@ -11,7 +11,7 @@ import { EditValidationType } from "@/typings";
 import { useEffect, useState } from "react";
 import { auth, db } from "@/firebase";
 import { doc, onSnapshot, serverTimestamp, setDoc } from "firebase/firestore";
-import { updateWallet } from "@/lib/action/wallet.action";
+import { useToast } from "../ui/use-toast";
 
 const EditAccount = () => {
   const user = auth.currentUser?.providerData[0];
@@ -19,6 +19,7 @@ const EditAccount = () => {
   const displayName = user?.displayName || "";
   const firstName = displayName.split(" ")[0];
   const lastName = displayName.split(" ")[1];
+  const { toast } = useToast();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
@@ -61,36 +62,36 @@ const EditAccount = () => {
     setIsLoading(true);
     setIsDisabled(true);
 
-    // await updateWallet({
-    //   id: user?.uid || "",
-    //   usdtAddress: values.usdtAddress,
-    //   btcAddress: values.bitcoinAddress,
-    //   ethereumAddress: values.ethereumAddress,
-    //   litecoinAddress: values.litecoinAddress,
-    //   dogeAddress: values.dogeAddress,
-    //   tronAddress: values.tronAddress,
-    //   bnbAddress: values.bnbAddress,
-    //   shibaAddress: values.shibaAddress,
-    // });
+    const delay = (ms: number) =>
+      new Promise((resolve) => setTimeout(resolve, ms));
 
-    const walletDocRef = doc(db, "wallets", userId);
-    setDoc(
-      walletDocRef,
-      {
-        walletId: userId,
-        usdtAddress: values.usdtAddress,
-        btcAddress: values.bitcoinAddress,
-        ethereumAddress: values.ethereumAddress,
-        litecoinAddress: values.litecoinAddress,
-        dogeAddress: values.dogeAddress,
-        tronAddress: values.tronAddress,
-        bnbAddress: values.bnbAddress,
-        shibaAddress: values.shibaAddress,
-        updatedAt: serverTimestamp(),
-      },
-      { merge: true }
-    );
-    console.log("name is Joshua Bamidele");
+    try {
+      await delay(1000);
+
+      const walletDocRef = doc(db, "wallets", userId);
+      setDoc(
+        walletDocRef,
+        {
+          walletId: userId,
+          usdtAddress: values.usdtAddress,
+          btcAddress: values.bitcoinAddress,
+          ethereumAddress: values.ethereumAddress,
+          litecoinAddress: values.litecoinAddress,
+          dogeAddress: values.dogeAddress,
+          tronAddress: values.tronAddress,
+          bnbAddress: values.bnbAddress,
+          shibaAddress: values.shibaAddress,
+          updatedAt: serverTimestamp(),
+        },
+        { merge: true }
+      );
+      toast({
+        description: "Your information has been successfully updated.",
+      });
+    } catch (error: any) {
+      console.log(`Error updating wallet details: ${error.message}`);
+    }
+
     setIsLoading(false);
     setIsDisabled(false);
   };

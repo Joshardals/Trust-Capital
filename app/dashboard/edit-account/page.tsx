@@ -1,17 +1,6 @@
 import { Metadata } from "next";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import EditAccount from "@/components/forms/EditAccount";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Edit Account | Trust-Capital Investment",
@@ -23,6 +12,8 @@ const page = async () => {
   return (
     <div>
       <EditAccount />
+
+      <Toaster />
     </div>
   );
 };

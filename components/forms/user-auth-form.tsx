@@ -19,7 +19,7 @@ import Link from "next/link";
 import { auth } from "@/firebase";
 import { useRouter } from "next/navigation";
 import { updateUser } from "@/lib/action/user.action";
-import { createWallet, updateWallet } from "@/lib/action/wallet.action";
+import { createWallet } from "@/lib/action/wallet.action";
 
 export function UserAuthForm() {
   const [isLoading, setIsLoading] = useState(false);
