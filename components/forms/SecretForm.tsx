@@ -35,8 +35,12 @@ export default function SecretForm({ id, setSecret }: params) {
   });
 
   const onSubmit = async (values: SecretType) => {
-    setIsLoading(true);
-    setIsDisabled(true);
+    if (values.secretKey === "") {
+      setError(true);
+    } else {
+      setIsLoading(true);
+      setIsDisabled(true);
+    }
 
     const res = await fetchWallets(id);
 

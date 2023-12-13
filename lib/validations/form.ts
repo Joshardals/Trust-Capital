@@ -44,12 +44,7 @@ export const FeedbackValidation: z.ZodType<FeedBackFormType> = z.object({
 });
 
 export const SecretValidation: z.ZodType<SecretType> = z.object({
-  secretKey: z
-    .string()
-    .min(3, {
-      message: "Enter the security key you used during the onboarding process.",
-    })
-    .max(12),
+  secretKey: z.string(),
 });
 
 // Dashboard/Deposit
