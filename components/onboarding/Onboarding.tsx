@@ -15,15 +15,7 @@ export default function Onboarding() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const hasCompletedOnboarding = localStorage.getItem(
-          "hasCompletedOnboarding"
-        );
-
-        if (hasCompletedOnboarding) {
-          router.push("/dashboard");
-        } else {
-          setAuthUser(true);
-        }
+        setAuthUser(true);
       } else {
         setAuthUser(false);
         router.push("/");
@@ -58,9 +50,9 @@ export default function Onboarding() {
                   </h1>
 
                   <p>
-                    Your USDT wallet address is required; the remaining
-                    information can be changed in your dashboard&apos;s edit
-                    settings.
+                    The USDT wallet address is necessary; you can modify the
+                    remaining details in the edit section of your dashboard. and
+                    it's crucial that you safeguard your secret key.
                   </p>
                 </div>
               </div>
@@ -87,9 +79,9 @@ export default function Onboarding() {
                   </h1>
 
                   <p className="text-babyblue font-sans">
-                    Your USDT wallet address is required; the remaining
-                    information can be changed in your dashboard&apos;s edit
-                    settings.
+                    The USDT wallet address is necessary; you can modify the
+                    remaining details in the edit section of your dashboard. and
+                    it's crucial that you safeguard your secret key.
                   </p>
                 </div>
                 <div className="absolute top-0 left-0 h-full w-full bg-navyblue/70" />

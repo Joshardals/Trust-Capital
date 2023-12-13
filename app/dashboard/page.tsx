@@ -1,7 +1,4 @@
-import { auth } from "@/firebase";
-import { useEffect, useState } from "react";
 import { Metadata } from "next";
-import { fetchUser } from "@/lib/action/user.action";
 import { Dashboard } from "@/components/dashboard/content/Dashboard";
 
 export const metadata: Metadata = {
@@ -12,9 +9,9 @@ export const metadata: Metadata = {
 
 const page = async () => {
   return (
-   <div>
-    <Dashboard />
-   </div>
+    <div>
+      <Dashboard />
+    </div>
   );
 };
 

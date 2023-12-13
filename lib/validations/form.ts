@@ -3,32 +3,22 @@ import {
   EditValidationType,
   FeedBackFormType,
   PlanItemProps,
-  PlansType,
+  SecretType,
   SignInValidationType,
   SignUpValidationType,
 } from "@/typings";
 
-// const isStrongPassword = (password: string) => {
-//   // Add your password strength criteria here
-//   // For example: minimum length, uppercase, lowercase, numbers, and special characters
-//   const minLength = 8;
-//   const hasUppercase = /[A-Z]/.test(password);
-//   const hasLowercase = /[a-z]/.test(password);
-//   const hasNumber = /\d/.test(password);
-//   const hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password);
-
-//   return (
-//     password.length >= minLength &&
-//     hasUppercase &&
-//     hasLowercase &&
-//     hasNumber &&
-//     hasSpecialChar
-//   );
-// };
-
 export const SignUpValidation: z.ZodType<SignUpValidationType> = z.object({
-  // firstName: z.string().min(3).max(100),
-  // lastName: z.string().min(3).max(100),
+  secretKey: z
+    .string()
+    .min(3, {
+      message:
+        "Ensure you safeguard your secret key, min of 3 characters and a max of 12 characters.",
+    })
+    .max(12, {
+      message:
+        "Ensure you safeguard your secret key, min of 3 characters and a max of 12 characters.",
+    }),
   bitcoinAddress: z.string().max(100),
   ethereumAddress: z.string().max(100),
   litecoinAddress: z.string().max(100),
@@ -51,6 +41,15 @@ export const FeedbackValidation: z.ZodType<FeedBackFormType> = z.object({
   name: z.string().min(3).max(100),
   email: z.string().email().min(10).max(100),
   message: z.string().min(5).max(200),
+});
+
+export const SecretValidation: z.ZodType<SecretType> = z.object({
+  secretKey: z
+    .string()
+    .min(3, {
+      message: "Enter the security key you used during the onboarding process.",
+    })
+    .max(12),
 });
 
 // Dashboard/Deposit

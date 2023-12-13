@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import {
+  editStoreState,
   navStoreState,
   sideStoreState,
   supportStoreState,
@@ -18,4 +19,12 @@ export const usesideBarStore = create<sideStoreState>((set) => ({
 export const useSupportStore = create<supportStoreState>((set) => ({
   support: false,
   setSupport: () => set((state) => ({ support: !state.support })),
+}));
+
+export const useEditStore = create<editStoreState>((set) => ({
+  editAcct: false,
+  setEditAcct: () =>
+    set((state) => ({
+      editAcct: !state.editAcct,
+    })),
 }));

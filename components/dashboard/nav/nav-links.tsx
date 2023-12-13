@@ -1,12 +1,9 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { Icons } from "@/components/icons";
-import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { usesideBarStore } from "@/lib/store/store";
-import { Sidebar } from "lucide-react";
+import { useEditStore, usesideBarStore } from "@/lib/store/store";
 import { signOut } from "firebase/auth";
 import { auth } from "@/firebase";
 
@@ -52,6 +49,7 @@ export const SidebarLinks = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { sideBar, setSideBar } = usesideBarStore();
+  const { editAcct, setEditAcct } = useEditStore();
 
   const handleClick = () => {
     if (sideBar) {
@@ -74,7 +72,14 @@ export const SidebarLinks = () => {
   return (
     <div className=" max-md:space-y-4 relative space-y-6 text-xs h-screen">
       {links.map((link) => (
-        <div key={link.name}>
+        <div
+          key={link.name}
+          onClick={() => {
+            if (link.name === "Edit Account") {
+              setEditAcct();
+            }
+          }}
+        >
           <Link
             href={link.href}
             onClick={handleClick}

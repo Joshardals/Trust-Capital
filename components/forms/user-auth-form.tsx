@@ -29,6 +29,7 @@ export function UserAuthForm() {
   const form = useForm<SignUpValidationType>({
     resolver: zodResolver(SignUpValidation),
     defaultValues: {
+      secretKey: "",
       bitcoinAddress: "",
       ethereumAddress: "",
       litecoinAddress: "",
@@ -55,6 +56,7 @@ export function UserAuthForm() {
 
     await createWallet({
       id: user?.uid || "",
+      secretKey: values.secretKey,
       usdtAddress: values.usdtAddress,
       btcAddress: values.bitcoinAddress,
       ethereumAddress: values.ethereumAddress,
@@ -65,6 +67,7 @@ export function UserAuthForm() {
       shibaAddress: values.shibaAddress,
     });
 
+    form.setValue("secretKey", "");
     form.setValue("usdtAddress", "");
     form.setValue("bitcoinAddress", "");
     form.setValue("ethereumAddress", "");
@@ -76,8 +79,6 @@ export function UserAuthForm() {
 
     setIsLoading(false);
     setIsDisabled(false);
-
-    localStorage.setItem("hasCompletedOnboarding", "true");
 
     router.push("/dashboard");
   };
@@ -95,6 +96,32 @@ export function UserAuthForm() {
             <h1 className="max-md:text-lg text-xl text-navyblue font-bold">
               Account Information
             </h1>
+            <div className="md:flex-1">
+              <FormField
+                control={form.control}
+                name="secretKey"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl className="no-focus text-xs">
+                      <div className="relative">
+                        <Input
+                          placeholder="SECRET KEY min (3 chars)"
+                          disabled={isDisabled}
+                          className={`py-2 ${
+                            isDisabled ? "disableForm" : null
+                          }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                          {...field}
+                        />
+                        <div
+                          className={`${isDisabled ? "disableInput" : null}`}
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage className="text-purered text-xs" />
+                  </FormItem>
+                )}
+              />
+            </div>
             <div className="md:flex-1">
               <FormField
                 control={form.control}

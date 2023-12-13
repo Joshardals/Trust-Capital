@@ -14,13 +14,16 @@ export interface supportStoreState {
   setSupport: () => void;
 }
 
+export interface editStoreState {
+  editAcct: boolean; 
+  setEditAcct: () => void; 
+}
 // Zustand Definitions End
 
 // Form Definitions Start
 
 export interface SignUpValidationType {
-  // firstName: string;
-  // lastName: string;
+  secretKey: string; 
   bitcoinAddress: string;
   ethereumAddress: string;
   litecoinAddress: string;
@@ -44,6 +47,10 @@ export interface FeedBackFormType {
 
 export interface PlansType {
   plan: any;
+}
+
+export interface SecretType {
+  secretKey: string; 
 }
 
 // Form Definitions End

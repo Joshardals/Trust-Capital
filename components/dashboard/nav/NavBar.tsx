@@ -16,7 +16,7 @@ const NavBar = () => {
   return (
     <div className="relative">
       <div
-        className={`grid grid-cols-3 items-center fixed left-0 right-0 top-0 bottom-0 w-full h-16 px-5 bg-navyblue z-10 select-none
+        className={`grid grid-cols-3 items-center fixed left-0 right-0 top-0 bottom-0 w-full h-16 px-5 bg-navyblue z-20 select-none
      border-b border-b-goldenrod`}
       >
         <div className="flex flex-1 w-full items-center">

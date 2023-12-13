@@ -4,8 +4,6 @@ import TradingViewChart from "@/components/dashboard/content/Chart";
 import Referral from "@/components/dashboard/content/Referral";
 import StartTrade from "@/components/dashboard/content/StartTrade";
 import { auth } from "@/firebase";
-import { fetchUser } from "@/lib/action/user.action";
-import { useEffect } from "react";
 
 export function Dashboard() {
   const user = auth.currentUser?.providerData[0];
