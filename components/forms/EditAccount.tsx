@@ -42,6 +42,7 @@ const EditAccount = () => {
     onSnapshot(walletDocRef, (doc) => {
       if (doc.exists()) {
         const res = doc.data();
+        console.log(res);
         form.setValue("usdtAddress", res?.usdtAddress);
         form.setValue("bitcoinAddress", res?.btcAddress);
         form.setValue("ethereumAddress", res?.ethereumAddress);
@@ -59,7 +60,6 @@ const EditAccount = () => {
   const onSubmit = async (values: EditValidationType) => {
     setIsLoading(true);
     setIsDisabled(true);
-    console.log(user);
 
     await updateWallet({
       id: user?.uid || "",
