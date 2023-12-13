@@ -55,25 +55,25 @@ const EditAccount = () => {
         console.log("no-data");
       }
     });
-  });
+  }, [form]);
 
   const onSubmit = async (values: EditValidationType) => {
     setIsLoading(true);
     setIsDisabled(true);
 
-    // await updateWallet({
-    //   id: user?.uid || "",
-    //   usdtAddress: values.usdtAddress,
-    //   btcAddress: values.bitcoinAddress,
-    //   ethereumAddress: values.ethereumAddress,
-    //   litecoinAddress: values.litecoinAddress,
-    //   dogeAddress: values.dogeAddress,
-    //   tronAddress: values.tronAddress,
-    //   bnbAddress: values.bnbAddress,
-    //   shibaAddress: values.shibaAddress,
-    // });
+    await updateWallet({
+      id: user?.uid || "",
+      usdtAddress: values.usdtAddress,
+      btcAddress: values.bitcoinAddress,
+      ethereumAddress: values.ethereumAddress,
+      litecoinAddress: values.litecoinAddress,
+      dogeAddress: values.dogeAddress,
+      tronAddress: values.tronAddress,
+      bnbAddress: values.bnbAddress,
+      shibaAddress: values.shibaAddress,
+    });
 
-    console.log("name is Joshua Bamidele")
+    console.log("name is Joshua Bamidele");
     setIsLoading(false);
     setIsDisabled(false);
   };
