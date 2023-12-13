@@ -46,12 +46,10 @@ export default function SecretForm({ id, setSecret }: params) {
     });
 
     if (secretKey) {
-      console.log("Secret Key matches!!!");
       setError(false);
       setSecret(true);
     } else {
       setError(true);
-      console.log("Secret key doesn't match!!");
     }
     setIsLoading(false);
     setIsDisabled(false);
@@ -95,7 +93,7 @@ export default function SecretForm({ id, setSecret }: params) {
               />
               {error ? (
                 <p className="text-purered text-xs">
-                  Incorrect secret key; try again, please. If you can't
+                  Incorrect secret key; try again, please. If you can&apos;t
                   remember, get in touch with support.
                 </p>
               ) : null}
