@@ -52,7 +52,7 @@ export default function Onboarding() {
                   <p>
                     The USDT wallet address is necessary; you can modify the
                     remaining details in the edit section of your dashboard. and
-                    it's crucial that you safeguard your secret key.
+                    it&apos;s crucial that you safeguard your secret key.
                   </p>
                 </div>
               </div>
@@ -81,7 +81,7 @@ export default function Onboarding() {
                   <p className="text-babyblue font-sans">
                     The USDT wallet address is necessary; you can modify the
                     remaining details in the edit section of your dashboard. and
-                    it's crucial that you safeguard your secret key.
+                    it&apos;s crucial that you safeguard your secret key.
                   </p>
                 </div>
                 <div className="absolute top-0 left-0 h-full w-full bg-navyblue/70" />
