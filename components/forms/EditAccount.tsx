@@ -43,17 +43,6 @@ const EditAccount = () => {
   });
 
   useEffect(() => {
-    // const fetchDetails = async () => {
-    //   const res = await fetchWallets(userId);
-    //   console.log(res?.secretKey);
-
-    //   if (res?.secretKey) {
-    //     setSecret(true)
-    //   }
-    // };
-
-    // fetchDetails();
-
     if (editAcct) {
       console.log("Edit Account link has been triggered");
     }

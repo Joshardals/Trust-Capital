@@ -42,8 +42,6 @@ export default function SecretForm({ id, setSecret }: params) {
       setIsDisabled(true);
     }
 
-    const res = await fetchWallets(id);
-
     const secretKey = await checkSecretKey({
       id,
       providedKey: values?.secretKey,

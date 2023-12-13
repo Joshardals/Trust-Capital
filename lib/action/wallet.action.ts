@@ -7,6 +7,7 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { db } from "@/firebase";
+import { revalidatePath } from "next/cache";
 
 const bcrypt = require("bcrypt");
 
@@ -73,6 +74,8 @@ export async function fetchWallets(id: string) {
 
     if (walletDocSnap.exists()) {
       const walletData = walletDocSnap.data();
+
+      revalidatePath("/dashboard/withdraw");
       return walletData;
     }
   } catch (error: any) {

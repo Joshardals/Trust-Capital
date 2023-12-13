@@ -1,6 +1,38 @@
-import React from "react";
+"use client";
+
+import { auth, db } from "@/firebase";
+import { fetchWallets } from "@/lib/action/wallet.action";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { useEffect, useState } from "react";
+
+interface walletDetails {
+  btcAddress: string;
+  // usdtAddress: string;
+  // ethereumAddress: string;
+  // litecoinAddress: string;
+  // dogeAddress: string;
+  // tronAddress: string;
+  // bnbAddress: string;
+  // shibaAddress: string;
+}
 
 const Withdraw = () => {
+  const user = auth.currentUser?.providerData[0];
+  const userId = user?.uid || "";
+  const [wallet, setWallet] = useState<walletDetails>();
+
+  useEffect(() => {
+    const walletDocRef = doc(db, "wallets", userId);
+    onSnapshot(walletDocRef, (doc) => {
+      if (doc.exists()) {
+        const res = doc.data();
+        setWallet(res as walletDetails);
+      } else {
+        console.log("no-data");
+      }
+    });
+  }, []);
+
   return (
     <div className="">
       <div className=" border border-navyblue w-full overflow-x-auto">
@@ -25,7 +57,7 @@ const Withdraw = () => {
             BITCOIN Wallet Address:
           </p>
           <p className="font-semibold md:py-2 col-span-2">
-            majesticwaterfall222299
+            {wallet?.btcAddress}
           </p>
         </div>
 
