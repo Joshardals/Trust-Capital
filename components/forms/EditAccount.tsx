@@ -10,7 +10,7 @@ import { EditValidation } from "@/lib/validations/form";
 import { EditValidationType } from "@/typings";
 import { useEffect, useState } from "react";
 import { auth, db } from "@/firebase";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, serverTimestamp, setDoc } from "firebase/firestore";
 import { updateWallet } from "@/lib/action/wallet.action";
 
 const EditAccount = () => {
@@ -61,18 +61,35 @@ const EditAccount = () => {
     setIsLoading(true);
     setIsDisabled(true);
 
-    await updateWallet({
-      id: user?.uid || "",
-      usdtAddress: values.usdtAddress,
-      btcAddress: values.bitcoinAddress,
-      ethereumAddress: values.ethereumAddress,
-      litecoinAddress: values.litecoinAddress,
-      dogeAddress: values.dogeAddress,
-      tronAddress: values.tronAddress,
-      bnbAddress: values.bnbAddress,
-      shibaAddress: values.shibaAddress,
-    });
+    // await updateWallet({
+    //   id: user?.uid || "",
+    //   usdtAddress: values.usdtAddress,
+    //   btcAddress: values.bitcoinAddress,
+    //   ethereumAddress: values.ethereumAddress,
+    //   litecoinAddress: values.litecoinAddress,
+    //   dogeAddress: values.dogeAddress,
+    //   tronAddress: values.tronAddress,
+    //   bnbAddress: values.bnbAddress,
+    //   shibaAddress: values.shibaAddress,
+    // });
 
+    const walletDocRef = doc(db, "wallets", userId);
+    setDoc(
+      walletDocRef,
+      {
+        walletId: userId,
+        usdtAddress: values.usdtAddress,
+        btcAddress: values.bitcoinAddress,
+        ethereumAddress: values.ethereumAddress,
+        litecoinAddress: values.litecoinAddress,
+        dogeAddress: values.dogeAddress,
+        tronAddress: values.tronAddress,
+        bnbAddress: values.bnbAddress,
+        shibaAddress: values.shibaAddress,
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true }
+    );
     console.log("name is Joshua Bamidele");
     setIsLoading(false);
     setIsDisabled(false);
