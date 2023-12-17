@@ -68,7 +68,12 @@ export const EditValidation: z.ZodType<EditValidationType> = z.object({
   bitcoinAddress: z.string().max(100),
   ethereumAddress: z.string().max(100),
   litecoinAddress: z.string().max(100),
-  usdtAddress: z.string().max(100),
+  usdtAddress: z
+    .string()
+    .min(1, {
+      message: "USDT is required",
+    })
+    .max(100),
   dogeAddress: z.string().max(100),
   tronAddress: z.string().max(100),
   bnbAddress: z.string().max(100),

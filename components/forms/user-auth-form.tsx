@@ -20,6 +20,7 @@ import { auth } from "@/firebase";
 import { useRouter } from "next/navigation";
 import { updateUser } from "@/lib/action/user.action";
 import { createWallet } from "@/lib/action/wallet.action";
+import { customAlphabet } from "nanoid";
 
 export function UserAuthForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -47,11 +48,21 @@ export function UserAuthForm() {
     setIsLoading(true);
     setIsDisabled(true);
 
+    const generateRefferalCode = () => {
+      const alphabet =
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      const nanoid = customAlphabet(alphabet, 8);
+      return nanoid();
+    };
+
+    const referralCode = generateRefferalCode();
+
     await updateUser({
       id: user?.uid || "",
       name: user?.displayName || "",
       email: user?.email || "",
       onboarded: true || "",
+      referralCode,
     });
 
     await createWallet({
@@ -111,6 +122,14 @@ export function UserAuthForm() {
                             isDisabled ? "disableForm" : null
                           }  px-5 border border-navyblue text-sm transition-all duration-500`}
                           {...field}
+                          onChange={(e) => {
+                            // Remove spaces as the user types
+                            const valueWithoutSpaces = e.target.value.replace(
+                              /\s/g,
+                              ""
+                            );
+                            form.setValue("secretKey", valueWithoutSpaces);
+                          }}
                         />
                         <div
                           className={`${isDisabled ? "disableInput" : null}`}
@@ -137,6 +156,14 @@ export function UserAuthForm() {
                             isDisabled ? "disableForm" : null
                           }  px-5 border border-navyblue text-sm transition-all duration-500`}
                           {...field}
+                          onChange={(e) => {
+                            // Remove spaces as the user types
+                            const valueWithoutSpaces = e.target.value.replace(
+                              /\s/g,
+                              ""
+                            );
+                            form.setValue("usdtAddress", valueWithoutSpaces);
+                          }}
                         />
                         <div
                           className={`${isDisabled ? "disableInput" : null}`}
@@ -163,6 +190,14 @@ export function UserAuthForm() {
                             isDisabled ? "disableForm" : null
                           }  px-5 border border-navyblue text-sm transition-all duration-500`}
                           {...field}
+                          onChange={(e) => {
+                            // Remove spaces as the user types
+                            const valueWithoutSpaces = e.target.value.replace(
+                              /\s/g,
+                              ""
+                            );
+                            form.setValue("bitcoinAddress", valueWithoutSpaces);
+                          }}
                         />
                         <div
                           className={`${isDisabled ? "disableInput" : null}`}
@@ -189,6 +224,14 @@ export function UserAuthForm() {
                             isDisabled ? "disableForm" : null
                           }  px-5 border border-navyblue text-sm transition-all duration-500`}
                           {...field}
+                          onChange={(e) => {
+                            // Remove spaces as the user types
+                            const valueWithoutSpaces = e.target.value.replace(
+                              /\s/g,
+                              ""
+                            );
+                            form.setValue("ethereumAddress", valueWithoutSpaces);
+                          }}
                         />
                         <div
                           className={`${isDisabled ? "disableInput" : null}`}
@@ -215,6 +258,14 @@ export function UserAuthForm() {
                             isDisabled ? "disableForm" : null
                           }  px-5 border border-navyblue text-sm transition-all duration-500`}
                           {...field}
+                          onChange={(e) => {
+                            // Remove spaces as the user types
+                            const valueWithoutSpaces = e.target.value.replace(
+                              /\s/g,
+                              ""
+                            );
+                            form.setValue("litecoinAddress", valueWithoutSpaces);
+                          }}
                         />
                         <div
                           className={`${isDisabled ? "disableInput" : null}`}
@@ -242,6 +293,14 @@ export function UserAuthForm() {
                             isDisabled ? "disableForm" : null
                           }  px-5 border border-navyblue text-sm transition-all duration-500`}
                           {...field}
+                          onChange={(e) => {
+                            // Remove spaces as the user types
+                            const valueWithoutSpaces = e.target.value.replace(
+                              /\s/g,
+                              ""
+                            );
+                            form.setValue("dogeAddress", valueWithoutSpaces);
+                          }}
                         />
                         <div
                           className={`${isDisabled ? "disableInput" : null}`}
@@ -268,6 +327,14 @@ export function UserAuthForm() {
                             isDisabled ? "disableForm" : null
                           }  px-5 border border-navyblue text-sm transition-all duration-500`}
                           {...field}
+                          onChange={(e) => {
+                            // Remove spaces as the user types
+                            const valueWithoutSpaces = e.target.value.replace(
+                              /\s/g,
+                              ""
+                            );
+                            form.setValue("tronAddress", valueWithoutSpaces);
+                          }}
                         />
                         <div
                           className={`${isDisabled ? "disableInput" : null}`}
@@ -294,6 +361,14 @@ export function UserAuthForm() {
                             isDisabled ? "disableForm" : null
                           }  px-5 border border-navyblue text-sm transition-all duration-500`}
                           {...field}
+                          onChange={(e) => {
+                            // Remove spaces as the user types
+                            const valueWithoutSpaces = e.target.value.replace(
+                              /\s/g,
+                              ""
+                            );
+                            form.setValue("bnbAddress", valueWithoutSpaces);
+                          }}
                         />
                         <div
                           className={`${isDisabled ? "disableInput" : null}`}
@@ -320,6 +395,14 @@ export function UserAuthForm() {
                             isDisabled ? "disableForm" : null
                           }  px-5 border border-navyblue text-sm transition-all duration-500`}
                           {...field}
+                          onChange={(e) => {
+                            // Remove spaces as the user types
+                            const valueWithoutSpaces = e.target.value.replace(
+                              /\s/g,
+                              ""
+                            );
+                            form.setValue("shibaAddress", valueWithoutSpaces);
+                          }}
                         />
                         <div
                           className={`${isDisabled ? "disableInput" : null}`}

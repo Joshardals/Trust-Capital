@@ -1,19 +1,19 @@
 "use client";
 
 import { auth, db } from "@/firebase";
-import { fetchWallets } from "@/lib/action/wallet.action";
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import Address from "./Address";
 
 interface walletDetails {
   btcAddress: string;
-  // usdtAddress: string;
-  // ethereumAddress: string;
-  // litecoinAddress: string;
-  // dogeAddress: string;
-  // tronAddress: string;
-  // bnbAddress: string;
-  // shibaAddress: string;
+  usdtAddress: string;
+  ethereumAddress: string;
+  litecoinAddress: string;
+  dogeAddress: string;
+  tronAddress: string;
+  bnbAddress: string;
+  shibaAddress: string;
 }
 
 const Withdraw = () => {
@@ -31,7 +31,7 @@ const Withdraw = () => {
         console.log("no-data");
       }
     });
-  }, []);
+  }, [userId]);
 
   return (
     <div className="">
@@ -43,77 +43,14 @@ const Withdraw = () => {
           <p className="font-semibold md:py-2 col-span-2">$0.00</p>
         </div>
 
-        <div className="grid md:grid-cols-3 md:gap-4 border-b border-b-navyblue max-md:py-2 max-md:px-5 max-md:space-y-2">
-          <p className="md:border-r md:border-r-navyblue md:px-5 md:py-2">
-            USDT Wallet Address:
-          </p>
-          <p className="font-semibold md:py-2 col-span-2">
-            majesticwaterfall222299
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 md:gap-4 border-b border-b-navyblue max-md:py-2 max-md:px-5 max-md:space-y-2">
-          <p className="md:border-r md:border-r-navyblue md:px-5 md:py-2">
-            BITCOIN Wallet Address:
-          </p>
-          <p className="font-semibold md:py-2 col-span-2">
-            {wallet?.btcAddress}
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 md:gap-4 border-b border-b-navyblue max-md:py-2 max-md:px-5 max-md:space-y-2">
-          <p className="md:border-r md:border-r-navyblue md:px-5 md:py-2">
-            ETHEREUM Wallet Address:
-          </p>
-          <p className="font-semibold md:py-2 col-span-2">
-            majesticwaterfall222299
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 md:gap-4 border-b border-b-navyblue max-md:py-2 max-md:px-5 max-md:space-y-2">
-          <p className="md:border-r md:border-r-navyblue md:px-5 md:py-2">
-            LITECOIN Wallet Address:
-          </p>
-          <p className="font-semibold md:py-2 col-span-2">
-            majesticwaterfall222299
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 md:gap-4 border-b border-b-navyblue max-md:py-2 max-md:px-5 max-md:space-y-2">
-          <p className="md:border-r md:border-r-navyblue md:px-5 md:py-2">
-            DOGECOIN Wallet Address:
-          </p>
-          <p className="font-semibold md:py-2 col-span-2">
-            majesticwaterfall222299
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 md:gap-4 border-b border-b-navyblue max-md:py-2 max-md:px-5 max-md:space-y-2">
-          <p className="md:border-r md:border-r-navyblue md:px-5 md:py-2">
-            TRON Wallet Address:
-          </p>
-          <p className="font-semibold md:py-2 col-span-2">
-            majesticwaterfall222299
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 md:gap-4 border-b border-b-navyblue max-md:py-2 max-md:px-5 max-md:space-y-2">
-          <p className="md:border-r md:border-r-navyblue md:px-5 md:py-2">
-            BNB Wallet Address:
-          </p>
-          <p className="font-semibold md:py-2 col-span-2">
-            majesticwaterfall222299
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 md:gap-4 max-md:py-2 max-md:px-5 max-md:space-y-2">
-          <p className="md:border-r md:border-r-navyblue md:px-5 md:py-2">
-            SHIBA INU Wallet Address:
-          </p>
-          <p className="font-semibold md:py-2 col-span-2">
-            majesticwaterfall222299
-          </p>
-        </div>
+        <Address label="USDT" address={wallet?.usdtAddress} />
+        <Address label="BITCOIN" address={wallet?.btcAddress} />
+        <Address label="ETHEREUM" address={wallet?.ethereumAddress} />
+        <Address label="LITECOIN" address={wallet?.litecoinAddress} />
+        <Address label="DOGECOIN" address={wallet?.dogeAddress} />
+        <Address label="TRON" address={wallet?.tronAddress} />
+        <Address label="BNB" address={wallet?.bnbAddress} />
+        <Address label="SHIBA" address={wallet?.shibaAddress} />
       </div>
     </div>
   );

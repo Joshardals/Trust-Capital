@@ -1,5 +1,11 @@
 "use client";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -41,12 +47,6 @@ const EditAccount = () => {
       shibaAddress: "",
     },
   });
-
-  useEffect(() => {
-    if (editAcct) {
-      console.log("Edit Account link has been triggered");
-    }
-  }, []);
 
   useEffect(() => {
     const walletDocRef = doc(db, "wallets", userId);
@@ -107,7 +107,7 @@ const EditAccount = () => {
 
   return (
     <div className="relative overflow-hidden">
-      {secret ? null : <SecretForm id={userId} setSecret={setSecret}/>}
+      {secret ? null : <SecretForm id={userId} setSecret={setSecret} />}
 
       <div
         className={` font-sans space-y-8 ${
@@ -169,25 +169,39 @@ const EditAccount = () => {
                     name="usdtAddress"
                     render={({ field }) => (
                       <FormItem className="grid md:grid-cols-2 max-md:gap-2 items-center">
-                        <Label htmlFor="usdt" className="flex-1">
+                        <Label htmlFor="usdt" className="flex-1 font-semibold">
                           USDT Wallet Address:
                         </Label>
-                        <FormControl className="no-focus flex-1">
-                          <div className="relative">
-                            <Input
-                              id="usdt"
-                              className={`py-2 px-5 ${
-                                isDisabled ? "disableForm" : null
-                              } text-navyblue border border-navyblue`}
-                              {...field}
-                            />
-                            <div
-                              className={`${
-                                isDisabled ? "disableInput" : null
-                              }`}
-                            />
-                          </div>
-                        </FormControl>
+                        <div>
+                          <FormControl className="no-focus flex-1">
+                            <div className="relative">
+                              <Input
+                                id="usdt"
+                                className={`py-2 px-5 ${
+                                  isDisabled ? "disableForm" : null
+                                } text-navyblue border border-navyblue`}
+                                {...field}
+                                onChange={(e) => {
+                                  // Remove spaces as the user types
+                                  const valueWithoutSpaces =
+                                    e.target.value.replace(/\s/g, "");
+                                  form.setValue(
+                                    "usdtAddress",
+                                    valueWithoutSpaces
+                                  );
+                                }}
+                              />
+                              <div
+                                className={`${
+                                  isDisabled ? "disableInput" : null
+                                }`}
+                              />
+                            </div>
+                          </FormControl>
+                         
+                            <FormMessage className="text-purered text-xs mt-2" />
+                     
+                        </div>
                       </FormItem>
                     )}
                   />
@@ -196,7 +210,7 @@ const EditAccount = () => {
                     name="bitcoinAddress"
                     render={({ field }) => (
                       <FormItem className="grid md:grid-cols-2 max-md:gap-2 items-center">
-                        <Label htmlFor="btc" className="flex-1">
+                        <Label htmlFor="btc" className="flex-1 font-semibold">
                           BITCOIN Wallet Address:
                         </Label>
                         <FormControl className="no-focus flex-1">
@@ -207,6 +221,15 @@ const EditAccount = () => {
                                 isDisabled ? "disableForm" : null
                               } text-navyblue border border-navyblue`}
                               {...field}
+                              onChange={(e) => {
+                                // Remove spaces as the user types
+                                const valueWithoutSpaces =
+                                  e.target.value.replace(/\s/g, "");
+                                form.setValue(
+                                  "bitcoinAddress",
+                                  valueWithoutSpaces
+                                );
+                              }}
                             />
                             <div
                               className={`${
@@ -223,7 +246,7 @@ const EditAccount = () => {
                     name="ethereumAddress"
                     render={({ field }) => (
                       <FormItem className="grid md:grid-cols-2 max-md:gap-2 items-center">
-                        <Label htmlFor="eth" className="flex-1">
+                        <Label htmlFor="eth" className="flex-1 font-semibold">
                           ETHEREUM Wallet Address:
                         </Label>
                         <FormControl className="no-focus flex-1">
@@ -234,6 +257,15 @@ const EditAccount = () => {
                                 isDisabled ? "disableForm" : null
                               } text-navyblue border border-navyblue`}
                               {...field}
+                              onChange={(e) => {
+                                // Remove spaces as the user types
+                                const valueWithoutSpaces =
+                                  e.target.value.replace(/\s/g, "");
+                                form.setValue(
+                                  "ethereumAddress",
+                                  valueWithoutSpaces
+                                );
+                              }}
                             />
                             <div
                               className={`${
@@ -250,7 +282,7 @@ const EditAccount = () => {
                     name="litecoinAddress"
                     render={({ field }) => (
                       <FormItem className="grid md:grid-cols-2 max-md:gap-2 items-center">
-                        <Label htmlFor="ltc" className="flex-1">
+                        <Label htmlFor="ltc" className="flex-1 font-semibold">
                           LITECOIN Wallet Address:
                         </Label>
                         <FormControl className="no-focus flex-1">
@@ -261,6 +293,15 @@ const EditAccount = () => {
                                 isDisabled ? "disableForm" : null
                               } text-navyblue border border-navyblue`}
                               {...field}
+                              onChange={(e) => {
+                                // Remove spaces as the user types
+                                const valueWithoutSpaces =
+                                  e.target.value.replace(/\s/g, "");
+                                form.setValue(
+                                  "litecoinAddress",
+                                  valueWithoutSpaces
+                                );
+                              }}
                             />
                             <div
                               className={`${
@@ -277,7 +318,7 @@ const EditAccount = () => {
                     name="dogeAddress"
                     render={({ field }) => (
                       <FormItem className="grid md:grid-cols-2 max-md:gap-2 items-center">
-                        <Label htmlFor="doge" className="flex-1">
+                        <Label htmlFor="doge" className="flex-1 font-semibold">
                           DOGE Wallet Address:
                         </Label>
                         <FormControl className="no-focus flex-1">
@@ -288,6 +329,15 @@ const EditAccount = () => {
                                 isDisabled ? "disableForm" : null
                               } text-navyblue border border-navyblue`}
                               {...field}
+                              onChange={(e) => {
+                                // Remove spaces as the user types
+                                const valueWithoutSpaces =
+                                  e.target.value.replace(/\s/g, "");
+                                form.setValue(
+                                  "dogeAddress",
+                                  valueWithoutSpaces
+                                );
+                              }}
                             />
                             <div
                               className={`${
@@ -304,7 +354,7 @@ const EditAccount = () => {
                     name="tronAddress"
                     render={({ field }) => (
                       <FormItem className="grid md:grid-cols-2 max-md:gap-2 items-center">
-                        <Label htmlFor="tron" className="flex-1">
+                        <Label htmlFor="tron" className="flex-1 font-semibold">
                           TRON Wallet Address:
                         </Label>
                         <FormControl className="no-focus flex-1">
@@ -315,6 +365,15 @@ const EditAccount = () => {
                                 isDisabled ? "disableForm" : null
                               } text-navyblue border border-navyblue`}
                               {...field}
+                              onChange={(e) => {
+                                // Remove spaces as the user types
+                                const valueWithoutSpaces =
+                                  e.target.value.replace(/\s/g, "");
+                                form.setValue(
+                                  "tronAddress",
+                                  valueWithoutSpaces
+                                );
+                              }}
                             />
                             <div
                               className={`${
@@ -331,7 +390,7 @@ const EditAccount = () => {
                     name="bnbAddress"
                     render={({ field }) => (
                       <FormItem className="grid md:grid-cols-2 max-md:gap-2 items-center">
-                        <Label htmlFor="bnb" className="flex-1">
+                        <Label htmlFor="bnb" className="flex-1 font-semibold">
                           BNB Wallet Address:
                         </Label>
                         <FormControl className="no-focus flex-1">
@@ -342,6 +401,12 @@ const EditAccount = () => {
                                 isDisabled ? "disableForm" : null
                               } text-navyblue border border-navyblue`}
                               {...field}
+                              onChange={(e) => {
+                                // Remove spaces as the user types
+                                const valueWithoutSpaces =
+                                  e.target.value.replace(/\s/g, "");
+                                form.setValue("bnbAddress", valueWithoutSpaces);
+                              }}
                             />
                             <div
                               className={`${
@@ -358,7 +423,7 @@ const EditAccount = () => {
                     name="shibaAddress"
                     render={({ field }) => (
                       <FormItem className="grid md:grid-cols-2 max-md:gap-2 items-center">
-                        <Label htmlFor="shiba" className="flex-1">
+                        <Label htmlFor="shiba" className="flex-1 font-semibold">
                           SHIBA Wallet Address:
                         </Label>
                         <FormControl className="no-focus flex-1">
@@ -369,6 +434,15 @@ const EditAccount = () => {
                                 isDisabled ? "disableForm" : null
                               } text-navyblue border border-navyblue`}
                               {...field}
+                              onChange={(e) => {
+                                // Remove spaces as the user types
+                                const valueWithoutSpaces =
+                                  e.target.value.replace(/\s/g, "");
+                                form.setValue(
+                                  "shibaAddress",
+                                  valueWithoutSpaces
+                                );
+                              }}
                             />
                             <div
                               className={`${

@@ -81,6 +81,14 @@ export default function SecretForm({ id, setSecret }: params) {
                             isDisabled ? "disableForm" : null
                           } text-navyblue border border-navyblue`}
                           {...field}
+                          onChange={(e) => {
+                            // Remove spaces as the user types
+                            const valueWithoutSpaces = e.target.value.replace(
+                              /\s/g,
+                              ""
+                            );
+                            form.setValue("secretKey", valueWithoutSpaces);
+                          }}
                         />
 
                         <div

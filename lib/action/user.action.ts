@@ -7,9 +7,16 @@ interface params {
   name: string;
   email: string;
   onboarded: boolean;
+  referralCode: string;
 }
 
-export async function updateUser({ id, name, email, onboarded }: params) {
+export async function updateUser({
+  id,
+  name,
+  email,
+  onboarded,
+  referralCode,
+}: params) {
   try {
     const userDocRef = doc(db, "users", id);
     setDoc(
@@ -19,6 +26,8 @@ export async function updateUser({ id, name, email, onboarded }: params) {
         name,
         email,
         onboarded: onboarded,
+        referralCode,
+        referralCount: 0,
         createdAt: serverTimestamp(),
       },
       { merge: true }

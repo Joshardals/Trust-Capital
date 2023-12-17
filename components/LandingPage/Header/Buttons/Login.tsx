@@ -2,14 +2,20 @@
 import { Button } from "@/components/ui/button";
 import { auth } from "@/firebase";
 import { fetchUser } from "@/lib/action/user.action";
-import { GoogleAuthProvider, browserLocalPersistence, setPersistence, signInWithPopup } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  browserLocalPersistence,
+  setPersistence,
+  signInWithPopup,
+} from "firebase/auth";
 import { useRouter } from "next/navigation";
 
 const Login = () => {
   const router = useRouter();
 
   const provider = new GoogleAuthProvider();
-  const handleSignup = async () => {
+  const handleSignup = async (e: any) => {
+    e.preventDefault();
     try {
       await setPersistence(auth, browserLocalPersistence);
       const userCredential = await signInWithPopup(auth, provider);
