@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
-import React from "react";
 
-const Referral = () => {
+interface params {
+  referralCode: string;
+}
+const Referral = ({ referralCode }: params) => {
   return (
     <div className="space-y-2 max-md:text-xs">
       <h1 className="text-lg md:text-xl font-semibold capitalize text-darkblue">
@@ -10,7 +12,7 @@ const Referral = () => {
       <div className="space-y-2">
         <p>To copy your referral link, click the button below.</p>
         <div className="w-full bg-black/10 py-2 px-5 rounded-lg cursor-pointer">
-          <p>http://localhost:3000/signup?ref=tommy</p>
+          <p>{`http://localhost:3000/?ref=${referralCode}`}</p>
         </div>
       </div>
 

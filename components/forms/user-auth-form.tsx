@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Form,
   FormControl,
@@ -16,16 +16,34 @@ import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Icons } from "@/components/icons";
 import Link from "next/link";
-import { auth } from "@/firebase";
-import { useRouter } from "next/navigation";
-import { updateUser } from "@/lib/action/user.action";
+import { auth, db } from "@/firebase";
+import { useRouter, useSearchParams } from "next/navigation";
+import { fetchUser, updateUser } from "@/lib/action/user.action";
 import { createWallet } from "@/lib/action/wallet.action";
+import {
+  FieldValue,
+  arrayUnion,
+  collection,
+  doc,
+  getDocs,
+  onSnapshot,
+  query,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { customAlphabet } from "nanoid";
 
-export function UserAuthForm() {
+interface Params {
+  userId: string;
+}
+
+export function UserAuthForm({ userId }: Params) {
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const router = useRouter();
+  const referralParams = useSearchParams();
 
   const form = useForm<SignUpValidationType>({
     resolver: zodResolver(SignUpValidation),
@@ -44,25 +62,79 @@ export function UserAuthForm() {
 
   const user = auth.currentUser?.providerData[0];
 
+  const generateReferralCode = (): string => {
+    const alphabet =
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const nanoid = customAlphabet(alphabet, 8); // You can adjust the length of the code as needed
+    return nanoid();
+  };
+
   const onSubmit = async (values: SignUpValidationType) => {
     setIsLoading(true);
     setIsDisabled(true);
 
-    const generateRefferalCode = () => {
-      const alphabet =
-        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-      const nanoid = customAlphabet(alphabet, 8);
-      return nanoid();
-    };
+    // Referrals Functionality
 
-    const referralCode = generateRefferalCode();
+    const refCode = referralParams.get("ref");
+    const referralCode = generateReferralCode();
+
+    if (refCode) {
+      const referringUserDoc = query(
+        collection(db, "users"),
+        where("referralCode", "==", refCode)
+      );
+      const querySnapshot = await getDocs(referringUserDoc);
+
+      if (querySnapshot.docs.length > 0) {
+        const referringUser = querySnapshot.docs[0];
+        const referringUserId = referringUser.id;
+
+        // Storing information about referral start.
+
+        const referralRef = doc(db, "referrals", referringUserId);
+
+        onSnapshot(referralRef, (doc) => {
+          if (doc.exists()) {
+            const currentReferrals = doc.data()?.referrals || [];
+            const updatedReferrals = arrayUnion(
+              {
+                username: user?.displayName?.split(" ")[0],
+                email: user?.email,
+                referred: userId,
+              },
+              ...currentReferrals
+            );
+            setDoc(referralRef, { referrals: updatedReferrals });
+
+            console.log(doc.data());
+          } else {
+            setDoc(referralRef, {
+              referrals: arrayUnion({
+                username: user?.displayName?.split(" ")[0],
+                email: user?.email,
+                referred: userId,
+              }),
+            });
+            console.log("no-data bitch");
+          }
+        });
+
+        // Storing information about the referral end.
+
+        await updateDoc(doc(db, "users", referringUserId), {
+          referralCount: referringUser.data().referralCount + 1,
+        });
+      }
+    }
+
+    // Referrals Functionality End
 
     await updateUser({
       id: user?.uid || "",
       name: user?.displayName || "",
       email: user?.email || "",
       onboarded: true || "",
-      referralCode,
+      referralCode: referralCode,
     });
 
     await createWallet({
@@ -230,7 +302,10 @@ export function UserAuthForm() {
                               /\s/g,
                               ""
                             );
-                            form.setValue("ethereumAddress", valueWithoutSpaces);
+                            form.setValue(
+                              "ethereumAddress",
+                              valueWithoutSpaces
+                            );
                           }}
                         />
                         <div
@@ -264,7 +339,10 @@ export function UserAuthForm() {
                               /\s/g,
                               ""
                             );
-                            form.setValue("litecoinAddress", valueWithoutSpaces);
+                            form.setValue(
+                              "litecoinAddress",
+                              valueWithoutSpaces
+                            );
                           }}
                         />
                         <div

@@ -4,11 +4,24 @@ import TradingViewChart from "@/components/dashboard/content/Chart";
 import Referral from "@/components/dashboard/content/Referral";
 import StartTrade from "@/components/dashboard/content/StartTrade";
 import { auth } from "@/firebase";
+import { fetchUser } from "@/lib/action/user.action";
+import { useEffect, useState } from "react";
 
 export function Dashboard() {
   const user = auth.currentUser?.providerData[0];
+  const userId = user?.uid || "";
   const displayName = user?.displayName || "";
   const firstName = user ? displayName.split(" ")[0] : "";
+  const [code, setCode] = useState();
+
+  useEffect(() => {
+    const getUser = async () => {
+      const details = await fetchUser(userId);
+      setCode(details?.referralCode);
+    };
+
+    getUser();
+  }, [userId]);
 
   return (
     <div className=" h-full font-sans space-y-8 text-navyblue md:p-5 max-md:p-5 bg-babyblue overflow-y-auto">
@@ -65,7 +78,7 @@ export function Dashboard() {
 
       {/* Referral Tab */}
 
-      <Referral />
+      <Referral referralCode={code || ""} />
 
       <TradingViewChart />
     </div>

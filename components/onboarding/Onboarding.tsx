@@ -10,12 +10,16 @@ import Loading from "../ui/Loading";
 
 export default function Onboarding() {
   const [authUser, setAuthUser] = useState(false);
+  const [userId, setUserId] = useState<string | undefined>();
   const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setAuthUser(true);
+        const details = user?.providerData[0];
+        const uid = details.uid || "";
+        setUserId(uid);
       } else {
         setAuthUser(false);
         router.push("/");
@@ -24,6 +28,7 @@ export default function Onboarding() {
 
     return () => unsubscribe();
   }, [router]);
+
   return (
     <div className="block">
       {authUser ? null : <Loading />}
@@ -60,7 +65,7 @@ export default function Onboarding() {
               <div className="absolute top-0 left-0 h-full w-full bg-navyblue/70" />
             </div>
             <div className="h-screen w-full flex items-center justify-center p-10 bg-babyblue md:overflow-auto">
-              <UserAuthForm />
+              <UserAuthForm userId={userId || ""} />
             </div>
           </div>
           {/* End Of Code */}
@@ -88,7 +93,7 @@ export default function Onboarding() {
               </div>
 
               <div className="p-5 bg-babyblue">
-                <UserAuthForm />
+                <UserAuthForm userId={userId || ""} />
               </div>
             </div>
           </div>

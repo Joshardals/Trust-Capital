@@ -8,10 +8,14 @@ import {
   setPersistence,
   signInWithPopup,
 } from "firebase/auth";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Login = () => {
   const router = useRouter();
+  const referralParams = useSearchParams();
+
+  const referral = referralParams.get("ref");
+  console.log(`Referral Code: ${referral}`);
 
   const provider = new GoogleAuthProvider();
   const handleSignup = async (e: any) => {
@@ -22,7 +26,7 @@ const Login = () => {
 
       const result = userCredential;
       const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential?.accessToken;
+      // const token = credential?.accessToken;
       const user = result.user;
 
       if (user) {
@@ -36,7 +40,11 @@ const Login = () => {
             router.push("/dashboard");
           }
         } else {
-          router.push("/onboarding");
+          if (referral) {
+            router.push(`/onboarding/?ref=${referral}`);
+          } else {
+            router.push("/onboarding");
+          }
         }
       }
     } catch (error: any) {
