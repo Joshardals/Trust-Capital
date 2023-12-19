@@ -43,7 +43,7 @@ export default function ConfirmDeposit() {
     setAmount(setPrice(tradePlan || ""));
   }, []);
   return (
-    <div className=" bg-babyblue text-navyblue w-full p-5 space-y-6 max-md:text-xs">
+    <div className=" bg-babyblue h-screen text-navyblue w-full p-5 space-y-6 max-md:text-xs">
       <div className="space-y-6">
         <div className="space-y-2">
           <h1 className="font-bold text-lg text-darkblue">Deposit Crypto</h1>
