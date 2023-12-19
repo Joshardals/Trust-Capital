@@ -15,7 +15,9 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { Icons } from "../icons";
-import { checkSecretKey, fetchWallets } from "@/lib/action/wallet.action";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/firebase";
+// import { checkSecretKey } from "@/lib/action/wallet.action";
 
 interface params {
   id: string;
@@ -42,17 +44,31 @@ export default function SecretForm({ id, setSecret }: params) {
       setIsDisabled(true);
     }
 
-    const secretKey = await checkSecretKey({
-      id,
-      providedKey: values?.secretKey,
-    });
+    // const secretKey = await checkSecretKey({
+    //   id,
+    //   providedKey: values?.secretKey,
+    // });
 
-    if (secretKey) {
-      setError(false);
-      setSecret(true);
-    } else {
-      setError(true);
+    const walletDocRef = doc(db, "wallets", id);
+    const walletDocSnap = await getDoc(walletDocRef);
+
+    if (walletDocSnap.exists()) {
+      const userSecret = walletDocSnap.data()?.secretKey;
+
+      if (values.secretKey === userSecret) {
+        setError(false);
+        setSecret(true);
+      } else {
+        setError(true);
+      }
     }
+
+    // if (secretKey) {
+    //   setError(false);
+    //   setSecret(true);
+    // } else {
+    //   setError(true);
+    // }
     setIsLoading(false);
     setIsDisabled(false);
   };

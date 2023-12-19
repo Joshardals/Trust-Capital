@@ -4,8 +4,8 @@ import React from "react";
 const SignUp = () => {
   return (
     <Link
-      href="/sign-up"
-      className="bg-babyblue text-navyblue  hover:border-babyblue hover:bg-babyblue/70
+      href="/signup"
+      className="bg-babyblue text-navyblue  hover:border-babyblue 
       button max-md:mr-2 border"
     >
       Sign up

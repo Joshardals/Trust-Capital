@@ -1,3 +1,4 @@
+"use client";
 import {
   Table,
   TableBody,
@@ -8,6 +9,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { auth, db } from "@/firebase";
+import { doc, onSnapshot } from "firebase/firestore";
+import { Timestamp } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 const invoices = [
   {
@@ -31,33 +36,51 @@ const invoices = [
     paymentMethod: "USDT",
     paymentDate: "14/09/23",
   },
-  //   {
-  //     invoice: "INV004",
-  //     paymentStatus: "Paid",
-  //     totalAmount: "$450.00",
-  //     paymentMethod: "Credit Card",
-  //   },
-  //   {
-  //     invoice: "INV005",
-  //     paymentStatus: "Paid",
-  //     totalAmount: "$550.00",
-  //     paymentMethod: "PayPal",
-  //   },
-  //   {
-  //     invoice: "INV006",
-  //     paymentStatus: "Pending",
-  //     totalAmount: "$200.00",
-  //     paymentMethod: "Bank Transfer",
-  //   },
-  //   {
-  //     invoice: "INV007",
-  //     paymentStatus: "Unpaid",
-  //     totalAmount: "$300.00",
-  //     paymentMethod: "Credit Card",
-  //   },
 ];
 
+interface InvoicesProp {
+  status: string;
+  method: string;
+  created: string;
+  amount: string;
+}
+
+const convertTimestampToDate = (timestamp: any): string => {
+  const date = new Date(timestamp.seconds * 1000); // Convert seconds to milliseconds
+  const year = date.getFullYear().toString().slice(2); // Get last two digits of the year
+  const month = ("0" + (date.getMonth() + 1)).slice(-2); // Month is 0-indexed
+  const day = ("0" + date.getDate()).slice(-2);
+
+  return `${day}/${month}/${year}`;
+};
+
 export function DepositHistory() {
+  const user = auth.currentUser?.providerData[0];
+  const userId = user?.uid || "";
+  const [depositInfo, setDepositInfo] = useState<InvoicesProp[]>([]);
+
+  useEffect(() => {
+    const depositDocRef = doc(db, "deposits", userId);
+
+    onSnapshot(depositDocRef, (doc) => {
+      if (doc.exists()) {
+        const res = doc.data();
+        setDepositInfo(res.deposits);
+      } else {
+        console.log("no-data");
+      }
+    });
+  }, [userId]);
+
+  useEffect(() => {
+    console.log(depositInfo);
+  }, [depositInfo]);
+
+  const totalAmount = depositInfo?.reduce(
+    (acc, value) => acc + Number(value.amount),
+    0
+  );
+
   return (
     <div className="h-screen flex">
       <Table className="text-navyblue bg-darkblue/20 max-md:text-xs">
@@ -84,17 +107,20 @@ export function DepositHistory() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {invoices.map((invoice) => (
+          {depositInfo?.map((value, index) => (
             <TableRow
-              key={invoice.invoice}
+              key={index}
               className="font-bold border-t border-navyblue"
             >
-              <TableCell>{invoice.invoice}</TableCell>
-              <TableCell>{invoice.paymentStatus}</TableCell>
-              <TableCell>{invoice.paymentMethod}</TableCell>
-              <TableCell>{invoice.paymentDate}</TableCell>
+              <TableCell>{index + 1}</TableCell>
+              <TableCell>{value.status}</TableCell>
+              <TableCell>{value.method}</TableCell>
+              <TableCell>{convertTimestampToDate(value.created)}</TableCell>
               <TableCell className="text-right" colSpan={2}>
-                {invoice.totalAmount}
+                {Number(value.amount).toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                })}
               </TableCell>
             </TableRow>
           ))}
@@ -102,7 +128,12 @@ export function DepositHistory() {
         <TableFooter className="border-t border-t-navyblue">
           <TableRow>
             <TableCell colSpan={4}>Total</TableCell>
-            <TableCell className="text-right">$2,500.00</TableCell>
+            <TableCell className="text-right">
+              {totalAmount?.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </TableCell>
           </TableRow>
         </TableFooter>
       </Table>

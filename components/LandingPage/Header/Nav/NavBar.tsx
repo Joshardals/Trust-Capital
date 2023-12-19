@@ -8,6 +8,9 @@ import { useNavStore } from "@/lib/store/store";
 import SideNav from "./SideNav";
 import Image from "next/image";
 import { auth } from "@/firebase";
+import SignUp from "../Buttons/SignUp";
+// import { googleTranslateElementInit } from "@/lib/googleTranslate";
+import GoogleTrans from "@/components/dashboard/content/GoogleTrans";
 
 const NavBar = () => {
   const { navBar, setNavBar } = useNavStore();
@@ -40,7 +43,7 @@ const NavBar = () => {
             <Login />
 
             {/* Sign Up Button */}
-            {/* <SignUp /> */}
+            <SignUp />
           </div>
 
           <div className="md:hidden cursor-pointer text-babyblue">

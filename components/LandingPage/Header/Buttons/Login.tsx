@@ -1,13 +1,15 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { auth } from "@/firebase";
-import { fetchUser } from "@/lib/action/user.action";
+import { auth, db } from "@/firebase";
+// import { fetchUser } from "@/lib/action/user.action";
 import {
   GoogleAuthProvider,
   browserLocalPersistence,
   setPersistence,
   signInWithPopup,
 } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const Login = () => {
@@ -18,47 +20,78 @@ const Login = () => {
   console.log(`Referral Code: ${referral}`);
 
   const provider = new GoogleAuthProvider();
-  const handleSignup = async (e: any) => {
-    e.preventDefault();
-    try {
-      await setPersistence(auth, browserLocalPersistence);
-      const userCredential = await signInWithPopup(auth, provider);
+  // const handleSignup = async (e: any) => {
+  //   e.preventDefault();
+    // try {
+    //   await setPersistence(auth, browserLocalPersistence);
+    //   const userCredential = await signInWithPopup(auth, provider);
 
-      const result = userCredential;
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      // const token = credential?.accessToken;
-      const user = result.user;
+    //   const result = userCredential;
+    //   const credential = GoogleAuthProvider.credentialFromResult(result);
+    //   // const token = credential?.accessToken;
+    //   const user = result.user;
 
-      if (user) {
-        const userId = user.providerData[0].uid;
-        const details = await fetchUser(userId);
+    //   if (user) {
+    //     const userId = user.providerData[0].uid;
+    //     const userDocRef = doc(db, "users", userId);
+    //     const userDocSnap = await getDoc(userDocRef);
 
-        if (details) {
-          const onboardedStatus = details.onboarded;
+    //     if (userDocSnap.exists()) {
+    //       console.log("Document Exists");
+    //       const details = userDocSnap.data();
 
-          if (onboardedStatus) {
-            router.push("/dashboard");
-          }
-        } else {
-          if (referral) {
-            router.push(`/onboarding/?ref=${referral}`);
-          } else {
-            router.push("/onboarding");
-          }
-        }
-      }
-    } catch (error: any) {
-      console.log(`Error Creating Account: ${error.message}`);
-    }
-  };
+    //       if (details) {
+    //         const onboardedStatus = details?.onboarded;
+
+    //         if (onboardedStatus) {
+    //           router.push("/dashboard");
+    //         }
+    //       }
+    //     } else {
+    //       if (referral) {
+    //         router.push(`/onboarding/?ref=${referral}`);
+    //       } else {
+    //         router.push("/onboarding");
+    //       }
+    //     }
+
+      //   // if (userDocSnap.exists()) {
+      //   //   const details = userDocSnap.data();
+
+      //   //   if (details) {
+      //   //     const onboardedStatus = details?.onboarded;
+
+      //   //     if (onboardedStatus) {
+      //   //       router.push("/dashboard");
+      //   //     }
+      //   //   } else {
+      //   //     if (referral) {
+      //   //       router.push(`/onboarding/?ref=${referral}`);
+      //   //     } else {
+      //   //       router.push("/onboarding");
+      //   //     }
+      //   //   }
+      //   // }
+      // }
+  //   } catch (error: any) {
+  //     console.log(`Error Creating Account: ${error.message}`);
+  //   }
+  // };
   return (
-    <Button
-      onClick={handleSignup}
-      className="button border transition-all duration-300 border-babyblue text-navyblue
-        bg-babyblue hover:bg-babyblue/70 rounded-full px-6 max-md:text-xs max-md:h-10 "
+    // <Button
+    //   onClick={handleSignup}
+    //   className="button border transition-all duration-300 border-babyblue text-navyblue
+    //     bg-babyblue hover:bg-babyblue/70 rounded-full px-6 max-md:text-xs max-md:h-10 "
+    // >
+    //   Login
+    // </Button>
+    <Link
+      href="/login"
+      className="button border transition-all duration-300 border-babyblue text-babyblue
+        bg-navyblue rounded-full px-6 max-md:text-xs max-md:h-10 max-md:hidden"
     >
       Login
-    </Button>
+    </Link>
   );
 };
 

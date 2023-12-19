@@ -17,19 +17,10 @@ interface ReferralInfo {
   email: string;
 }
 
-const referrals = [
-  {
-    id: "1",
-    email: "adashelby@gmail.com",
-    totalAmount: "$250.00",
-    userName: "Ada",
-  },
-];
-
 export function RefStatistic() {
   const user = auth.currentUser?.providerData[0];
   const userId = user?.uid || "";
-  const [referralsInfo, setReferralsInfo] = useState<ReferralInfo[]>();
+  const [referralsInfo, setReferralsInfo] = useState<ReferralInfo[]>([]);
 
   useEffect(() => {
     const referralDocRef = doc(db, "referrals", userId);
@@ -37,23 +28,12 @@ export function RefStatistic() {
     onSnapshot(referralDocRef, (doc) => {
       if (doc.exists()) {
         const res = doc.data();
-        console.log("Referrals Info", res);
-        setReferralsInfo([
-          {
-            username: res?.username,
-            email: res?.email,
-          },
-        ]);
-        // setReferrals(res);
+        setReferralsInfo(res.referrals);
       } else {
         console.log("no-data");
       }
     });
   }, [userId]);
-
-  useEffect(() => {
-    console.log(referralsInfo);
-  }, [referralsInfo]);
 
   return (
     <div className="h-screen flex">

@@ -3,25 +3,59 @@
 import TradingViewChart from "@/components/dashboard/content/Chart";
 import Referral from "@/components/dashboard/content/Referral";
 import StartTrade from "@/components/dashboard/content/StartTrade";
-import { auth } from "@/firebase";
-import { fetchUser } from "@/lib/action/user.action";
+import { auth, db } from "@/firebase";
+import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
+
+interface AccountProp {
+  accountBalance: string;
+  currentPlan: string;
+  activeDeposit: string;
+  earnedTotal: string;
+}
 
 export function Dashboard() {
   const user = auth.currentUser?.providerData[0];
   const userId = user?.uid || "";
-  const displayName = user?.displayName || "";
-  const firstName = user ? displayName.split(" ")[0] : "";
+  const [firstName, setFirstName] = useState();
   const [code, setCode] = useState();
+  const [account, setAccount] = useState<AccountProp>();
 
   useEffect(() => {
     const getUser = async () => {
-      const details = await fetchUser(userId);
-      setCode(details?.referralCode);
+      const userDocRef = doc(db, "users", userId);
+      const userDocSnap = await getDoc(userDocRef);
+
+      if (userDocSnap.exists()) {
+        const details = userDocSnap.data();
+        setCode(details?.referralCode);
+        const name = details?.name.split(" ")[0];
+        setFirstName(name);
+      }
+    };
+
+    const getAccount = async () => {
+      const accountDocRef = doc(db, "accountInfo", userId);
+      const accountDocSnap = await getDoc(accountDocRef);
+
+      if (accountDocSnap.exists()) {
+        const details = accountDocSnap.data();
+        setAccount({
+          accountBalance: details.accountBalance,
+          currentPlan: details.currentPlan,
+          activeDeposit: details.activeDeposit,
+          earnedTotal: details.earnedTotal,
+        });
+      }
     };
 
     getUser();
+    getAccount();
   }, [userId]);
+
+  useEffect(() => {
+    console.log(account);
+  }, [account]);
 
   return (
     <div className=" h-full font-sans space-y-8 text-navyblue md:p-5 max-md:p-5 bg-babyblue overflow-y-auto">
@@ -45,7 +79,7 @@ export function Dashboard() {
         <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
           <div className="space-y-1">
             <h1 className="font-semibold uppercase">active deposit</h1>
-            <p className="font-bold">$0.00</p>
+            <p className="font-bold">${account?.activeDeposit}.00</p>
           </div>
           <p></p>
         </div>
@@ -53,7 +87,7 @@ export function Dashboard() {
         <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
           <div className="space-y-1">
             <h1 className="font-semibold uppercase">earned total</h1>
-            <p className=" font-bold">$0.00</p>
+            <p className=" font-bold">${account?.earnedTotal}.00</p>
           </div>
           <p></p>
         </div>
@@ -61,7 +95,7 @@ export function Dashboard() {
         <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
           <div className="space-y-1">
             <h1 className="font-semibold uppercase">account balance</h1>
-            <p className=" font-bold">$0.00</p>
+            <p className=" font-bold">${account?.accountBalance}.00</p>
           </div>
           <p></p>
         </div>
@@ -70,7 +104,7 @@ export function Dashboard() {
         <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
           <div className="space-y-1">
             <h1 className="font-semibold uppercase">current plan</h1>
-            <p className=" font-bold">NONE</p>
+            <p className=" font-bold uppercase">{account?.currentPlan}</p>
           </div>
           <p></p>
         </div>

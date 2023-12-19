@@ -15,6 +15,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const plan = [
   {
@@ -57,6 +58,9 @@ const plan = [
 
 const Plans = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
   const form = useForm<PlansType>({
     resolver: zodResolver(PlansValidation),
   });
@@ -71,6 +75,8 @@ const Plans = () => {
       title: "You submitted the following values:",
       description: values.plan,
     });
+
+    router.push(`/dashboard/deposit/confirm-deposit?plantype=${values.plan}`);
   };
   return (
     <Form {...form}>

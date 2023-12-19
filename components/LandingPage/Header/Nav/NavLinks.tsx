@@ -100,9 +100,10 @@ export const SideBar = () => {
           <p>{link.name}</p>
         </Link>
       ))}
-      {/* <div onClick={handleSignup}>
-        <p className="sidebar-links max-w-[6rem]">Get Started</p>
-      </div> */}
+
+      <Link href="/login" className="sidebar-links max-w-[6rem]">
+        Login
+      </Link>
     </>
   );
 };

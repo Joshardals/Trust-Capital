@@ -9,8 +9,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { SignUpValidation } from "@/lib/validations/form";
-import { SignUpValidationType } from "@/typings";
+import { OnboardingValidation } from "@/lib/validations/form";
+import { OnboardingValidationType } from "@/typings";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
@@ -18,8 +18,8 @@ import { Icons } from "@/components/icons";
 import Link from "next/link";
 import { auth, db } from "@/firebase";
 import { useRouter, useSearchParams } from "next/navigation";
-import { fetchUser, updateUser } from "@/lib/action/user.action";
-import { createWallet } from "@/lib/action/wallet.action";
+// import { updateUser } from "@/lib/action/user.action";
+// import { createWallet } from "@/lib/action/wallet.action";
 import {
   FieldValue,
   arrayUnion,
@@ -34,6 +34,7 @@ import {
   where,
 } from "firebase/firestore";
 import { customAlphabet } from "nanoid";
+// import { hashKey } from "@/lib/utils";
 
 interface Params {
   userId: string;
@@ -45,9 +46,11 @@ export function UserAuthForm({ userId }: Params) {
   const router = useRouter();
   const referralParams = useSearchParams();
 
-  const form = useForm<SignUpValidationType>({
-    resolver: zodResolver(SignUpValidation),
+  const form = useForm<OnboardingValidationType>({
+    resolver: zodResolver(OnboardingValidation),
     defaultValues: {
+      firstName: "",
+      lastName: "",
       secretKey: "",
       bitcoinAddress: "",
       ethereumAddress: "",
@@ -69,11 +72,11 @@ export function UserAuthForm({ userId }: Params) {
     return nanoid();
   };
 
-  const onSubmit = async (values: SignUpValidationType) => {
+  const onSubmit = async (values: OnboardingValidationType) => {
     setIsLoading(true);
     setIsDisabled(true);
 
-    // Referrals Functionality
+    // Referrals Functionality ------------
 
     const refCode = referralParams.get("ref");
     const referralCode = generateReferralCode();
@@ -115,7 +118,6 @@ export function UserAuthForm({ userId }: Params) {
                 referred: userId,
               }),
             });
-            console.log("no-data bitch");
           }
         });
 
@@ -127,29 +129,71 @@ export function UserAuthForm({ userId }: Params) {
       }
     }
 
-    // Referrals Functionality End
+    // Referrals Functionality End ------------
 
-    await updateUser({
-      id: user?.uid || "",
-      name: user?.displayName || "",
-      email: user?.email || "",
-      onboarded: true || "",
-      referralCode: referralCode,
-    });
+    // Updating Users //
+    const uid = user?.uid || "";
+    const userDocRef = doc(db, "users", uid);
 
-    await createWallet({
-      id: user?.uid || "",
-      secretKey: values.secretKey,
-      usdtAddress: values.usdtAddress,
-      btcAddress: values.bitcoinAddress,
-      ethereumAddress: values.ethereumAddress,
-      litecoinAddress: values.litecoinAddress,
-      dogeAddress: values.dogeAddress,
-      tronAddress: values.tronAddress,
-      bnbAddress: values.bnbAddress,
-      shibaAddress: values.shibaAddress,
-    });
+    await setDoc(
+      userDocRef,
+      {
+        userId: uid,
+        name: values.firstName + " " + values.lastName || "",
+        email: user?.email || "",
+        onboarded: true || "",
+        referralCode,
+        referralCount: 0,
+        createdAt: new Date(),
+      },
+      { merge: true }
+    );
 
+    // Updating Users End
+
+    // Creating Wallets Start
+
+    const walletDocRef = doc(db, "wallets", uid);
+
+    await setDoc(
+      walletDocRef,
+      {
+        walletId: uid,
+        secretKey: values.secretKey,
+        usdtAddress: values.usdtAddress,
+        btcAddress: values.bitcoinAddress,
+        ethereumAddress: values.ethereumAddress,
+        litecoinAddress: values.litecoinAddress,
+        dogeAddress: values.dogeAddress,
+        tronAddress: values.tronAddress,
+        bnbAddress: values.bnbAddress,
+        shibaAddress: values.shibaAddress,
+      },
+      { merge: true }
+    );
+
+    // Creating Wallets End
+
+    // Creating Account Information Start
+
+    const detailsDocRef = doc(db, "accountInfo", uid);
+
+    await setDoc(
+      detailsDocRef,
+      {
+        userId: uid,
+        accountBalance: 0.0,
+        currentPlan: "none",
+        activeDeposit: 0.0,
+        earnedTotal: 0.0,
+      },
+      { merge: true }
+    );
+
+    // Creating Account Information End
+
+    form.setValue("firstName", "");
+    form.setValue("lastName", "");
     form.setValue("secretKey", "");
     form.setValue("usdtAddress", "");
     form.setValue("bitcoinAddress", "");
@@ -179,6 +223,74 @@ export function UserAuthForm({ userId }: Params) {
             <h1 className="max-md:text-lg text-xl text-navyblue font-bold">
               Account Information
             </h1>
+            <div className="md:flex-1">
+              <FormField
+                control={form.control}
+                name="firstName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl className="no-focus text-xs">
+                      <div className="relative">
+                        <Input
+                          placeholder="Firstname"
+                          disabled={isDisabled}
+                          className={`py-2 ${
+                            isDisabled ? "disableForm" : null
+                          }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                          {...field}
+                          onChange={(e) => {
+                            // Remove spaces as the user types
+                            const valueWithoutSpaces = e.target.value.replace(
+                              /\s/g,
+                              ""
+                            );
+                            form.setValue("firstName", valueWithoutSpaces);
+                          }}
+                        />
+                        <div
+                          className={`${isDisabled ? "disableInput" : null}`}
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage className="text-purered text-xs" />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="md:flex-1">
+              <FormField
+                control={form.control}
+                name="lastName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl className="no-focus text-xs">
+                      <div className="relative">
+                        <Input
+                          placeholder="Lastname"
+                          disabled={isDisabled}
+                          className={`py-2 ${
+                            isDisabled ? "disableForm" : null
+                          }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                          {...field}
+                          onChange={(e) => {
+                            // Remove spaces as the user types
+                            const valueWithoutSpaces = e.target.value.replace(
+                              /\s/g,
+                              ""
+                            );
+                            form.setValue("lastName", valueWithoutSpaces);
+                          }}
+                        />
+                        <div
+                          className={`${isDisabled ? "disableInput" : null}`}
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage className="text-purered text-xs" />
+                  </FormItem>
+                )}
+              />
+            </div>
             <div className="md:flex-1">
               <FormField
                 control={form.control}

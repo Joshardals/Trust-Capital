@@ -5,7 +5,10 @@ import { useSupportStore } from "@/lib/store/store";
 const Support = () => {
   const { support } = useSupportStore();
   return (
-    <div className="font-sans text-navyblue" id="support">
+    <div
+      className="font-sans text-navyblue p-5 fixed z-30 h-full w-full top-0 left-0 bg-babyblue"
+      id="support"
+    >
       <div className="space-y-6">
         <h1 className="text-lg font-bold md:text-xl md:font-semibold text-center text-darkblue">
           SUPPORT

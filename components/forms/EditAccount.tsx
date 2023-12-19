@@ -24,9 +24,8 @@ import SecretForm from "./SecretForm";
 const EditAccount = () => {
   const user = auth.currentUser?.providerData[0];
   const userId = user?.uid || "";
-  const displayName = user?.displayName || "";
-  const firstName = displayName.split(" ")[0];
-  const lastName = displayName.split(" ")[1];
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
   const { toast } = useToast();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -49,6 +48,14 @@ const EditAccount = () => {
   });
 
   useEffect(() => {
+    const userDocRef = doc(db, "users", userId);
+    onSnapshot(userDocRef, (doc) => {
+      if (doc.exists()) {
+        const res = doc.data();
+        setFirstName(res.name.split(" ")[0]);
+        setLastName(res.name.split(" ")[1]);
+      }
+    });
     const walletDocRef = doc(db, "wallets", userId);
     onSnapshot(walletDocRef, (doc) => {
       if (doc.exists()) {
@@ -90,7 +97,7 @@ const EditAccount = () => {
           tronAddress: values.tronAddress,
           bnbAddress: values.bnbAddress,
           shibaAddress: values.shibaAddress,
-          updatedAt: serverTimestamp(),
+          updatedAt: new Date(),
         },
         { merge: true }
       );
@@ -198,9 +205,8 @@ const EditAccount = () => {
                               />
                             </div>
                           </FormControl>
-                         
-                            <FormMessage className="text-purered text-xs mt-2" />
-                     
+
+                          <FormMessage className="text-purered text-xs mt-2" />
                         </div>
                       </FormItem>
                     )}

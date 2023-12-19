@@ -15,15 +15,17 @@ export interface supportStoreState {
 }
 
 export interface editStoreState {
-  editAcct: boolean; 
-  setEditAcct: () => void; 
+  editAcct: boolean;
+  setEditAcct: () => void;
 }
 // Zustand Definitions End
 
 // Form Definitions Start
 
-export interface SignUpValidationType {
-  secretKey: string; 
+export interface OnboardingValidationType {
+  firstName: string;
+  lastName: string;
+  secretKey: string;
   bitcoinAddress: string;
   ethereumAddress: string;
   litecoinAddress: string;
@@ -35,6 +37,10 @@ export interface SignUpValidationType {
 }
 
 export interface SignInValidationType {
+  email: string;
+  password: string;
+}
+export interface SignUpValidationType {
   email: string;
   password: string;
 }
@@ -50,9 +56,13 @@ export interface PlansType {
 }
 
 export interface SecretType {
-  secretKey: string; 
+  secretKey: string;
 }
 
+export interface ConfirmDepositType {
+  method: string; 
+  amount: string;
+}
 // Form Definitions End
 
 // landing page definitions
@@ -103,3 +113,7 @@ export interface EditValidationType {
 }
 
 // Dashboard Definitions End
+
+interface Window {
+  googleTranslateElementInit: () => void;
+}

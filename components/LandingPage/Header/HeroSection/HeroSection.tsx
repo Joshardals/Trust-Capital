@@ -1,3 +1,4 @@
+import GoogleTrans from "@/components/dashboard/content/GoogleTrans";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
 
@@ -8,6 +9,8 @@ const HeroSection = () => {
         bg-gradient-to-br max-md:bg-gradient-to-tr from-navyblue to-babyblue max-md:py-20 md:py-40 h-full "
     >
       <div className=" space-y-4 flex-1 w-full">
+        
+      <GoogleTrans />
         <h1 className="text-2xl font-serif font-medium  leading-tight lg:max-w-md max-md:max-w-md text-navyblue">
           <span className="text-purewhite ">Empower</span> Your Wealth Journey
         </h1>

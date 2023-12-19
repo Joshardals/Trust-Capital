@@ -1,40 +1,55 @@
 import * as z from "zod";
 import {
+  ConfirmDepositType,
   EditValidationType,
   FeedBackFormType,
+  OnboardingValidationType,
   PlanItemProps,
   SecretType,
   SignInValidationType,
   SignUpValidationType,
 } from "@/typings";
 
-export const SignUpValidation: z.ZodType<SignUpValidationType> = z.object({
-  secretKey: z
-    .string()
-    .min(3, {
-      message:
-        "Ensure you safeguard your secret key, min of 3 characters and a max of 12 characters.",
-    })
-    .max(12, {
-      message:
-        "Ensure you safeguard your secret key, min of 3 characters and a max of 12 characters.",
-    }),
-  bitcoinAddress: z.string().max(100),
-  ethereumAddress: z.string().max(100),
-  litecoinAddress: z.string().max(100),
-  usdtAddress: z
-    .string()
-    .min(1, { message: "USDT Address is required" })
-    .max(100),
-  dogeAddress: z.string().max(100),
-  tronAddress: z.string().max(100),
-  bnbAddress: z.string().max(100),
-  shibaAddress: z.string().max(100),
-});
+export const OnboardingValidation: z.ZodType<OnboardingValidationType> =
+  z.object({
+    firstName: z.string().min(3).max(100),
+    lastName: z.string().min(3).max(100),
+    secretKey: z
+      .string()
+      .min(3, {
+        message:
+          "Ensure you safeguard your secret key, min of 3 characters and a max of 12 characters.",
+      })
+      .max(12, {
+        message:
+          "Ensure you safeguard your secret key, min of 3 characters and a max of 12 characters.",
+      }),
+    bitcoinAddress: z.string().max(100),
+    ethereumAddress: z.string().max(100),
+    litecoinAddress: z.string().max(100),
+    usdtAddress: z
+      .string()
+      .min(1, { message: "USDT Address is required" })
+      .max(100),
+    dogeAddress: z.string().max(100),
+    tronAddress: z.string().max(100),
+    bnbAddress: z.string().max(100),
+    shibaAddress: z.string().max(100),
+  });
 
 export const SignInValidation: z.ZodType<SignInValidationType> = z.object({
   email: z.string().email().min(10).max(100),
-  password: z.string().min(8).max(20),
+  password: z.string().min(6).max(20),
+});
+
+export const SignUpValidation: z.ZodType<SignUpValidationType> = z.object({
+  email: z.string().email().min(10).max(100),
+  password: z
+    .string()
+    .min(6, {
+      message: "Password should be a minimum of 6 characters",
+    })
+    .max(20),
 });
 
 export const FeedbackValidation: z.ZodType<FeedBackFormType> = z.object({
@@ -61,6 +76,19 @@ const planOptions = [
 export const PlansValidation: z.ZodType<PlanItemProps> = z.object({
   plan: z.enum(planOptions),
 });
+
+// Dashboard/Deposit/ConfirmDeposit
+
+export const ConfirmDepositValidation: z.ZodType<ConfirmDepositType> = z.object(
+  {
+    method: z.string({
+      required_error: "Please Select a payment method",
+    }),
+    amount: z.string().min(1, {
+      message: "required",
+    }),
+  }
+);
 
 //Dashboard/Edit Account
 

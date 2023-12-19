@@ -9,86 +9,49 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { SignInValidation, SignUpValidation } from "@/lib/validations/form";
-import { SignInValidationType, SignUpValidationType } from "@/typings";
+import { SignUpValidation } from "@/lib/validations/form";
+import { SignUpValidationType } from "@/typings";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Icons } from "@/components/icons";
 import { Label } from "../ui/label";
 import Link from "next/link";
-import {
-  browserLocalPersistence,
-  setPersistence,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { auth, db } from "@/firebase";
-import { useRouter, useSearchParams } from "next/navigation";
-import { doc, getDoc } from "firebase/firestore";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/firebase";
+import { useRouter } from "next/navigation";
 
-export function UserSignInForm() {
+export default function UserSignUpForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  const [error, setError] = useState(false);
+  const [emailExist, setEmailExist] = useState(false);
   const router = useRouter();
-  const referralParams = useSearchParams();
-
-  const referral = referralParams.get("ref");
-
-  const onSubmit = async (values: SignInValidationType) => {
+  const onSubmit = async (values: SignUpValidationType) => {
     setIsLoading(true);
     setIsDisabled(true);
 
     try {
-      await setPersistence(auth, browserLocalPersistence);
-      const userCredential = await signInWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         auth,
         values.email,
         values.password
       );
 
       const user = userCredential.user;
-      console.log(user);
-
-      if (user) {
-        const userId = user.providerData[0].uid;
-        const userDocRef = doc(db, "users", userId);
-        const userDocSnap = await getDoc(userDocRef);
-
-        if (userDocSnap.exists()) {
-          console.log("Document Exists");
-          const details = userDocSnap.data();
-          console.log(details?.onboarded);
-
-          if (details) {
-            const onboardedStatus = details?.onboarded;
-
-            if (onboardedStatus) {
-              router.push("/dashboard");
-            }
-          }
-        } else {
-          if (referral) {
-            router.push(`/onboarding/?ref=${referral}`);
-          } else {
-            router.push("/onboarding");
-          }
-        }
-      }
+      router.push("/login");
     } catch (error: any) {
-      console.log(`Error logging in. ${error.message}`);
-      setError(true);
+      console.log("Error creating account!");
+      setEmailExist(true);
     }
 
-    if (!error) {
-      form.setValue("email", "");
-      form.setValue("password", "");
-    }
+    form.setValue("email", "");
+    form.setValue("password", "");
+
     setIsLoading(false);
     setIsDisabled(false);
   };
-  const form = useForm<SignInValidationType>({
-    resolver: zodResolver(SignInValidation),
+  const form = useForm<SignUpValidationType>({
+    resolver: zodResolver(SignUpValidation),
     defaultValues: {
       email: "",
       password: "",
@@ -103,7 +66,7 @@ export function UserSignInForm() {
           className=" space-y-10 font-sans mt-8 w-full text-navyblue md:flex md:flex-col md:items-center md:justify-center min-h-screen "
         >
           <h2 className=" font-semibold text-darkblue max-md:text-md text-lg">
-            Login to Trust-Capital
+            Create your Account
           </h2>{" "}
           <div className="space-y-4">
             <FormField
@@ -119,6 +82,7 @@ export function UserSignInForm() {
                       <Input
                         id="email"
                         type="email"
+                        placeholder="your-email@example.com"
                         autoCapitalize="none"
                         autoComplete="email"
                         autoCorrect="off"
@@ -156,6 +120,7 @@ export function UserSignInForm() {
                       <Input
                         id="password"
                         type="password"
+                        placeholder="Password Min (6 characters)"
                         className="py-2 px-5 border border-navyblue transition-all duration-500 md:w-80"
                         {...field}
                         onChange={(e) => {
@@ -172,24 +137,24 @@ export function UserSignInForm() {
                       />
                     </div>
                   </FormControl>
+                  <FormMessage className="text-xs text-purered font-bold" />
                 </FormItem>
               )}
             />
-            <div>
-              {error ? (
-                <p className="text-purered text-xs font-bold">
-                  Invalid Email or Password
-                </p>
-              ) : null}
-            </div>
+
+            {emailExist && (
+              <div className="text-xs font-bold text-puregreen">
+                Email already exists
+              </div>
+            )}
             <div className=" font-sans">
               <p className="text-xs">
-                Have no account? {""}
+                Have an account? {""}
                 <Link
-                  href="/signup"
+                  href="/login"
                   className=" text-xs text-navyblue font-bold underline underline-offset-4"
                 >
-                  Create an account
+                  Login here
                 </Link>
               </p>
             </div>
@@ -201,7 +166,7 @@ export function UserSignInForm() {
               {isLoading && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               )}
-              Login
+              Sign Up
             </Button>
           </div>
         </form>
