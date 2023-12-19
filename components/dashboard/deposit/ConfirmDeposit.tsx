@@ -43,7 +43,7 @@ export default function ConfirmDeposit() {
     setAmount(setPrice(tradePlan || ""));
   }, []);
   return (
-    <div className=" bg-babyblue h-screen text-navyblue w-full p-5 space-y-6 max-md:text-xs">
+    <div className=" bg-babyblue h-screen md:h-full text-navyblue w-full p-5 space-y-6 max-md:text-xs">
       <div className="space-y-6">
         <div className="space-y-2">
           <h1 className="font-bold text-lg text-darkblue">Deposit Crypto</h1>
@@ -84,8 +84,6 @@ export default function ConfirmDeposit() {
             <p className="text-darkblue"> - DOGE ADDRESS</p>
             <p>DN7qU9xMHfqYpRPPXLPTFs6bf17DgHtJd4</p>
           </div>
-
-       
         </div>
 
         <div className="">
