@@ -1,6 +1,6 @@
 "use client";
 
-import {useState } from "react";
+import { useState } from "react";
 import {
   Form,
   FormControl,
@@ -29,6 +29,10 @@ import {
   where,
 } from "firebase/firestore";
 import { customAlphabet } from "nanoid";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 interface Params {
   userId: string;
@@ -43,6 +47,9 @@ export function UserAuthForm({ userId }: Params) {
   const form = useForm<OnboardingValidationType>({
     resolver: zodResolver(OnboardingValidation),
     defaultValues: {
+      email: "",
+      password: "",
+      userName: "",
       firstName: "",
       lastName: "",
       secretKey: "",
@@ -70,125 +77,214 @@ export function UserAuthForm({ userId }: Params) {
     setIsLoading(true);
     setIsDisabled(true);
 
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        values.email,
+        values.password
+      );
+
+      const user = userCredential.user;
+      console.log("User Created", user);
+
+      const { providerData } = user;
+      const uid = providerData[0]?.uid;
+
+      const userDocRef = doc(db, "users", uid);
+
+      await setDoc(
+        userDocRef,
+        {
+          userId: uid,
+          name: values.firstName + " " + values.lastName || "",
+          username: values.userName,
+          email: user?.email || "",
+          onboarded: true || "",
+          // referralCode,
+          referralCount: 0,
+          trade: false,
+          createdAt: new Date(),
+        },
+        { merge: true }
+      );
+      console.log("user document created in firebase");
+
+      // Creating Wallets Start
+
+      const walletDocRef = doc(db, "wallets", uid);
+
+      await setDoc(
+        walletDocRef,
+        {
+          walletId: uid,
+          secretKey: values.secretKey,
+          usdtAddress: values.usdtAddress,
+          btcAddress: values.bitcoinAddress,
+          ethereumAddress: values.ethereumAddress,
+          litecoinAddress: values.litecoinAddress,
+          dogeAddress: values.dogeAddress,
+          tronAddress: values.tronAddress,
+          bnbAddress: values.bnbAddress,
+          shibaAddress: values.shibaAddress,
+        },
+        { merge: true }
+      );
+
+      console.log("Wallet document created in firebase");
+
+      // Creating Wallets End
+
+      // Creating Account Information Start
+
+      const detailsDocRef = doc(db, "accountInfo", uid);
+
+      await setDoc(
+        detailsDocRef,
+        {
+          userId: uid,
+          accountBalance: 0.0,
+          currentPlan: "none",
+          activeDeposit: 0.0,
+          earnedTotal: 0.0,
+        },
+        { merge: true }
+      );
+
+      console.log("Details document created in firebase");
+
+      // Creating Account Information End
+
+      await signInWithEmailAndPassword(auth, values.email, values.password);
+      console.log("User signed in after sign up");
+
+      router.push("/dashboard");
+    } catch (error: any) {
+      console.log("Error creating account!");
+    }
+
     // Referrals Functionality ------------
 
     const refCode = referralParams.get("ref");
     const referralCode = generateReferralCode();
 
-    if (refCode) {
-      const referringUserDoc = query(
-        collection(db, "users"),
-        where("referralCode", "==", refCode)
-      );
-      const querySnapshot = await getDocs(referringUserDoc);
+    // if (refCode) {
+    //   const referringUserDoc = query(
+    //     collection(db, "users"),
+    //     where("referralCode", "==", refCode)
+    //   );
+    //   const querySnapshot = await getDocs(referringUserDoc);
 
-      if (querySnapshot.docs.length > 0) {
-        const referringUser = querySnapshot.docs[0];
-        const referringUserId = referringUser.id;
+    //   if (querySnapshot.docs.length > 0) {
+    //     const referringUser = querySnapshot.docs[0];
+    //     const referringUserId = referringUser.id;
 
-        // Storing information about referral start.
+    //     // Storing information about referral start.
 
-        const referralRef = doc(db, "referrals", referringUserId);
+    //     const referralRef = doc(db, "referrals", referringUserId);
 
-        onSnapshot(referralRef, (doc) => {
-          if (doc.exists()) {
-            const currentReferrals = doc.data()?.referrals || [];
-            const updatedReferrals = arrayUnion(
-              {
-                username: user?.displayName?.split(" ")[0],
-                email: user?.email,
-                referred: userId,
-              },
-              ...currentReferrals
-            );
-            setDoc(referralRef, { referrals: updatedReferrals });
+    //     onSnapshot(referralRef, (doc) => {
+    //       if (doc.exists()) {
+    //         const currentReferrals = doc.data()?.referrals || [];
+    //         const updatedReferrals = arrayUnion(
+    //           {
+    //             username: user?.displayName?.split(" ")[0],
+    //             email: user?.email,
+    //             referred: userId,
+    //           },
+    //           ...currentReferrals
+    //         );
+    //         setDoc(referralRef, { referrals: updatedReferrals });
 
-            console.log(doc.data());
-          } else {
-            setDoc(referralRef, {
-              referrals: arrayUnion({
-                username: user?.displayName?.split(" ")[0],
-                email: user?.email,
-                referred: userId,
-              }),
-            });
-          }
-        });
+    //         console.log(doc.data());
+    //       } else {
+    //         setDoc(referralRef, {
+    //           referrals: arrayUnion({
+    //             username: user?.displayName?.split(" ")[0],
+    //             email: user?.email,
+    //             referred: userId,
+    //           }),
+    //         });
+    //       }
+    //     });
 
-        // Storing information about the referral end.
+    //     // Storing information about the referral end.
 
-        await updateDoc(doc(db, "users", referringUserId), {
-          referralCount: referringUser.data().referralCount + 1,
-        });
-      }
-    }
+    //     await updateDoc(doc(db, "users", referringUserId), {
+    //       referralCount: referringUser.data().referralCount + 1,
+    //     });
+    //   }
+    // }
 
     // Referrals Functionality End ------------
 
     // Updating Users //
-    const uid = user?.uid || "";
-    const userDocRef = doc(db, "users", uid);
 
-    await setDoc(
-      userDocRef,
-      {
-        userId: uid,
-        name: values.firstName + " " + values.lastName || "",
-        email: user?.email || "",
-        onboarded: true || "",
-        referralCode,
-        referralCount: 0,
-        trade: false, 
-        createdAt: new Date(),
-      },
-      { merge: true }
-    );
+    // const uid = user?.uid || "";
+    // const userDocRef = doc(db, "users", uid);
+
+    // await setDoc(
+    //   userDocRef,
+    //   {
+    //     userId: uid,
+    //     name: values.firstName + " " + values.lastName || "",
+    //     email: user?.email || "",
+    //     onboarded: true || "",
+    //     referralCode,
+    //     referralCount: 0,
+    //     trade: false,
+    //     createdAt: new Date(),
+    //   },
+    //   { merge: true }
+    // );
 
     // Updating Users End
 
     // Creating Wallets Start
 
-    const walletDocRef = doc(db, "wallets", uid);
+    // const walletDocRef = doc(db, "wallets", uid);
 
-    await setDoc(
-      walletDocRef,
-      {
-        walletId: uid,
-        secretKey: values.secretKey,
-        usdtAddress: values.usdtAddress,
-        btcAddress: values.bitcoinAddress,
-        ethereumAddress: values.ethereumAddress,
-        litecoinAddress: values.litecoinAddress,
-        dogeAddress: values.dogeAddress,
-        tronAddress: values.tronAddress,
-        bnbAddress: values.bnbAddress,
-        shibaAddress: values.shibaAddress,
-      },
-      { merge: true }
-    );
+    // await setDoc(
+    //   walletDocRef,
+    //   {
+    //     walletId: uid,
+    //     secretKey: values.secretKey,
+    //     usdtAddress: values.usdtAddress,
+    //     btcAddress: values.bitcoinAddress,
+    //     ethereumAddress: values.ethereumAddress,
+    //     litecoinAddress: values.litecoinAddress,
+    //     dogeAddress: values.dogeAddress,
+    //     tronAddress: values.tronAddress,
+    //     bnbAddress: values.bnbAddress,
+    //     shibaAddress: values.shibaAddress,
+    //   },
+    //   { merge: true }
+    // );
 
     // Creating Wallets End
 
     // Creating Account Information Start
 
-    const detailsDocRef = doc(db, "accountInfo", uid);
+    // const detailsDocRef = doc(db, "accountInfo", uid);
 
-    await setDoc(
-      detailsDocRef,
-      {
-        userId: uid,
-        accountBalance: 0.0,
-        currentPlan: "none",
-        activeDeposit: 0.0,
-        earnedTotal: 0.0,
-      },
-      { merge: true }
-    );
+    // await setDoc(
+    //   detailsDocRef,
+    //   {
+    //     userId: uid,
+    //     accountBalance: 0.0,
+    //     currentPlan: "none",
+    //     activeDeposit: 0.0,
+    //     earnedTotal: 0.0,
+    //   },
+    //   { merge: true }
+    // );
 
     // Creating Account Information End
 
     form.setValue("firstName", "");
     form.setValue("lastName", "");
+    form.setValue("email", "");
+    form.setValue("password", "");
+    form.setValue("userName", "");
     form.setValue("secretKey", "");
     form.setValue("usdtAddress", "");
     form.setValue("bitcoinAddress", "");
@@ -202,7 +298,7 @@ export function UserAuthForm({ userId }: Params) {
     setIsLoading(false);
     setIsDisabled(false);
 
-    router.push("/dashboard");
+    // router.push("/dashboard");
   };
 
   return (
@@ -211,6 +307,227 @@ export function UserAuthForm({ userId }: Params) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-5 font-sans w-full flex flex-col md:h-screen"
       >
+        {/* ------------------- Personal Information --------------- */}
+
+        <div className="flex space-y-4 flex-col">
+          <h1 className="max-md:text-lg text-xl text-navyblue font-bold">
+            Personal Information
+          </h1>
+          <div className="md:flex-1">
+            <FormField
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl className="no-focus text-xs">
+                    <div className="relative">
+                      <Input
+                        placeholder="Firstname"
+                        disabled={isDisabled}
+                        className={`py-2 ${
+                          isDisabled ? "disableForm" : null
+                        }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                        {...field}
+                        onChange={(e) => {
+                          // Remove spaces as the user types
+                          const valueWithoutSpaces = e.target.value.replace(
+                            /\s/g,
+                            ""
+                          );
+                          form.setValue("firstName", valueWithoutSpaces);
+                        }}
+                      />
+                      <div
+                        className={`${isDisabled ? "disableInput" : null}`}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage className="text-purered text-xs" />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="md:flex-1">
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl className="no-focus text-xs">
+                    <div className="relative">
+                      <Input
+                        placeholder="Lastname"
+                        disabled={isDisabled}
+                        className={`py-2 ${
+                          isDisabled ? "disableForm" : null
+                        }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                        {...field}
+                        onChange={(e) => {
+                          // Remove spaces as the user types
+                          const valueWithoutSpaces = e.target.value.replace(
+                            /\s/g,
+                            ""
+                          );
+                          form.setValue("lastName", valueWithoutSpaces);
+                        }}
+                      />
+                      <div
+                        className={`${isDisabled ? "disableInput" : null}`}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage className="text-purered text-xs" />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="md:flex-1">
+            <FormField
+              control={form.control}
+              name="userName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl className="no-focus text-xs">
+                    <div className="relative">
+                      <Input
+                        placeholder="Username"
+                        disabled={isDisabled}
+                        className={`py-2 ${
+                          isDisabled ? "disableForm" : null
+                        }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                        {...field}
+                        onChange={(e) => {
+                          // Remove spaces as the user types
+                          const valueWithoutSpaces = e.target.value.replace(
+                            /\s/g,
+                            ""
+                          );
+                          form.setValue("userName", valueWithoutSpaces);
+                        }}
+                      />
+                      <div
+                        className={`${isDisabled ? "disableInput" : null}`}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage className="text-purered text-xs" />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="md:flex-1">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl className="no-focus text-xs">
+                    <div className="relative">
+                      <Input
+                        placeholder="Your Email"
+                        disabled={isDisabled}
+                        className={`py-2 ${
+                          isDisabled ? "disableForm" : null
+                        }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                        {...field}
+                        onChange={(e) => {
+                          // Remove spaces as the user types
+                          const valueWithoutSpaces = e.target.value.replace(
+                            /\s/g,
+                            ""
+                          );
+                          form.setValue("email", valueWithoutSpaces);
+                        }}
+                      />
+                      <div
+                        className={`${isDisabled ? "disableInput" : null}`}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage className="text-purered text-xs" />
+                </FormItem>
+              )}
+            />
+          </div>
+        </div>
+
+        {/* Security Information */}
+
+        <div className="flex space-y-4 flex-col">
+          <h1 className="max-md:text-lg text-xl text-navyblue font-bold">
+            Security Information
+          </h1>
+          <div className="md:flex-1">
+            <FormField
+              control={form.control}
+              name="secretKey"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl className="no-focus text-xs">
+                    <div className="relative">
+                      <Input
+                        placeholder="SECRET KEY min (3 chars)"
+                        disabled={isDisabled}
+                        className={`py-2 ${
+                          isDisabled ? "disableForm" : null
+                        }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                        {...field}
+                        onChange={(e) => {
+                          // Remove spaces as the user types
+                          const valueWithoutSpaces = e.target.value.replace(
+                            /\s/g,
+                            ""
+                          );
+                          form.setValue("secretKey", valueWithoutSpaces);
+                        }}
+                      />
+                      <div
+                        className={`${isDisabled ? "disableInput" : null}`}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage className="text-purered text-xs" />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="md:flex-1">
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl className="no-focus text-xs">
+                    <div className="relative">
+                      <Input
+                        placeholder="Password"
+                        type="password"
+                        disabled={isDisabled}
+                        className={`py-2 ${
+                          isDisabled ? "disableForm" : null
+                        }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                        {...field}
+                        onChange={(e) => {
+                          // Remove spaces as the user types
+                          const valueWithoutSpaces = e.target.value.replace(
+                            /\s/g,
+                            ""
+                          );
+                          form.setValue("password", valueWithoutSpaces);
+                        }}
+                      />
+                      <div
+                        className={`${isDisabled ? "disableInput" : null}`}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage className="text-purered text-xs" />
+                </FormItem>
+              )}
+            />
+          </div>
+        </div>
+
         {/*-------------------------------- Account Information ----------------------------*/}
 
         <div>
@@ -218,108 +535,7 @@ export function UserAuthForm({ userId }: Params) {
             <h1 className="max-md:text-lg text-xl text-navyblue font-bold">
               Account Information
             </h1>
-            <div className="md:flex-1">
-              <FormField
-                control={form.control}
-                name="firstName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl className="no-focus text-xs">
-                      <div className="relative">
-                        <Input
-                          placeholder="Firstname"
-                          disabled={isDisabled}
-                          className={`py-2 ${
-                            isDisabled ? "disableForm" : null
-                          }  px-5 border border-navyblue text-sm transition-all duration-500`}
-                          {...field}
-                          onChange={(e) => {
-                            // Remove spaces as the user types
-                            const valueWithoutSpaces = e.target.value.replace(
-                              /\s/g,
-                              ""
-                            );
-                            form.setValue("firstName", valueWithoutSpaces);
-                          }}
-                        />
-                        <div
-                          className={`${isDisabled ? "disableInput" : null}`}
-                        />
-                      </div>
-                    </FormControl>
-                    <FormMessage className="text-purered text-xs" />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <div className="md:flex-1">
-              <FormField
-                control={form.control}
-                name="lastName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl className="no-focus text-xs">
-                      <div className="relative">
-                        <Input
-                          placeholder="Lastname"
-                          disabled={isDisabled}
-                          className={`py-2 ${
-                            isDisabled ? "disableForm" : null
-                          }  px-5 border border-navyblue text-sm transition-all duration-500`}
-                          {...field}
-                          onChange={(e) => {
-                            // Remove spaces as the user types
-                            const valueWithoutSpaces = e.target.value.replace(
-                              /\s/g,
-                              ""
-                            );
-                            form.setValue("lastName", valueWithoutSpaces);
-                          }}
-                        />
-                        <div
-                          className={`${isDisabled ? "disableInput" : null}`}
-                        />
-                      </div>
-                    </FormControl>
-                    <FormMessage className="text-purered text-xs" />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <div className="md:flex-1">
-              <FormField
-                control={form.control}
-                name="secretKey"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl className="no-focus text-xs">
-                      <div className="relative">
-                        <Input
-                          placeholder="SECRET KEY min (3 chars)"
-                          disabled={isDisabled}
-                          className={`py-2 ${
-                            isDisabled ? "disableForm" : null
-                          }  px-5 border border-navyblue text-sm transition-all duration-500`}
-                          {...field}
-                          onChange={(e) => {
-                            // Remove spaces as the user types
-                            const valueWithoutSpaces = e.target.value.replace(
-                              /\s/g,
-                              ""
-                            );
-                            form.setValue("secretKey", valueWithoutSpaces);
-                          }}
-                        />
-                        <div
-                          className={`${isDisabled ? "disableInput" : null}`}
-                        />
-                      </div>
-                    </FormControl>
-                    <FormMessage className="text-purered text-xs" />
-                  </FormItem>
-                )}
-              />
-            </div>
+
             <div className="md:flex-1">
               <FormField
                 control={form.control}

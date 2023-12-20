@@ -23,6 +23,9 @@ export interface editStoreState {
 // Form Definitions Start
 
 export interface OnboardingValidationType {
+  email: string;
+  password: string; 
+  userName: string; 
   firstName: string;
   lastName: string;
   secretKey: string;

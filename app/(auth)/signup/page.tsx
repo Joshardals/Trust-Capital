@@ -1,4 +1,5 @@
 import SignUpContainer from "@/components/auth/SignUpContainer";
+import Onboarding from "@/components/onboarding/Onboarding";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
 
 export default function page() {
   return (
-    <SignUpContainer />
+    // <SignUpContainer />
+    <Onboarding />
   )
 }
