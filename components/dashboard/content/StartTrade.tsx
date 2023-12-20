@@ -23,22 +23,23 @@ const StartTrade = () => {
       }
     };
 
-    getAccount();
-  }, [userId]);
-
-  const handleStartTrade = async () => {
-    if (Number(accountBalance) !== 0) {
-      console.log("Trade begin");
-
+    const getUsers = async () => {
       const userDocSnap = await getDoc(doc(db, "users", userId));
 
       if (userDocSnap.exists()) {
         const details = userDocSnap.data();
         setTrade(details.trade);
-        console.log(details.trade);
       }
+    };
+
+    getAccount();
+    getUsers();
+  }, [userId]);
+
+  const handleStartTrade = async () => {
+    if (Number(accountBalance) !== 0) {
     } else {
-      alert("Before you can start trading, you must first make a deposit.");
+      alert("Trading automatically begins, when you make a deposit.");
     }
   };
 

@@ -1,4 +1,7 @@
 import { Button } from "@/components/ui/button";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface params {
   referralCode: string;
@@ -16,12 +19,18 @@ const Referral = ({ referralCode }: params) => {
         </div>
       </div>
 
-      <Button
-        variant={"form"}
-        className="max-md:text-xs max-md:h-8 border-none bg-darkblue hover:bg-darkblue/90 text-babyblue"
+      <CopyToClipboard
+        text={`https://trustcapitals.ltd/signup?ref=${referralCode}`}
+        onCopy={() => toast("Referral Link Copied")}
       >
-        Copy Link
-      </Button>
+        <Button
+          variant={"form"}
+          className="max-md:text-xs max-md:h-8 border-none bg-darkblue hover:bg-darkblue/90 text-babyblue"
+        >
+          Copy Link
+        </Button>
+      </CopyToClipboard>
+      <ToastContainer />
     </div>
   );
 };

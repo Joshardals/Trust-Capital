@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import {
   Form,
   FormControl,
@@ -15,26 +15,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Icons } from "@/components/icons";
-import Link from "next/link";
 import { auth, db } from "@/firebase";
 import { useRouter, useSearchParams } from "next/navigation";
-// import { updateUser } from "@/lib/action/user.action";
-// import { createWallet } from "@/lib/action/wallet.action";
 import {
-  FieldValue,
   arrayUnion,
   collection,
   doc,
   getDocs,
   onSnapshot,
   query,
-  serverTimestamp,
   setDoc,
   updateDoc,
   where,
 } from "firebase/firestore";
 import { customAlphabet } from "nanoid";
-// import { hashKey } from "@/lib/utils";
 
 interface Params {
   userId: string;

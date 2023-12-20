@@ -10,9 +10,6 @@ import GoogleTrans from "../content/GoogleTrans";
 
 const NavBar = () => {
   const { sideBar, setSideBar } = usesideBarStore();
-  // auth.onAuthStateChanged((user) => {
-  //   console.log(user);
-  // })
 
   return (
     <div className="relative">

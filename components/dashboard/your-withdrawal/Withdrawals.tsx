@@ -67,7 +67,6 @@ export function Withdrawals() {
       if (doc.exists()) {
         const res = doc.data();
         setWithdrawalInfo(res.withdrawals);
-        console.log(res);
       } else {
         console.log("no-data");
       }

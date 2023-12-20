@@ -124,15 +124,8 @@ const Plans = () => {
 
     const res = checkPlan(values?.plan);
     setMinAmount(res);
-    console.log(res);
 
     if (Number(values.amount) >= res) {
-      console.log({
-        plan: values.plan,
-        mehod: values.method,
-        amount: values.amount,
-      });
-
       router.push(
         `/dashboard/deposit/confirm-deposit?plantype=${values.plan}&planMethod=${values.method}&userEmail=${userId}&amount=${values.amount}`
       );

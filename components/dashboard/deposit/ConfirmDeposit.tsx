@@ -1,22 +1,12 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { ConfirmDepositValidation } from "@/lib/validations/form";
-import { ConfirmDepositType } from "@/typings";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
-import { useForm } from "react-hook-form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectGroup,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import ConfirmDepositForm from "@/components/forms/ConfirmDepositForm";
 import { useEffect, useState } from "react";
 import ConfirmDetails from "./ConfirmDetails";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ConfirmDeposit() {
   const [amount, setAmount] = useState<string | undefined>();
@@ -83,6 +73,7 @@ export default function ConfirmDeposit() {
     setAmount(setPrice(tradePlan || ""));
     checkMethodSetPrice(method || "");
   }, []);
+
   return (
     <div className=" bg-babyblue text-navyblue w-full p-5 space-y-6 max-md:text-xs">
       <div className="space-y-6">
@@ -97,12 +88,21 @@ export default function ConfirmDeposit() {
         </div>
 
         <div className="space-y-4">
-          <div>
+          <div className="space-y-2">
             {" "}
             <h1 className="text-md max-md:text-xs text-darkblue font-semibold">
               Kindly transfer your funds to this account.
             </h1>
             <p className="font-bold text-lg max-md:text-xs">{walletAddress}</p>
+            <CopyToClipboard
+              text={walletAddress}
+              onCopy={() => toast("Address Copied")}
+            >
+              <Button variant={"form"} className="text-xs p-2 h-auto">
+                Copy Address
+              </Button>
+            </CopyToClipboard>
+            <ToastContainer />
           </div>
 
           <div className="border-t border-t-navyblue">

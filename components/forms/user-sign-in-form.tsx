@@ -9,8 +9,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { SignInValidation, SignUpValidation } from "@/lib/validations/form";
-import { SignInValidationType, SignUpValidationType } from "@/typings";
+import { SignInValidation } from "@/lib/validations/form";
+import { SignInValidationType } from "@/typings";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
@@ -48,7 +48,6 @@ export function UserSignInForm() {
       );
 
       const user = userCredential.user;
-      console.log(user);
 
       if (user) {
         const userId = user.providerData[0].uid;
@@ -56,9 +55,7 @@ export function UserSignInForm() {
         const userDocSnap = await getDoc(userDocRef);
 
         if (userDocSnap.exists()) {
-          console.log("Document Exists");
           const details = userDocSnap.data();
-          console.log(details?.onboarded);
 
           if (details) {
             const onboardedStatus = details?.onboarded;

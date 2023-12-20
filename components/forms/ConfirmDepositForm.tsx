@@ -73,7 +73,6 @@ export default function ConfirmDepositForm({ amount, method, plan }: props) {
         setUsername(res.name);
       }
     };
-    console.log(plan)
 
     getUsers();
   }, []);
@@ -117,7 +116,7 @@ export default function ConfirmDepositForm({ amount, method, plan }: props) {
           subject: "Processing Deposit",
           body: `<p>Your ${convertAmount(
             amount
-          )} deposit is being processed and is awaiting confirmation.
+          )} ${plan} PLAN deposit is being processed and is awaiting confirmation.
            It will be directly deposited into your account upon confirmation; please review your deposit history to ascertain the status.</p>`,
         });
 
@@ -150,7 +149,7 @@ export default function ConfirmDepositForm({ amount, method, plan }: props) {
           subject: "Processing Deposit",
           body: `<p>Your ${convertAmount(
             amount
-          )} deposit is being processed and is awaiting confirmation.
+          )} ${plan} PLAN deposit is being processed and is awaiting confirmation.
            It will be directly deposited into your account upon confirmation; please review your deposit history to ascertain the status.</p>`,
         });
 
