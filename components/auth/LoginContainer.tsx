@@ -1,5 +1,6 @@
 "use client";
 
+import GoogleTrans from "../dashboard/content/GoogleTrans";
 import { UserSignInForm } from "../forms/user-sign-in-form";
 
 export default function LoginContainer() {
@@ -15,6 +16,7 @@ export default function LoginContainer() {
 
       {/* Start of code for Mobile Users  */}
       <div className="md:hidden bg-babyblue w-full py-2 px-10">
+        <GoogleTrans />
         <UserSignInForm />
       </div>
       {/* End of code for Mobile Users */}

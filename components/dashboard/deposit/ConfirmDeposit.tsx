@@ -128,7 +128,11 @@ export default function ConfirmDeposit() {
         </div>
       </div>
 
-      <ConfirmDepositForm amount={depositAmount || ""} method={method || ""} />
+      <ConfirmDepositForm
+        amount={depositAmount || ""}
+        method={method || ""}
+        plan={tradePlan || ""}
+      />
     </div>
   );
 }

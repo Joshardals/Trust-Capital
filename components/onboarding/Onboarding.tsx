@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Loading from "../ui/Loading";
+import GoogleTrans from "../dashboard/content/GoogleTrans";
 
 export default function Onboarding() {
   const [authUser, setAuthUser] = useState(false);
@@ -75,6 +76,7 @@ export default function Onboarding() {
               <div className="flex items-center justify-center text-xl font-serif h-full w-full">
                 <Image alt="Logo" src="/logo.png" width={30} height={30} />
               </div>
+              <GoogleTrans />
             </div>
             <div className="py-6 bg-navyblue h-screen">
               <div className=" px-5 py-10 relative bg-[url('/mobile-signup-bg.jpg')] w-full h-[35rem] bg-cover">

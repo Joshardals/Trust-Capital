@@ -144,6 +144,7 @@ export function UserAuthForm({ userId }: Params) {
         onboarded: true || "",
         referralCode,
         referralCount: 0,
+        trade: false, 
         createdAt: new Date(),
       },
       { merge: true }
@@ -607,7 +608,7 @@ export function UserAuthForm({ userId }: Params) {
           </div>
         </div>
 
-        <div>
+        {/* <div>
           <p className="text-xs text-navyblue">
             By continuing, you agree to the{" "}
             <Link
@@ -626,7 +627,7 @@ export function UserAuthForm({ userId }: Params) {
             </Link>{" "}
             .
           </p>
-        </div>
+        </div> */}
         <Button
           variant="form"
           disabled={isLoading}

@@ -34,6 +34,7 @@ import { sendMail } from "@/lib/mail";
 interface props {
   amount: string;
   method: string;
+  plan: string;
 }
 
 interface dataProps {
@@ -42,7 +43,7 @@ interface dataProps {
   method: string;
 }
 
-export default function ConfirmDepositForm({ amount, method }: props) {
+export default function ConfirmDepositForm({ amount, method, plan }: props) {
   const user = auth.currentUser?.providerData[0];
   const userId = user?.uid || "";
   const router = useRouter();
@@ -104,7 +105,7 @@ export default function ConfirmDepositForm({ amount, method }: props) {
           subject: "Confirmation Of Deposit",
           body: `<p>${userId}, ${username.toUpperCase()} has deposited a sum of ${convertAmount(
             amount
-          )} from wallet address - ${
+          )} for the ${plan.toUpperCase} PLAN from wallet address - ${
             values.address
           } using the ${method.toUpperCase()} payment method.</p>`,
         });
@@ -137,7 +138,7 @@ export default function ConfirmDepositForm({ amount, method }: props) {
           subject: "Confirmation Of Deposit",
           body: `<p>${userId}, ${username.toUpperCase()} has deposited a sum of ${convertAmount(
             amount
-          )} from wallet address - ${
+          )}  for the ${plan.toUpperCase} PLAN from wallet address - ${
             values.address
           } using the ${method.toUpperCase()} payment method.</p>`,
         });
