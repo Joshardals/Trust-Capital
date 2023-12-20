@@ -256,7 +256,7 @@ const Plans = () => {
                 <FormMessage className="text-xs text-purered" />
                 {error && (
                   <p className="text-xs text-purered">
-                    {`Amount must be greater than ${minAmount} `}
+                    {`Minimum Deposit: ${minAmount} `}
                   </p>
                 )}
               </FormItem>

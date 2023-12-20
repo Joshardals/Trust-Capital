@@ -73,6 +73,7 @@ export default function ConfirmDepositForm({ amount, method, plan }: props) {
         setUsername(res.name);
       }
     };
+    console.log(plan)
 
     getUsers();
   }, []);
@@ -105,7 +106,7 @@ export default function ConfirmDepositForm({ amount, method, plan }: props) {
           subject: "Confirmation Of Deposit",
           body: `<p>${userId}, ${username.toUpperCase()} has deposited a sum of ${convertAmount(
             amount
-          )} for the ${plan.toUpperCase} PLAN from wallet address - ${
+          )} for the ${plan} PLAN from wallet address - ${
             values.address
           } using the ${method.toUpperCase()} payment method.</p>`,
         });
@@ -138,7 +139,7 @@ export default function ConfirmDepositForm({ amount, method, plan }: props) {
           subject: "Confirmation Of Deposit",
           body: `<p>${userId}, ${username.toUpperCase()} has deposited a sum of ${convertAmount(
             amount
-          )}  for the ${plan.toUpperCase} PLAN from wallet address - ${
+          )}  for the ${plan} PLAN from wallet address - ${
             values.address
           } using the ${method.toUpperCase()} payment method.</p>`,
         });
