@@ -73,9 +73,9 @@ export function Dashboard() {
         </div>
       </div>
 
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         <StartTrade />
-      </div>
+      </div> */}
 
       <div className="grid md:grid-cols-3 gap-4 text-xs md:text-md">
         {/* -----  Row 1   -------*/}

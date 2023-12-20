@@ -15,7 +15,6 @@ export const OnboardingValidation: z.ZodType<OnboardingValidationType> =
   z.object({
     email: z.string().email().min(10).max(100),
     password: z.string().min(6).max(20),
-    userName: z.string().min(3).max(100),
     firstName: z.string().min(3).max(100),
     lastName: z.string().min(3).max(100),
     secretKey: z

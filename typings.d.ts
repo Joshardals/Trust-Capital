@@ -24,8 +24,7 @@ export interface editStoreState {
 
 export interface OnboardingValidationType {
   email: string;
-  password: string; 
-  userName: string; 
+  password: string;
   firstName: string;
   lastName: string;
   secretKey: string;

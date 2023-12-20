@@ -33,6 +33,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import Link from "next/link";
 
 interface Params {
   userId: string;
@@ -41,6 +42,7 @@ interface Params {
 export function UserAuthForm({ userId }: Params) {
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
+  const [emailExist, setEmailExist] = useState(false);
   const router = useRouter();
   const referralParams = useSearchParams();
 
@@ -49,7 +51,6 @@ export function UserAuthForm({ userId }: Params) {
     defaultValues: {
       email: "",
       password: "",
-      userName: "",
       firstName: "",
       lastName: "",
       secretKey: "",
@@ -84,6 +85,7 @@ export function UserAuthForm({ userId }: Params) {
         values.password
       );
 
+      const referralCode = generateReferralCode();
       const user = userCredential.user;
       console.log("User Created", user);
 
@@ -97,10 +99,9 @@ export function UserAuthForm({ userId }: Params) {
         {
           userId: uid,
           name: values.firstName + " " + values.lastName || "",
-          username: values.userName,
           email: user?.email || "",
           onboarded: true || "",
-          // referralCode,
+          referralCode,
           referralCount: 0,
           trade: false,
           createdAt: new Date(),
@@ -154,18 +155,22 @@ export function UserAuthForm({ userId }: Params) {
 
       // Creating Account Information End
 
-      await signInWithEmailAndPassword(auth, values.email, values.password);
+      try {
+        await signInWithEmailAndPassword(auth, values.email, values.password);
+      } catch (error: any) {
+        console.log("Error Logging In : ", error.message);
+      }
       console.log("User signed in after sign up");
 
       router.push("/dashboard");
     } catch (error: any) {
       console.log("Error creating account!");
+      setEmailExist(true);
     }
 
     // Referrals Functionality ------------
 
     const refCode = referralParams.get("ref");
-    const referralCode = generateReferralCode();
 
     // if (refCode) {
     //   const referringUserDoc = query(
@@ -284,7 +289,6 @@ export function UserAuthForm({ userId }: Params) {
     form.setValue("lastName", "");
     form.setValue("email", "");
     form.setValue("password", "");
-    form.setValue("userName", "");
     form.setValue("secretKey", "");
     form.setValue("usdtAddress", "");
     form.setValue("bitcoinAddress", "");
@@ -369,40 +373,6 @@ export function UserAuthForm({ userId }: Params) {
                             ""
                           );
                           form.setValue("lastName", valueWithoutSpaces);
-                        }}
-                      />
-                      <div
-                        className={`${isDisabled ? "disableInput" : null}`}
-                      />
-                    </div>
-                  </FormControl>
-                  <FormMessage className="text-purered text-xs" />
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className="md:flex-1">
-            <FormField
-              control={form.control}
-              name="userName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl className="no-focus text-xs">
-                    <div className="relative">
-                      <Input
-                        placeholder="Username"
-                        disabled={isDisabled}
-                        className={`py-2 ${
-                          isDisabled ? "disableForm" : null
-                        }  px-5 border border-navyblue text-sm transition-all duration-500`}
-                        {...field}
-                        onChange={(e) => {
-                          // Remove spaces as the user types
-                          const valueWithoutSpaces = e.target.value.replace(
-                            /\s/g,
-                            ""
-                          );
-                          form.setValue("userName", valueWithoutSpaces);
                         }}
                       />
                       <div
@@ -838,6 +808,23 @@ export function UserAuthForm({ userId }: Params) {
             .
           </p>
         </div> */}
+
+        {emailExist && (
+          <div className="text-xs font-bold text-puregreen">
+            Email already exists
+          </div>
+        )}
+        <div className=" font-sans">
+          <p className="text-xs">
+            Have an account? {""}
+            <Link
+              href="/login"
+              className=" text-xs text-navyblue font-bold underline underline-offset-4"
+            >
+              Login here
+            </Link>
+          </p>
+        </div>
         <Button
           variant="form"
           disabled={isLoading}
