@@ -6,6 +6,7 @@ import SideNav from "./SideNav";
 import Image from "next/image";
 import { useState } from "react";
 import { auth } from "@/firebase";
+import GoogleTrans from "../content/GoogleTrans";
 
 const NavBar = () => {
   const { sideBar, setSideBar } = usesideBarStore();
@@ -30,7 +31,11 @@ const NavBar = () => {
           </div>
         </div>
 
-        <div className="flex flex-row col-span-2 justify-end space-x-4">
+        <div>
+          <GoogleTrans />
+        </div>
+
+        <div className="flex flex-row justify-end space-x-4">
           <Link
             href="/dashboard"
             className=" flex items-center font-serif font-bold space-x-1 md:space-x-2 text-md w-auto relative text-babyblue"
@@ -39,7 +44,6 @@ const NavBar = () => {
             <p className="w-full flex font-bold text-center">
               Trust <span>-</span>Capital
             </p>
-            {/* <div className="max-md:hidden absolute top-0 right-0 border-r border-r-gold h-full" /> */}
           </Link>
         </div>
       </div>
