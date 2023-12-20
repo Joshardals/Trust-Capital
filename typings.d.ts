@@ -54,7 +54,7 @@ export interface FeedBackFormType {
 export interface PlansType {
   plan: any;
   method: any;
-  amount: string; 
+  amount: string;
 }
 
 export interface SecretType {
@@ -62,7 +62,12 @@ export interface SecretType {
 }
 
 export interface ConfirmDepositType {
-  address: string; 
+  address: string;
+}
+
+export interface WithdrawalType {
+  method: any;
+  amount: string;
 }
 // Form Definitions End
 

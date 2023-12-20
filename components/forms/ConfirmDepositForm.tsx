@@ -46,6 +46,7 @@ export default function ConfirmDepositForm({ amount, method }: props) {
   const user = auth.currentUser?.providerData[0];
   const userId = user?.uid || "";
   const router = useRouter();
+  const [username, setUsername] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [error, setError] = useState(false);
@@ -54,8 +55,28 @@ export default function ConfirmDepositForm({ amount, method }: props) {
     resolver: zodResolver(ConfirmDepositValidation),
   });
 
+  const convertAmount = (amount: string) => {
+    return Number(amount).toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+  };
+
+  useEffect(() => {
+    const getUsers = async () => {
+      const userDocRef = doc(db, "users", userId);
+      const userDocSnap = await getDoc(userDocRef);
+
+      if (userDocSnap.exists()) {
+        const res = userDocSnap.data();
+        setUsername(res.name);
+      }
+    };
+
+    getUsers();
+  }, []);
+
   const onSubmit = async (values: ConfirmDepositType) => {
-   
     setIsLoading(true);
 
     try {
@@ -80,26 +101,23 @@ export default function ConfirmDepositForm({ amount, method }: props) {
         await sendMail({
           to: "joshardalsgates@gmail.com",
           name: "Joshua",
-          subject: "Deposit Request",
-          body: "<h1>Hello World!!</h1>",
+          subject: "Confirmation Of Deposit",
+          body: `<p>${userId}, ${username.toUpperCase()} has deposited a sum of ${convertAmount(
+            amount
+          )} from wallet address - ${
+            values.address
+          } using the ${method.toUpperCase()} payment method.</p>`,
         });
 
-        // const response = await fetch("/api/send", {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "applications/json",
-        //   },
-        //   body: JSON.stringify(data),
-        // });
-
-        // if (response.status === 200) {
-        //   setData({
-        //     email: userId,
-        //     amount: amount,
-        //     method: method,
-        //   });
-        //   console.log(`Hey ${userId} your message was sent successfully!`);
-        // }
+        await sendMail({
+          to: `${userId}`,
+          name: `${username}`,
+          subject: "Processing Deposit",
+          body: `<p>Your ${convertAmount(
+            amount
+          )} deposit is being processed and is awaiting confirmation.
+           It will be directly deposited into your account upon confirmation; please review your deposit history to ascertain the status.</p>`,
+        });
 
         router.push("/dashboard/your-deposit");
       } else {
@@ -113,22 +131,26 @@ export default function ConfirmDepositForm({ amount, method }: props) {
           }),
         });
 
-        const response = await fetch("/api/send", {
-          method: "POST",
-          headers: {
-            "Content-Type": "applications/json",
-          },
-          body: JSON.stringify(data),
+        await sendMail({
+          to: "joshardalsgates@gmail.com",
+          name: "Joshua",
+          subject: "Confirmation Of Deposit",
+          body: `<p>${userId}, ${username.toUpperCase()} has deposited a sum of ${convertAmount(
+            amount
+          )} from wallet address - ${
+            values.address
+          } using the ${method.toUpperCase()} payment method.</p>`,
         });
 
-        if (response.status === 200) {
-          setData({
-            email: userId,
-            amount: amount,
-            method: method,
-          });
-          console.log(`Hey ${userId} your message was sent successfully!`);
-        }
+        await sendMail({
+          to: `${userId}`,
+          name: `${username}`,
+          subject: "Processing Deposit",
+          body: `<p>Your ${convertAmount(
+            amount
+          )} deposit is being processed and is awaiting confirmation.
+           It will be directly deposited into your account upon confirmation; please review your deposit history to ascertain the status.</p>`,
+        });
 
         router.push("/dashboard/your-deposit");
       }
@@ -136,7 +158,7 @@ export default function ConfirmDepositForm({ amount, method }: props) {
       console.log("Error: ", error.message);
     }
 
-    alert("Deposit request is successful");
+    alert("Deposit request is successful, Kindly check your mail inbox.");
     setIsLoading(false);
   };
   return (
@@ -154,7 +176,7 @@ export default function ConfirmDepositForm({ amount, method }: props) {
                     Your Wallet Address:
                   </Label>
                   <FormControl className="no-focus">
-                    <div className=" space-x-2">
+                    <div className="relative">
                       <Input
                         id="amount"
                         type="text"
@@ -164,8 +186,11 @@ export default function ConfirmDepositForm({ amount, method }: props) {
                         {...field}
                       />
                       <div
-                        className={`${isDisabled ? "disableInput" : null}`}
-                      />
+                        className={`${
+                          isDisabled &&
+                          "absolute top-0 left-0 h-full bg-darkblue/20 w-48"
+                        }`}
+                      ></div>
                     </div>
                   </FormControl>
                 </div>
@@ -178,6 +203,7 @@ export default function ConfirmDepositForm({ amount, method }: props) {
             <Button
               variant={"form"}
               className="max-md:text-xs w-40 bg-purered hover:bg-purered/90 text-babyblue"
+              disabled={isLoading}
               onClick={() => router.back()}
             >
               Cancel

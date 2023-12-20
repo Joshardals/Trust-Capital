@@ -11,32 +11,9 @@ import {
 } from "@/components/ui/table";
 import { auth, db } from "@/firebase";
 import { doc, onSnapshot } from "firebase/firestore";
-import { Timestamp } from "firebase/firestore";
+
 import { useEffect, useState } from "react";
 
-const invoices = [
-  {
-    invoice: "INV001",
-    paymentStatus: "Successful",
-    totalAmount: "$250.00",
-    paymentMethod: "Bitcoin",
-    paymentDate: "02/07/23",
-  },
-  {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "Ethereum",
-    paymentDate: "21/02/23",
-  },
-  {
-    invoice: "INV003",
-    paymentStatus: "Failed",
-    totalAmount: "$350.00",
-    paymentMethod: "USDT",
-    paymentDate: "14/09/23",
-  },
-];
 
 interface InvoicesProp {
   status: string;
@@ -71,10 +48,6 @@ export function DepositHistory() {
       }
     });
   }, [userId]);
-
-  useEffect(() => {
-    console.log(depositInfo);
-  }, [depositInfo]);
 
   const totalAmount = depositInfo?.reduce(
     (acc, value) => acc + Number(value.amount),

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Table,
   TableBody,
@@ -8,6 +10,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { auth, db } from "@/firebase";
+import { doc, onSnapshot } from "firebase/firestore";
+
+import { useEffect, useState } from "react";
 
 const invoices = [
   {
@@ -15,49 +21,64 @@ const invoices = [
     paymentStatus: "Successful",
     totalAmount: "$250.00",
     paymentMethod: "Bitcoin",
-    paymentDate: "13/01/23", 
+    paymentDate: "13/01/23",
   },
   {
     invoice: "INV002",
     paymentStatus: "Pending",
     totalAmount: "$150.00",
     paymentMethod: "Ethereum",
-    paymentDate: "01/01/23"
+    paymentDate: "01/01/23",
   },
   {
     invoice: "INV003",
     paymentStatus: "Failed",
     totalAmount: "$350.00",
     paymentMethod: "USDT",
-    paymentDate: "03/03/23"
+    paymentDate: "03/03/23",
   },
-  //   {
-  //     invoice: "INV004",
-  //     paymentStatus: "Paid",
-  //     totalAmount: "$450.00",
-  //     paymentMethod: "Credit Card",
-  //   },
-  //   {
-  //     invoice: "INV005",
-  //     paymentStatus: "Paid",
-  //     totalAmount: "$550.00",
-  //     paymentMethod: "PayPal",
-  //   },
-  //   {
-  //     invoice: "INV006",
-  //     paymentStatus: "Pending",
-  //     totalAmount: "$200.00",
-  //     paymentMethod: "Bank Transfer",
-  //   },
-  //   {
-  //     invoice: "INV007",
-  //     paymentStatus: "Unpaid",
-  //     totalAmount: "$300.00",
-  //     paymentMethod: "Credit Card",
-  //   },
 ];
 
+interface InvoicesProp {
+  status: string;
+  method: string;
+  created: string;
+  amount: string;
+}
+
+const convertTimestampToDate = (timestamp: any): string => {
+  const date = new Date(timestamp.seconds * 1000); // Convert seconds to milliseconds
+  const year = date.getFullYear().toString().slice(2); // Get last two digits of the year
+  const month = ("0" + (date.getMonth() + 1)).slice(-2); // Month is 0-indexed
+  const day = ("0" + date.getDate()).slice(-2);
+
+  return `${day}/${month}/${year}`;
+};
+
 export function Withdrawals() {
+  const user = auth.currentUser?.providerData[0];
+  const userId = user?.uid || "";
+  const [withdrawalInfo, setWithdrawalInfo] = useState<InvoicesProp[]>([]);
+
+  useEffect(() => {
+    const withdrawDocRef = doc(db, "withdrawals", userId);
+
+    onSnapshot(withdrawDocRef, (doc) => {
+      if (doc.exists()) {
+        const res = doc.data();
+        setWithdrawalInfo(res.withdrawals);
+        console.log(res);
+      } else {
+        console.log("no-data");
+      }
+    });
+  }, [userId]);
+
+  const totalAmount = withdrawalInfo?.reduce(
+    (acc, value) => acc + Number(value.amount),
+    0
+  );
+
   return (
     <div className="h-screen flex">
       <Table className="text-navyblue bg-darkblue/20 max-md:text-xs">
@@ -84,17 +105,20 @@ export function Withdrawals() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {invoices.map((invoice) => (
+          {withdrawalInfo.map((value, index) => (
             <TableRow
-              key={invoice.invoice}
+              key={index}
               className="font-bold border-t border-navyblue"
             >
-              <TableCell>{invoice.invoice}</TableCell>
-              <TableCell>{invoice.paymentStatus}</TableCell>
-              <TableCell>{invoice.paymentMethod}</TableCell>
-              <TableCell>{invoice.paymentDate}</TableCell>
-              <TableCell className="text-right">
-                {invoice.totalAmount}
+              <TableCell>{index + 1}</TableCell>
+              <TableCell>{value.status}</TableCell>
+              <TableCell>{value.method}</TableCell>
+              <TableCell>{convertTimestampToDate(value.created)}</TableCell>
+              <TableCell className="text-right" colSpan={2}>
+                {Number(value.amount).toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                })}
               </TableCell>
             </TableRow>
           ))}
@@ -102,7 +126,12 @@ export function Withdrawals() {
         <TableFooter className="border-t border-t-navyblue">
           <TableRow>
             <TableCell colSpan={4}>Total</TableCell>
-            <TableCell className="text-right">$2,500.00</TableCell>
+            <TableCell className="text-right">
+              {totalAmount?.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </TableCell>
           </TableRow>
         </TableFooter>
       </Table>

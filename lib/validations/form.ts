@@ -8,6 +8,7 @@ import {
   SecretType,
   SignInValidationType,
   SignUpValidationType,
+  WithdrawalType,
 } from "@/typings";
 
 export const OnboardingValidation: z.ZodType<OnboardingValidationType> =
@@ -100,6 +101,15 @@ export const ConfirmDepositValidation: z.ZodType<ConfirmDepositType> = z.object(
     }),
   }
 );
+
+// Dashboard/Withdraw
+
+export const WithdrawValidation: z.ZodType<WithdrawalType> = z.object({
+  method: z.enum(methodOptions),
+  amount: z.string().min(1, {
+    message: "required",
+  }),
+});
 
 //Dashboard/Edit Account
 

@@ -79,6 +79,7 @@ const Plans = () => {
   const [error, setError] = useState(false);
   const searchParams = useSearchParams();
   const [accountBalance, setAccountBalance] = useState("0");
+  const [minAmount, setMinAmount] = useState(0);
   const router = useRouter();
 
   const form = useForm<PlansType>({
@@ -99,25 +100,47 @@ const Plans = () => {
     getAccount();
   }, [userId]);
 
+  const checkPlan = (plan: string) => {
+    switch (plan) {
+      case "beginners":
+        return 100;
+      case "advanced trade":
+        return 700;
+      case "professional":
+        return 1500;
+      case "promo":
+        return 4000;
+      case "master trade":
+        return 9000;
+      case "retirement":
+        return 15000;
+      default:
+        throw new Error(`Unknown plan: ${plan}`);
+    }
+  };
+
   const onSubmit = async (values: PlansType) => {
     setIsLoading(true);
 
-    if (Number(values.amount) > 0) {
+    const res = checkPlan(values?.plan);
+    setMinAmount(res);
+    console.log(res);
+
+    if (Number(values.amount) >= res) {
       console.log({
         plan: values.plan,
         mehod: values.method,
         amount: values.amount,
       });
+
+      router.push(
+        `/dashboard/deposit/confirm-deposit?plantype=${values.plan}&planMethod=${values.method}&userEmail=${userId}&amount=${values.amount}`
+      );
     } else {
       setError(true);
     }
 
-    setTimeout(() => {
-      router.push(
-        `/dashboard/deposit/confirm-deposit?plantype=${values.plan}&planMethod=${values.method}&userEmail=${userId}&amount=${values.amount}`
-      );
-      setIsLoading(false);
-    }, 3000);
+    setIsLoading(false);
   };
 
   const convertAmount = (amount: string) => {
@@ -233,7 +256,7 @@ const Plans = () => {
                 <FormMessage className="text-xs text-purered" />
                 {error && (
                   <p className="text-xs text-purered">
-                    Amount must be greater than 0.
+                    {`Amount must be greater than ${minAmount} `}
                   </p>
                 )}
               </FormItem>

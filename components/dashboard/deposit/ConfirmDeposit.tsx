@@ -20,6 +20,7 @@ import ConfirmDetails from "./ConfirmDetails";
 
 export default function ConfirmDeposit() {
   const [amount, setAmount] = useState<string | undefined>();
+  const [walletAddress, setWalletAddress] = useState("");
   const searchParams = useSearchParams();
   const tradePlan = searchParams.get("plantype");
   const depositAmount = searchParams.get("amount");
@@ -49,8 +50,38 @@ export default function ConfirmDeposit() {
     });
   };
 
+  const checkMethodSetPrice = (method: string | "") => {
+    switch (method) {
+      case "usdt":
+        setWalletAddress("TYXG7tqURwCpb9EZTyqpQ3SuYkyyhEb5ei");
+        break;
+      case "bitcoin":
+        setWalletAddress("bc1qek4azk79ulmy3mukx84nzfksackdcuq7fjlez2");
+        break;
+      case "ethereum":
+        setWalletAddress("0x0339538e08DeC6C8d368B2BE562A12Db57a98fb1");
+        break;
+      case "litecoin":
+        setWalletAddress("ltc1qgqhehdn6wlvunzpd8qrhyrzhqqn3499hmgydgk");
+        break;
+      case "doge":
+        setWalletAddress("DN7qU9xMHfqYpRPPXLPTFs6bf17DgHtJd4");
+        break;
+      case "tron":
+        setWalletAddress("TYXG7tqURwCpb9EZTyqpQ3SuYkyyhEb5ei");
+        break;
+      case "bnb":
+        setWalletAddress("0x0339538e08DeC6C8d368B2BE562A12Db57a98fb1");
+        break;
+      case "shiba":
+        setWalletAddress("0x0339538e08DeC6C8d368B2BE562A12Db57a98fb1");
+        break;
+    }
+  };
+
   useEffect(() => {
     setAmount(setPrice(tradePlan || ""));
+    checkMethodSetPrice(method || "");
   }, []);
   return (
     <div className=" bg-babyblue text-navyblue w-full p-5 space-y-6 max-md:text-xs">
@@ -71,9 +102,7 @@ export default function ConfirmDeposit() {
             <h1 className="text-md max-md:text-xs text-darkblue font-semibold">
               Kindly transfer your funds to this account.
             </h1>
-            <p className="font-bold text-lg max-md:text-xs">
-              TYXG7tqURwCpb9EZTyqpQ3SuYkyyhEb5ei
-            </p>
+            <p className="font-bold text-lg max-md:text-xs">{walletAddress}</p>
           </div>
 
           <div className="border-t border-t-navyblue">
@@ -95,47 +124,8 @@ export default function ConfirmDeposit() {
               label="Preferred Method:"
               info={method?.toUpperCase() || ""}
             />
-            {/* <p>
-              Amount to deposit:{" "}
-              <span className="text-puregreen font-bold">
-                Between {setPrice(tradePlan || "")}
-              </span>
-            </p> */}
           </div>
         </div>
-
-        {/* <div className="space-y-4">
-          <div className="font-bold">
-            <p className="text-darkblue">- USDT ADDRESS:</p>
-            <p>TYXG7tqURwCpb9EZTyqpQ3SuYkyyhEb5ei</p>
-          </div>
-
-          <div className="font-bold">
-            <p className="text-darkblue">- BITCOIN ADDRESS:</p>
-            <p> bc1qek4azk79ulmy3mukx84nzfksackdcuq7fjlez2</p>
-          </div>
-
-          <div className="font-bold">
-            <p className="text-darkblue"> - TRON ADDRESS:</p>
-            <p> TYXG7tqURwCpb9EZTyqpQ3SuYkyyhEb5ei</p>
-          </div>
-          <div className="font-bold">
-            <p className="text-darkblue"> - LITECOIN ADDRESS</p>
-            <p> ltc1qgqhehdn6wlvunzpd8qrhyrzhqqn3499hmgydgk</p>
-          </div>
-          <div className="font-bold">
-            <p className="text-darkblue"> - SHIBA INU ADDRESS</p>
-            <p> 0x0339538e08DeC6C8d368B2BE562A12Db57a98fb1</p>
-          </div>
-          <div className="font-bold">
-            <p className="text-darkblue"> - BNB ADDRESS</p>
-            <p>0x0339538e08DeC6C8d368B2BE562A12Db57a98fb1</p>
-          </div>
-          <div className="font-bold">
-            <p className="text-darkblue"> - DOGE ADDRESS</p>
-            <p>DN7qU9xMHfqYpRPPXLPTFs6bf17DgHtJd4</p>
-          </div>
-        </div> */}
       </div>
 
       <ConfirmDepositForm amount={depositAmount || ""} method={method || ""} />
