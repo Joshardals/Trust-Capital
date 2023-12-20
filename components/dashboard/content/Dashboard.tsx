@@ -53,9 +53,12 @@ export function Dashboard() {
     getAccount();
   }, [userId]);
 
-  useEffect(() => {
-    console.log(account);
-  }, [account]);
+  const convertAmount = (amount: string) => {
+    return Number(amount).toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+  };
 
   return (
     <div className=" h-full font-sans space-y-8 text-navyblue md:p-5 max-md:p-5 bg-babyblue overflow-y-auto">
@@ -79,7 +82,9 @@ export function Dashboard() {
         <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
           <div className="space-y-1">
             <h1 className="font-semibold uppercase">active deposit</h1>
-            <p className="font-bold">${account?.activeDeposit}.00</p>
+            <p className="font-bold">
+              {convertAmount(account?.activeDeposit || "")}
+            </p>
           </div>
           <p></p>
         </div>
@@ -87,7 +92,9 @@ export function Dashboard() {
         <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
           <div className="space-y-1">
             <h1 className="font-semibold uppercase">earned total</h1>
-            <p className=" font-bold">${account?.earnedTotal}.00</p>
+            <p className=" font-bold">
+              {convertAmount(account?.earnedTotal || "")}
+            </p>
           </div>
           <p></p>
         </div>
@@ -95,7 +102,9 @@ export function Dashboard() {
         <div className="w-full h-full rounded-lg p-5 space-y-4 text-babyblue bg-navyblue">
           <div className="space-y-1">
             <h1 className="font-semibold uppercase">account balance</h1>
-            <p className=" font-bold">${account?.accountBalance}.00</p>
+            <p className=" font-bold">
+              {convertAmount(account?.accountBalance || "")}
+            </p>
           </div>
           <p></p>
         </div>

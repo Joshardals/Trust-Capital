@@ -16,11 +16,15 @@ import {
 } from "@/components/ui/select";
 import ConfirmDepositForm from "@/components/forms/ConfirmDepositForm";
 import { useEffect, useState } from "react";
+import ConfirmDetails from "./ConfirmDetails";
 
 export default function ConfirmDeposit() {
   const [amount, setAmount] = useState<string | undefined>();
   const searchParams = useSearchParams();
   const tradePlan = searchParams.get("plantype");
+  const depositAmount = searchParams.get("amount");
+  const email = searchParams.get("userEmail");
+  const method = searchParams.get("planMethod");
 
   const setPrice = (tradePlan: string) => {
     switch (tradePlan) {
@@ -38,22 +42,69 @@ export default function ConfirmDeposit() {
         return "$15000 - $unlimited";
     }
   };
+  const convertAmount = (amount: string) => {
+    return Number(amount).toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+  };
 
   useEffect(() => {
     setAmount(setPrice(tradePlan || ""));
   }, []);
   return (
-    <div className=" bg-babyblue max-md:h-screen text-navyblue w-full p-5 space-y-6 max-md:text-xs">
+    <div className=" bg-babyblue text-navyblue w-full p-5 space-y-6 max-md:text-xs">
       <div className="space-y-6">
         <div className="space-y-2">
-          <h1 className="font-bold text-lg text-darkblue">Deposit Crypto</h1>
+          <h1 className="font-bold text-lg text-darkblue">
+            Confirm your Deposit
+          </h1>
           <p className="text-purered font-bold">
-            Send the appropriate amount to any listed crypto wallet address of
-            your choice:
+            Warning: Before depositing, please confirm the wallet address by
+            contacting the support system.
           </p>
         </div>
 
         <div className="space-y-4">
+          <div>
+            {" "}
+            <h1 className="text-md max-md:text-xs text-darkblue font-semibold">
+              Kindly transfer your funds to this account.
+            </h1>
+            <p className="font-bold text-lg max-md:text-xs">
+              TYXG7tqURwCpb9EZTyqpQ3SuYkyyhEb5ei
+            </p>
+          </div>
+
+          <div className="border-t border-t-navyblue">
+            <ConfirmDetails
+              label="Selected Plan:"
+              info={tradePlan?.toUpperCase() + " PLAN" || ""}
+            />
+            <ConfirmDetails label="Principal Return:" info="Yes" />
+            <ConfirmDetails
+              label="Principal Withdraw:"
+              info="Available with 0.00% Fee"
+            />
+            <ConfirmDetails
+              label="Amount:"
+              info={convertAmount(depositAmount || "")}
+            />
+            <ConfirmDetails label="Payer Email:" info={email || ""} />
+            <ConfirmDetails
+              label="Preferred Method:"
+              info={method?.toUpperCase() || ""}
+            />
+            {/* <p>
+              Amount to deposit:{" "}
+              <span className="text-puregreen font-bold">
+                Between {setPrice(tradePlan || "")}
+              </span>
+            </p> */}
+          </div>
+        </div>
+
+        {/* <div className="space-y-4">
           <div className="font-bold">
             <p className="text-darkblue">- USDT ADDRESS:</p>
             <p>TYXG7tqURwCpb9EZTyqpQ3SuYkyyhEb5ei</p>
@@ -84,25 +135,10 @@ export default function ConfirmDeposit() {
             <p className="text-darkblue"> - DOGE ADDRESS</p>
             <p>DN7qU9xMHfqYpRPPXLPTFs6bf17DgHtJd4</p>
           </div>
-        </div>
-
-        <div className="">
-          <p>
-            Selected Plan:{" "}
-            <span className="text-puregreen capitalize font-bold">
-              {tradePlan}
-            </span>
-          </p>
-          <p>
-            Amount to deposit:{" "}
-            <span className="text-puregreen font-bold">
-              Between {setPrice(tradePlan || "")}
-            </span>
-          </p>
-        </div>
+        </div> */}
       </div>
 
-      <ConfirmDepositForm plan={tradePlan || ""} />
+      <ConfirmDepositForm amount={depositAmount || ""} method={method || ""} />
     </div>
   );
 }

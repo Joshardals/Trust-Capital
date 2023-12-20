@@ -53,6 +53,8 @@ export interface FeedBackFormType {
 
 export interface PlansType {
   plan: any;
+  method: any;
+  amount: string; 
 }
 
 export interface SecretType {
@@ -60,8 +62,7 @@ export interface SecretType {
 }
 
 export interface ConfirmDepositType {
-  method: string; 
-  amount: string;
+  address: string; 
 }
 // Form Definitions End
 
@@ -95,9 +96,10 @@ export interface QuestionProps {
 
 // Deposit Definitions
 
-export interface PlanItemProps {
-  plan: string;
-}
+// export interface PlanItemProps {
+//   plan: string;
+//   method: string;
+// }
 
 // Edit Account Definitions
 

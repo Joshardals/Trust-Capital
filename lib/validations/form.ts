@@ -4,7 +4,7 @@ import {
   EditValidationType,
   FeedBackFormType,
   OnboardingValidationType,
-  PlanItemProps,
+  PlansType,
   SecretType,
   SignInValidationType,
   SignUpValidationType,
@@ -73,18 +73,29 @@ const planOptions = [
   "retirement",
 ] as const;
 
-export const PlansValidation: z.ZodType<PlanItemProps> = z.object({
+const methodOptions = [
+  "usdt",
+  "bitcoin",
+  "ethereum",
+  "litecoin",
+  "doge",
+  "tron",
+  "bnb",
+  "shiba",
+] as const;
+export const PlansValidation: z.ZodType<PlansType> = z.object({
   plan: z.enum(planOptions),
+  method: z.enum(methodOptions),
+  amount: z.string().min(1, {
+    message: "required",
+  }),
 });
 
 // Dashboard/Deposit/ConfirmDeposit
 
 export const ConfirmDepositValidation: z.ZodType<ConfirmDepositType> = z.object(
   {
-    method: z.string({
-      required_error: "Please Select a payment method",
-    }),
-    amount: z.string().min(1, {
+    address: z.string().min(1, {
       message: "required",
     }),
   }

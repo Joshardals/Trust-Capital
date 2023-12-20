@@ -12,7 +12,7 @@ const Referral = ({ referralCode }: params) => {
       <div className="space-y-2">
         <p>To copy your referral link, click the button below.</p>
         <div className="w-full bg-black/10 py-2 px-5 rounded-lg cursor-pointer">
-          <p>{`http://localhost:3000/?ref=${referralCode}`}</p>
+          <p>{`https://trustcapitals.ltd/signup?ref=${referralCode}`}</p>
         </div>
       </div>
 
