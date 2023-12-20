@@ -35,51 +35,23 @@ interface props {
   method: string;
 }
 
+interface dataProps {
+  email: string;
+  amount: string;
+  method: string;
+}
+
 export default function ConfirmDepositForm({ amount, method }: props) {
   const user = auth.currentUser?.providerData[0];
   const userId = user?.uid || "";
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  // const [minDeposit, setMinDeposit] = useState<number>(0);
-  // const [maxDeposit, setMaxDeposit] = useState<number>(0);
   const [error, setError] = useState(false);
+  const [data, setData] = useState<dataProps>();
   const form = useForm<ConfirmDepositType>({
     resolver: zodResolver(ConfirmDepositValidation),
   });
-
-  // const setMinThreshold = (plan: string) => {
-  //   switch (plan) {
-  //     case "beginners":
-  //       setMinDeposit(100);
-  //       setMaxDeposit(699);
-  //       break;
-  //     case "advanced trade":
-  //       setMinDeposit(700);
-  //       setMaxDeposit(1499);
-  //       break;
-  //     case "professional":
-  //       setMinDeposit(1500);
-  //       setMaxDeposit(3999);
-  //       break;
-  //     case "promo":
-  //       setMinDeposit(4000);
-  //       setMaxDeposit(8999);
-  //       break;
-  //     case "master trade":
-  //       setMinDeposit(9000);
-  //       setMaxDeposit(15000);
-  //       break;
-  //     case "retirement":
-  //       setMinDeposit(15000);
-  //       setMaxDeposit(99999999999);
-  //       break;
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   setMinThreshold(plan);
-  // }, []);
 
   const onSubmit = async (values: ConfirmDepositType) => {
     setIsLoading(true);
@@ -102,6 +74,24 @@ export default function ConfirmDepositForm({ amount, method }: props) {
         );
 
         await setDoc(depositDocRef, { deposits: updatedDeposits });
+
+        const response = await fetch("/api/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "applications/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (response.status === 200) {
+          setData({
+            email: userId,
+            amount: amount,
+            method: method,
+          });
+          console.log(`Hey ${userId} your message was sent successfully!`);
+        }
+
         router.push("/dashboard/your-deposit");
       } else {
         await setDoc(depositDocRef, {
@@ -113,12 +103,31 @@ export default function ConfirmDepositForm({ amount, method }: props) {
             userId: userId,
           }),
         });
+
+        const response = await fetch("/api/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "applications/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (response.status === 200) {
+          setData({
+            email: userId,
+            amount: amount,
+            method: method,
+          });
+          console.log(`Hey ${userId} your message was sent successfully!`);
+        }
+
         router.push("/dashboard/your-deposit");
       }
     } catch (error: any) {
       console.log("Error: ", error.message);
     }
 
+    alert("Deposit request is successful");
     setIsLoading(false);
   };
   return (
