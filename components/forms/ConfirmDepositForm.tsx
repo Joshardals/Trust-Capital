@@ -29,6 +29,7 @@ import { Icons } from "../icons";
 import { useRouter } from "next/navigation";
 import { arrayUnion, doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "@/firebase";
+import { sendMail } from "@/lib/mail";
 
 interface props {
   amount: string;
@@ -54,6 +55,7 @@ export default function ConfirmDepositForm({ amount, method }: props) {
   });
 
   const onSubmit = async (values: ConfirmDepositType) => {
+   
     setIsLoading(true);
 
     try {
@@ -75,22 +77,29 @@ export default function ConfirmDepositForm({ amount, method }: props) {
 
         await setDoc(depositDocRef, { deposits: updatedDeposits });
 
-        const response = await fetch("/api/send", {
-          method: "POST",
-          headers: {
-            "Content-Type": "applications/json",
-          },
-          body: JSON.stringify(data),
+        await sendMail({
+          to: "joshardalsgates@gmail.com",
+          name: "Joshua",
+          subject: "Deposit Request",
+          body: "<h1>Hello World!!</h1>",
         });
 
-        if (response.status === 200) {
-          setData({
-            email: userId,
-            amount: amount,
-            method: method,
-          });
-          console.log(`Hey ${userId} your message was sent successfully!`);
-        }
+        // const response = await fetch("/api/send", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "applications/json",
+        //   },
+        //   body: JSON.stringify(data),
+        // });
+
+        // if (response.status === 200) {
+        //   setData({
+        //     email: userId,
+        //     amount: amount,
+        //     method: method,
+        //   });
+        //   console.log(`Hey ${userId} your message was sent successfully!`);
+        // }
 
         router.push("/dashboard/your-deposit");
       } else {
