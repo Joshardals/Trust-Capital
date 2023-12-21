@@ -17,16 +17,18 @@ import { EditValidationType } from "@/typings";
 import { useEffect, useState } from "react";
 import { auth, db } from "@/firebase";
 import { doc, onSnapshot, serverTimestamp, setDoc } from "firebase/firestore";
-import { useToast } from "../ui/use-toast";
+// import { useToast } from "../ui/use-toast";
 import { useEditStore } from "@/lib/store/store";
 import SecretForm from "./SecretForm";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const EditAccount = () => {
   const user = auth.currentUser?.providerData[0];
   const userId = user?.uid || "";
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
-  const { toast } = useToast();
+  // const { toast } = useToast();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
@@ -101,9 +103,7 @@ const EditAccount = () => {
         },
         { merge: true }
       );
-      toast({
-        description: "Your information has been successfully updated.",
-      });
+      toast("Your Information has been successfully updated.");
     } catch (error: any) {
       console.log(`Error updating wallet details: ${error.message}`);
     }
@@ -121,6 +121,7 @@ const EditAccount = () => {
           !secret ? "blur-sm select-none" : null
         } text-navyblue md:p-5 max-md:p-5 bg-babyblue`}
       >
+        <ToastContainer />
         <div className="space-y-8 h-full">
           <h1 className="capitalize text-lg font-semibold text-darkblue">
             edit account

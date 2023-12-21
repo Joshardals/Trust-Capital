@@ -14,21 +14,17 @@ export default function Onboarding() {
   const [userId, setUserId] = useState<string | undefined>();
   const router = useRouter();
 
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       setAuthUser(true);
-  //       const details = user?.providerData[0];
-  //       const uid = details.uid || "";
-  //       setUserId(uid);
-  //     } else {
-  //       setAuthUser(false);
-  //       router.push("/");
-  //     }
-  //   });
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const details = user?.providerData[0];
+        const uid = details.uid || "";
+        setUserId(uid);
+      } 
+    });
 
-  //   return () => unsubscribe();
-  // }, [router]);
+    return () => unsubscribe();
+  }, [router]);
 
   return (
     <div className="block">

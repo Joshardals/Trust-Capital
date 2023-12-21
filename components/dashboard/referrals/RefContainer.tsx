@@ -25,7 +25,7 @@ export default function RefContainer() {
   }, [userId]);
 
   useEffect(() => {
-    const commission = ((referrals || 0) * 0.1).toFixed(2);
+    const commission = ((referrals || 0) * 0.02).toFixed(2);
     setRefCommission(commission);
   }, [referrals]);
 

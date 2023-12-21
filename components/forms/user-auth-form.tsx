@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Form,
   FormControl,
@@ -35,11 +35,11 @@ import {
 } from "firebase/auth";
 import Link from "next/link";
 
-interface Params {
+interface params {
   userId: string;
 }
 
-export function UserAuthForm({ userId }: Params) {
+export function UserAuthForm({ userId }: params) {
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [emailExist, setEmailExist] = useState(false);
@@ -74,6 +74,53 @@ export function UserAuthForm({ userId }: Params) {
     return nanoid();
   };
 
+  useEffect(() => {
+    const getCode = async () => {
+      const refCode = referralParams.get("ref");
+      if (refCode) {
+        const referringUserDoc = query(
+          collection(db, "users"),
+          where("referralCode", "==", refCode)
+        );
+        const querySnapshot = await getDocs(referringUserDoc);
+        if (querySnapshot.docs.length > 0) {
+          const referringUser = querySnapshot.docs[0];
+          const referringUserId = referringUser.id;
+          const referralRef = doc(db, "referrals", referringUserId);
+
+          onSnapshot(referralRef, (doc) => {
+            if (doc.exists()) {
+              const currentReferrals = doc.data()?.referrals || [];
+              // const updatedReferrals = arrayUnion(
+              //   {
+              //     username: user?.displayName?.split(" ")[0],
+              //     email: user?.email,
+              //     referred: user?.uid,
+              //   },
+              //   ...currentReferrals
+              // );
+              // setDoc(referralRef, { referrals: updatedReferrals });
+              console.log(doc.data());
+            } else {
+              // setDoc(referralRef, {
+              //   referrals: arrayUnion({
+              //     username: user?.displayName?.split(" ")[0],
+              //     email: user?.email,
+              //     referred: user?.uid,
+              //   }),
+              // });
+              console.log("no-data yet", userId);
+              console.log("no-data");
+            }
+          });
+          await updateDoc(doc(db, "users", referringUserId), {
+            referralCount: referringUser.data().referralCount + 1,
+          });
+        }
+      }
+    };
+    getCode();
+  }, [userId]);
   const onSubmit = async (values: OnboardingValidationType) => {
     setIsLoading(true);
     setIsDisabled(true);
@@ -162,6 +209,76 @@ export function UserAuthForm({ userId }: Params) {
       }
       console.log("User signed in after sign up");
 
+      // Referrals Functionality Start
+      try {
+        const refCode = referralParams.get("ref");
+        if (refCode) {
+          const referringUserDoc = query(
+            collection(db, "users"),
+            where("referralCode", "==", refCode)
+          );
+          const querySnapshot = await getDocs(referringUserDoc);
+          if (querySnapshot.docs.length > 0) {
+            const referringUser = querySnapshot.docs[0];
+            const referringUserId = referringUser.id;
+            const referralRef = doc(db, "referrals", referringUserId);
+            // onSnapshot(referralRef, (doc) => {
+            //   if (doc.exists()) {
+            //     const currentReferrals = doc.data()?.referrals || [];
+            //     const updatedReferrals = arrayUnion(
+            //       {
+            //         username: user?.displayName?.split(" ")[0],
+            //         email: user?.email,
+            //         referred: userId,
+            //       },
+            //       ...currentReferrals
+            //     );
+            //     setDoc(referralRef, { referrals: updatedReferrals });
+            //     setDoc(
+            //       referralRef,
+            //       {
+            //         referrals: {
+            //           username: user?.displayName?.split(" ")[0],
+            //           email: user?.email,
+            //           referred: userId,
+            //         },
+            //       },
+            //       { merge: true }
+            //     );
+            //     console.log(doc.data());
+            //   } else {
+            //     setDoc(referralRef, {
+            //       referrals: arrayUnion({
+            //         username: user?.displayName?.split(" ")[0],
+            //         email: user?.email,
+            //         referred: userId,
+            //       }),
+            //     });
+            //     setDoc(
+            //       referralRef,
+            //       {
+            //         referrals: {
+            //           username: user?.displayName?.split(" ")[0],
+            //           email: user?.email,
+            //           referred: userId,
+            //         },
+            //       },
+            //       { merge: true }
+            //     );
+            //     console.log(doc.data());
+            //   }
+            // });
+            await updateDoc(doc(db, "users", referringUserId), {
+              referralCount: referringUser.data().referralCount + 1,
+            });
+          }
+        }
+      } catch (error: any) {
+        console.log("Error Referring User", error.message);
+      }
+
+      // Referrals Functionality End ------------
+
       router.push("/dashboard");
     } catch (error: any) {
       console.log("Error creating account!");
@@ -170,7 +287,7 @@ export function UserAuthForm({ userId }: Params) {
 
     // Referrals Functionality ------------
 
-    const refCode = referralParams.get("ref");
+    // const refCode = referralParams.get("ref");
 
     // if (refCode) {
     //   const referringUserDoc = query(
@@ -211,12 +328,14 @@ export function UserAuthForm({ userId }: Params) {
     //         });
     //       }
     //     });
+    //   }
+    // }
 
     //     // Storing information about the referral end.
 
-    //     await updateDoc(doc(db, "users", referringUserId), {
-    //       referralCount: referringUser.data().referralCount + 1,
-    //     });
+    // await updateDoc(doc(db, "users", referringUserId), {
+    //   referralCount: referringUser.data().referralCount + 1,
+    // });
     //   }
     // }
 
