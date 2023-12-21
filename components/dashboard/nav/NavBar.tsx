@@ -10,6 +10,9 @@ import GoogleTrans from "../content/GoogleTrans";
 
 const NavBar = () => {
   const { sideBar, setSideBar } = usesideBarStore();
+  // auth.onAuthStateChanged((user) => {
+  //   console.log(user);
+  // })
 
   return (
     <div className="relative">
@@ -28,11 +31,7 @@ const NavBar = () => {
           </div>
         </div>
 
-        <div>
-          <GoogleTrans />
-        </div>
-
-        <div className="flex flex-row justify-end space-x-4">
+        <div className="flex flex-row col-span-2 justify-end space-x-4">
           <Link
             href="/dashboard"
             className=" flex items-center font-serif font-bold space-x-1 md:space-x-2 text-md w-auto relative text-babyblue"
