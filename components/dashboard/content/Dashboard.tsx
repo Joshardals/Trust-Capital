@@ -118,12 +118,11 @@ export function Dashboard() {
           <p></p>
         </div>
       </div>
+      <TradingViewChart />
 
       {/* Referral Tab */}
 
       <Referral referralCode={code || ""} />
-
-      <TradingViewChart />
     </div>
   );
 }
