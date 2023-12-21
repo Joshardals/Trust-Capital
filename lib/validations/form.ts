@@ -19,7 +19,7 @@ export const OnboardingValidation: z.ZodType<OnboardingValidationType> =
     lastName: z.string().min(3).max(100),
     secretKey: z
       .string()
-      .min(3, {
+      .min(4, {
         message:
           "Ensure you safeguard your secret key, min of 3 characters and a max of 12 characters.",
       })

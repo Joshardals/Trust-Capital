@@ -114,7 +114,7 @@ const Withdraw = () => {
   }, []);
 
   const onSubmit = async (values: WithdrawalType) => {
-    if (Number(values.amount) <= Number(accountBalance)) {
+    if (Number(values.amount) <= Number(accountBalance) && Number(values.amount) > 0) {
       setIsLoading(true);
       setIsDisabled(true);
 

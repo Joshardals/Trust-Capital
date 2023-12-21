@@ -436,7 +436,8 @@ export function UserAuthForm({ userId }: Params) {
                   <FormControl className="no-focus text-xs">
                     <div className="relative">
                       <Input
-                        placeholder="SECRET KEY min (3 chars)"
+                        type="number"
+                        placeholder="SECRET KEY min (4 chars)"
                         disabled={isDisabled}
                         className={`py-2 ${
                           isDisabled ? "disableForm" : null

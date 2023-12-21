@@ -44,11 +44,6 @@ export default function SecretForm({ id, setSecret }: params) {
       setIsDisabled(true);
     }
 
-    // const secretKey = await checkSecretKey({
-    //   id,
-    //   providedKey: values?.secretKey,
-    // });
-
     const walletDocRef = doc(db, "wallets", id);
     const walletDocSnap = await getDoc(walletDocRef);
 
@@ -63,12 +58,6 @@ export default function SecretForm({ id, setSecret }: params) {
       }
     }
 
-    // if (secretKey) {
-    //   setError(false);
-    //   setSecret(true);
-    // } else {
-    //   setError(true);
-    // }
     setIsLoading(false);
     setIsDisabled(false);
   };
