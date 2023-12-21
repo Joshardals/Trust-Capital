@@ -74,53 +74,6 @@ export function UserAuthForm({ userId }: params) {
     return nanoid();
   };
 
-  useEffect(() => {
-    const getCode = async () => {
-      const refCode = referralParams.get("ref");
-      if (refCode) {
-        const referringUserDoc = query(
-          collection(db, "users"),
-          where("referralCode", "==", refCode)
-        );
-        const querySnapshot = await getDocs(referringUserDoc);
-        if (querySnapshot.docs.length > 0) {
-          const referringUser = querySnapshot.docs[0];
-          const referringUserId = referringUser.id;
-          const referralRef = doc(db, "referrals", referringUserId);
-
-          onSnapshot(referralRef, (doc) => {
-            if (doc.exists()) {
-              const currentReferrals = doc.data()?.referrals || [];
-              // const updatedReferrals = arrayUnion(
-              //   {
-              //     username: user?.displayName?.split(" ")[0],
-              //     email: user?.email,
-              //     referred: user?.uid,
-              //   },
-              //   ...currentReferrals
-              // );
-              // setDoc(referralRef, { referrals: updatedReferrals });
-              console.log(doc.data());
-            } else {
-              // setDoc(referralRef, {
-              //   referrals: arrayUnion({
-              //     username: user?.displayName?.split(" ")[0],
-              //     email: user?.email,
-              //     referred: user?.uid,
-              //   }),
-              // });
-              console.log("no-data yet", userId);
-              console.log("no-data");
-            }
-          });
-          await updateDoc(doc(db, "users", referringUserId), {
-            referralCount: referringUser.data().referralCount + 1,
-          });
-        }
-      }
-    };
-    getCode();
-  }, [userId]);
   const onSubmit = async (values: OnboardingValidationType) => {
     setIsLoading(true);
     setIsDisabled(true);

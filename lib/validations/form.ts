@@ -21,11 +21,11 @@ export const OnboardingValidation: z.ZodType<OnboardingValidationType> =
       .string()
       .min(4, {
         message:
-          "Ensure you safeguard your secret key, min of 3 characters and a max of 12 characters.",
+          "Ensure you safeguard your secret key, min of 4 characters and a max of 12 characters.",
       })
       .max(12, {
         message:
-          "Ensure you safeguard your secret key, min of 3 characters and a max of 12 characters.",
+          "Ensure you safeguard your secret key, min of 4 characters and a max of 12 characters.",
       }),
     bitcoinAddress: z.string().max(100),
     ethereumAddress: z.string().max(100),
