@@ -172,8 +172,8 @@ const Withdraw = () => {
           });
 
           await sendMail({
-            to: "joshardalsgates@gmail.com",
-            name: "Joshua",
+            to: "companynotify00@gmail.com",
+            name: "Jahrule",
             subject: "Withdrawal Request",
             body: `<p>${userId}, ${username.toUpperCase()} has requested a withdrawal of the sum of ${convertAmount(
               values.amount

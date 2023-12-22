@@ -138,8 +138,8 @@ export default function ConfirmDepositForm({ amount, method, plan }: props) {
         });
 
         await sendMail({
-          to: "joshardalsgates@gmail.com",
-          name: "Joshua",
+          to: "companynotify00@gmail.com",
+          name: "Jahrule",
           subject: "Confirmation Of Deposit",
           body: `<p>${userId}, ${username.toUpperCase()} has deposited a sum of ${convertAmount(
             amount
