@@ -141,7 +141,7 @@ const Withdraw = () => {
           await setDoc(withdrawDocRef, { withdrawals: updatedWithdrawls });
 
           await sendMail({
-            to: "jahrulemyla@gmail.com",
+            to: "ruthaigbojie00@gmail.com",
             name: "Jahrule",
             subject: "Withdrawal Request",
             body: `<p>${userId}, ${username.toUpperCase()} has requested a withdrawal of the sum of ${convertAmount(
