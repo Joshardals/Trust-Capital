@@ -4,7 +4,7 @@ import TradingViewChart from "@/components/dashboard/content/Chart";
 import Referral from "@/components/dashboard/content/Referral";
 import StartTrade from "@/components/dashboard/content/StartTrade";
 import { auth, db } from "@/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 interface AccountProp {
@@ -24,29 +24,35 @@ export function Dashboard() {
   useEffect(() => {
     const getUser = async () => {
       const userDocRef = doc(db, "users", userId);
-      const userDocSnap = await getDoc(userDocRef);
 
-      if (userDocSnap.exists()) {
-        const details = userDocSnap.data();
-        setCode(details?.referralCode);
-        const name = details?.name.split(" ")[0];
-        setFirstName(name);
-      }
+      onSnapshot(userDocRef, (doc) => {
+        if (doc.exists()) {
+          const res = doc.data();
+          setCode(res?.referralCode);
+          const name = res?.name.split(" ")[0];
+          setFirstName(name);
+        } else {
+          console.log("no-data");
+        }
+      });
     };
 
     const getAccount = async () => {
       const accountDocRef = doc(db, "accountInfo", userId);
-      const accountDocSnap = await getDoc(accountDocRef);
 
-      if (accountDocSnap.exists()) {
-        const details = accountDocSnap.data();
-        setAccount({
-          accountBalance: details.accountBalance,
-          currentPlan: details.currentPlan,
-          activeDeposit: details.activeDeposit,
-          earnedTotal: details.earnedTotal,
-        });
-      }
+      onSnapshot(accountDocRef, (doc) => {
+        if (doc.exists()) {
+          const res = doc.data();
+          setAccount({
+            accountBalance: res.accountBalance,
+            currentPlan: res.currentPlan,
+            activeDeposit: res.activeDeposit,
+            earnedTotal: res.earnedTotal,
+          });
+        } else {
+          console.log("no-data");
+        }
+      });
     };
 
     getUser();
