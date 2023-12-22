@@ -114,7 +114,10 @@ const Withdraw = () => {
   }, []);
 
   const onSubmit = async (values: WithdrawalType) => {
-    if (Number(values.amount) <= Number(accountBalance) && Number(values.amount) > 0) {
+    if (
+      Number(values.amount) <= Number(accountBalance) &&
+      Number(values.amount) > 0
+    ) {
       setIsLoading(true);
       setIsDisabled(true);
 
@@ -138,8 +141,8 @@ const Withdraw = () => {
           await setDoc(withdrawDocRef, { withdrawals: updatedWithdrawls });
 
           await sendMail({
-            to: "joshardalsgates@gmail.com",
-            name: "Joshua",
+            to: "jahrulemyla@gmail.com",
+            name: "Jahrule",
             subject: "Withdrawal Request",
             body: `<p>${userId}, ${username.toUpperCase()} has requested a withdrawal of the sum of ${convertAmount(
               values.amount
