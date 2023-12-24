@@ -67,13 +67,13 @@ export default function Onboarding() {
         {/* Start Of Code for Mobile Users */}
         <div className="md:hidden relative h-screen">
           {/* for the next div, h-28 and a fixed */}
-          <div className="fixed top-0 left-0 w-full bg-navyblue text-white h-28 px-5 z-20">
+          <div className="relative top-0 left-0 w-full bg-navyblue text-white h-16 px-5 z-20">
             <div className="flex items-center justify-center text-xl font-serif h-full w-full">
               <Image alt="Logo" src="/logo.png" width={30} height={30} />
             </div>
             <GoogleTrans />
           </div>
-          <div className="py-6 bg-navyblue h-screen">
+          <div className=" bg-navyblue h-screen">
             <div className=" px-5 py-10 relative bg-[url('/mobile-signup-bg.jpg')] w-full h-[35rem] bg-cover">
               <div className=" relative z-10 space-y-4 flex flex-col h-full justify-end">
                 <h1 className="text-2xl text-babyblue font-serif font-bold">
