@@ -66,7 +66,7 @@ export default function Onboarding() {
         {/* End Of Code */}
         {/* Start Of Code for Mobile Users */}
         <div className="md:hidden relative h-screen">
-          <div className="fixed top-0 left-0 w-full bg-navyblue text-white h-16 px-5 z-20">
+          <div className="fixed top-0 left-0 w-full bg-navyblue text-white h-28 px-5 z-20">
             <div className="flex items-center justify-center text-xl font-serif h-full w-full">
               <Image alt="Logo" src="/logo.png" width={30} height={30} />
             </div>
