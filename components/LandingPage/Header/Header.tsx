@@ -5,7 +5,8 @@ import NavBar from "./Nav/NavBar";
 const Header = () => {
   return (
     <main className="w-full">
-      <div className=" mb-16">
+      {/* mb-16 for the empty className below */}
+      <div className="">
         <NavBar />
       </div>
       <CryptoPrice />

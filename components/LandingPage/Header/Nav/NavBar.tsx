@@ -15,8 +15,9 @@ import GoogleTrans from "@/components/dashboard/content/GoogleTrans";
 const NavBar = () => {
   const { navBar, setNavBar } = useNavStore();
   return (
-    <div className="relative max-md:mt-10 mt-12">
-      <div className="flex max-md:items-center justify-between fixed left-0 right-0 top-0 bottom-0 w-full h-28 px-5 lg:px-10 bg-navyblue z-30 select-none">
+    // max-md:mt-10 mt-12 for the relative div, and a fixed with an h-16 for the next div after.
+    <div className="relative">
+      <div className="flex max-md:items-center justify-between relative left-0 right-0 top-0  bottom-0 w-full h-16 px-5 lg:px-10 bg-navyblue z-30 select-none">
         <div className="flex  max-md:flex-1 w-full md:w-auto space-x-8">
           {/* Company's Logo */}
           <Link
