@@ -66,7 +66,12 @@ export function Withdrawals() {
     onSnapshot(withdrawDocRef, (doc) => {
       if (doc.exists()) {
         const res = doc.data();
-        setWithdrawalInfo(res.withdrawals);
+        const sortedWithdrawal = [...res.withdrawals].sort((a: any, b: any) => {
+          const timeA = a.created.toMillis(); // Convert Timestamp to milliseconds
+          const timeB = b.created.toMillis();
+          return timeA - timeB;
+        });
+        setWithdrawalInfo(sortedWithdrawal);
       } else {
         console.log("no-data");
       }

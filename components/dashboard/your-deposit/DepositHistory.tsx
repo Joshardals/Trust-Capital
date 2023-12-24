@@ -10,10 +10,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { auth, db } from "@/firebase";
-import { doc, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
 
 import { useEffect, useState } from "react";
-
 
 interface InvoicesProp {
   status: string;
@@ -38,11 +43,19 @@ export function DepositHistory() {
 
   useEffect(() => {
     const depositDocRef = doc(db, "deposits", userId);
+    // const q = query(depositDocRef, orderBy("created", "asc"));
 
     onSnapshot(depositDocRef, (doc) => {
+      // doc.docs.forEach((doc) => {
+      //   console.log(doc.data());
       if (doc.exists()) {
         const res = doc.data();
-        setDepositInfo(res.deposits);
+        const sortedDeposits = [...res.deposits].sort((a: any, b: any) => {
+          const timeA = a.created.toMillis(); // Convert Timestamp to milliseconds
+          const timeB = b.created.toMillis();
+          return timeA - timeB;
+        });
+        setDepositInfo(sortedDeposits);
       } else {
         console.log("no-data");
       }
