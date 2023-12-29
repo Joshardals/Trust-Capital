@@ -8,7 +8,8 @@ const SideNav = () => {
 
   return (
     <div className="md:hidden">
-      <div className="w-full z-20 md:hidden -mt-4">
+      {/* removed -mt-4 and fixed in the next div I think */}
+      <div className="w-full relative z-20 md:hidden ">
         {navBar && (
           <div className="py-4 w-full text-babyblue bg-navyblue transition-all duration-300 ease-in-out">
             <div className="w-full space-y-6 px-5 h-full">
