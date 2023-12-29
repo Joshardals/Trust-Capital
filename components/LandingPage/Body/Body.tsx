@@ -6,6 +6,7 @@ import Questions from "./Faqs/Questions";
 import Support from "./Support/Support";
 import SupportTrigger from "./Support/SupportTrigger";
 import { useSupportStore } from "@/lib/store/store";
+import TelegramTrigger from "./Support/TelegramTrigger";
 
 const Body = () => {
   const { support } = useSupportStore();
@@ -28,7 +29,10 @@ const Body = () => {
         </div>
       )}
 
-      <SupportTrigger />
+      <div className="flex items-center">
+        <SupportTrigger />
+        <TelegramTrigger />
+      </div>
     </div>
   );
 };

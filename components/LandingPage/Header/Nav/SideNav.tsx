@@ -8,7 +8,7 @@ const SideNav = () => {
 
   return (
     <div className="md:hidden">
-      <div className="w-full fixed z-20 md:hidden -mt-4">
+      <div className="w-full z-20 md:hidden -mt-4">
         {navBar && (
           <div className="py-4 w-full text-babyblue bg-navyblue transition-all duration-300 ease-in-out">
             <div className="w-full space-y-6 px-5 h-full">
@@ -19,12 +19,12 @@ const SideNav = () => {
         )}
       </div>
 
-      {navBar && (
+      {/* {navBar && (
         <div
           className="bg-pureblack bg-opacity-40 h-screen w-full fixed top-0 z-10 transition-all duration-500 ease-in"
           onClick={setNavBar}
         />
-      )}
+      )} */}
     </div>
   );
 };

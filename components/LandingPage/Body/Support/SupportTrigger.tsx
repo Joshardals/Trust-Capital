@@ -28,7 +28,7 @@ const SupportTrigger = () => {
    `}
       onClick={handleClick}
     >
-      <Icons.chat className=" w-6 h-6 text-babyblue" />
+      <Icons.chat className=" w-5 h-5 text-babyblue" />
     </div>
   );
 };
