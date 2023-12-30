@@ -21,6 +21,7 @@ export default function page() {
     // <SignUpContainer />
     <div>
        <Script
+       id="registerScript"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
