@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Create your login | Trust-Capital Investment",
   description: "Create your login for Trust-Capital",
   openGraph: {
-    images: "https://i.ibb.co/BgKjLSK/store-Online.jpg",
+    images: "https://i.ibb.co/1ZtGx3s/localhost-3001.png",
   },
 };
 
