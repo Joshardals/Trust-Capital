@@ -9,9 +9,9 @@ const MobileSideNav = () => {
   return (
     <div className="md:hidden">
       <div
-        className={`fixed ${
+        className={`absolute top-0 ${
           sideBar ? "translate-x-0" : "-translate-x-full"
-        } overflow-auto z-30 left-0 w-72 transition-all duration-300 bg-navyblue h-screen text-babyblue font-sans
+        } overflow-auto z-30 left-0 w-72 transition-all duration-300 bg-navyblue h-full text-babyblue font-sans
         p-5
     `}
       >

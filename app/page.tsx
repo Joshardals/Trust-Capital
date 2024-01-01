@@ -2,7 +2,6 @@ import Body from "@/components/LandingPage/Body/Body";
 import CryptoPrice from "@/components/LandingPage/Crypto/CryptoPrice";
 import Footer from "@/components/LandingPage/Footer/Footer";
 import Header from "@/components/LandingPage/Header/Header";
-import { open_sans, playfair } from "@/components/ui/font";
 
 import { Metadata } from "next";
 

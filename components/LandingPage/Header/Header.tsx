@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import CryptoPrice from "../Crypto/CryptoPrice";
 import HeroSection from "./HeroSection/HeroSection";
 import NavBar from "./Nav/NavBar";
@@ -9,7 +10,9 @@ const Header = () => {
       <div className="">
         <NavBar />
       </div>
-      <CryptoPrice />
+      <Suspense fallback={<p>Loading Crypto Price...</p>}>
+        <CryptoPrice />
+      </Suspense>
       <HeroSection />
     </main>
   );

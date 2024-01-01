@@ -17,7 +17,7 @@ const NavBar = () => {
   return (
     <div className="relative">
       <div
-        className={`grid grid-cols-3 items-center fixed left-0 right-0 top-0 bottom-0 w-full h-16 px-5 bg-navyblue z-20 select-none
+        className={`grid grid-cols-5 items-center relative left-0 right-0 top-0 bottom-0 w-full h-16 px-5 bg-navyblue z-20 select-none
      border-b border-b-goldenrod`}
       >
         <div className="flex flex-1 w-full items-center">
@@ -31,7 +31,11 @@ const NavBar = () => {
           </div>
         </div>
 
-        <div className="flex flex-row col-span-2 justify-end space-x-4">
+        <div>
+          <GoogleTrans />
+        </div>
+
+        <div className="flex flex-row justify-end space-x-4 col-span-3">
           <Link
             href="/dashboard"
             className=" flex items-center font-serif font-bold space-x-1 md:space-x-2 text-md w-auto relative text-babyblue"
@@ -42,6 +46,8 @@ const NavBar = () => {
             </p>
           </Link>
         </div>
+
+        {/* <GoogleTrans /> */}
       </div>
       {/* The Popup the SideNav when the hamburger Icon gets clicked on. */}
       <SideNav />

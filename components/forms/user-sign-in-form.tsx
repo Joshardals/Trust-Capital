@@ -25,6 +25,7 @@ import {
 import { auth, db } from "@/firebase";
 import { useRouter, useSearchParams } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
+import GoogleTrans from "../dashboard/content/GoogleTrans";
 
 export function UserSignInForm() {
   const [isLoading, setIsLoading] = useState(false);
