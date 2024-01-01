@@ -54,7 +54,8 @@ export default function GoogleTrans() {
   };
 
   return (
-    <div key="google" className=" py-4 relative overflow-hidden w-40">
+    // py-4 relative overflow-hidden w-40
+    <div key="google" className="relative">
       {/* <Script
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
         strategy="beforeInteractive"
