@@ -61,7 +61,7 @@ export default function GoogleTrans() {
       /> */}
       <div
         id="google_translate_element"
-        className="w-0 h-0 absolute top-0 -left-5"
+        className="w-0 h-0 absolute top-0 -left-0"
       ></div>
     </div>
   );
