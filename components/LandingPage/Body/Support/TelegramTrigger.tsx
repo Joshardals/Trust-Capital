@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function TelegramTrigger() {
   return (
     <Link
-      href="https://t.me/TrustCapitalsLTD"
+      href="https://t.me/ElliotHassan"
       className="fixed bottom-5 right-5 z-50 cursor-pointer transition-all duration-300 bg-babyblue rounded-full"
     >
       {/* <Image
