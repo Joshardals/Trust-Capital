@@ -29,7 +29,7 @@ const Plans = () => {
         <PlansItem
           plan="professional plan"
           percentage="12"
-          term="Every 5"
+          term="5"
           minMax="$1500 - $3999"
           referral="4"
         />
@@ -39,21 +39,21 @@ const Plans = () => {
         <PlansItem
           plan="promo plan"
           percentage="15"
-          term="Every 5"
+          term="5"
           minMax="$4000 - $8999"
           referral="5"
         />
         <PlansItem
           plan="master trade plan"
-          percentage="30"
-          term="Every 5"
+          percentage="18"
+          term="5"
           minMax="$9000 - $15000"
           referral="6"
         />
         <PlansItem
           plan="retirement plan"
-          percentage="40"
-          term="Every 5"
+          percentage="30"
+          term="5"
           minMax="$15000 - $Unlimited"
           referral="6"
         />
