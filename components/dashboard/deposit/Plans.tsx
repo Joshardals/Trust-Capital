@@ -37,26 +37,26 @@ const plan = [
   {
     plan: "professional",
     amount: "$1500 - $3999",
-    term: "Every 5",
+    term: "5",
     percentage: "12",
   },
   {
     plan: "promo",
     amount: "$4000 - $8999",
-    term: "Every 5",
+    term: "5",
     percentage: "15",
   },
   {
     plan: "master trade",
     amount: "$9000 - $15000",
-    term: "Every 5",
-    percentage: "30",
+    term: "5",
+    percentage: "18",
   },
   {
     plan: "retirement",
     amount: "$15000 - $Unlimited",
-    term: "Every 5",
-    percentage: "40",
+    term: "5",
+    percentage: "30",
   },
 ];
 
