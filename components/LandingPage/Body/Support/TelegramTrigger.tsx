@@ -5,7 +5,8 @@ import Link from "next/link";
 export default function TelegramTrigger() {
   return (
     <Link
-      href="https://t.me/ElliotHassan"
+      // href="https://t.me/ElliotHassan"
+      href="https://wa.link/lcvnqw"
       className="fixed bottom-5 right-5 z-50 cursor-pointer transition-all duration-300 bg-babyblue rounded-full"
     >
       {/* <Image
@@ -15,7 +16,7 @@ export default function TelegramTrigger() {
         className="w-10 h-10"
         alt="Telegram Logo"
       /> */}
-      <Icons.telegramIcon className="w-10 h-10" />
+      <Icons.whatsappIcon className="w-10 h-10" />
     </Link>
   );
 }
