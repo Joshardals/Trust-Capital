@@ -2,6 +2,7 @@ import { create } from "zustand";
 import {
   editStoreState,
   navStoreState,
+  refStoreState,
   sideStoreState,
   supportStoreState,
 } from "../../typings";
@@ -27,4 +28,9 @@ export const useEditStore = create<editStoreState>((set) => ({
     set((state) => ({
       editAcct: !state.editAcct,
     })),
+}));
+
+export const useRefState = create<refStoreState>((set) => ({
+  refCode: "",
+  updateRefCode: (refCode) => set(() => ({ refCode: refCode })),
 }));

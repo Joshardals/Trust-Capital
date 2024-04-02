@@ -18,6 +18,11 @@ export interface editStoreState {
   editAcct: boolean;
   setEditAcct: () => void;
 }
+
+export interface refStoreState {
+  refCode: string;
+  updateRefCode: (refCode: State["refCode"]) => void;
+}
 // Zustand Definitions End
 
 // Form Definitions Start

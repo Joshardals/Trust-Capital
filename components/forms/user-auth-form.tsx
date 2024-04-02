@@ -34,6 +34,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import Link from "next/link";
+import { useRefState } from "@/lib/store/store";
 
 interface params {
   userId: string;
@@ -45,6 +46,7 @@ export function UserAuthForm({ userId }: params) {
   const [emailExist, setEmailExist] = useState(false);
   const router = useRouter();
   const referralParams = useSearchParams();
+  const { updateRefCode } = useRefState();
 
   const form = useForm<OnboardingValidationType>({
     resolver: zodResolver(OnboardingValidation),
@@ -87,6 +89,8 @@ export function UserAuthForm({ userId }: params) {
       );
 
       const referralCode = generateReferralCode();
+      updateRefCode(referralCode);
+
       const user = userCredential.user;
       console.log("User Created", user);
 
@@ -107,6 +111,7 @@ export function UserAuthForm({ userId }: params) {
           referralCount: 0,
           trade: false,
           createdAt: new Date(),
+          referredBy: referralParams.get("ref") ?? "none",
         },
         { merge: true }
       );
