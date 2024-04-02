@@ -43,7 +43,7 @@ export default function ConfirmDeposit() {
   const checkMethodSetPrice = (method: string | "") => {
     switch (method) {
       case "usdt":
-        setWalletAddress("TYXG7tqURwCpb9EZTyqpQ3SuYkyyhEb5ei");
+        setWalletAddress("TTrB7EPWBc82NSpGa57kcJeFZ3Hqnmkiv4");
         break;
       case "bitcoin":
         setWalletAddress("bc1qek4azk79ulmy3mukx84nzfksackdcuq7fjlez2");

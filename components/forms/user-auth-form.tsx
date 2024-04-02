@@ -53,6 +53,7 @@ export function UserAuthForm({ userId }: params) {
       password: "",
       firstName: "",
       lastName: "",
+      phoneNumber: "",
       secretKey: "",
       bitcoinAddress: "",
       ethereumAddress: "",
@@ -101,6 +102,7 @@ export function UserAuthForm({ userId }: params) {
           name: values.firstName + " " + values.lastName || "",
           email: user?.email || "",
           onboarded: true || "",
+          phoneNumber: values.phoneNumber,
           referralCode,
           referralCount: 0,
           trade: false,
@@ -479,6 +481,47 @@ export function UserAuthForm({ userId }: params) {
                             ""
                           );
                           form.setValue("email", valueWithoutSpaces);
+                        }}
+                      />
+                      <div
+                        className={`${isDisabled ? "disableInput" : null}`}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage className="text-purered text-xs" />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          <div className="md:flex-1">
+            <FormField
+              control={form.control}
+              name="phoneNumber"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl className="no-focus text-xs">
+                    <div className="relative">
+                      <Input
+                        type="number"
+                        placeholder="Phone Number"
+                        disabled={isDisabled}
+                        className={`py-2 ${
+                          isDisabled ? "disableForm" : null
+                        }  px-5 border border-navyblue text-sm transition-all duration-500`}
+                        {...field}
+                        onChange={(e) => {
+                          // Remove spaces as the user types
+                          const valueWithoutSpaces = e.target.value.replace(
+                            /\s/g,
+                            ""
+                          );
+
+                          const sanitizedValue = valueWithoutSpaces.replace(
+                            /[^0-9+]/g,
+                            ""
+                          );
+                          form.setValue("phoneNumber", sanitizedValue);
                         }}
                       />
                       <div

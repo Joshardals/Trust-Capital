@@ -27,6 +27,7 @@ export interface OnboardingValidationType {
   password: string;
   firstName: string;
   lastName: string;
+  phoneNumber: string;
   secretKey: string;
   bitcoinAddress: string;
   ethereumAddress: string;
