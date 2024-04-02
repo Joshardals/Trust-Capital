@@ -503,7 +503,7 @@ export function UserAuthForm({ userId }: params) {
                   <FormControl className="no-focus text-xs">
                     <div className="relative">
                       <Input
-                        type="number"
+                        type="tel"
                         placeholder="Phone Number"
                         disabled={isDisabled}
                         className={`py-2 ${
