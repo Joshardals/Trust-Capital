@@ -16,7 +16,7 @@ export default function TelegramTrigger() {
         className="w-10 h-10"
         alt="Telegram Logo"
       /> */}
-      <Icons.whatsappIcon className="w-10 h-10" />
+      <Icons.whatsappIcon className="w-10 h-10" />  
     </Link>
   );
 }
