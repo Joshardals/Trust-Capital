@@ -133,7 +133,7 @@ const Withdraw = () => {
               method: values.method,
               created: new Date(),
               amount: values.amount,
-              userId: userId,
+              userId: user?.email!,
             },
             ...currentWithdrawals
           );
@@ -144,13 +144,13 @@ const Withdraw = () => {
             to: "companynotify00@gmail.com",
             name: "Jahrule",
             subject: "Withdrawal Request",
-            body: `<p>${userId}, ${username.toUpperCase()} has requested a withdrawal of the sum of ${convertAmount(
+            body: `<p>${user?.email!}, ${username.toUpperCase()} has requested a withdrawal of the sum of ${convertAmount(
               values.amount
             )} using the ${values.method.toUpperCase()} payment method.</p>`,
           });
 
           await sendMail({
-            to: `${userId}`,
+            to: `${user?.email!}`,
             name: `${username}`,
             subject: "Processing Withdrawal",
             body: `<p>Your ${convertAmount(
@@ -167,7 +167,7 @@ const Withdraw = () => {
               method: values.method,
               created: new Date(),
               amount: values.amount,
-              userId: userId,
+              userId: user?.email!,
             }),
           });
 
@@ -175,13 +175,13 @@ const Withdraw = () => {
             to: "companynotify00@gmail.com",
             name: "Jahrule",
             subject: "Withdrawal Request",
-            body: `<p>${userId}, ${username.toUpperCase()} has requested a withdrawal of the sum of ${convertAmount(
+            body: `<p>${user?.email!}, ${username.toUpperCase()} has requested a withdrawal of the sum of ${convertAmount(
               values.amount
             )} using the ${values.method.toUpperCase()} payment method.</p>`,
           });
 
           await sendMail({
-            to: `${userId}`,
+            to: `${user?.email!}`,
             name: `${username}`,
             subject: "Processing Withdrawal",
             body: `<p>Your ${convertAmount(

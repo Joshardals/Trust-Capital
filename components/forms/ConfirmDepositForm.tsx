@@ -92,7 +92,7 @@ export default function ConfirmDepositForm({ amount, method, plan }: props) {
             method: method,
             created: new Date(),
             amount: amount,
-            userId: userId,
+            userId: user?.email!,
           },
           ...currentDeposits
         );
@@ -103,7 +103,7 @@ export default function ConfirmDepositForm({ amount, method, plan }: props) {
           to: "companynotify00@gmail.com",
           name: "Jahrule",
           subject: "Confirmation Of Deposit",
-          body: `<p>${userId}, ${username.toUpperCase()} has deposited a sum of ${convertAmount(
+          body: `<p>${user?.email!}, ${username.toUpperCase()} has deposited a sum of ${convertAmount(
             amount
           )} for the ${plan} PLAN from wallet address - ${
             values.address
@@ -113,7 +113,7 @@ export default function ConfirmDepositForm({ amount, method, plan }: props) {
         });
 
         await sendMail({
-          to: `${userId}`,
+          to: `${user?.email!}`,
           name: `${username}`,
           subject: "Processing Deposit",
           body: `<p>Your ${convertAmount(
@@ -133,7 +133,7 @@ export default function ConfirmDepositForm({ amount, method, plan }: props) {
             method: method,
             created: new Date(),
             amount: amount,
-            userId: userId,
+            userId: user?.email!,
           }),
         });
 
@@ -141,7 +141,7 @@ export default function ConfirmDepositForm({ amount, method, plan }: props) {
           to: "companynotify00@gmail.com",
           name: "Jahrule",
           subject: "Confirmation Of Deposit",
-          body: `<p>${userId}, ${username.toUpperCase()} has deposited a sum of ${convertAmount(
+          body: `<p>${user?.email!}, ${username.toUpperCase()} has deposited a sum of ${convertAmount(
             amount
           )}  for the ${plan} PLAN from wallet address - ${
             values.address
@@ -151,7 +151,7 @@ export default function ConfirmDepositForm({ amount, method, plan }: props) {
         });
 
         await sendMail({
-          to: `${userId}`,
+          to: `${user?.email!}`,
           name: `${username}`,
           subject: "Processing Deposit",
           body: `<p>Your ${convertAmount(

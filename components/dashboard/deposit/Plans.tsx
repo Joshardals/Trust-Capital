@@ -127,7 +127,11 @@ const Plans = () => {
 
     if (Number(values.amount) >= res) {
       router.push(
-        `/dashboard/deposit/confirm-deposit?plantype=${values.plan}&planMethod=${values.method}&userEmail=${userId}&amount=${values.amount}`
+        `/dashboard/deposit/confirm-deposit?plantype=${
+          values.plan
+        }&planMethod=${values.method}&userEmail=${user?.email!}&amount=${
+          values.amount
+        }`
       );
     } else {
       setError(true);
