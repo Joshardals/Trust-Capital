@@ -11,7 +11,7 @@ export default function RefContainer() {
   const [refCommission, setRefCommission] = useState<string | undefined>();
 
   useEffect(() => {
-    const referralDocRef = doc(db, "referrals", userId);
+    const referralDocRef = doc(db, "referrals", user?.email!);
     const userDocRef = doc(db, "users", userId);
 
     onSnapshot(userDocRef, (doc) => {
@@ -42,13 +42,13 @@ export default function RefContainer() {
               <p className=" max-md:col-span-2 font-semibold border-r border-r-babyblue px-5 py-2">
                 Referrals:
               </p>
-              <p className="">{referrals}</p>
+              <p className="">{referrals || 0}</p>
             </div>
             <div className="grid max-md:grid-cols-3 grid-cols-2 bg-navyblue gap-4 items-center">
               <p className=" max-md:col-span-2 font-semibold border-r border-r-babyblue px-5 py-2">
                 Active Referrals:
               </p>
-              <p className="">{referrals}</p>
+              <p className="">{referrals || 0}</p>
             </div>
             <div className="grid bg-darkblue max-md:grid-cols-3  grid-cols-2 gap-4 items-center">
               <p className="max-md:col-span-2 font-semibold border-r border-r-babyblue px-5 py-2">

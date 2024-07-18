@@ -50,7 +50,7 @@ const EditAccount = () => {
   });
 
   useEffect(() => {
-    const userDocRef = doc(db, "users", userId);
+    const userDocRef = doc(db, "users", user?.email!);
     onSnapshot(userDocRef, (doc) => {
       if (doc.exists()) {
         const res = doc.data();
@@ -58,7 +58,7 @@ const EditAccount = () => {
         setLastName(res.name.split(" ")[1]);
       }
     });
-    const walletDocRef = doc(db, "wallets", userId);
+    const walletDocRef = doc(db, "wallets", user?.email!);
     onSnapshot(walletDocRef, (doc) => {
       if (doc.exists()) {
         const res = doc.data();
@@ -86,11 +86,11 @@ const EditAccount = () => {
     try {
       await delay(1000);
 
-      const walletDocRef = doc(db, "wallets", userId);
+      const walletDocRef = doc(db, "wallets", user?.email!);
       setDoc(
         walletDocRef,
         {
-          walletId: userId,
+          walletId: user?.email!,
           usdtAddress: values.usdtAddress,
           btcAddress: values.bitcoinAddress,
           ethereumAddress: values.ethereumAddress,
@@ -114,7 +114,7 @@ const EditAccount = () => {
 
   return (
     <div className="relative overflow-hidden">
-      {secret ? null : <SecretForm id={userId} setSecret={setSecret} />}
+      {secret ? null : <SecretForm id={user?.email!} setSecret={setSecret} />}
 
       <div
         className={` font-sans space-y-8 ${

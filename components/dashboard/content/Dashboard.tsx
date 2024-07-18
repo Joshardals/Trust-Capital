@@ -23,7 +23,7 @@ export function Dashboard() {
 
   useEffect(() => {
     const getUser = async () => {
-      const userDocRef = doc(db, "users", userId);
+      const userDocRef = doc(db, "users", user?.email!);
 
       onSnapshot(userDocRef, (doc) => {
         if (doc.exists()) {
@@ -38,7 +38,7 @@ export function Dashboard() {
     };
 
     const getAccount = async () => {
-      const accountDocRef = doc(db, "accountInfo", userId);
+      const accountDocRef = doc(db, "accountInfo", user?.email!);
 
       onSnapshot(accountDocRef, (doc) => {
         if (doc.exists()) {

@@ -67,7 +67,7 @@ const Withdraw = () => {
   });
 
   useEffect(() => {
-    const walletDocRef = doc(db, "wallets", userId);
+    const walletDocRef = doc(db, "wallets", user?.email!);
     onSnapshot(walletDocRef, (doc) => {
       if (doc.exists()) {
         const res = doc.data();
@@ -80,7 +80,7 @@ const Withdraw = () => {
 
   useEffect(() => {
     const getAccount = async () => {
-      const accountDocRef = doc(db, "accountInfo", userId);
+      const accountDocRef = doc(db, "accountInfo", user?.email!);
       const accountDocSnap = await getDoc(accountDocRef);
 
       if (accountDocSnap.exists()) {
@@ -101,7 +101,7 @@ const Withdraw = () => {
 
   useEffect(() => {
     const getUsers = async () => {
-      const userDocRef = doc(db, "users", userId);
+      const userDocRef = doc(db, "users", user?.email!);
       const userDocSnap = await getDoc(userDocRef);
 
       if (userDocSnap.exists()) {
@@ -122,7 +122,7 @@ const Withdraw = () => {
       setIsDisabled(true);
 
       try {
-        const withdrawDocRef = doc(db, "withdrawals", userId);
+        const withdrawDocRef = doc(db, "withdrawals", user?.email!);
         const docSnapshot = await getDoc(withdrawDocRef);
 
         if (docSnapshot.exists()) {

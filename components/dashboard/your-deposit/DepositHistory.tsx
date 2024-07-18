@@ -42,7 +42,7 @@ export function DepositHistory() {
   const [depositInfo, setDepositInfo] = useState<InvoicesProp[]>([]);
 
   useEffect(() => {
-    const depositDocRef = doc(db, "deposits", userId);
+    const depositDocRef = doc(db, "deposits", user?.email!);
     // const q = query(depositDocRef, orderBy("created", "asc"));
 
     onSnapshot(depositDocRef, (doc) => {

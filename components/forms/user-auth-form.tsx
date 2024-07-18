@@ -241,7 +241,7 @@ export function UserAuthForm({ userId }: params) {
 
       router.push("/dashboard");
     } catch (error: any) {
-      console.log("Error creating account!");
+      console.log(`Error creating account!: ${error.message}`);
       setEmailExist(true);
     }
 
@@ -932,7 +932,7 @@ export function UserAuthForm({ userId }: params) {
 
         {emailExist && (
           <div className="text-xs font-bold text-puregreen">
-            Email already exists
+            Email already in use by another account
           </div>
         )}
         <div className=" font-sans">

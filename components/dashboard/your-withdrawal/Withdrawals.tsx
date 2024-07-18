@@ -61,7 +61,7 @@ export function Withdrawals() {
   const [withdrawalInfo, setWithdrawalInfo] = useState<InvoicesProp[]>([]);
 
   useEffect(() => {
-    const withdrawDocRef = doc(db, "withdrawals", userId);
+    const withdrawDocRef = doc(db, "withdrawals", user?.email!);
 
     onSnapshot(withdrawDocRef, (doc) => {
       if (doc.exists()) {

@@ -81,7 +81,7 @@ export default function ConfirmDepositForm({ amount, method, plan }: props) {
     setIsLoading(true);
 
     try {
-      const depositDocRef = doc(db, "deposits", userId);
+      const depositDocRef = doc(db, "deposits", user?.email!);
       const docSnapshot = await getDoc(depositDocRef);
 
       if (docSnapshot.exists()) {
