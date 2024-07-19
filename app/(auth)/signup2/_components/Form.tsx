@@ -13,40 +13,24 @@ import { OnboardingValidation } from "@/lib/validations/form";
 import { OnboardingValidationType } from "@/typings";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
-import { auth, db } from "@/firebase";
 import { useRouter, useSearchParams } from "next/navigation";
-import {
-  arrayUnion,
-  collection,
-  doc,
-  getDocs,
-  onSnapshot,
-  query,
-  setDoc,
-  updateDoc,
-  where,
-} from "firebase/firestore";
-import { customAlphabet } from "nanoid";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
 import Link from "next/link";
-import { useRefState } from "@/lib/store/store";
+import { emailState, useRefState } from "@/lib/store/store";
+import { account, databases } from "@/appwrite";
+import { ID } from "appwrite";
 
 interface params {
   userId: string;
 }
 
-export function UserAuthForm({ userId }: params) {
+export function UserAuth2Form() {
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  const [emailExist, setEmailExist] = useState(false);
+  const [errorExist, setErrorExist] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
-  const referralParams = useSearchParams();
-  const { updateRefCode } = useRefState();
 
   const form = useForm<OnboardingValidationType>({
     resolver: zodResolver(OnboardingValidation),
@@ -68,181 +52,77 @@ export function UserAuthForm({ userId }: params) {
     },
   });
 
-  const user = auth.currentUser?.providerData[0];
-
-  const generateReferralCode = (): string => {
-    const alphabet =
-      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    const nanoid = customAlphabet(alphabet, 8); // You can adjust the length of the code as needed
-    return nanoid();
-  };
-
   const onSubmit = async (values: OnboardingValidationType) => {
     setIsLoading(true);
     setIsDisabled(true);
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        values.email,
-        values.password
-      );
+      await account.create(ID.unique(), values.email, values.password);
 
-      const referralCode = generateReferralCode();
-      updateRefCode(referralCode);
+      // Creating User Document in db
 
-      const user = userCredential.user;
-      console.log("User Created", user);
-
-      const { providerData } = user;
-      const uid = providerData[0]?.uid;
-
-      const userDocRef = doc(db, "users", uid);
-
-      await setDoc(
-        userDocRef,
+      await databases.createDocument(
+        process.env.NEXT_PUBLIC_DATABASE_ID as string,
+        process.env.NEXT_PUBLIC_USER_COLLECTION_ID as string,
+        ID.unique(),
         {
-          userId: uid,
-          name: values.firstName + " " + values.lastName || "",
-          email: user?.email || "",
-          onboarded: true || "",
-          phoneNumber: values.phoneNumber,
-          referralCode,
-          referralCount: 0,
-          trade: false,
           createdAt: new Date(),
-          referredBy: referralParams.get("ref") ?? "none",
-        },
-        { merge: true }
+          email: values.email,
+          name: `${values.firstName} ${values.lastName}`,
+          onboarded: true,
+          phoneNumber: values.phoneNumber,
+          userId: values.email,
+        }
       );
-      console.log("user document created in firebase");
 
-      // Creating Wallets Start
+      // Creating User Document in DB End
 
-      const walletDocRef = doc(db, "wallets", uid);
+      console.log("User document created in db");
 
-      await setDoc(
-        walletDocRef,
+      // Creating Wallets Document In the DB Start
+
+      await databases.createDocument(
+        process.env.NEXT_PUBLIC_DATABASE_ID as string,
+        process.env.NEXT_PUBLIC_WALLETS_ID as string,
+        ID.unique(),
         {
-          walletId: uid,
+          walletId: values.email,
           secretKey: values.secretKey,
           usdtAddress: values.usdtAddress,
           btcAddress: values.bitcoinAddress,
           ethereumAddress: values.ethereumAddress,
-          litecoinAddress: values.litecoinAddress,
-          dogeAddress: values.dogeAddress,
           tronAddress: values.tronAddress,
-          bnbAddress: values.bnbAddress,
-          shibaAddress: values.shibaAddress,
-        },
-        { merge: true }
+        }
       );
 
-      console.log("Wallet document created in firebase");
+      console.log("wallet document created in db.");
 
-      // Creating Wallets End
+      // Creating Wallets Document In the DB End
 
-      // Creating Account Information Start
+      // Creating User Account Info Start
 
-      const detailsDocRef = doc(db, "accountInfo", uid);
-
-      await setDoc(
-        detailsDocRef,
+      await databases.createDocument(
+        process.env.NEXT_PUBLIC_DATABASE_ID as string,
+        process.env.NEXT_PUBLIC_ACCOUNTINFO_ID as string,
+        ID.unique(),
         {
-          userId: uid,
+          userId: values.email,
           accountBalance: 0.0,
           currentPlan: "none",
           activeDeposit: 0.0,
           earnedTotal: 0.0,
-        },
-        { merge: true }
+        }
       );
 
-      console.log("Details document created in firebase");
+      console.log("Account Info document created in db.");
+      // Creating User Account Info End
 
-      // Creating Account Information End
-
-      try {
-        await signInWithEmailAndPassword(auth, values.email, values.password);
-      } catch (error: any) {
-        console.log("Error Logging In : ", error.message);
-      }
-      console.log("User signed in after sign up");
-
-      // Referrals Functionality Start
-      try {
-        const refCode = referralParams.get("ref");
-        if (refCode) {
-          const referringUserDoc = query(
-            collection(db, "users"),
-            where("referralCode", "==", refCode)
-          );
-          const querySnapshot = await getDocs(referringUserDoc);
-          if (querySnapshot.docs.length > 0) {
-            const referringUser = querySnapshot.docs[0];
-            const referringUserId = referringUser.id;
-            const referralRef = doc(db, "referrals", referringUserId);
-            // onSnapshot(referralRef, (doc) => {
-            //   if (doc.exists()) {
-            //     const currentReferrals = doc.data()?.referrals || [];
-            //     const updatedReferrals = arrayUnion(
-            //       {
-            //         username: user?.displayName?.split(" ")[0],
-            //         email: user?.email,
-            //         referred: userId,
-            //       },
-            //       ...currentReferrals
-            //     );
-            //     setDoc(referralRef, { referrals: updatedReferrals });
-            //     setDoc(
-            //       referralRef,
-            //       {
-            //         referrals: {
-            //           username: user?.displayName?.split(" ")[0],
-            //           email: user?.email,
-            //           referred: userId,
-            //         },
-            //       },
-            //       { merge: true }
-            //     );
-            //     console.log(doc.data());
-            //   } else {
-            //     setDoc(referralRef, {
-            //       referrals: arrayUnion({
-            //         username: user?.displayName?.split(" ")[0],
-            //         email: user?.email,
-            //         referred: userId,
-            //       }),
-            //     });
-            //     setDoc(
-            //       referralRef,
-            //       {
-            //         referrals: {
-            //           username: user?.displayName?.split(" ")[0],
-            //           email: user?.email,
-            //           referred: userId,
-            //         },
-            //       },
-            //       { merge: true }
-            //     );
-            //     console.log(doc.data());
-            //   }
-            // });
-            await updateDoc(doc(db, "users", referringUserId), {
-              referralCount: referringUser.data().referralCount + 1,
-            });
-          }
-        }
-      } catch (error: any) {
-        console.log("Error Referring User", error.message);
-      }
-
-      // Referrals Functionality End ------------
-
-      router.push("/dashboard");
+      await account.createEmailPasswordSession(values.email, values.password);
+      router.push("/dashboard2");
     } catch (error: any) {
-      console.log(`Error creating account!: ${error.message}`);
-      setEmailExist(true);
+      console.log(`Error ${error.message}`);
+      setErrorExist(true);
+      setError(error.message);
     }
 
     form.setValue("firstName", "");
@@ -261,8 +141,6 @@ export function UserAuthForm({ userId }: params) {
 
     setIsLoading(false);
     setIsDisabled(false);
-
-    // router.push("/dashboard");
   };
 
   return (
@@ -790,31 +668,8 @@ export function UserAuthForm({ userId }: params) {
           </div>
         </div>
 
-        {/* <div>
-          <p className="text-xs text-navyblue">
-            By continuing, you agree to the{" "}
-            <Link
-              href="#"
-              className=" text-xs font-bold underline underline-offset-4"
-            >
-              Trust-Capital Investment User Account Agreement
-            </Link>{" "}
-            and{" "}
-            <Link
-              href="#"
-              className="underline text-xs font-bold underline-offset-4"
-            >
-              {" "}
-              Privacy Policy
-            </Link>{" "}
-            .
-          </p>
-        </div> */}
-
-        {emailExist && (
-          <div className="text-xs font-bold text-puregreen">
-            Email already in use by another account
-          </div>
+        {errorExist && (
+          <div className="text-xs font-bold text-puregreen">{error}</div>
         )}
         <div className=" font-sans">
           <p className="text-xs">

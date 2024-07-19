@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import {
   editStoreState,
+  emailStoreState,
   navStoreState,
   refStoreState,
   sideStoreState,
@@ -33,4 +34,9 @@ export const useEditStore = create<editStoreState>((set) => ({
 export const useRefState = create<refStoreState>((set) => ({
   refCode: "",
   updateRefCode: (refCode) => set(() => ({ refCode: refCode })),
+}));
+
+export const emailState = create<emailStoreState>((set) => ({
+  email: "",
+  setEmail: (email) => set(() => ({ email: email })),
 }));

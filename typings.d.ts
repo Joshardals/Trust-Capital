@@ -127,6 +127,11 @@ export interface EditValidationType {
   shibaAddress: string;
 }
 
+export interface emailStoreState {
+  email: string;
+  setEmail: (email: State["email"]) => void;
+}
+
 // Dashboard Definitions End
 
 interface Window {
