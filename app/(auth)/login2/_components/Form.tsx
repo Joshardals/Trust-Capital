@@ -139,9 +139,7 @@ export function UserSignInForm() {
             />
             <div>
               {errorExist ? (
-                <p className="text-purered text-xs font-bold">
-                  Invalid Email or Password
-                </p>
+                <p className="text-purered text-xs font-bold">{error}</p>
               ) : null}
             </div>
             <div className=" font-sans">
