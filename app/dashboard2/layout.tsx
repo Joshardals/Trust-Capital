@@ -21,11 +21,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           setAuthUser(true);
         } else {
           setAuthUser(false);
-          router.push("/");
+          router.push("/login2");
         }
       } catch (error: any) {
         console.log(`Error, ${error.message}`);
-        router.push("/");
+        router.push("/login2");
       }
     };
 

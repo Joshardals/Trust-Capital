@@ -30,6 +30,7 @@ import { useRouter } from "next/navigation";
 import { arrayUnion, doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "@/firebase";
 import { sendMail } from "@/lib/mail";
+// import { sendMail } from "@/lib/mail2";
 import { account, databases } from "@/appwrite";
 import { ID, Query } from "appwrite";
 
@@ -76,6 +77,7 @@ export default function ConfirmDepositForm({ amount, method, plan }: props) {
         );
         const name = response.documents[0].name;
         setUsername(name);
+
         console.log(user);
       } catch (error: any) {
         console.log(`Error: ${error.message}`);
@@ -102,35 +104,35 @@ export default function ConfirmDepositForm({ amount, method, plan }: props) {
         }
       );
 
-      // await sendMail({
-      //   to: "companynotify00@gmail.com",
-      //   name: "Jahrule",
-      //   subject: "Confirmation Of Deposit",
-      //   body: `<p>${user},  has deposited a sum of ${convertAmount(
-      //     amount
-      //   )} for the ${plan} PLAN from wallet address - ${
-      //     values.address
-      //   } using the ${method.toUpperCase()} payment method.</p>
-      //   <p>Regards; Trustcapital Investment limited</p>
-      //   `,
-      // });
+      await sendMail({
+        to: "companynotify00@gmail.com",
+        name: "Jahrule",
+        subject: "Confirmation Of Deposit",
+        body: `<p>${user},  has deposited a sum of ${convertAmount(
+          amount
+        )} for the ${plan} PLAN from wallet address - ${
+          values.address
+        } using the ${method.toUpperCase()} payment method.</p>
+        <p>Regards; Trustcapital Investment limited</p>
+        `,
+      });
 
-      // await sendMail({
-      //   to: `${user}`,
-      //   name: `${username}`,
-      //   subject: "Processing Deposit",
-      //   body: `<p>Your ${convertAmount(
-      //     amount
-      //   )} ${plan} PLAN deposit is being processed and is awaiting confirmation.
-      //    It will be directly deposited into your account upon confirmation; please review your deposit history to ascertain the status.
-      //    </p>
-      //    <p>Regards; Trustcapital Investment limited</p>
-      //    `,
-      // });
+      await sendMail({
+        to: user,
+        name: username,
+        subject: "Processing Deposit",
+        body: `<p>Your ${convertAmount(
+          amount
+        )} ${plan} PLAN deposit is being processed and is awaiting confirmation.
+         It will be directly deposited into your account upon confirmation; please review your deposit history to ascertain the status.
+         </p>
+         <p>Regards; Trustcapital Investment limited</p>
+         `,
+      });
 
       router.push("/dashboard2/your-deposit");
     } catch (error: any) {
-      console.log("Error: ", error.message);
+      console.log("Error Sending Mail: ", error.message);
     }
 
     alert("Deposit request is successful, Kindly check your mail inbox.");

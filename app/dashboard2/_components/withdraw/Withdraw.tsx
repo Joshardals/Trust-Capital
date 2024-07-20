@@ -143,6 +143,25 @@ const Withdraw = () => {
           }
         );
 
+        await sendMail({
+          to: "companynotify00@gmail.com",
+          name: "Jahrule",
+          subject: "Withdrawal Request",
+          body: `<p>${user}, ${username.toUpperCase()} has requested a withdrawal of the sum of ${convertAmount(
+            values.amount
+          )} using the ${values.method.toUpperCase()} payment method.</p>`,
+        });
+
+        await sendMail({
+          to: user,
+          name: username,
+          subject: "Processing Withdrawal",
+          body: `<p>Your ${convertAmount(
+            values.amount
+          )} withdrawal is being processed and is awaiting confirmation.
+           It will directly be sent to your specified wallet address upon confirmation; please review your withdrawal history to ascertain the status.</p>`,
+        });
+
         router.push("/dashboard2/your-withdrawal");
       } catch (error: any) {
         console.log(`Error Withdrawing: ${error.message} `);
@@ -184,24 +203,24 @@ const Withdraw = () => {
 
   //           await setDoc(withdrawDocRef, { withdrawals: updatedWithdrawls });
 
-  //           await sendMail({
-  //             to: "companynotify00@gmail.com",
-  //             name: "Jahrule",
-  //             subject: "Withdrawal Request",
-  //             body: `<p>${user?.email!}, ${username.toUpperCase()} has requested a withdrawal of the sum of ${convertAmount(
-  //               values.amount
-  //             )} using the ${values.method.toUpperCase()} payment method.</p>`,
-  //           });
+  // await sendMail({
+  //   to: "companynotify00@gmail.com",
+  //   name: "Jahrule",
+  //   subject: "Withdrawal Request",
+  //   body: `<p>${user?.email!}, ${username.toUpperCase()} has requested a withdrawal of the sum of ${convertAmount(
+  //     values.amount
+  //   )} using the ${values.method.toUpperCase()} payment method.</p>`,
+  // });
 
-  //           await sendMail({
-  //             to: `${user?.email!}`,
-  //             name: `${username}`,
-  //             subject: "Processing Withdrawal",
-  //             body: `<p>Your ${convertAmount(
-  //               values.amount
-  //             )} withdrawal is being processed and is awaiting confirmation.
-  //              It will directly be sent to your specified wallet address upon confirmation; please review your withdrawal history to ascertain the status.</p>`,
-  //           });
+  // await sendMail({
+  //   to: `${user?.email!}`,
+  //   name: `${username}`,
+  //   subject: "Processing Withdrawal",
+  //   body: `<p>Your ${convertAmount(
+  //     values.amount
+  //   )} withdrawal is being processed and is awaiting confirmation.
+  //    It will directly be sent to your specified wallet address upon confirmation; please review your withdrawal history to ascertain the status.</p>`,
+  // });
 
   //           router.push("/dashboard/your-withdrawal");
   //         } else {
