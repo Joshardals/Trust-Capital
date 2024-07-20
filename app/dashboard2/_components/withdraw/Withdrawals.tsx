@@ -36,24 +36,6 @@ export function Withdrawals() {
   const [withdrawalInfo, setWithdrawalInfo] = useState<InvoicesProp[]>([]);
   const router = useRouter();
 
-  //   useEffect(() => {
-  //     const withdrawDocRef = doc(db, "withdrawals", user?.email!);
-
-  //     onSnapshot(withdrawDocRef, (doc) => {
-  //       if (doc.exists()) {
-  //         const res = doc.data();
-  //         const sortedWithdrawal = [...res.withdrawals].sort((a: any, b: any) => {
-  //           const timeA = a.created.toMillis(); // Convert Timestamp to milliseconds
-  //           const timeB = b.created.toMillis();
-  //           return timeA - timeB;
-  //         });
-  //         setWithdrawalInfo(sortedWithdrawal);
-  //       } else {
-  //         console.log("no-data");
-  //       }
-  //     });
-  //   }, [userId]);
-
   useEffect(() => {
     const getDeposits = async () => {
       try {
@@ -62,7 +44,7 @@ export function Withdrawals() {
         const response = await databases.listDocuments(
           process.env.NEXT_PUBLIC_DATABASE_ID as string,
           process.env.NEXT_PUBLIC_WITHDRAWALS_ID as string,
-          [Query.equal("userId", user)]
+          [Query.equal("userId", user), Query.orderAsc("created")]
         );
 
         const res = response.documents;

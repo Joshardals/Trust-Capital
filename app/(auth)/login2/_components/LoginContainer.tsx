@@ -2,8 +2,28 @@
 
 import GoogleTrans from "@/components/dashboard/content/GoogleTrans";
 import { UserSignInForm } from "./Form";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { account } from "@/appwrite";
 
 export default function LoginContainer() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const unsubscribe = async () => {
+      try {
+        const user = (await account.get()).email;
+        if (user) {
+          router.push("/dashboard2");
+        }
+      } catch (error: any) {
+        console.log(`Error, ${error.message}`);
+      }
+    };
+
+    unsubscribe();
+  }, []);
+
   return (
     <div className="bg-navyblue">
       {/* Start of code for Desktop Users */}

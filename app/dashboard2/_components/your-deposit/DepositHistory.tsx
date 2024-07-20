@@ -36,27 +36,6 @@ export function DepositHistory() {
   const [depositInfo, setDepositInfo] = useState<InvoicesProp[]>([]);
   const router = useRouter();
 
-  // useEffect(() => {
-  //   const depositDocRef = doc(db, "deposits", user?.email!);
-  //   // const q = query(depositDocRef, orderBy("created", "asc"));
-
-  //   onSnapshot(depositDocRef, (doc) => {
-  //     // doc.docs.forEach((doc) => {
-  //     //   console.log(doc.data());
-  //     if (doc.exists()) {
-  //       const res = doc.data();
-  //       const sortedDeposits = [...res.deposits].sort((a: any, b: any) => {
-  //         const timeA = a.created.toMillis(); // Convert Timestamp to milliseconds
-  //         const timeB = b.created.toMillis();
-  //         return timeA - timeB;
-  //       });
-  //       setDepositInfo(sortedDeposits);
-  //     } else {
-  //       console.log("no-data");
-  //     }
-  //   });
-  // }, [userId]);
-
   useEffect(() => {
     const getDeposits = async () => {
       try {
@@ -65,7 +44,7 @@ export function DepositHistory() {
         const response = await databases.listDocuments(
           process.env.NEXT_PUBLIC_DATABASE_ID as string,
           process.env.NEXT_PUBLIC_DEPOSITS_ID as string,
-          [Query.equal("userId", user)] // Filter by user ID
+          [Query.equal("userId", user), Query.orderAsc("created")] // Filter by user ID and sort in an ascending order
         );
 
         const deposits = response.documents; // Get deposits

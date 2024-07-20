@@ -31,7 +31,6 @@ export default function Dashboard() {
         );
         const name = response.documents[0].name.split(" ")[0];
         setFirstName(name);
-        console.log(user);
       } catch (error: any) {
         console.log(`Error: ${error.message}`);
       }
@@ -55,8 +54,6 @@ export default function Dashboard() {
           activeDeposit: res.activeDeposit,
           earnedTotal: res.earnedTotal,
         });
-
-        console.log(res);
       } catch (error: any) {
         console.log(`Error: ${error.message}`);
       }
