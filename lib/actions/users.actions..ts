@@ -15,7 +15,7 @@
 //   phoneNumber: string;
 // }) => {
 //   try {
-//     // const newUser = await users.create(ID.unique(), email, phoneNumber, name);
+    // const newUser = await users.create(ID.unique(), email, phoneNumber, name);
 //     // console.log({ newUser });
 
 //     const results = await account.create(ID.unique(), email, password, name);

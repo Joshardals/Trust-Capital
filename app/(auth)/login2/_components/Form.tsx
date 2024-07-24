@@ -33,20 +33,46 @@ export function UserSignInForm() {
     setIsDisabled(true);
 
     try {
-      await account.createEmailPasswordSession(values.email, values.password);
+      await retryWithBackoff(async () => {
+        await account.createEmailPasswordSession(values.email, values.password);
+      });
       router.push("/dashboard2");
     } catch (error: any) {
       console.log(`Error logging in: ${error.message}`);
-      setErrorExist(true);
-      setError(error.message);
-    }
 
-    if (!error) {
-      form.setValue("email", "");
-      form.setValue("password", "");
+      if (error.message.includes("Rate limit")) {
+        setErrorExist(true);
+        setError(
+          "You have exceeded the number of login attempts. Please try again later."
+        );
+      } else {
+        setErrorExist(true);
+        setError(error.message);
+      }
+    } finally {
+      if (!error) {
+        form.setValue("email", "");
+        form.setValue("password", "");
+      }
+      setIsLoading(false);
+      setIsDisabled(false);
     }
-    setIsLoading(false);
-    setIsDisabled(false);
+  };
+
+  const retryWithBackoff = async (fn: any, retries = 5, delay = 1000) => {
+    for (let i = 0; i < retries; i++) {
+      try {
+        await fn();
+        return;
+      } catch (error: any) {
+        if (i < retries - 1 && error.message.includes("Rate limit")) {
+          await new Promise((resolve) => setTimeout(resolve, delay));
+          delay *= 2; // Exponential backoff
+        } else {
+          throw error;
+        }
+      }
+    }
   };
 
   const form = useForm<SignInValidationType>({
