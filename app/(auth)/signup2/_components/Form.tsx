@@ -9,8 +9,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { OnboardingValidation } from "@/lib/validations/form";
-import { OnboardingValidationType } from "@/typings";
+import {
+  OnboardingValidation,
+  OnboardingValidation2,
+} from "@/lib/validations/form";
+import { OnboardingValidationType, OnboardingValidationType2 } from "@/typings";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -32,8 +35,8 @@ export function UserAuth2Form() {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  const form = useForm<OnboardingValidationType>({
-    resolver: zodResolver(OnboardingValidation),
+  const form = useForm<OnboardingValidationType2>({
+    resolver: zodResolver(OnboardingValidation2),
     defaultValues: {
       email: "",
       password: "",

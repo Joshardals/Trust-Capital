@@ -4,9 +4,11 @@ import {
   EditValidationType,
   FeedBackFormType,
   OnboardingValidationType,
+  OnboardingValidationType2,
   PlansType,
   SecretType,
   SignInValidationType,
+  SignInValidationType2,
   SignUpValidationType,
   WithdrawalType,
 } from "@/typings";
@@ -41,7 +43,41 @@ export const OnboardingValidation: z.ZodType<OnboardingValidationType> =
     shibaAddress: z.string().max(100),
   });
 
+export const OnboardingValidation2: z.ZodType<OnboardingValidationType2> =
+  z.object({
+    email: z.string().email().min(10).max(100),
+    password: z.string().min(8).max(20),
+    firstName: z.string().min(3).max(100),
+    lastName: z.string().min(3).max(100),
+    phoneNumber: z.string().min(5).max(20),
+    secretKey: z
+      .string()
+      .min(4, {
+        message:
+          "Ensure you safeguard your secret key, min of 4 characters and a max of 12 characters.",
+      })
+      .max(12, {
+        message:
+          "Ensure you safeguard your secret key, min of 4 characters and a max of 12 characters.",
+      }),
+    bitcoinAddress: z.string().max(100),
+    ethereumAddress: z.string().max(100),
+    litecoinAddress: z.string().max(100),
+    usdtAddress: z
+      .string()
+      .min(1, { message: "USDT Address is required" })
+      .max(100),
+    dogeAddress: z.string().max(100),
+    tronAddress: z.string().max(100),
+    bnbAddress: z.string().max(100),
+    shibaAddress: z.string().max(100),
+  });
+
 export const SignInValidation: z.ZodType<SignInValidationType> = z.object({
+  email: z.string().email().min(10).max(100),
+  password: z.string().min(6).max(20),
+});
+export const SignInValidation2: z.ZodType<SignInValidationType2> = z.object({
   email: z.string().email().min(10).max(100),
   password: z.string().min(6).max(20),
 });

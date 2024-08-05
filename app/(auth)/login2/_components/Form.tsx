@@ -9,8 +9,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { SignInValidation } from "@/lib/validations/form";
-import { SignInValidationType } from "@/typings";
+import { SignInValidation, SignInValidation2 } from "@/lib/validations/form";
+import { SignInValidationType, SignInValidationType2 } from "@/typings";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Icons } from "@/components/icons";
@@ -28,7 +28,7 @@ export function UserSignInForm() {
   const [errorExist, setErrorExist] = useState(false);
   const router = useRouter();
 
-  const onSubmit = async (values: SignInValidationType) => {
+  const onSubmit = async (values: SignInValidationType2) => {
     setIsLoading(true);
     setIsDisabled(true);
 
@@ -75,8 +75,8 @@ export function UserSignInForm() {
     }
   };
 
-  const form = useForm<SignInValidationType>({
-    resolver: zodResolver(SignInValidation),
+  const form = useForm<SignInValidationType2>({
+    resolver: zodResolver(SignInValidation2),
     defaultValues: {
       email: "",
       password: "",

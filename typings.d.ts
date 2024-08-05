@@ -44,7 +44,29 @@ export interface OnboardingValidationType {
   shibaAddress: string;
 }
 
+export interface OnboardingValidationType2 {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  secretKey: string;
+  bitcoinAddress: string;
+  ethereumAddress: string;
+  litecoinAddress: string;
+  usdtAddress: string;
+  dogeAddress: string;
+  tronAddress: string;
+  bnbAddress: string;
+  shibaAddress: string;
+}
+
 export interface SignInValidationType {
+  email: string;
+  password: string;
+}
+
+export interface SignInValidationType2 {
   email: string;
   password: string;
 }
