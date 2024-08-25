@@ -91,7 +91,7 @@ export function UserSignInForm() {
           className=" space-y-10 font-sans mt-8 w-full text-navyblue md:flex md:flex-col md:items-center md:justify-center min-h-screen "
         >
           <h2 className=" font-semibold text-darkblue max-md:text-md text-lg">
-            Login to Trust-Capital
+            Login2 to Trust-Capital
           </h2>{" "}
           <div className="space-y-4">
             <FormField
