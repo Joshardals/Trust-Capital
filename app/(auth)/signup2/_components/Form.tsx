@@ -678,7 +678,7 @@ export function UserAuth2Form() {
           <p className="text-xs">
             Have an account? {""}
             <Link
-              href="/login"
+              href="/login2"
               className=" text-xs text-navyblue font-bold underline underline-offset-4"
             >
               Login here

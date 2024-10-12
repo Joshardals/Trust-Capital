@@ -39,6 +39,7 @@ export async function contactSupport({
     console.log(error.message);
   }
 }
+
 export async function sendMail({
   to,
   name,
