@@ -55,7 +55,7 @@ export default function ConfirmDeposit() {
         setWalletAddress("ltc1qgqhehdn6wlvunzpd8qrhyrzhqqn3499hmgydgk");
         break;
       case "doge":
-        setWalletAddress("DF4bA8akusFuqzVNNNWDxPFitga4Z3wfk5");
+        setWalletAddress("0xa3C99F287350026705eB37091B8795820cB5B8ff");
         break;
       case "tron":
         setWalletAddress("TYXG7tqURwCpb9EZTyqpQ3SuYkyyhEb5ei");
