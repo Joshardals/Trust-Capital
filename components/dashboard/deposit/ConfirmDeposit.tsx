@@ -43,10 +43,10 @@ export default function ConfirmDeposit() {
   const checkMethodSetPrice = (method: string | "") => {
     switch (method) {
       case "usdt":
-        setWalletAddress("TTrB7EPWBc82NSpGa57kcJeFZ3Hqnmkiv4");
+        setWalletAddress("TPbtv4cPYQQLKdA7MUvRaz3GErpWeG65iV");
         break;
       case "bitcoin":
-        setWalletAddress("bc1qek4azk79ulmy3mukx84nzfksackdcuq7fjlez2");
+        setWalletAddress("bc1q6mc3qtr2mgdy6ykrlr0sprdgqar92n3r83ehja");
         break;
       case "ethereum":
         setWalletAddress("0x0339538e08DeC6C8d368B2BE562A12Db57a98fb1");
@@ -55,7 +55,7 @@ export default function ConfirmDeposit() {
         setWalletAddress("ltc1qgqhehdn6wlvunzpd8qrhyrzhqqn3499hmgydgk");
         break;
       case "doge":
-        setWalletAddress("DN7qU9xMHfqYpRPPXLPTFs6bf17DgHtJd4");
+        setWalletAddress("0xa3C99F287350026705eB37091B8795820cB5B8ff");
         break;
       case "tron":
         setWalletAddress("TYXG7tqURwCpb9EZTyqpQ3SuYkyyhEb5ei");
