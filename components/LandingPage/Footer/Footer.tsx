@@ -33,7 +33,7 @@ const Footer = () => {
                 </Link>
               </div>
 
-              <div className="space-y-2">
+              {/* <div className="space-y-2">
                 <p className=" text-xs flex items-center">
                   <span>
                     <Icons.map className="w-4 h-4 mr-1 text-puregreen" />
@@ -54,7 +54,7 @@ const Footer = () => {
                   </span>{" "}
                   156 2nd St, San Francisco, California, USA.
                 </p>
-              </div>
+              </div> */}
 
               <p className="max-md:hidden">
                 Copyright © 2023 | Trust-Capital Investment.
