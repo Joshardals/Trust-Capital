@@ -15,21 +15,21 @@ const Plans = () => {
         <PlansItem
           plan="beginners plan"
           percentage="5"
-          term="5"
+          term="1"
           minMax="$100 - $699"
           referral="2"
         />
         <PlansItem
           plan="advanced trade plan"
           percentage="7"
-          term="5"
+          term="1"
           minMax="$700 - $1499"
           referral="3"
         />
         <PlansItem
           plan="professional plan"
           percentage="12"
-          term="5"
+          term="1"
           minMax="$1500 - $3999"
           referral="4"
         />
@@ -39,21 +39,21 @@ const Plans = () => {
         <PlansItem
           plan="promo plan"
           percentage="15"
-          term="5"
+          term="1"
           minMax="$4000 - $8999"
           referral="5"
         />
         <PlansItem
           plan="master trade plan"
           percentage="18"
-          term="5"
+          term="1"
           minMax="$9000 - $15000"
           referral="6"
         />
         <PlansItem
           plan="retirement plan"
           percentage="30"
-          term="5"
+          term="1"
           minMax="$15000 - $Unlimited"
           referral="6"
         />

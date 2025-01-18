@@ -13,7 +13,10 @@ const PlansItem = ({ plan, percentage, term, minMax, referral }: PlanProps) => {
         <div className="flex items-center space-x-4">
           <Icons.check className="h-4 w-4 text-puregreen" />
           <p>
-            Plan Terms: <span className="font-semibold">{term} Hours</span>
+            Plan Terms:{" "}
+            <span className="font-semibold">
+              {term} {`Hour${Number(term) > 1 ? "s" : ""}`}
+            </span>
           </p>
         </div>
         <div className="flex items-center space-x-4">
