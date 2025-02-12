@@ -117,6 +117,7 @@ export interface PlanProps {
   term: string;
   minMax: string;
   referral: string;
+  perks?: string;
 }
 
 export interface QuestionProps {
