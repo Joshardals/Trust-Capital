@@ -25,40 +25,46 @@ import { account, databases } from "@/appwrite";
 
 const plan = [
   {
-    plan: "beginners",
-    amount: "$100 - $699",
-    term: "1",
-    percentage: "5",
+    plan: "starter plan",
+    amount: "$50 - $999",
+    term: "12",
+    percentage: "4",
   },
   {
-    plan: "advanced trade",
-    amount: "$700 - $1499",
-    term: "1",
-    percentage: "7",
+    plan: "Basic Growth Plan",
+    amount: "$1000 - $4,999",
+    term: "24",
+    percentage: "6",
   },
   {
-    plan: "professional",
-    amount: "$1500 - $3999",
-    term: "1",
+    plan: "Premium Trade Plan",
+    amount: "$5000 - $14,999",
+    term: "24",
+    percentage: "8",
+  },
+  {
+    plan: "Advanced Investor Plan",
+    amount: "$15,000 - $34,999",
+    term: "36",
+    percentage: "10",
+  },
+  {
+    plan: "Elite Investor Plan",
+    amount: "$35,000 - $74,999",
+    term: "48",
     percentage: "12",
   },
   {
-    plan: "promo",
-    amount: "$4000 - $8999",
-    term: "1",
-    percentage: "15",
-  },
-  {
-    plan: "master trade",
-    amount: "$9000 - $15000",
-    term: "1",
-    percentage: "18",
-  },
-  {
-    plan: "retirement",
-    amount: "$15000 - $Unlimited",
+    plan: "retirement plan",
+    amount: "$75,000 - $99,999",
     term: "1",
     percentage: "30",
+  },
+  {
+    plan: "Exclusive Fortune Plan",
+    amount: "$100,000 and above",
+    term: "72",
+    percentage: "18",
   },
 ];
 
@@ -109,23 +115,26 @@ const Plans = () => {
   }, [router]);
 
   const checkPlan = (plan: string) => {
-    switch (plan) {
-      case "beginners":
-        return 100;
-      case "advanced trade":
-        return 700;
-      case "professional":
-        return 1500;
-      case "promo":
-        return 4000;
-      case "master trade":
-        return 9000;
-      case "retirement":
-        return 15000;
-      default:
-        throw new Error(`Unknown plan: ${plan}`);
-    }
-  };
+  switch (plan) {
+    case "starter plan":
+      return 50;
+    case "Basic Growth Plan":
+      return 1000;
+    case "Premium Trade Plan":
+      return 5000;
+    case "Advanced Investor Plan":
+      return 15000;
+    case "Elite Investor Plan":
+      return 35000;
+    case "retirement plan":
+      return 75000;
+    case "Exclusive Fortune Plan":
+      return 100000;
+    default:
+      throw new Error(`Unknown plan: ${plan}`);
+  }
+};
+
 
   const onSubmit = async (values: PlansType) => {
     setIsLoading(true);
