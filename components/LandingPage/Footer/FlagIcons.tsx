@@ -64,19 +64,20 @@ export const Flags = () => {
         percentageChange="3%"
       />
       <FlagIcons
-        code="DE"
-        name="Germany"
-        percentage="9%"
-        up={true}
-        percentageChange="8%"
-      />
-      <FlagIcons
         code="IR"
         name="Iran"
         percentage="15%"
         up={true}
         percentageChange="4%"
       />
+      <FlagIcons
+        code="DE"
+        name="Germany"
+        percentage="9%"
+        up={true}
+        percentageChange="8%"
+      />
+      
       <FlagIcons
         code="MX"
         name="Mexico"
