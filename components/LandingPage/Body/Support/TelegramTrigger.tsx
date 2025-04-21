@@ -6,7 +6,7 @@ export default function TelegramTrigger() {
   return (
     <Link
       // href="https://wa.link/lcvnqw"
-      href="https://wa.link/42j6k5"
+      href="https://wa.link/6w3gzx"
       className="fixed bottom-5 right-5 z-50 cursor-pointer transition-all duration-300 bg-babyblue rounded-full"
     >
       {/* <Image
