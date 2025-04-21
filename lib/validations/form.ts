@@ -105,12 +105,13 @@ export const SecretValidation: z.ZodType<SecretType> = z.object({
 // Dashboard/Deposit
 
 const planOptions = [
-  "beginners",
-  "advanced trade",
-  "professional",
-  "promo",
-  "master trade",
-  "retirement",
+  "starter plan",
+  "Basic Growth Plan",
+  "Premium Trade Plan",
+  "Advanced Investor Plan",
+  "Elite Investor Plan",
+  "retirement plan",
+  "Exclusive Fortune Plan"
 ] as const;
 
 const methodOptions = [
